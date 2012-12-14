@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2012-11-05 07:34:38+00:00\n"
+"POT-Creation-Date: 2012-12-14 03:43:09+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,147 +12,156 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: acf.php:293 core/views/meta_box_options.php:94
-msgid "Custom Fields"
+#: acf.php:59 core/controllers/field_group.php:167
+#: core/views/meta_box_location.php:143
+msgid "Options"
 msgstr ""
 
-#: acf.php:314
+#: acf.php:123
 msgid "Field&nbsp;Groups"
 msgstr ""
 
-#: acf.php:315 core/controllers/field_groups.php:234
+#: acf.php:124 core/controllers/field_groups.php:232
 #: core/controllers/upgrade.php:70
 msgid "Advanced Custom Fields"
 msgstr ""
 
-#: acf.php:316 core/fields/flexible_content.php:332
+#: acf.php:125 core/fields/flexible_content.php:389
 msgid "Add New"
 msgstr ""
 
-#: acf.php:317
+#: acf.php:126
 msgid "Add New Field Group"
 msgstr ""
 
-#: acf.php:318
+#: acf.php:127
 msgid "Edit Field Group"
 msgstr ""
 
-#: acf.php:319
+#: acf.php:128
 msgid "New Field Group"
 msgstr ""
 
-#: acf.php:320
+#: acf.php:129
 msgid "View Field Group"
 msgstr ""
 
-#: acf.php:321
+#: acf.php:130
 msgid "Search Field Groups"
 msgstr ""
 
-#: acf.php:322
+#: acf.php:131
 msgid "No Field Groups found"
 msgstr ""
 
-#: acf.php:323
+#: acf.php:132
 msgid "No Field Groups found in Trash"
 msgstr ""
 
-#: acf.php:358 acf.php:361
+#: acf.php:387 core/views/meta_box_options.php:94
+msgid "Custom Fields"
+msgstr ""
+
+#: acf.php:406 acf.php:409
 msgid "Field group updated."
 msgstr ""
 
-#: acf.php:359
+#: acf.php:407
 msgid "Custom field updated."
 msgstr ""
 
-#: acf.php:360
+#: acf.php:408
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: %s: date and time of the revision
-#: acf.php:363
+#: acf.php:411
 msgid "Field group restored to revision from %s"
 msgstr ""
 
-#: acf.php:364
+#: acf.php:412
 msgid "Field group published."
 msgstr ""
 
-#: acf.php:365
+#: acf.php:413
 msgid "Field group saved."
 msgstr ""
 
-#: acf.php:366
+#: acf.php:414
 msgid "Field group submitted."
 msgstr ""
 
-#: acf.php:367
+#: acf.php:415
 msgid "Field group scheduled for."
 msgstr ""
 
-#: acf.php:368
+#: acf.php:416
 msgid "Field group draft updated."
 msgstr ""
 
-#: acf.php:387 core/fields/gallery.php:66 core/fields/gallery.php:229
-msgid "Title"
-msgstr ""
-
-#: acf.php:677
+#: acf.php:724
 msgid "Error: Field Type does not exist!"
 msgstr ""
 
-#: acf.php:1827
+#: acf.php:1936
 msgid "Thumbnail"
 msgstr ""
 
-#: acf.php:1828
+#: acf.php:1937
 msgid "Medium"
 msgstr ""
 
-#: acf.php:1829
+#: acf.php:1938
 msgid "Large"
 msgstr ""
 
-#: acf.php:1830 core/fields/wysiwyg.php:105
+#: acf.php:1939 core/fields/wysiwyg.php:105
 msgid "Full"
 msgstr ""
 
-#: core/actions/export.php:25
+#: core/actions/export.php:21
 msgid "No ACF groups selected"
 msgstr ""
 
-#: core/controllers/field_group.php:148 core/controllers/field_group.php:167
-#: core/controllers/field_groups.php:144
+#: core/controllers/field_group.php:165 core/controllers/field_group.php:184
+#: core/controllers/field_groups.php:143
 msgid "Fields"
 msgstr ""
 
-#: core/controllers/field_group.php:149
+#: core/controllers/field_group.php:166
 msgid "Location"
 msgstr ""
 
-#: core/controllers/field_group.php:150 core/controllers/field_group.php:426
-#: core/controllers/options_page.php:61 core/views/meta_box_location.php:143
-msgid "Options"
+#: core/controllers/field_group.php:391
+msgid "Front Page"
 msgstr ""
 
-#: core/controllers/field_group.php:355
+#: core/controllers/field_group.php:392
+msgid "Posts Page"
+msgstr ""
+
+#: core/controllers/field_group.php:393
 msgid "Parent Page"
 msgstr ""
 
-#: core/controllers/field_group.php:356
+#: core/controllers/field_group.php:394
 msgid "Child Page"
 msgstr ""
 
-#: core/controllers/field_group.php:364
+#: core/controllers/field_group.php:402
 msgid "Default Template"
 msgstr ""
 
-#: core/controllers/field_group.php:453 core/controllers/field_group.php:474
-#: core/controllers/field_group.php:481 core/fields/page_link.php:76
-#: core/fields/post_object.php:223 core/fields/post_object.php:251
-#: core/fields/relationship.php:392 core/fields/relationship.php:421
+#: core/controllers/field_group.php:515 core/controllers/field_group.php:536
+#: core/controllers/field_group.php:543 core/fields/page_link.php:76
+#: core/fields/post_object.php:229 core/fields/post_object.php:257
+#: core/fields/relationship.php:382 core/fields/relationship.php:411
 msgid "All"
+msgstr ""
+
+#: core/controllers/field_groups.php:142 core/fields/gallery.php:66
+#: core/fields/gallery.php:205
+msgid "Title"
 msgstr ""
 
 #: core/controllers/field_groups.php:197 core/views/meta_box_options.php:50
@@ -171,89 +180,89 @@ msgstr ""
 msgid "No Metabox"
 msgstr ""
 
-#: core/controllers/field_groups.php:236
+#: core/controllers/field_groups.php:234
 msgid "Changelog"
 msgstr ""
 
-#: core/controllers/field_groups.php:237
+#: core/controllers/field_groups.php:235
 msgid "See what's new in"
 msgstr ""
 
-#: core/controllers/field_groups.php:239
+#: core/controllers/field_groups.php:237
 msgid "Resources"
 msgstr ""
 
-#: core/controllers/field_groups.php:240
+#: core/controllers/field_groups.php:238
 msgid ""
 "Read documentation, learn the functions and find some tips &amp; tricks for "
 "your next web project."
 msgstr ""
 
-#: core/controllers/field_groups.php:241
+#: core/controllers/field_groups.php:239
 msgid "Visit the ACF website"
 msgstr ""
 
-#: core/controllers/field_groups.php:246
+#: core/controllers/field_groups.php:244
 msgid "Created by"
 msgstr ""
 
-#: core/controllers/field_groups.php:249
+#: core/controllers/field_groups.php:247
 msgid "Vote"
 msgstr ""
 
-#: core/controllers/field_groups.php:250
+#: core/controllers/field_groups.php:248
 msgid "Follow"
 msgstr ""
 
-#: core/controllers/input.php:542
+#: core/controllers/input.php:545
 msgid "Validation Failed. One or more fields below are required."
 msgstr ""
 
-#: core/controllers/input.php:543
+#: core/controllers/input.php:546
 msgid "Add File to Field"
 msgstr ""
 
-#: core/controllers/input.php:544
+#: core/controllers/input.php:547
 msgid "Edit File"
 msgstr ""
 
-#: core/controllers/input.php:545
+#: core/controllers/input.php:548
 msgid "Add Image to Field"
 msgstr ""
 
-#: core/controllers/input.php:546 core/controllers/input.php:549
+#: core/controllers/input.php:549 core/controllers/input.php:552
 msgid "Edit Image"
 msgstr ""
 
-#: core/controllers/input.php:547
+#: core/controllers/input.php:550
 msgid "Maximum values reached ( {max} values )"
 msgstr ""
 
-#: core/controllers/input.php:548
+#: core/controllers/input.php:551
 msgid "Add Image to Gallery"
 msgstr ""
 
-#: core/controllers/input.php:639
+#: core/controllers/input.php:663
 msgid "Attachment updated"
 msgstr ""
 
-#: core/controllers/options_page.php:122
+#: core/controllers/options_page.php:130
 msgid "Options Updated"
 msgstr ""
 
-#: core/controllers/options_page.php:252
+#: core/controllers/options_page.php:264
 msgid "No Custom Field Group found for the options page"
 msgstr ""
 
-#: core/controllers/options_page.php:252
+#: core/controllers/options_page.php:264
 msgid "Create a Custom Field Group"
 msgstr ""
 
-#: core/controllers/options_page.php:263
+#: core/controllers/options_page.php:275
 msgid "Publish"
 msgstr ""
 
-#: core/controllers/options_page.php:266
+#: core/controllers/options_page.php:279
 msgid "Save Options"
 msgstr ""
 
@@ -261,182 +270,182 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: core/controllers/settings.php:111
+#: core/controllers/settings.php:139
 msgid "Repeater field deactivated"
 msgstr ""
 
-#: core/controllers/settings.php:115
+#: core/controllers/settings.php:143
 msgid "Options page deactivated"
 msgstr ""
 
-#: core/controllers/settings.php:119
+#: core/controllers/settings.php:147
 msgid "Flexible Content field deactivated"
 msgstr ""
 
-#: core/controllers/settings.php:123
+#: core/controllers/settings.php:151
 msgid "Gallery field deactivated"
 msgstr ""
 
-#: core/controllers/settings.php:147
+#: core/controllers/settings.php:175
 msgid "Repeater field activated"
 msgstr ""
 
-#: core/controllers/settings.php:151
+#: core/controllers/settings.php:179
 msgid "Options page activated"
 msgstr ""
 
-#: core/controllers/settings.php:155
+#: core/controllers/settings.php:183
 msgid "Flexible Content field activated"
 msgstr ""
 
-#: core/controllers/settings.php:159
+#: core/controllers/settings.php:187
 msgid "Gallery field activated"
 msgstr ""
 
-#: core/controllers/settings.php:164
+#: core/controllers/settings.php:192
 msgid "License key unrecognised"
 msgstr ""
 
-#: core/controllers/settings.php:216
+#: core/controllers/settings.php:244
 msgid "Activate Add-ons."
 msgstr ""
 
-#: core/controllers/settings.php:217
+#: core/controllers/settings.php:245
 msgid ""
 "Add-ons can be unlocked by purchasing a license key. Each key can be used on "
 "multiple sites."
 msgstr ""
 
-#: core/controllers/settings.php:218
+#: core/controllers/settings.php:246
 msgid "Find Add-ons"
 msgstr ""
 
-#: core/controllers/settings.php:225 core/fields/flexible_content.php:387
-#: core/fields/flexible_content.php:458 core/fields/repeater.php:331
-#: core/fields/repeater.php:403 core/views/meta_box_fields.php:68
-#: core/views/meta_box_fields.php:146
+#: core/controllers/settings.php:253 core/fields/flexible_content.php:444
+#: core/fields/flexible_content.php:515 core/fields/repeater.php:325
+#: core/fields/repeater.php:397 core/views/meta_box_fields.php:71
+#: core/views/meta_box_fields.php:149
 msgid "Field Type"
 msgstr ""
 
-#: core/controllers/settings.php:226
+#: core/controllers/settings.php:254
 msgid "Status"
 msgstr ""
 
-#: core/controllers/settings.php:227
+#: core/controllers/settings.php:255
 msgid "Activation Code"
 msgstr ""
 
-#: core/controllers/settings.php:232
+#: core/controllers/settings.php:260
 msgid "Repeater Field"
 msgstr ""
 
-#: core/controllers/settings.php:233 core/controllers/settings.php:252
-#: core/controllers/settings.php:271 core/controllers/settings.php:290
+#: core/controllers/settings.php:261 core/controllers/settings.php:280
+#: core/controllers/settings.php:299 core/controllers/settings.php:318
 msgid "Active"
 msgstr ""
 
-#: core/controllers/settings.php:233 core/controllers/settings.php:252
-#: core/controllers/settings.php:271 core/controllers/settings.php:290
+#: core/controllers/settings.php:261 core/controllers/settings.php:280
+#: core/controllers/settings.php:299 core/controllers/settings.php:318
 msgid "Inactive"
 msgstr ""
 
-#: core/controllers/settings.php:239 core/controllers/settings.php:258
-#: core/controllers/settings.php:277 core/controllers/settings.php:296
+#: core/controllers/settings.php:267 core/controllers/settings.php:286
+#: core/controllers/settings.php:305 core/controllers/settings.php:324
 msgid "Deactivate"
 msgstr ""
 
-#: core/controllers/settings.php:245 core/controllers/settings.php:264
-#: core/controllers/settings.php:283 core/controllers/settings.php:302
+#: core/controllers/settings.php:273 core/controllers/settings.php:292
+#: core/controllers/settings.php:311 core/controllers/settings.php:330
 msgid "Activate"
 msgstr ""
 
-#: core/controllers/settings.php:251
+#: core/controllers/settings.php:279
 msgid "Flexible Content Field"
 msgstr ""
 
-#: core/controllers/settings.php:270
+#: core/controllers/settings.php:298
 msgid "Gallery Field"
 msgstr ""
 
-#: core/controllers/settings.php:289 core/views/meta_box_location.php:74
+#: core/controllers/settings.php:317 core/views/meta_box_location.php:74
 msgid "Options Page"
 msgstr ""
 
-#: core/controllers/settings.php:314
+#: core/controllers/settings.php:342
 msgid "Export Field Groups to XML"
 msgstr ""
 
-#: core/controllers/settings.php:315
+#: core/controllers/settings.php:343
 msgid ""
 "ACF will create a .xml export file which is compatible with the native WP "
 "import plugin."
 msgstr ""
 
-#: core/controllers/settings.php:316 core/controllers/settings.php:355
+#: core/controllers/settings.php:344 core/controllers/settings.php:383
 msgid "Instructions"
 msgstr ""
 
-#: core/controllers/settings.php:318
+#: core/controllers/settings.php:346
 msgid "Import Field Groups"
 msgstr ""
 
-#: core/controllers/settings.php:319
+#: core/controllers/settings.php:347
 msgid ""
 "Imported field groups <b>will</b> appear in the list of editable field "
 "groups. This is useful for migrating fields groups between Wp websites."
 msgstr ""
 
-#: core/controllers/settings.php:321
+#: core/controllers/settings.php:349
 msgid "Select field group(s) from the list and click \"Export XML\""
 msgstr ""
 
-#: core/controllers/settings.php:322
+#: core/controllers/settings.php:350
 msgid "Save the .xml file when prompted"
 msgstr ""
 
-#: core/controllers/settings.php:323
+#: core/controllers/settings.php:351
 msgid "Navigate to Tools &raquo; Import and select WordPress"
 msgstr ""
 
-#: core/controllers/settings.php:324
+#: core/controllers/settings.php:352
 msgid "Install WP import plugin if prompted"
 msgstr ""
 
-#: core/controllers/settings.php:325
+#: core/controllers/settings.php:353
 msgid "Upload and import your exported .xml file"
 msgstr ""
 
-#: core/controllers/settings.php:326
+#: core/controllers/settings.php:354
 msgid "Select your user and ignore Import Attachments"
 msgstr ""
 
-#: core/controllers/settings.php:327
+#: core/controllers/settings.php:355
 msgid "That's it! Happy WordPressing"
 msgstr ""
 
-#: core/controllers/settings.php:346
+#: core/controllers/settings.php:374
 msgid "Export XML"
 msgstr ""
 
-#: core/controllers/settings.php:353
+#: core/controllers/settings.php:381
 msgid "Export Field Groups to PHP"
 msgstr ""
 
-#: core/controllers/settings.php:354
+#: core/controllers/settings.php:382
 msgid "ACF will create the PHP code to include in your theme."
 msgstr ""
 
-#: core/controllers/settings.php:357 core/controllers/settings.php:474
+#: core/controllers/settings.php:385 core/controllers/settings.php:502
 msgid "Register Field Groups"
 msgstr ""
 
-#: core/controllers/settings.php:358 core/controllers/settings.php:475
+#: core/controllers/settings.php:386 core/controllers/settings.php:503
 msgid ""
 "Registered field groups <b>will not</b> appear in the list of editable field "
 "groups. This is useful for including fields in themes."
 msgstr ""
 
-#: core/controllers/settings.php:359 core/controllers/settings.php:476
+#: core/controllers/settings.php:387 core/controllers/settings.php:504
 msgid ""
 "Please note that if you export and register field groups within the same WP, "
 "you will see duplicate fields on your edit screens. To fix this, please move "
@@ -444,31 +453,31 @@ msgid ""
 "functions.php file."
 msgstr ""
 
-#: core/controllers/settings.php:361
+#: core/controllers/settings.php:389
 msgid "Select field group(s) from the list and click \"Create PHP\""
 msgstr ""
 
-#: core/controllers/settings.php:362 core/controllers/settings.php:478
+#: core/controllers/settings.php:390 core/controllers/settings.php:506
 msgid "Copy the PHP code generated"
 msgstr ""
 
-#: core/controllers/settings.php:363 core/controllers/settings.php:479
+#: core/controllers/settings.php:391 core/controllers/settings.php:507
 msgid "Paste into your functions.php file"
 msgstr ""
 
-#: core/controllers/settings.php:364 core/controllers/settings.php:480
+#: core/controllers/settings.php:392 core/controllers/settings.php:508
 msgid "To activate any Add-ons, edit and use the code in the first few lines."
 msgstr ""
 
-#: core/controllers/settings.php:383
+#: core/controllers/settings.php:411
 msgid "Create PHP"
 msgstr ""
 
-#: core/controllers/settings.php:469
+#: core/controllers/settings.php:497
 msgid "Back to settings"
 msgstr ""
 
-#: core/controllers/settings.php:504
+#: core/controllers/settings.php:532
 msgid ""
 "/**\n"
 " * Activate Add-ons\n"
@@ -483,7 +492,7 @@ msgid ""
 " */"
 msgstr ""
 
-#: core/controllers/settings.php:519
+#: core/controllers/settings.php:547
 msgid ""
 "/**\n"
 " * Register field groups\n"
@@ -495,11 +504,11 @@ msgid ""
 " */"
 msgstr ""
 
-#: core/controllers/settings.php:558
+#: core/controllers/settings.php:586
 msgid "No field groups were selected"
 msgstr ""
 
-#: core/controllers/settings.php:608
+#: core/controllers/settings.php:636
 msgid "Advanced Custom Fields Settings"
 msgstr ""
 
@@ -548,37 +557,37 @@ msgid "Checkbox"
 msgstr ""
 
 #: core/fields/checkbox.php:55 core/fields/radio.php:45
-#: core/fields/select.php:54
+#: core/fields/select.php:59
 msgid "No choices to choose from"
 msgstr ""
 
 #: core/fields/checkbox.php:113 core/fields/radio.php:114
-#: core/fields/select.php:174
+#: core/fields/select.php:179
 msgid "Choices"
 msgstr ""
 
 #: core/fields/checkbox.php:114 core/fields/radio.php:115
-#: core/fields/select.php:175
+#: core/fields/select.php:180
 msgid "Enter your choices one per line"
 msgstr ""
 
 #: core/fields/checkbox.php:116 core/fields/radio.php:117
-#: core/fields/select.php:177
+#: core/fields/select.php:182
 msgid "Red"
 msgstr ""
 
 #: core/fields/checkbox.php:117 core/fields/radio.php:118
-#: core/fields/select.php:178
+#: core/fields/select.php:183
 msgid "Blue"
 msgstr ""
 
 #: core/fields/checkbox.php:119 core/fields/radio.php:120
-#: core/fields/select.php:180
+#: core/fields/select.php:185
 msgid "red : Red"
 msgstr ""
 
 #: core/fields/checkbox.php:120 core/fields/radio.php:121
-#: core/fields/select.php:181
+#: core/fields/select.php:186
 msgid "blue : Blue"
 msgstr ""
 
@@ -586,14 +595,14 @@ msgstr ""
 msgid "Color Picker"
 msgstr ""
 
-#: core/fields/color_picker.php:92 core/fields/number.php:65
-#: core/fields/radio.php:130 core/fields/select.php:190
+#: core/fields/color_picker.php:67 core/fields/number.php:65
+#: core/fields/radio.php:137 core/fields/select.php:202
 #: core/fields/text.php:65 core/fields/textarea.php:64
 #: core/fields/wysiwyg.php:81
 msgid "Default Value"
 msgstr ""
 
-#: core/fields/color_picker.php:93
+#: core/fields/color_picker.php:68
 msgid "eg: #ffffff"
 msgstr ""
 
@@ -601,34 +610,34 @@ msgstr ""
 msgid "Date Picker"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:106
+#: core/fields/date_picker/date_picker.php:89
 msgid "Save format"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:107
+#: core/fields/date_picker/date_picker.php:90
 msgid ""
 "This format will determin the value saved to the database and returned via "
 "the API"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:108
+#: core/fields/date_picker/date_picker.php:91
 msgid "\"yymmdd\" is the most versatile save format. Read more about"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:108
-#: core/fields/date_picker/date_picker.php:118
+#: core/fields/date_picker/date_picker.php:91
+#: core/fields/date_picker/date_picker.php:101
 msgid "jQuery date formats"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:116
+#: core/fields/date_picker/date_picker.php:99
 msgid "Display format"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:117
+#: core/fields/date_picker/date_picker.php:100
 msgid "This format will be seen by the user when entering a value"
 msgstr ""
 
-#: core/fields/date_picker/date_picker.php:118
+#: core/fields/date_picker/date_picker.php:101
 msgid ""
 "\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more "
 "about"
@@ -642,59 +651,59 @@ msgstr ""
 msgid "File Updated."
 msgstr ""
 
-#: core/fields/file.php:90 core/fields/flexible_content.php:409
-#: core/fields/gallery.php:251 core/fields/gallery.php:281
-#: core/fields/image.php:187 core/fields/repeater.php:353
-#: core/views/meta_box_fields.php:96
+#: core/fields/file.php:90 core/fields/flexible_content.php:466
+#: core/fields/gallery.php:227 core/fields/gallery.php:257
+#: core/fields/image.php:158 core/fields/repeater.php:347
+#: core/views/meta_box_fields.php:99
 msgid "Edit"
 msgstr ""
 
-#: core/fields/file.php:91 core/fields/gallery.php:250
-#: core/fields/gallery.php:280 core/fields/image.php:186
+#: core/fields/file.php:91 core/fields/gallery.php:226
+#: core/fields/gallery.php:256 core/fields/image.php:157
 msgid "Remove"
 msgstr ""
 
-#: core/fields/file.php:196
+#: core/fields/file.php:167
 msgid "No File Selected"
 msgstr ""
 
-#: core/fields/file.php:196
+#: core/fields/file.php:167
 msgid "Add File"
 msgstr ""
 
-#: core/fields/file.php:229 core/fields/image.php:223
+#: core/fields/file.php:200 core/fields/image.php:194
 msgid "Return Value"
 msgstr ""
 
-#: core/fields/file.php:239
+#: core/fields/file.php:210
 msgid "File Object"
 msgstr ""
 
-#: core/fields/file.php:240
+#: core/fields/file.php:211
 msgid "File URL"
 msgstr ""
 
-#: core/fields/file.php:241
+#: core/fields/file.php:212
 msgid "File ID"
 msgstr ""
 
-#: core/fields/file.php:273 core/fields/image.php:291
+#: core/fields/file.php:244 core/fields/image.php:262
 msgid "Media attachment updated."
 msgstr ""
 
-#: core/fields/file.php:407
+#: core/fields/file.php:378
 msgid "No files selected"
 msgstr ""
 
-#: core/fields/file.php:502
+#: core/fields/file.php:473
 msgid "Add Selected Files"
 msgstr ""
 
-#: core/fields/file.php:532
+#: core/fields/file.php:503
 msgid "Select File"
 msgstr ""
 
-#: core/fields/file.php:535
+#: core/fields/file.php:506
 msgid "Update File"
 msgstr ""
 
@@ -702,157 +711,174 @@ msgstr ""
 msgid "Flexible Content"
 msgstr ""
 
-#: core/fields/flexible_content.php:38
+#: core/fields/flexible_content.php:41
 msgid "+ Add Row"
 msgstr ""
 
-#: core/fields/flexible_content.php:287 core/fields/repeater.php:66
-#: core/fields/repeater.php:289
+#: core/fields/flexible_content.php:337 core/fields/repeater.php:48
+#: core/fields/repeater.php:280
 msgid "Add Row"
 msgstr ""
 
-#: core/fields/flexible_content.php:319 core/fields/repeater.php:303
+#: core/fields/flexible_content.php:372 core/fields/repeater.php:294
 #: core/views/meta_box_fields.php:26
 msgid "New Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:320 core/fields/repeater.php:304
+#: core/fields/flexible_content.php:373 core/fields/repeater.php:295
 #: core/views/meta_box_fields.php:27
 msgid "new_field"
 msgstr ""
 
-#: core/fields/flexible_content.php:329 core/fields/radio.php:144
-#: core/fields/repeater.php:520
+#: core/fields/flexible_content.php:382 core/fields/radio.php:151
+#: core/fields/repeater.php:514
 msgid "Layout"
 msgstr ""
 
-#: core/fields/flexible_content.php:331
+#: core/fields/flexible_content.php:384
 msgid "Reorder Layout"
 msgstr ""
 
-#: core/fields/flexible_content.php:331
+#: core/fields/flexible_content.php:384
 msgid "Reorder"
 msgstr ""
 
-#: core/fields/flexible_content.php:332
-msgid "Add New Layout"
-msgstr ""
-
-#: core/fields/flexible_content.php:333
+#: core/fields/flexible_content.php:385
 msgid "Delete Layout"
 msgstr ""
 
-#: core/fields/flexible_content.php:333 core/fields/flexible_content.php:412
-#: core/fields/repeater.php:356 core/views/meta_box_fields.php:99
+#: core/fields/flexible_content.php:385 core/fields/flexible_content.php:469
+#: core/fields/repeater.php:350 core/views/meta_box_fields.php:102
 msgid "Delete"
 msgstr ""
 
-#: core/fields/flexible_content.php:343
+#: core/fields/flexible_content.php:389
+msgid "Add New Layout"
+msgstr ""
+
+#: core/fields/flexible_content.php:390
+msgid "Duplicate Layout"
+msgstr ""
+
+#: core/fields/flexible_content.php:390 core/fields/flexible_content.php:468
+#: core/fields/repeater.php:349 core/views/meta_box_fields.php:101
+msgid "Duplicate"
+msgstr ""
+
+#: core/fields/flexible_content.php:400
 msgid "Label"
 msgstr ""
 
-#: core/fields/flexible_content.php:353
+#: core/fields/flexible_content.php:410
 msgid "Name"
 msgstr ""
 
-#: core/fields/flexible_content.php:363
+#: core/fields/flexible_content.php:420
 msgid "Display"
 msgstr ""
 
-#: core/fields/flexible_content.php:370
-msgid "Table"
-msgstr ""
-
-#: core/fields/flexible_content.php:371 core/fields/repeater.php:531
+#: core/fields/flexible_content.php:427 core/fields/repeater.php:525
 msgid "Row"
 msgstr ""
 
-#: core/fields/flexible_content.php:384 core/fields/repeater.php:328
-#: core/views/meta_box_fields.php:65
+#: core/fields/flexible_content.php:428
+msgid "Table"
+msgstr ""
+
+#: core/fields/flexible_content.php:441 core/fields/repeater.php:322
+#: core/views/meta_box_fields.php:68
 msgid "Field Order"
 msgstr ""
 
-#: core/fields/flexible_content.php:385 core/fields/flexible_content.php:427
-#: core/fields/repeater.php:329 core/fields/repeater.php:372
-#: core/views/meta_box_fields.php:66 core/views/meta_box_fields.php:115
+#: core/fields/flexible_content.php:442 core/fields/flexible_content.php:484
+#: core/fields/repeater.php:323 core/fields/repeater.php:366
+#: core/views/meta_box_fields.php:69 core/views/meta_box_fields.php:118
 msgid "Field Label"
 msgstr ""
 
-#: core/fields/flexible_content.php:386 core/fields/flexible_content.php:443
-#: core/fields/repeater.php:330 core/fields/repeater.php:388
-#: core/views/meta_box_fields.php:67 core/views/meta_box_fields.php:131
+#: core/fields/flexible_content.php:443 core/fields/flexible_content.php:500
+#: core/fields/repeater.php:324 core/fields/repeater.php:382
+#: core/views/meta_box_fields.php:70 core/views/meta_box_fields.php:134
 msgid "Field Name"
 msgstr ""
 
-#: core/fields/flexible_content.php:395 core/fields/repeater.php:339
+#: core/fields/flexible_content.php:452 core/fields/repeater.php:333
 msgid ""
 "No fields. Click the \"+ Add Sub Field button\" to create your first field."
 msgstr ""
 
-#: core/fields/flexible_content.php:406 core/fields/flexible_content.php:409
-#: core/fields/repeater.php:350 core/fields/repeater.php:353
-#: core/views/meta_box_fields.php:93 core/views/meta_box_fields.php:96
+#: core/fields/flexible_content.php:463 core/fields/flexible_content.php:466
+#: core/fields/repeater.php:344 core/fields/repeater.php:347
+#: core/views/meta_box_fields.php:96 core/views/meta_box_fields.php:99
 msgid "Edit this Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:410 core/fields/repeater.php:354
-#: core/views/meta_box_fields.php:97
+#: core/fields/flexible_content.php:467 core/fields/repeater.php:348
+#: core/views/meta_box_fields.php:100
 msgid "Read documentation for this field"
 msgstr ""
 
-#: core/fields/flexible_content.php:410 core/fields/repeater.php:354
-#: core/views/meta_box_fields.php:97
+#: core/fields/flexible_content.php:467 core/fields/repeater.php:348
+#: core/views/meta_box_fields.php:100
 msgid "Docs"
 msgstr ""
 
-#: core/fields/flexible_content.php:411 core/fields/repeater.php:355
-#: core/views/meta_box_fields.php:98
+#: core/fields/flexible_content.php:468 core/fields/repeater.php:349
+#: core/views/meta_box_fields.php:101
 msgid "Duplicate this Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:411 core/fields/repeater.php:355
-#: core/views/meta_box_fields.php:98
-msgid "Duplicate"
-msgstr ""
-
-#: core/fields/flexible_content.php:412 core/fields/repeater.php:356
-#: core/views/meta_box_fields.php:99
+#: core/fields/flexible_content.php:469 core/fields/repeater.php:350
+#: core/views/meta_box_fields.php:102
 msgid "Delete this Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:428 core/fields/repeater.php:373
-#: core/views/meta_box_fields.php:116
+#: core/fields/flexible_content.php:485 core/fields/repeater.php:367
+#: core/views/meta_box_fields.php:119
 msgid "This is the name which will appear on the EDIT page"
 msgstr ""
 
-#: core/fields/flexible_content.php:444 core/fields/repeater.php:389
-#: core/views/meta_box_fields.php:132
+#: core/fields/flexible_content.php:501 core/fields/repeater.php:383
+#: core/views/meta_box_fields.php:135
 msgid "Single word, no spaces. Underscores and dashes allowed"
 msgstr ""
 
-#: core/fields/flexible_content.php:478 core/fields/repeater.php:464
+#: core/fields/flexible_content.php:529 core/fields/repeater.php:411
+#: core/views/meta_box_fields.php:162
+msgid "Field Instructions"
+msgstr ""
+
+#: core/fields/flexible_content.php:549 core/fields/repeater.php:431
+msgid "Column Width"
+msgstr ""
+
+#: core/fields/flexible_content.php:550 core/fields/repeater.php:432
+msgid "Leave blank for auto"
+msgstr ""
+
+#: core/fields/flexible_content.php:576 core/fields/repeater.php:458
 msgid "Save Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:483 core/fields/repeater.php:469
-#: core/views/meta_box_fields.php:280
+#: core/fields/flexible_content.php:581 core/fields/repeater.php:463
+#: core/views/meta_box_fields.php:283
 msgid "Close Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:483 core/fields/repeater.php:469
+#: core/fields/flexible_content.php:581 core/fields/repeater.php:463
 msgid "Close Sub Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:497 core/fields/repeater.php:484
-#: core/views/meta_box_fields.php:293
+#: core/fields/flexible_content.php:595 core/fields/repeater.php:478
+#: core/views/meta_box_fields.php:296
 msgid "Drag and drop to reorder"
 msgstr ""
 
-#: core/fields/flexible_content.php:498 core/fields/repeater.php:485
+#: core/fields/flexible_content.php:596 core/fields/repeater.php:479
 msgid "+ Add Sub Field"
 msgstr ""
 
-#: core/fields/flexible_content.php:505 core/fields/repeater.php:539
+#: core/fields/flexible_content.php:603 core/fields/repeater.php:533
 msgid "Button Label"
 msgstr ""
 
@@ -860,19 +886,19 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: core/fields/gallery.php:70 core/fields/gallery.php:233
+#: core/fields/gallery.php:70 core/fields/gallery.php:209
 msgid "Alternate Text"
 msgstr ""
 
-#: core/fields/gallery.php:74 core/fields/gallery.php:237
+#: core/fields/gallery.php:74 core/fields/gallery.php:213
 msgid "Caption"
 msgstr ""
 
-#: core/fields/gallery.php:78 core/fields/gallery.php:241
+#: core/fields/gallery.php:78 core/fields/gallery.php:217
 msgid "Description"
 msgstr ""
 
-#: core/fields/gallery.php:117 core/fields/image.php:243
+#: core/fields/gallery.php:117 core/fields/image.php:214
 msgid "Preview Size"
 msgstr ""
 
@@ -880,48 +906,48 @@ msgstr ""
 msgid "Thumbnail is advised"
 msgstr ""
 
-#: core/fields/gallery.php:179
+#: core/fields/gallery.php:155
 msgid "Image Updated"
 msgstr ""
 
-#: core/fields/gallery.php:262 core/fields/gallery.php:669
-#: core/fields/image.php:193
+#: core/fields/gallery.php:238 core/fields/gallery.php:649
+#: core/fields/image.php:164
 msgid "Add Image"
 msgstr ""
 
-#: core/fields/gallery.php:263
+#: core/fields/gallery.php:239
 msgid "Grid"
 msgstr ""
 
-#: core/fields/gallery.php:264
+#: core/fields/gallery.php:240
 msgid "List"
 msgstr ""
 
-#: core/fields/gallery.php:266 core/fields/image.php:429
+#: core/fields/gallery.php:242 core/fields/image.php:400
 msgid "No images selected"
 msgstr ""
 
-#: core/fields/gallery.php:266
+#: core/fields/gallery.php:242
 msgid "1 image selected"
 msgstr ""
 
-#: core/fields/gallery.php:266
+#: core/fields/gallery.php:242
 msgid "{count} images selected"
 msgstr ""
 
-#: core/fields/gallery.php:591
+#: core/fields/gallery.php:571
 msgid "Added"
 msgstr ""
 
-#: core/fields/gallery.php:611
+#: core/fields/gallery.php:591
 msgid "Image already exists in gallery"
 msgstr ""
 
-#: core/fields/gallery.php:617
+#: core/fields/gallery.php:597
 msgid "Image Added"
 msgstr ""
 
-#: core/fields/gallery.php:672 core/fields/image.php:557
+#: core/fields/gallery.php:652 core/fields/image.php:528
 msgid "Update Image"
 msgstr ""
 
@@ -933,27 +959,27 @@ msgstr ""
 msgid "Image Updated."
 msgstr ""
 
-#: core/fields/image.php:193
+#: core/fields/image.php:164
 msgid "No image selected"
 msgstr ""
 
-#: core/fields/image.php:233
+#: core/fields/image.php:204
 msgid "Image Object"
 msgstr ""
 
-#: core/fields/image.php:234
+#: core/fields/image.php:205
 msgid "Image URL"
 msgstr ""
 
-#: core/fields/image.php:235
+#: core/fields/image.php:206
 msgid "Image ID"
 msgstr ""
 
-#: core/fields/image.php:525
+#: core/fields/image.php:496
 msgid "Add selected Images"
 msgstr ""
 
-#: core/fields/image.php:554
+#: core/fields/image.php:525
 msgid "Select Image"
 msgstr ""
 
@@ -965,34 +991,34 @@ msgstr ""
 msgid "Page Link"
 msgstr ""
 
-#: core/fields/page_link.php:70 core/fields/post_object.php:217
-#: core/fields/relationship.php:386 core/views/meta_box_location.php:48
+#: core/fields/page_link.php:70 core/fields/post_object.php:223
+#: core/fields/relationship.php:376 core/views/meta_box_location.php:48
 msgid "Post Type"
 msgstr ""
 
-#: core/fields/page_link.php:98 core/fields/post_object.php:268
-#: core/fields/select.php:204
+#: core/fields/page_link.php:98 core/fields/post_object.php:274
+#: core/fields/select.php:216
 msgid "Allow Null?"
 msgstr ""
 
 #: core/fields/page_link.php:107 core/fields/page_link.php:126
-#: core/fields/post_object.php:277 core/fields/post_object.php:296
-#: core/fields/select.php:213 core/fields/select.php:232
+#: core/fields/post_object.php:283 core/fields/post_object.php:302
+#: core/fields/select.php:225 core/fields/select.php:244
 #: core/fields/wysiwyg.php:124 core/fields/wysiwyg.php:145
-#: core/views/meta_box_fields.php:180 core/views/meta_box_fields.php:202
+#: core/views/meta_box_fields.php:183 core/views/meta_box_fields.php:205
 msgid "Yes"
 msgstr ""
 
 #: core/fields/page_link.php:108 core/fields/page_link.php:127
-#: core/fields/post_object.php:278 core/fields/post_object.php:297
-#: core/fields/select.php:214 core/fields/select.php:233
+#: core/fields/post_object.php:284 core/fields/post_object.php:303
+#: core/fields/select.php:226 core/fields/select.php:245
 #: core/fields/wysiwyg.php:125 core/fields/wysiwyg.php:146
-#: core/views/meta_box_fields.php:181 core/views/meta_box_fields.php:203
+#: core/views/meta_box_fields.php:184 core/views/meta_box_fields.php:206
 msgid "No"
 msgstr ""
 
-#: core/fields/page_link.php:117 core/fields/post_object.php:287
-#: core/fields/select.php:223
+#: core/fields/page_link.php:117 core/fields/post_object.php:293
+#: core/fields/select.php:235
 msgid "Select multiple values?"
 msgstr ""
 
@@ -1000,7 +1026,7 @@ msgstr ""
 msgid "Post Object"
 msgstr ""
 
-#: core/fields/post_object.php:245 core/fields/relationship.php:415
+#: core/fields/post_object.php:251 core/fields/relationship.php:405
 msgid "Filter from Taxonomy"
 msgstr ""
 
@@ -1008,11 +1034,11 @@ msgstr ""
 msgid "Radio Button"
 msgstr ""
 
-#: core/fields/radio.php:154
+#: core/fields/radio.php:161
 msgid "Vertical"
 msgstr ""
 
-#: core/fields/radio.php:155
+#: core/fields/radio.php:162
 msgid "Horizontal"
 msgstr ""
 
@@ -1020,11 +1046,11 @@ msgstr ""
 msgid "Relationship"
 msgstr ""
 
-#: core/fields/relationship.php:288
+#: core/fields/relationship.php:270
 msgid "Search"
 msgstr ""
 
-#: core/fields/relationship.php:438
+#: core/fields/relationship.php:428
 msgid "Maximum posts"
 msgstr ""
 
@@ -1032,31 +1058,19 @@ msgstr ""
 msgid "Repeater"
 msgstr ""
 
-#: core/fields/repeater.php:320
+#: core/fields/repeater.php:314
 msgid "Repeater Fields"
 msgstr ""
 
-#: core/fields/repeater.php:417 core/views/meta_box_fields.php:159
-msgid "Field Instructions"
-msgstr ""
-
-#: core/fields/repeater.php:437
-msgid "Column Width"
-msgstr ""
-
-#: core/fields/repeater.php:438
-msgid "Leave blank for auto"
-msgstr ""
-
-#: core/fields/repeater.php:492
+#: core/fields/repeater.php:486
 msgid "Minimum Rows"
 msgstr ""
 
-#: core/fields/repeater.php:506
+#: core/fields/repeater.php:500
 msgid "Maximum Rows"
 msgstr ""
 
-#: core/fields/repeater.php:530
+#: core/fields/repeater.php:524
 msgid "Table (default)"
 msgstr ""
 
@@ -1138,65 +1152,65 @@ msgid ""
 "plugins / themes"
 msgstr ""
 
-#: core/views/meta_box_fields.php:51
+#: core/views/meta_box_fields.php:54
 msgid "Move to trash. Are you sure?"
 msgstr ""
 
-#: core/views/meta_box_fields.php:52
+#: core/views/meta_box_fields.php:55
 msgid "checked"
 msgstr ""
 
-#: core/views/meta_box_fields.php:53
-msgid "No \"toggle\" fields avilable"
+#: core/views/meta_box_fields.php:56
+msgid "No toggle fields available"
 msgstr ""
 
-#: core/views/meta_box_fields.php:69
+#: core/views/meta_box_fields.php:72
 msgid "Field Key"
 msgstr ""
 
-#: core/views/meta_box_fields.php:81
+#: core/views/meta_box_fields.php:84
 msgid ""
 "No fields. Click the <strong>+ Add Field</strong> button to create your "
 "first field."
 msgstr ""
 
-#: core/views/meta_box_fields.php:160
+#: core/views/meta_box_fields.php:163
 msgid "Instructions for authors. Shown when submitting data"
 msgstr ""
 
-#: core/views/meta_box_fields.php:172
+#: core/views/meta_box_fields.php:175
 msgid "Required?"
 msgstr ""
 
-#: core/views/meta_box_fields.php:194
+#: core/views/meta_box_fields.php:197
 msgid "Conditional Logic"
 msgstr ""
 
-#: core/views/meta_box_fields.php:239 core/views/meta_box_location.php:96
+#: core/views/meta_box_fields.php:242 core/views/meta_box_location.php:96
 msgid "is equal to"
 msgstr ""
 
-#: core/views/meta_box_fields.php:240 core/views/meta_box_location.php:97
+#: core/views/meta_box_fields.php:243 core/views/meta_box_location.php:97
 msgid "is not equal to"
 msgstr ""
 
-#: core/views/meta_box_fields.php:256
+#: core/views/meta_box_fields.php:259
 msgid "Show this field when"
 msgstr ""
 
-#: core/views/meta_box_fields.php:262 core/views/meta_box_location.php:127
+#: core/views/meta_box_fields.php:265 core/views/meta_box_location.php:127
 msgid "all"
 msgstr ""
 
-#: core/views/meta_box_fields.php:263 core/views/meta_box_location.php:128
+#: core/views/meta_box_fields.php:266 core/views/meta_box_location.php:128
 msgid "any"
 msgstr ""
 
-#: core/views/meta_box_fields.php:266
+#: core/views/meta_box_fields.php:269
 msgid "these rules are met"
 msgstr ""
 
-#: core/views/meta_box_fields.php:294
+#: core/views/meta_box_fields.php:297
 msgid "+ Add Field"
 msgstr ""
 
@@ -1214,44 +1228,36 @@ msgstr ""
 msgid "Logged in User Type"
 msgstr ""
 
-#: core/views/meta_box_location.php:51
-msgid "Page Specific"
-msgstr ""
-
-#: core/views/meta_box_location.php:52
+#: core/views/meta_box_location.php:51 core/views/meta_box_location.php:52
 msgid "Page"
 msgstr ""
 
 #: core/views/meta_box_location.php:53
-msgid "Page Type"
+msgid "Type"
 msgstr ""
 
 #: core/views/meta_box_location.php:54
-msgid "Page Parent"
+msgid "Parent"
 msgstr ""
 
 #: core/views/meta_box_location.php:55
-msgid "Page Template"
+msgid "Template"
 msgstr ""
 
-#: core/views/meta_box_location.php:57
-msgid "Post Specific"
-msgstr ""
-
-#: core/views/meta_box_location.php:58
+#: core/views/meta_box_location.php:57 core/views/meta_box_location.php:58
 msgid "Post"
 msgstr ""
 
 #: core/views/meta_box_location.php:59
-msgid "Post Category"
+msgid "Category"
 msgstr ""
 
-#: core/views/meta_box_location.php:60
-msgid "Post Format"
+#: core/views/meta_box_location.php:60 core/views/meta_box_options.php:100
+msgid "Format"
 msgstr ""
 
 #: core/views/meta_box_location.php:61
-msgid "Post Taxonomy"
+msgid "Taxonomy"
 msgstr ""
 
 #: core/views/meta_box_location.php:63
@@ -1338,10 +1344,6 @@ msgstr ""
 
 #: core/views/meta_box_options.php:99
 msgid "Author"
-msgstr ""
-
-#: core/views/meta_box_options.php:100
-msgid "Format"
 msgstr ""
 
 #: core/views/meta_box_options.php:101

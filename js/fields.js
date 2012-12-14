@@ -3,7 +3,7 @@ var acf = {
 	text : {
 		'move_to_trash' : "Move to trash. Are you sure?",
 		'checked' : 'checked',
-		'conditional_no_fields' : 'No "toggle" fields avilable'
+		'conditional_no_fields' : 'No "toggle" fields available'
 	},
 	fields : [],
 	sortable_helper : null,
