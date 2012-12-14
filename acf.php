@@ -1019,6 +1019,26 @@ class Acf
 	}
 	
 	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	update_field
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function update_field($post_id, $field)
+	{
+		// apply filters
+		$field = apply_filters('acf_save_field', $field );
+		$field = apply_filters('acf_save_field-' . $field['type'], $field );
+		
+		
+		// save
+		update_post_meta($post_id, $field['key'], $field);
+	}
+	
 	
 	/*--------------------------------------------------------------------------------------
 	*

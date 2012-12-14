@@ -40,7 +40,6 @@ class acf_field_group
 		
 		// filters
 		add_filter('name_save_pre', array($this, 'save_name'));
-		//add_filter('acf_save_field', array($this, 'acf_save_field'));
 		
 		
 		// ajax
@@ -642,13 +641,8 @@ class acf_field_group
 				$field['key'] = $key;
 				
 				
-				// apply filters
-				$field = apply_filters('acf_save_field', $field );
-				$field = apply_filters('acf_save_field-' . $field['type'], $field );
-				
-				
-				// save it!
-				update_post_meta($post_id, $field['key'], $field);
+				// save
+				$this->parent->update_field( $post_id, $field);
 				
 				
 				// add to dont delete array
