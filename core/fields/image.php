@@ -619,7 +619,7 @@ class acf_Image extends acf_Field
 	
 		// add support for media tags
 		
-		if($tab == 'mediatags'): ?>
+		if( $options['tab'] == 'mediatags' ): ?>
 		$('#media-items .mediatag-item-count a').each(function(){
 			
 			var href = $(this).attr('href');
