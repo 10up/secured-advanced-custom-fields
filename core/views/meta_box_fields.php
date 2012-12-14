@@ -233,6 +233,14 @@ $conditional_logic_rule = array(
 											
 											// validate
 											$rule = array_merge($conditional_logic_rule, $rule);
+											
+											
+											// fix PHP error in 3.5.4.1
+											if( strpos($rule['value'],'Undefined index: value in') !== false  )
+											{
+												$rule['value'] = '';
+											}
+											
 											?>
 											<tr data-i="<?php echo $rule_i; ?>">
 												<td>
