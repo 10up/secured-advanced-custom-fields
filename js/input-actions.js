@@ -1881,19 +1881,20 @@ var acf = {
 			var tab = $(this),
 				id = tab.attr('data-id'),
 				label = tab.html(),
-				postbox = tab.closest('.acf_postbox');
+				postbox = tab.closest('.acf_postbox'),
+				inside = postbox.children('.inside');
 			
 
 			
 			// create tab group if it doesnt exist
-			if( ! postbox.children('.acf-tab-group').exists() )
+			if( ! inside.children('.acf-tab-group').exists() )
 			{
-				postbox.prepend('<ul class="hl clearfix acf-tab-group"></ul>');
+				inside.prepend('<ul class="hl clearfix acf-tab-group"></ul>');
 			}
 			
 			
 			// add tab
-			postbox.children('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>')
+			inside.children('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>')
 			
 		});
 		
