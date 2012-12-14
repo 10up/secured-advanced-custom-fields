@@ -89,6 +89,10 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.4.2 (current git version) =
+* [Updated] Improve WYSIWYG code for better compatibility
+* [Added] Add tab field
+
 = 3.5.4.1 =
 * [Fixed] Fix bug preventing options pages from appearing in the field group's location rules
 
