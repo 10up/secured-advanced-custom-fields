@@ -275,6 +275,12 @@ class acf_field_group
 			die(0);
 		}
 		
+		
+		// find key (not actual field key, more the html attr name)
+		$options['field_key'] = str_replace("fields[", "", $options['field_key']);
+		$options['field_key'] = str_replace("][type]", "", $options['field_key']) ;
+		
+		
 
 		$field = array();
 		

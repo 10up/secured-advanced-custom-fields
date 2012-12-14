@@ -130,7 +130,7 @@ var acf = {
 			var ajax_data = {
 				'action' : 'acf_field_options',
 				'post_id' : acf.post_id,
-				'field_key' : field_key,
+				'field_key' : select.attr('name'),
 				'field_type' : val,
 				'nonce' : acf.nonce
 			};

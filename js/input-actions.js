@@ -150,7 +150,7 @@ var acf = {
 		
 		acf.validation = true;
 		
-		$('.field.required:visible, .form-field.required').each(function(){
+		$('.postbox:not(.acf-hidden) .field.required, .form-field.required').each(function(){
 			
 			// vars
 			var div = $(this);
@@ -807,6 +807,21 @@ var acf = {
 			
 			// add functionality back in
 			tinyMCE.execCommand("mceAddControl", false, id);
+			
+			
+			// events - load
+			$(document).trigger('acf/wysiwyg/load', id);
+			
+			
+			// events - focus / blur
+			var body = $( tinyMCE.get( id ).getBody() );
+			
+			body.focus(function(){
+				$(document).trigger('acf/wysiwyg/focus', id);
+			}).blur(function(){
+				$(document).trigger('acf/wysiwyg/blur', id);
+			});
+			
 		});
 		
 		
@@ -836,7 +851,7 @@ var acf = {
 			// vars
 			var textarea = $(this),
 				id = textarea.attr('id'),
-				wysiwyg = tinymce.get( id );
+				wysiwyg = tinyMCE.get( id );
 			
 			
 			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
@@ -854,6 +869,18 @@ var acf = {
 		
 		wpActiveEditor = null;
 
+	});
+	
+	
+	// set active wysiwyg
+	$(document).live('acf/wysiwyg/focus', function(e, id){
+		
+		wpActiveEditor = id;
+		
+	}).live('acf/wysiwyg/blur', function(e, id){
+		
+		wpActiveEditor = null;
+		
 	});
 	
 	

@@ -204,17 +204,24 @@ class acf_third_party
 	
 	function create_new_field_keys( $field )
 	{
-		if( isset( $field['key']) )
-		{
-			$field['key'] = 'field_' . uniqid();
-		}
+		// get next id
+		$next_id = (int) get_option('acf_next_field_id', 1);
 		
 		
+		// update the acf_next_field_id
+		update_option('acf_next_field_id', ($next_id + 1) );
+		
+		
+		// update key
+		$field['key'] = 'field_' . $next_id;
+		
+		
+		// update sub field's keys
 		if( isset( $field['sub_fields'] ) )
 		{
-			foreach( $field['sub_fields'] as &$sub_field )
+			foreach( $field['sub_fields'] as $k => $v )
 			{
-				$sub_field = $this->create_new_field_keys( $sub_field );
+				$field['sub_fields'][ $k ] = $this->create_new_field_keys( $v );
 			}
 		}
 		
