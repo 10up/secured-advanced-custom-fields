@@ -1,0 +1,1713 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Custom Field - version 3.4.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-10 11:32+0100\n"
+"PO-Revision-Date: 2012-09-10 14:40+0100\n"
+"Last-Translator: Maxime BERNARD-JACQUET <maxime@smoothie-creative.com>\n"
+"Language-Team: RVOLA <hello@rvola.com>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-Basepath: .\n"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:287
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:116
+msgid "Custom Fields"
+msgstr "ACF"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:308
+msgid "Field&nbsp;Groups"
+msgstr "Groupes de champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:309
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:234
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "Advanced Custom Fields"
+msgstr "Advanced Custom Fields"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:310
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:325
+msgid "Add New"
+msgstr "Ajouter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:311
+msgid "Add New Field Group"
+msgstr "Nouveau groupe de champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:312
+msgid "Edit Field Group"
+msgstr "Modifier le groupe de champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:313
+msgid "New Field Group"
+msgstr "Nouveau groupe de champs"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:314
+msgid "View Field Group"
+msgstr "Voir le champ groupe"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:315
+msgid "Search Field Groups"
+msgstr "Rechercher un champ groupe"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:316
+msgid "No Field Groups found"
+msgstr "Aucun champ groupe trouvé"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:317
+msgid "No Field Groups found in Trash"
+msgstr "Aucun champ groupe trouvé dans la corbeille"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:352
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:355
+msgid "Field group updated."
+msgstr "Groupe de champs mis à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:353
+msgid "Custom field updated."
+msgstr "Champ mis à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:354
+msgid "Custom field deleted."
+msgstr "Champ supprimé"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:357
+#, php-format
+msgid "Field group restored to revision from %s"
+msgstr "Groupe de champs restauré à la révision %s"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:358
+msgid "Field group published."
+msgstr "Groupe de champ publié"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:359
+msgid "Field group saved."
+msgstr "Groupe de champ enregistré"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:360
+msgid "Field group submitted."
+msgstr "Groupe de champ enregistré"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:361
+msgid "Field group scheduled for."
+msgstr "Groupe de champs programmé pour."
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:362
+msgid "Field group draft updated."
+msgstr "Brouillon du groupe de champs mis à jour "
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:381
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:66
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:229
+msgid "Title"
+msgstr "Titre"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:611
+msgid "Error: Field Type does not exist!"
+msgstr "Erreur : Ce type de champ n‘existe pas !"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:1689
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:1690
+msgid "Medium"
+msgstr "Moyen"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:1691
+msgid "Large"
+msgstr "Grande"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/acf.php:1692
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:105
+msgid "Full"
+msgstr "Taille originale"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/actions/export.php:19
+msgid "No ACF groups selected"
+msgstr "Aucun groupe de champs sélectionné"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:148
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:167
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:144
+msgid "Fields"
+msgstr "Champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:149
+msgid "Location"
+msgstr "Assigner ce groupe de champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:150
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:424
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:62
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:74
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:143
+msgid "Options"
+msgstr "Options"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:352
+msgid "Parent Page"
+msgstr "Page parente"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:353
+msgid "Child Page"
+msgstr "Page enfant"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:361
+msgid "Default Template"
+msgstr "Modèle de base"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:448
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:469
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_group.php:476
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:76
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:223
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:251
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:392
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:421
+msgid "All"
+msgstr "Tous"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:197
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:50
+msgid "Normal"
+msgstr "Normal"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:198
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:51
+msgid "Side"
+msgstr "Sur le côté"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:208
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:92
+msgid "Standard Metabox"
+msgstr "Encadré d‘un bloc"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:209
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:93
+msgid "No Metabox"
+msgstr "Sans encadrement"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:236
+msgid "Changelog"
+msgstr "Notes de version"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:237
+msgid "See what's new in"
+msgstr "Voir les nouveautés de la version"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:239
+msgid "Resources"
+msgstr "Ressources"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:240
+msgid ""
+"Read documentation, learn the functions and find some tips &amp; tricks for "
+"your next web project."
+msgstr ""
+"Lisez la documentation, étudiez les fonctions et apprenez quelques trucs et "
+"astuces pour votre prochain projet."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:241
+msgid "Visit the ACF website"
+msgstr "Visiter le site ACF"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:246
+msgid "Created by"
+msgstr "Créé par"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:249
+msgid "Vote"
+msgstr "Votez"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/field_groups.php:250
+msgid "Follow"
+msgstr "twitter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:448
+msgid "Validation Failed. One or more fields below are required."
+msgstr "Validation échouée. Un ou plusieurs champs sont requis."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:449
+msgid "Add File to Field"
+msgstr "+ Ajouter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:450
+msgid "Edit File"
+msgstr "Modifier le fichier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:451
+msgid "Add Image to Field"
+msgstr "Ajouter une image"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:452
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:455
+msgid "Edit Image"
+msgstr "Modifier l‘image"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:453
+msgid "Maximum values reached ( {max} values )"
+msgstr "Nombre maximal de valeurs atteint ({max} valeurs)"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:454
+msgid "Add Image to Gallery"
+msgstr "Insérer une image dans la galerie"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/input.php:545
+msgid "Attachment updated"
+msgstr "Fichier mis à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:121
+msgid "Options Updated"
+msgstr "Options mises à jour"
+
+# @ default
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:251
+msgid "No Custom Field Group found for the options page"
+msgstr "Aucun groupe de champs n‘est assigné à la page Options"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:251
+msgid "Create a Custom Field Group"
+msgstr "Créer un nouveau groupe de champs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:262
+msgid "Publish"
+msgstr "Publier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/options_page.php:265
+msgid "Save Options"
+msgstr "Enregistrer les options"
+
+# @ wp3i
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:49
+msgid "Settings"
+msgstr "Paramètres"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:111
+msgid "Repeater field deactivated"
+msgstr "L‘add-on 'Champ répétable' a été désactivé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:115
+msgid "Options page deactivated"
+msgstr "L‘add-on 'Page d'options' a été désactivé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:119
+msgid "Flexible Content field deactivated"
+msgstr "L‘add-on 'Contenu flexible' a été désactivé"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:123
+msgid "Gallery field deactivated"
+msgstr "Champ 'galerie' désactivé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:147
+msgid "Repeater field activated"
+msgstr "L‘add-on 'Champ répétable' a été activé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:151
+msgid "Options page activated"
+msgstr "L‘add-on 'Page d'options' a été activé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:155
+msgid "Flexible Content field activated"
+msgstr "L‘add-on 'Contenu flexible' a été activé"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:159
+msgid "Gallery field activated"
+msgstr "Champ 'Galerie' activé"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:164
+msgid "License key unrecognised"
+msgstr "Clé de licence non reconnue"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:216
+msgid "Activate Add-ons."
+msgstr "Activation des add-ons"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:217
+msgid ""
+"Add-ons can be unlocked by purchasing a license key. Each key can be used on "
+"multiple sites."
+msgstr ""
+"Les add-ons peuvent d‘être déverrouillés via l'achat d'une clé de licence. "
+"Chaque clé peut être utilisée sur plusieurs sites."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:218
+msgid "Find Add-ons"
+msgstr "Trouvez des add-ons"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:225
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:380
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:456
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:330
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:406
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:63
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:138
+msgid "Field Type"
+msgstr "Type de champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:226
+msgid "Status"
+msgstr "Status"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:227
+msgid "Activation Code"
+msgstr "Code d‘activation"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:232
+msgid "Repeater Field"
+msgstr "Champs répéteur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:233
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:252
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:271
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:290
+msgid "Active"
+msgstr "Actif"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:233
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:252
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:271
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:290
+msgid "Inactive"
+msgstr "Inactif"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:239
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:258
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:277
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:296
+msgid "Deactivate"
+msgstr "Désactiver"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:245
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:264
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:283
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:302
+msgid "Activate"
+msgstr "Activer"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:251
+msgid "Flexible Content Field"
+msgstr "Champs au contenu flexible "
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:270
+msgid "Gallery Field"
+msgstr "Champ galerie"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:289
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:74
+msgid "Options Page"
+msgstr "Page d‘options"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:314
+msgid "Export Field Groups to XML"
+msgstr "Exportez des groupes de champs en XML"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:315
+msgid ""
+"ACF will create a .xml export file which is compatible with the native WP "
+"import plugin."
+msgstr ""
+"ACF générera un fichier d‘export .xml compatible avec le plugin d'import "
+"natif de WordPress."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:316
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:354
+msgid "Instructions"
+msgstr "Instructions"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:318
+msgid "Import Field Groups"
+msgstr "Importez des groupes de champs"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:319
+msgid ""
+"Imported field groups <b>will</b> appear in the list of editable field "
+"groups. This is useful for migrating fields groups between Wp websites."
+msgstr ""
+"Les groupes de champs importés <b>apparaitront</b> dans ACF. Utile pour "
+"migrer les groupes de champs entre plusieurs site Wordpress."
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:321
+msgid "Select field group(s) from the list and click \"Export XML\""
+msgstr ""
+"Sélectionnez les groupes de champs dans la liste et cliquez sur \"Exporter "
+"XML\""
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:322
+msgid "Save the .xml file when prompted"
+msgstr "Enregistrer le .xml"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:323
+msgid "Navigate to Tools &raquo; Import and select WordPress"
+msgstr "Allez dans \"Outils &raquo; Importer\" et sélectionnez WordPress"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:324
+msgid "Install WP import plugin if prompted"
+msgstr "Installez le plugin d‘import WordPress si demandé"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:325
+msgid "Upload and import your exported .xml file"
+msgstr "Importez votre fichier .xml "
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:326
+msgid "Select your user and ignore Import Attachments"
+msgstr "Sélectionnez votre utilisateur et ignorez l‘import des pièces jointes"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:327
+msgid "That's it! Happy WordPressing"
+msgstr "C‘est tout ! WordPressez bien"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:345
+msgid "Export XML"
+msgstr "Export XML"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:352
+msgid "Export Field Groups to PHP"
+msgstr "Exportez des groupes de champs en PHP"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:353
+msgid "ACF will create the PHP code to include in your theme."
+msgstr "ACF générera le code PHP à inclure dans votre thème"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:356
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:473
+msgid "Register Field Groups"
+msgstr "Inscrivez des groupes de champs via PHP"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:357
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:474
+msgid ""
+"Registered field groups <b>will not</b> appear in the list of editable field "
+"groups. This is useful for including fields in themes."
+msgstr ""
+"Les groupes de champs enregistrés <b>n‘apparaitront pas</b> dans ACF. Cette "
+"manipulation sert à insérer les champs en PHP directement dans le thème."
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:358
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:475
+msgid ""
+"Please note that if you export and register field groups within the same WP, "
+"you will see duplicate fields on your edit screens. To fix this, please move "
+"the origional field group to the trash or remove the code from your "
+"functions.php file."
+msgstr ""
+"Si vous exportez ET inscrivez les groupes dans la même installation WP, vous "
+"verrez les champs en double dans votre page d‘édition. Pour éviter cela, "
+"supprimer le groupe depuis ACF ou retirez le code PHP de functions.php."
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:360
+msgid "Select field group(s) from the list and click \"Create PHP\""
+msgstr ""
+"Sélectionnez les groupes de champs dans la liste et cliquez sur \"Générer PHP"
+"\""
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:361
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:477
+msgid "Copy the PHP code generated"
+msgstr "Copiez le code PHP généré"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:362
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:478
+msgid "Paste into your functions.php file"
+msgstr "Collez le code dans votre fichier functions.php"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:363
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:479
+msgid "To activate any Add-ons, edit and use the code in the first few lines."
+msgstr ""
+"Pour activer un add-on, éditez le code dans les toutes premières lignes."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:382
+msgid "Create PHP"
+msgstr "Générer PHP"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:468
+msgid "Back to settings"
+msgstr "Retour vers les réglages"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:503
+msgid ""
+"/**\n"
+" * Activate Add-ons\n"
+" * Here you can enter your activation codes to unlock Add-ons to use in your "
+"theme. \n"
+" * Since all activation codes are multi-site licenses, you are allowed to "
+"include your key in premium themes. \n"
+" * Use the commented out code to update the database with your activation "
+"code. \n"
+" * You may place this code inside an IF statement that only runs on theme "
+"activation.\n"
+" */"
+msgstr ""
+"/**\n"
+" * Activez les add-ons\n"
+" * A cet endroit vous pouvez saisir vos codes d‘activation pour "
+"déverrouiller les add-ons que vous souhaitez utiliser dans votre thème. \n"
+" * Puisque tous les codes d'activation sont des licences multi-sites, vous "
+"êtes autorisé à inclure votre clé dans des thèmes pretium. \n"
+" * Utilisez la partie de code commentée pour mettre à jour la base de "
+"données avec vos codes d'activation. \n"
+" * Vous pouvez placer ce code dans une déclaration IF vraie uniquement lors "
+"de l'activation du thème.\n"
+" */"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:518
+msgid ""
+"/**\n"
+" * Register field groups\n"
+" * The register_field_group function accepts 1 array which holds the "
+"relevant data to register a field group\n"
+" * You may edit the array as you see fit. However, this may result in errors "
+"if the array is not compatible with ACF\n"
+" * This code must run every time the functions.php file is read\n"
+" */"
+msgstr ""
+"/**\n"
+" * Enregistrez des groupes de champs\n"
+" * La fonction register_field_group accepte 1 tableau qui contient les "
+"données nécessaire à l‘enregistrement d'un groupe de champs\n"
+" * Vous pouvez modifier ce tableau selon vos besoins. Cela peut toutefois "
+"provoquer des erreurs dans les cas où le tableau ne serait plus compatible "
+"avec ACF\n"
+" * Ce code doit être traité à chaque accès au fichier functions.php\n"
+" */"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:557
+msgid "No field groups were selected"
+msgstr "Aucun groupe de champs n‘a été sélectionné"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/settings.php:589
+msgid "Advanced Custom Fields Settings"
+msgstr "Réglages Advanced Custom Fields"
+
+# @ wp3i
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:51
+msgid "Upgrade"
+msgstr "Mettre à jour"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "requires a database upgrade"
+msgstr "nécessite une mise à jour de la base de données"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "why?"
+msgstr "Pourquoi ?"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "Please"
+msgstr "S‘il vous plait"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "backup your database"
+msgstr "Sauvegarder la base de données"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "then click"
+msgstr "puis cliquer"
+
+# @ wp3i
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:70
+msgid "Upgrade Database"
+msgstr "Mettre à jour la base de données"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:604
+msgid "Modifying field group options 'show on page'"
+msgstr "Modification du groupe de champs 'montrer sur la page'"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:658
+msgid "Modifying field option 'taxonomy'"
+msgstr "Modifier le champ 'taxinomie'"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/controllers/upgrade.php:755
+msgid "Moving user custom fields from wp_options to wp_usermeta'"
+msgstr ""
+"Déplacer les champs personnalisés des utilisateurs de wp_options à "
+"wp_usermeta '"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:21
+msgid "Checkbox"
+msgstr "Case à cocher"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:55
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:45
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:54
+msgid "No choices to choose from"
+msgstr "Aucun choix n‘est disponible"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:113
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:114
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:174
+msgid "Choices"
+msgstr "Choix"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:114
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:115
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:175
+msgid "Enter your choices one per line"
+msgstr "Indiquez une valeur par ligne"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:116
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:117
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:177
+msgid "Red"
+msgstr "Rouge"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:117
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:118
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:178
+msgid "Blue"
+msgstr "Bleu"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:119
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:120
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:180
+msgid "red : Red"
+msgstr "rouge : Rouge"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/checkbox.php:120
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:121
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:181
+msgid "blue : Blue"
+msgstr "bleu : Bleu"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/color_picker.php:21
+msgid "Color Picker"
+msgstr "Sélectionneur de couleur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:20
+msgid "File"
+msgstr "Fichier"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:48
+msgid "File Updated."
+msgstr "Fichier mis à jour."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:89
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:407
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:251
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:281
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:187
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:356
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:88
+msgid "Edit"
+msgstr "Modifier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:90
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:250
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:280
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:186
+msgid "Remove"
+msgstr "Retirer"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:195
+msgid "No File Selected"
+msgstr "Aucun fichier sélectionné"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:195
+msgid "Add File"
+msgstr "Ajouter un fichier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:224
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:223
+msgid "Return Value"
+msgstr "Retourne une valeur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:234
+msgid "File URL"
+msgstr "URL du fichier"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:235
+msgid "Attachment ID"
+msgstr "ID du fichier"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:268
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:291
+msgid "Media attachment updated."
+msgstr "Fichier mis à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:393
+msgid "No files selected"
+msgstr "Aucun fichier sélectionné"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:488
+msgid "Add Selected Files"
+msgstr "Ajouter les fichiers sélectionnés"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:518
+msgid "Select File"
+msgstr "Sélectionner un fichier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/file.php:521
+msgid "Update File"
+msgstr "Mettre à jour le fichier"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:21
+msgid "Flexible Content"
+msgstr "Contenu flexible"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:38
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:286
+msgid "+ Add Row"
+msgstr "+ Ajouter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:313
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:302
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:25
+msgid "New Field"
+msgstr "Nouveau champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:322
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:144
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:523
+msgid "Layout"
+msgstr "Disposition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:324
+msgid "Reorder Layout"
+msgstr "Réordonner la disposition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:324
+msgid "Reorder"
+msgstr "Réordonner"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:325
+msgid "Add New Layout"
+msgstr "Nouvelle disposition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:326
+msgid "Delete Layout"
+msgstr "Supprimer disposition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:326
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:410
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:359
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:91
+msgid "Delete"
+msgstr "Supprimer"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:336
+msgid "Label"
+msgstr "Label"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:346
+msgid "Name"
+msgstr "Nom"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:356
+msgid "Display"
+msgstr "Affichage"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:363
+msgid "Table"
+msgstr "En colonnes"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:364
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:534
+msgid "Row"
+msgstr "Les uns sous les autres"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:377
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:327
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:60
+msgid "Field Order"
+msgstr "Position du champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:378
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:425
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:328
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:375
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:61
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:107
+msgid "Field Label"
+msgstr "Titre du champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:379
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:441
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:329
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:391
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:62
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:123
+msgid "Field Name"
+msgstr "Nom du champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:388
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:338
+msgid ""
+"No fields. Click the \"+ Add Sub Field button\" to create your first field."
+msgstr "Aucun champ. Cliquez sur \"+ Ajouter\"  pour créer un premier champ."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:404
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:407
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:353
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:356
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:85
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:88
+msgid "Edit this Field"
+msgstr "Modifier ce champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:408
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:357
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:89
+msgid "Read documentation for this field"
+msgstr "Lire la documentation de ce champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:408
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:357
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:89
+msgid "Docs"
+msgstr "Documentation"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:409
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:358
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:90
+msgid "Duplicate this Field"
+msgstr "Dupliquer ce champ"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:409
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:358
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:90
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:410
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:359
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:91
+msgid "Delete this Field"
+msgstr "Supprimer ce champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:426
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:376
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:108
+msgid "This is the name which will appear on the EDIT page"
+msgstr "Ce nom apparaîtra sur la page d‘édition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:442
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:392
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:124
+msgid "Single word, no spaces. Underscores and dashes allowed"
+msgstr "Un seul mot sans espace.<br />Les '_' et '-' sont autorisés"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:476
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:467
+msgid "Save Field"
+msgstr "Enregistrer le champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:481
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:472
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:190
+msgid "Close Field"
+msgstr "Fermer le champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:481
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:472
+msgid "Close Sub Field"
+msgstr "Fermer le sous-champs"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:495
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:487
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:203
+msgid "Drag and drop to reorder"
+msgstr "Faites glisser pour réorganiser"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:496
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:488
+msgid "+ Add Sub Field"
+msgstr "+ Ajouter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/flexible_content.php:503
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:542
+msgid "Button Label"
+msgstr "Libellé du bouton"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:25
+msgid "Gallery"
+msgstr "Galerie"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:70
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:233
+msgid "Alternate Text"
+msgstr "Texte alternatif"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:74
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:237
+msgid "Caption"
+msgstr "Légende"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:78
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:241
+msgid "Description"
+msgstr "Description"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:117
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:243
+msgid "Preview Size"
+msgstr "Taille de prévisualisation"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:118
+msgid "Thumbnail is advised"
+msgstr "Une miniature est conseillée"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:179
+msgid "Image Updated"
+msgstr "Image mise à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:262
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:669
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:193
+msgid "Add Image"
+msgstr "Ajouter une image"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:263
+msgid "Grid"
+msgstr "Grille"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:264
+msgid "List"
+msgstr "Liste"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:266
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:429
+msgid "No images selected"
+msgstr "Aucune image sélectionnée"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:266
+msgid "1 image selected"
+msgstr "1 image sélectionnée"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:266
+msgid "{count} images selected"
+msgstr "{count} images sélectionnées"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:591
+msgid "Added"
+msgstr "Ajouter"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:611
+msgid "Image already exists in gallery"
+msgstr "L‘image existe déjà dans la galerie"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:617
+msgid "Image Added"
+msgstr "Image ajoutée"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/gallery.php:672
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:557
+msgid "Update Image"
+msgstr "Mettre à jour"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:21
+msgid "Image"
+msgstr "Image"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:49
+msgid "Image Updated."
+msgstr "Image mise à jour."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:193
+msgid "No image selected"
+msgstr "Aucune image sélectionnée"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:233
+msgid "Image Object"
+msgstr "Objet 'image'"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:234
+msgid "Image URL"
+msgstr "URL de l‘image"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:235
+msgid "Image ID"
+msgstr "ID de l‘image"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:525
+msgid "Add selected Images"
+msgstr "Ajouter les images sélectionnées"
+
+# acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/image.php:554
+msgid "Select Image"
+msgstr "Sélectionner l‘image"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/number.php:21
+msgid "Number"
+msgstr "Nombre"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/number.php:65
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:130
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:190
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:65
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:62
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:81
+msgid "Default Value"
+msgstr "Valeur par défaut"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:21
+msgid "Page Link"
+msgstr "Lien vers page ou article"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:70
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:217
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:386
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:48
+msgid "Post Type"
+msgstr "Type d‘article"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:98
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:268
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:204
+msgid "Allow Null?"
+msgstr "Autoriser vide ?"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:107
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:126
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:277
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:296
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:213
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:232
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:124
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:145
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:172
+msgid "Yes"
+msgstr "Oui"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:108
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:127
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:278
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:297
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:214
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:233
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:125
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:146
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:173
+msgid "No"
+msgstr "Non"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/page_link.php:117
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:287
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:223
+msgid "Select multiple values?"
+msgstr "Plusieurs valeurs possibles ?"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:21
+msgid "Post Object"
+msgstr "Objet 'article'"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/post_object.php:245
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:415
+msgid "Filter from Taxonomy"
+msgstr "Filtrer par taxonomie"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:21
+msgid "Radio Button"
+msgstr "Bouton radio"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:154
+msgid "Vertical"
+msgstr "Vertical"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/radio.php:155
+msgid "Horizontal"
+msgstr "Horizontal"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:21
+msgid "Relationship"
+msgstr "Relation"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:288
+msgid "Search"
+msgstr "Rechercher"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/relationship.php:438
+msgid "Maximum posts"
+msgstr "Nombre max d‘articles"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:21
+msgid "Repeater"
+msgstr "Répéteur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:66
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:289
+msgid "Add Row"
+msgstr "+ Ajouter un rang"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:319
+msgid "Repeater Fields"
+msgstr "Champs répéteurs"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:420
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:151
+msgid "Field Instructions"
+msgstr "Instructions pour ce champ"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:440
+msgid "Column Width"
+msgstr "Largeur colonne"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:441
+msgid "Leave blank for auto"
+msgstr "Laissez vide pour auto"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:495
+msgid "Minimum Rows"
+msgstr "Nombre minimum d‘ajouts"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:509
+msgid "Maximum Rows"
+msgstr "Nombre maximum d‘ajouts"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/repeater.php:533
+msgid "Table (default)"
+msgstr "En colonnes (par défaut)"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/select.php:21
+msgid "Select"
+msgstr "Sélectionner"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:21
+msgid "Text"
+msgstr "Texte"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:79
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:76
+msgid "Formatting"
+msgstr "Formatage  "
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:80
+msgid "Define how to render html tags"
+msgstr "Définition du rendu des balises html"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:89
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:86
+msgid "None"
+msgstr "Aucun"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/text.php:90
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:88
+msgid "HTML"
+msgstr "HTML"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:21
+msgid "Text Area"
+msgstr "Zone de texte"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:77
+msgid "Define how to render html tags / new lines"
+msgstr "Définition du rendu des balises html et des nouvelles lignes"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/textarea.php:87
+msgid "auto &lt;br /&gt;"
+msgstr "auto &lt;br /&gt;"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/true_false.php:21
+msgid "True / False"
+msgstr "Vrai / Faux"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/true_false.php:68
+msgid "Message"
+msgstr "Message"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/true_false.php:69
+msgid "eg. Show extra content"
+msgstr "ex : Montrer du contenu supplémentaire"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:21
+msgid "Wysiwyg Editor"
+msgstr "Editeur WYSIWYG"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:95
+msgid "Toolbar"
+msgstr "Barre d‘outils"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:106
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:47
+msgid "Basic"
+msgstr "Basique"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:114
+msgid "Show Media Upload Buttons?"
+msgstr "Afficher les boutons d‘ajout de médias ?"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:133
+msgid "Run filter \"the_content\"?"
+msgstr "Exécuter filtre \"the_content\"?"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:134
+msgid "Enable this filter to use shortcodes within the WYSIWYG field"
+msgstr "Activer ce filtre pour utiliser les shortcodes dans le champ WYSIWYG"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/wysiwyg.php:135
+msgid ""
+"Disable this filter if you encounter recursive template problems with "
+"plugins / themes"
+msgstr ""
+"Désactivez ce filtre si vous rencontrez des problèmes de modèles récursifs "
+"avec les plugins / thèmes"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:21
+msgid "Date Picker"
+msgstr "Date"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:95
+msgid "Save format"
+msgstr "Sauvegarder format"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:96
+msgid ""
+"This format will determin the value saved to the database and returned via "
+"the API"
+msgstr ""
+"Ce format sera détermine la valeur enregistrée dans la base de données et "
+"retournée par l‘API"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:97
+msgid "\"yymmdd\" is the most versatile save format. Read more about"
+msgstr ""
+"\"yymmdd\" est le format d‘enregistrement le plus polyvalent. En savoir plus "
+"sur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:97
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:107
+msgid "jQuery date formats"
+msgstr "Format date jQuery"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:105
+msgid "Display format"
+msgstr "Format d‘affichage"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:106
+msgid "This format will be seen by the user when entering a value"
+msgstr "Ce format sera vu par l‘utilisateur lors de la saisie d‘une valeur"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/fields/date_picker/date_picker.php:107
+msgid ""
+"\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more "
+"about"
+msgstr ""
+"\"dd/mm/yy\" ou \"mm/dd/yy\"  sont les formats d‘affichage les plus "
+"utilisées. En savoir plus sur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:26
+msgid "new_field"
+msgstr "nouveau_champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:47
+msgid "Move to trash. Are you sure?"
+msgstr "Mettre à la corbeille. Etes-vous sûr ?"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:64
+msgid "Field Key"
+msgstr "Clé du champ"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:74
+msgid ""
+"No fields. Click the <strong>+ Add Field</strong> button to create your "
+"first field."
+msgstr ""
+"Aucun champ. Cliquez sur le bouton <strong>+ Ajouter</strong> pour créer "
+"votre premier champ."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:152
+msgid "Instructions for authors. Shown when submitting data"
+msgstr ""
+"Instructions pour les auteurs. Affichées lors de la soumission de données."
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:164
+msgid "Required?"
+msgstr "Requis ?"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_fields.php:204
+msgid "+ Add Field"
+msgstr "+ Ajouter"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:35
+msgid "Rules"
+msgstr "Règles"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:36
+msgid ""
+"Create a set of rules to determine which edit screens will use these "
+"advanced custom fields"
+msgstr ""
+"Créez une série de règles pour déterminer sur quelles pages d‘édition ce "
+"groupe de champs sera utilisé"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:49
+msgid "Logged in User Type"
+msgstr "Rôle de l‘utilisateur"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:51
+msgid "Page Specific"
+msgstr "Pages"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:52
+msgid "Page"
+msgstr "Page"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:53
+msgid "Page Type"
+msgstr "Type de page"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:54
+msgid "Page Parent"
+msgstr "Page parente"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:55
+msgid "Page Template"
+msgstr "Modèle de page"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:57
+msgid "Post Specific"
+msgstr "Articles (posts)"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:58
+msgid "Post"
+msgstr "Article"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:59
+msgid "Post Category"
+msgstr "Type d‘articles"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:60
+msgid "Post Format"
+msgstr "Format d‘article"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:61
+msgid "Post Taxonomy"
+msgstr "Taxonimie"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:63
+msgid "Other"
+msgstr "Autres"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:64
+msgid "Taxonomy (Add / Edit)"
+msgstr "Taxinomie (Ajouter / Modifier)"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:65
+msgid "User (Add / Edit)"
+msgstr "Utilisateur (Ajouter / Modifier)"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:66
+msgid "Media (Edit)"
+msgstr "Média (Modifier)"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:96
+msgid "is equal to"
+msgstr "est égal à"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:97
+msgid "is not equal to"
+msgstr "n‘est pas égal à"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:121
+msgid "match"
+msgstr "Ce groupe de champs apparaitra si :"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:127
+msgid "all"
+msgstr "toutes les règles sont respectées"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:128
+msgid "any"
+msgstr "au moins une règle est respectée"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:131
+msgid "of the above"
+msgstr " "
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_location.php:144
+msgid "Unlock options add-on with an activation code"
+msgstr "Déverrouiller l‘add-on 'Options' avec un code d'activation"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:23
+msgid "Order No."
+msgstr "Numéro d‘ordre"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:24
+msgid "Field groups are created in order <br />from lowest to highest"
+msgstr ""
+"Les groupes de champs sont créés dans <br/> ordre du plus bas vers le plus "
+"haut"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:40
+msgid "Position"
+msgstr "Position"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:61
+msgid "Priority"
+msgstr "Priorité"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:71
+msgid "Low"
+msgstr "Basse"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:72
+msgid "High"
+msgstr "Haute"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:82
+msgid "Style"
+msgstr "Style"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:102
+msgid "Hide on screen"
+msgstr "Ne pas afficher"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:103
+msgid "<b>Select</b> items to <b>hide</b> them from the edit screen"
+msgstr ""
+"<b>Décochez</b> les champs que vous souhaitez <b>masquer</b> sur la page "
+"d‘édition"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:104
+msgid ""
+"If multiple field groups appear on an edit screen, the first field group's "
+"options will be used. (the one with the lowest order number)"
+msgstr ""
+"Si plusieurs groupes ACF sont présents sur une page d‘édition, le groupe "
+"portant le numéro le plus bas sera affiché en premier."
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:114
+msgid "Content Editor"
+msgstr "La zone d‘édition principale"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:115
+msgid "Excerpt"
+msgstr "Le résumé (excerpt)"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:117
+msgid "Discussion"
+msgstr "Discussion"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:118
+msgid "Comments"
+msgstr "Les commentaires"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:119
+msgid "Slug"
+msgstr "Identifiant (slug)"
+
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:120
+msgid "Author"
+msgstr "Auteur"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:121
+msgid "Format"
+msgstr "Format"
+
+# @ acf
+#: /Volumes/GRAVITY/USER/Sites/wordpress/wp-content/plugins/advanced-custom-fields/core/views/meta_box_options.php:122
+msgid "Featured Image"
+msgstr "Image à la Une"
+
+#~ msgid "Add Fields to Edit Screens"
+#~ msgstr "Ajouter les champs à l'écran d'édition"
+
+#~ msgid "Customise the edit page"
+#~ msgstr "Personnaliser l'écran d'édition"

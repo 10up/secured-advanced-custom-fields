@@ -1,0 +1,160 @@
+/*--------------------------------------------------------------------------------------------
+*
+*	ACF manage field groups
+*
+*--------------------------------------------------------------------------------------------*/
+#icon-edit {
+	background: url(../images/sprite.png) 0 0 no-repeat !important;
+}
+
+#toplevel_page_edit-post_type-acf .wp-menu-image { background: url("../../../../wp-admin/images/menu.png") no-repeat scroll 0 -1px transparent; }
+
+
+#acf-cols {
+	position: relative; clear: both;
+}
+
+#acf-col-left {
+	margin-right: 300px;
+}
+
+#acf-col-left .tablenav,
+#acf-col-left p.search-box {
+	display: none;
+}
+
+#acf-col-left .wp-list-table .check-column {
+	padding-left: 5px;
+}
+
+#acf-col-left .wp-list-table th#fields {
+	width: 25%;
+}
+
+#acf-col-left .tablenav.bottom {
+	display: block;
+}
+
+#acf-col-left form {
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+#acf-col-right {
+	float: right; 
+	width: 281px; 
+	padding-top: 37px !important;
+}
+
+h3.h2 {
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+	font-size: 23px;
+    line-height: 29px;
+    padding: 9px 15px 4px 0;
+    margin: 0;
+    font-weight: normal;
+}
+
+h3.h2 span {
+	color: #ccc;
+}
+
+#acf-col-left .wp-list-table {
+	border-radius: 0;
+	border: 1px solid #E1E1E1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+
+table.acf_activate {
+	border: 0 none;
+	border-collapse:separate; 
+	border-spacing:0; 
+	vertical-align:top; 
+	width: 100%;
+	background: #FEFEFE;
+	border-radius: 0;
+}
+
+table.acf_activate tr:nth-child(even) {
+	background: #F9F9F9
+}
+
+table.acf_activate tr:nth-child(odd) {
+	background: transparent;
+}
+
+table.acf_activate tr.field_save {
+	background: #EAF2FA;
+}
+
+table.acf_activate tr td,
+table.acf_activate tr th {
+	padding: 8px;
+}
+
+table.acf_activate tr:last-child  td {
+	border-bottom: 0 none;
+}
+
+table.acf_activate tr td:last-child {
+	border-right: 0 none;
+}
+
+table.acf_activate input[type="text"] {
+	padding: 7px;
+	width: 200px;
+}
+
+table.acf_activate input[type="submit"] {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.acf-form-table {
+	max-width: 1100px;
+}
+
+.acf-form-table > tbody > tr > th,
+.acf-form-table > tbody > tr > td {
+	padding-bottom: 30px;
+}
+
+.acf-export-form {
+	display: block;
+}
+
+.acf-export-form select {
+	width: 100%;
+}
+
+body.custom-fields_page_acf-settings .wp-pointer-arrow {
+	left: 15px !important;
+}
+
+.wp-pointer-content ol {
+    padding: 0 15px;
+    margin-left: 1.5em;
+}
+
+.acf-form-table pre,
+.acf-form-table .pre {
+	padding: 10px;
+	margin: 0;
+	font-family: Monaco,"Andale Mono","Courier New",monospace !important;
+	resize: none;
+	height: auto;
+	width: 100%;
+	padding: 0;
+	border: 0 none;
+	border-radius: 0;
+}
+
+/*--------------------------------------------------------------------------------------------
+	Columns
+--------------------------------------------------------------------------------------------*/
+.row-actions .inline {
+	display: none;
+}
