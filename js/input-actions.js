@@ -1872,10 +1872,9 @@ var acf = {
 	*  @created: 14/12/12
 	*/
 	
-	$(document).ready(function(){
+	$(document).live('acf/setup_fields', function(e, postbox){
 		
-		
-		$('#poststuff .acf-tab').each(function(){
+		$(postbox).find('.acf-tab').each(function(){
 			
 			// vars
 			var tab = $(this),
@@ -1909,13 +1908,13 @@ var acf = {
 		
 		
 		// trigger
-		$('.acf-tab-group').each(function(){
+		$(postbox).find('.acf-tab-group').each(function(){
 			
 			$(this).find('li:first a').trigger('click');
 			
 		});
+
 	
-		
 	});
 	
 	
