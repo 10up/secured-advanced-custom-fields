@@ -57,8 +57,8 @@ class acf_Tab extends acf_Field
 				<label><?php _e("Instructions",'acf'); ?></label>
 			</td>
 			<td>
-				<p>All fields bellow this tab field will appear in a tab. Use the field label to name the tab.</p>
-				<p>You can use multiple tabs to break up your field group into sections.</p>
+				<p><?php _e("All fields proceeding this \"tab field\" (or until another \"tab field\"  is defined) will appear grouped on the edit screen.",'acf'); ?></p>
+				<p><?php _e("You can use multiple tabs to break up your fields into sections.",'acf'); ?></p>
 			</td>
 		</tr>
 		<?php

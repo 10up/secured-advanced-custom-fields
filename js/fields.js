@@ -1,5 +1,5 @@
 var acf = {
-	
+	post_id : 0,
 	text : {
 		'move_to_trash' : "Move to trash. Are you sure?",
 		'checked' : 'checked',
@@ -8,7 +8,6 @@ var acf = {
 	fields : [],
 	sortable_helper : null,
 	nonce : ''
-	
 };
 
 (function($){
@@ -84,16 +83,29 @@ var acf = {
 	
 	$('#acf_fields tr.field_type select').live('change', function(){
 		
-		var tbody = $(this).closest('tbody');
-
+		// vars
+		var select = $(this),
+			tbody = select.closest('tbody')
+			field = tbody.closest('.field'),
+			field_type = field.attr('data-type'),
+			field_key = field.attr('data-id'),
+			val = select.val();
+			
+		
+		
+		// update data atts
+		field.removeClass('field-' + field_type).addClass('field-' + val);
+		field.attr('data-type', val);
+		
+		
 		// show field options if they already exist
-		if(tbody.children('tr.field_option_'+$(this).val()).exists())
+		if( tbody.children( 'tr.field_option_' + val ).exists() )
 		{
 			// hide + disable options
 			tbody.children('tr.field_option').hide().find('[name]').attr('disabled', 'true');
 			
 			// show and enable options
-			tbody.children('tr.field_option_'+$(this).val()).show().find('[name]').removeAttr('disabled');
+			tbody.children( 'tr.field_option_' + val ).show().find('[name]').removeAttr('disabled');
 		}
 		else
 		{
@@ -116,10 +128,11 @@ var acf = {
 			
 			
 			var ajax_data = {
-				action : "acf_field_options",
-				post_id : $('#post_ID').val(),
-				field_key : $(this).attr('name'),
-				field_type : $(this).val()
+				'action' : 'acf_field_options',
+				'post_id' : acf.post_id,
+				'field_key' : field_key,
+				'field_type' : val,
+				'nonce' : acf.nonce
 			};
 			
 			$.ajax({
@@ -128,7 +141,12 @@ var acf = {
 				type: 'post',
 				dataType: 'html',
 				success: function(html){
-
+					
+					if( ! html )
+					{
+						alert('Error: Could not load field options');
+					}
+					
 					tr.replaceWith(html);
 					
 				}

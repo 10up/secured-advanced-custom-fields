@@ -1845,36 +1845,28 @@ var acf = {
 	*  @created: 14/12/12
 	*/
 	
-	$(document).live('acf/setup_fields', function(e, postbox){
+	$(document).ready(function(){
 		
-		$(postbox).find('.acf-tab').each(function(){
+		
+		$('#poststuff .acf-tab').each(function(){
 			
 			// vars
-			var div = $(this),
-				id = div.attr('data-id'),
-				label = div.html(),
-				acf_postbox = div.closest('.acf_postbox');
+			var tab = $(this),
+				id = tab.attr('data-id'),
+				label = tab.html(),
+				postbox = tab.closest('.acf_postbox');
 			
-			
-			/*
-// is clone field?
-			if( acf.is_clone_field(div) )
-			{
-				return;
-			}
-*/
-			
+
 			
 			// create tab group if it doesnt exist
-			if( ! acf_postbox.children('.acf-tab-group').exists() )
+			if( ! postbox.children('.acf-tab-group').exists() )
 			{
-				acf_postbox.prepend('<ul class="hl clearfix acf-tab-group"></ul>');
+				postbox.prepend('<ul class="hl clearfix acf-tab-group"></ul>');
 			}
 			
 			
-			var tabs = acf_postbox.children('.acf-tab-group');
-			
-			tabs.append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>')
+			// add tab
+			postbox.children('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>')
 			
 		});
 		

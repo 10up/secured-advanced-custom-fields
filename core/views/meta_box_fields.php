@@ -94,7 +94,7 @@ $conditional_logic_rule = array(
 	<!-- / No Fields Message -->
 	
 	<?php foreach($fields as $field): ?>
-	<div class="field field-<?php echo $field['key']; ?>" data-id="<?php echo $field['key']; ?>">
+	<div class="field field-<?php echo $field['type']; ?> field-<?php echo $field['key']; ?>" data-type="<?php echo $field['type']; ?>" data-id="<?php echo $field['key']; ?>">
 		<div class="field_meta">
 			<table class="acf widefat">
 				<tr>

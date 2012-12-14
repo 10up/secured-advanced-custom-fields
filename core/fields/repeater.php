@@ -307,6 +307,7 @@ class acf_Repeater extends acf_Field
 				$fields_names[$f->name] = $f->title;
 			}
 		}
+		unset( $fields_names['tab'] );
 		
 		?>
 <tr class="field_option field_option_<?php echo $this->name; ?> field_option_<?php echo $this->name; ?>_fields">

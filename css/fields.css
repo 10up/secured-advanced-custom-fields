@@ -696,3 +696,18 @@ table.conditional-logic-rules tbody td {
 	background: transparent;
 	border: 0 none;
 }
+
+
+/*---------------------------------------------------------------------------------------------
+*
+*	Field: Tab
+*	
+*---------------------------------------------------------------------------------------------*/
+
+
+#acf_fields .fields .field-tab tr.field_name,
+#acf_fields .fields .field-tab tr.field_instructions,
+#acf_fields .fields .field-tab tr.required,
+#acf_fields .fields .field-tab tr.conditional-logic {
+	display: none;
+}

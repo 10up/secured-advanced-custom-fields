@@ -360,7 +360,7 @@ class acf_Flexible_content extends acf_Field
 				$fields_names[$f->name] = $f->title;
 			}
 		}
-		unset($fields_names['flexible_content']);
+		unset( $fields_names['flexible_content'], $fields_names['tab'] );
 		
 		
 		// loop through layouts and create the options for them
