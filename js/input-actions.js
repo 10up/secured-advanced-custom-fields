@@ -1886,6 +1886,14 @@ var acf = {
 			
 
 			
+			// only run once for each tab
+			if( tab.hasClass('acf-tab-added') )
+			{
+				return;
+			}
+			tab.addClass('acf-tab-added');
+			
+			
 			// create tab group if it doesnt exist
 			if( ! inside.children('.acf-tab-group').exists() )
 			{
@@ -1894,7 +1902,8 @@ var acf = {
 			
 			
 			// add tab
-			inside.children('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>')
+			inside.children('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>');
+			
 			
 		});
 		
