@@ -197,6 +197,15 @@
 }
 
 
+/*
+*  WP 3.5 z-index fix for full screen wysiwyg
+*/
+
+#mce_fullscreen_container {
+	z-index: 150005 !important;
+}
+
+
 /*---------------------------------------------------------------------------------------------
 *
 *  Field: Image
