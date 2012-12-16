@@ -709,7 +709,9 @@ var acf = {
 				'paged' : paged,
 				'taxonomy' : taxonomy,
 				'post_type' : post_type,
-				'lang' : lang
+				'lang' : lang,
+				'field_name' : div.parent().attr('data-field_name'),
+				'field_key' : div.parent().attr('data-field_key')
 			},
 			success: function( html ){
 				

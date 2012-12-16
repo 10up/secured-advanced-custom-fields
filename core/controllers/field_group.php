@@ -742,7 +742,7 @@ class acf_field_group
 		
 		
 		// get next id
-		$next_id = (int) get_option('acf_next_field_id', 1);
+		$next_id = intval( get_option('acf_next_field_id', 1) );
 		
 		
 		// update the acf_next_field_id

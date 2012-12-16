@@ -71,9 +71,12 @@ class acf_Relationship extends acf_Field
 			'suppress_filters' => false,
 			's' => '',
 			'lang' => false,
+			'update_post_meta_cache' => false,
+			'field_name' => '',
+			'field_key' => ''
 		);
 		$ajax = isset( $_POST['action'] ) ? true : false;
-
+		
 		
 		// override options with posted values
 		if( $ajax )
@@ -163,36 +166,57 @@ class acf_Relationship extends acf_Field
 		unset( $options['s'] );
 		
 		
-		// load the posts
-		$posts = get_posts( $options );
+		// filters
+		$options = apply_filters('acf_relationship_query', $options);
+		$options = apply_filters('acf_relationship_query-' . $options['field_name'] , $options);
+		$options = apply_filters('acf_relationship_query-' . $options['field_key'], $options);
 		
-		if( $posts )
+		
+		$results = false;
+		$results = apply_filters('acf_relationship_results', $results, $options);
+		$results = apply_filters('acf_relationship_results-' . $options['field_name'] , $results, $options);
+		$results = apply_filters('acf_relationship_results-' . $options['field_key'], $results, $options);
+		
+		
+		if( ! $results )
 		{
-			foreach( $posts  as $post )
+			// load the posts
+			$posts = get_posts( $options );
+			
+			if( $posts )
 			{
-				// right aligned info
-				$title = '<span class="relationship-item-info">';
-				
-					$title .= $post->post_type;
+				foreach( $posts  as $post )
+				{
+					// right aligned info
+					$title = '<span class="relationship-item-info">';
 					
-					// WPML
-					if( $options['lang'] )
+						$title .= $post->post_type;
+						
+						// WPML
+						if( $options['lang'] )
+						{
+							$title .= ' (' . $options['lang'] . ')';
+						}
+						
+					$title .= '</span>';
+					
+					// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
+					$title .= apply_filters( 'the_title', $post->post_title, $post->ID );
+	
+					// status
+					if($post->post_status != "publish")
 					{
-						$title .= ' (' . $options['lang'] . ')';
+						$title .= " ($post->post_status)";
 					}
 					
-				$title .= '</span>';
-				
-				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
-				$title .= apply_filters( 'the_title', $post->post_title, $post->ID );
-
-				// status
-				if($post->post_status != "publish")
-				{
-					$title .= " ($post->post_status)";
+					
+					$title = apply_filters('acf_relationship_result', $title);
+					$title = apply_filters('acf_relationship_result-' . $options['field_name'] , $title);
+					$title = apply_filters('acf_relationship_result-' . $options['field_key'], $title);
+					
+					
+					echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="add"></span></a></li>';
 				}
-				
-				echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="add"></span></a></li>';
 			}
 		}
 		
