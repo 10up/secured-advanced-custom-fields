@@ -123,6 +123,7 @@ var acf = {
 				// hide ajax stuff on submit button
 				$('#publish').removeClass('button-primary-disabled');
 				$('#ajax-loading').attr('style','');
+				$('#publishing-action .spinner').hide();
 				
 				return false;
 			}
@@ -164,6 +165,21 @@ var acf = {
 			if( div.find('input[type="text"], input[type="number"], input[type="hidden"], textarea').val() == "" )
 			{
 				div.data('validation', false);
+			}
+			
+			
+			// wysiwyg
+			if( div.find('.acf_wysiwyg').exists() && typeof(tinyMCE) == "object")
+			{
+				div.data('validation', true);
+				
+				var id = div.find('.wp-editor-area').attr('id'),
+					editor = tinyMCE.get( id );
+
+				if( ! editor.getContent() )
+				{
+					div.data('validation', false);
+				}
 			}
 			
 			
@@ -264,11 +280,6 @@ var acf = {
 	
 	// checkbox
 	$('.field.required input:checkbox').live('click', function(){
-		$(this).closest('.field').removeClass('error');
-	});
-	
-	// wysiwyg
-	$('.field.required .acf_wysiwyg').live('mousedown', function(){
 		$(this).closest('.field').removeClass('error');
 	});
 	
@@ -907,9 +918,13 @@ var acf = {
 		
 		wpActiveEditor = id;
 		
+		container = $('#wp-' + id + '-wrap').closest('.field').removeClass('error');
+		
 	}).live('acf/wysiwyg/focus', function(e, id){
 		
 		wpActiveEditor = id;
+		
+		container = $('#wp-' + id + '-wrap').closest('.field').removeClass('error');
 		
 	}).live('acf/wysiwyg/blur', function(e, id){
 		

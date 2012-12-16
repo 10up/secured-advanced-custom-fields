@@ -76,12 +76,7 @@ class acf_Page_link extends acf_Field
 					''	=>	__("All",'acf')
 				);
 				
-				$post_types = get_post_types( array('public' => true) );
-				
-				foreach( $post_types as $post_type )
-				{
-					$choices[$post_type] = $post_type;
-				}
+				$choices = $this->parent->get_post_types();
 				
 				$this->parent->create_field(array(
 					'type'	=>	'select',

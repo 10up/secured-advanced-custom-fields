@@ -334,12 +334,9 @@ class acf_field_group
 		{
 			case "post_type":
 				
-				$choices = get_post_types(array(
-					//'public' => true
-				));
-				
-				unset( $choices['attachment'], $choices['revision'] , $choices['nav_menu_item'], $choices['acf']  );
-		
+				// all post types except attachment
+				$choices = $this->parent->get_post_types( array('attachment') );
+
 				break;
 			
 			

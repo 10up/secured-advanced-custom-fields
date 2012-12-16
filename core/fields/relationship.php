@@ -102,7 +102,7 @@ class acf_Relationship extends acf_Field
 		// load all post types by default
 		if( !$options['post_type'] || !is_array($options['post_type']) || $options['post_type'][0] == "" )
 		{
-			$options['post_type'] = get_post_types( array('public' => true) );
+			$options['post_type'] = $this->parent->get_post_types();
 		}
 		
 		
@@ -266,7 +266,7 @@ class acf_Relationship extends acf_Field
 		// load all post types by default
 		if( !$field['post_type'] || !is_array($field['post_type']) || $field['post_type'][0] == "" )
 		{
-			$field['post_type'] = get_post_types( array('public' => true) );
+			$field['post_type'] = $this->parent->get_post_types();
 		}
 		
 		
@@ -406,7 +406,7 @@ class acf_Relationship extends acf_Field
 					''	=>	__("All",'acf')
 				);
 				
-				$post_types = get_post_types( array('public' => true) );
+				$post_types = $this->parent->get_post_types();
 				
 				foreach( $post_types as $post_type )
 				{
@@ -505,7 +505,7 @@ class acf_Relationship extends acf_Field
 		$posts = get_posts(array(
 			'numberposts' => -1,
 			'post__in' => $value,
-			'post_type'	=>	get_post_types( array('public' => true) ),
+			'post_type'	=>	$this->parent->get_post_types(),
 			'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
 		));
 
