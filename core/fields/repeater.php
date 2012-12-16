@@ -99,14 +99,12 @@ class acf_Repeater extends acf_Field
 
 		
 		// setup values for row clone
-		$field['value'][999] = array();
+		$field['value']['acfcloneindex'] = array();
 		foreach( $field['sub_fields'] as $sub_field)
 		{
 			$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
-			$field['value'][999][$sub_field['name']] = $sub_value;
+			$field['value']['acfcloneindex'][$sub_field['name']] = $sub_value;
 		}
-		
-
 
 ?>
 <div class="repeater" data-min_rows="<?php echo $field['row_min']; ?>" data-max_rows="<?php echo $field['row_limit']; ?>">
@@ -152,9 +150,9 @@ class acf_Repeater extends acf_Field
 		</thead>
 	<?php endif; ?>
 	<tbody>
-	<?php if( $field['value'] ): foreach($field['value'] as $i => $value): ?>
+	<?php if( $field['value'] ): foreach( $field['value'] as $i => $value ): ?>
 		
-		<tr class="<?php echo ($i == 999) ? "row-clone" : "row"; ?>">
+		<tr class="<?php echo ( (string) $i == 'acfcloneindex') ? "row-clone" : "row"; ?>">
 		
 		<?php 
 		
@@ -618,7 +616,7 @@ class acf_Repeater extends acf_Field
 		if($value)
 		{
 			// remove dummy field
-			unset($value[999]);
+			unset($value['acfcloneindex']);
 			
 			$i = -1;
 			

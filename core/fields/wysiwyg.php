@@ -172,7 +172,7 @@ class acf_Wysiwyg extends acf_Field
 		);
 		$field = array_merge($defaults, $field);
 		
-		$id = 'wysiwyg-' . $field['name'];
+		$id = 'wysiwyg-' . $field['id'];
 		
 		
 		?>

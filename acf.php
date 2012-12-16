@@ -769,24 +769,22 @@ class Acf
 		
 		
 		// defaults - class
-		if( !isset($field['class']) )
+		if( ! isset($field['class']) )
 		{
 			$field['class'] = $field['type'];
 		}
 		
 		
 		// defaults - id
-		// - isset is needed for the edit field group page where fields are created without many parameters
-		if( !isset($field['id']) )
+		if( ! isset($field['id']) )
 		{
-			if( isset($field['key']) )
-			{
-				$field['id'] = 'acf-' . $field['key'];
-			}
-			else
-			{
-				$field['id'] = 'acf-' . $field['name'];
-			}
+			$id = $field['name'];
+			$id = str_replace('][', '_', $id);
+			$id = str_replace('fields[', '', $id);
+			$id = str_replace(']', '', $id);
+			
+			
+			$field['id'] = 'acf-' . $id;
 		}
 		
 		

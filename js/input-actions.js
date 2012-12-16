@@ -813,14 +813,8 @@ var acf = {
 			$(document).trigger('acf/wysiwyg/load', id);
 			
 			
-			// events - focus / blur
-			var body = $( tinyMCE.get( id ).getBody() );
-			
-			body.focus(function(){
-				$(document).trigger('acf/wysiwyg/focus', id);
-			}).blur(function(){
-				$(document).trigger('acf/wysiwyg/blur', id);
-			});
+			// add events (click, focus, blur) for inserting image into correct editor
+			acf.add_wysiwyg_events( id );
 			
 		});
 		
@@ -828,6 +822,40 @@ var acf = {
 		wpActiveEditor = null;
 
 	});
+	
+	
+	/*
+	*  add_wysiwyg_events
+	*
+	*  @description: 
+	*  @since: 2.0.4
+	*  @created: 16/12/12
+	*/
+	
+	acf.add_wysiwyg_events = function( id ){
+		
+		var editor = tinyMCE.get( id );
+		
+		if( !editor )
+		{
+			return;
+		}
+		
+		var	container = $('#wp-' + id + '-wrap'),
+			body = $( editor.getBody() );
+
+
+		container.click(function(){
+			$(document).trigger('acf/wysiwyg/click', id);
+		});
+		
+		body.focus(function(){
+			$(document).trigger('acf/wysiwyg/focus', id);
+		}).blur(function(){
+			$(document).trigger('acf/wysiwyg/blur', id);
+		});
+		
+	};
 	
 	
 	/*
@@ -873,7 +901,11 @@ var acf = {
 	
 	
 	// set active wysiwyg
-	$(document).live('acf/wysiwyg/focus', function(e, id){
+	$(document).live('acf/wysiwyg/click', function(e, id){
+		
+		wpActiveEditor = id;
+		
+	}).live('acf/wysiwyg/focus', function(e, id){
 		
 		wpActiveEditor = id;
 		
@@ -894,15 +926,22 @@ var acf = {
 	
 	$(window).load(function(){
 		
+		
 		$('#acf_settings-tmce').trigger('click');
 		
+		
 		$(document).trigger('acf/setup_fields', $('#poststuff'));
+		
 		
 		// trigger html mode for people who want to stay in HTML mode
 		if( $('#wp-content-wrap').hasClass('html-active') )
 		{
 			$('#wp-content-wrap #content-html').trigger('click');
 		}
+		
+		
+		// add wysiwyg events to standard editor
+		acf.add_wysiwyg_events( 'content' );
 		
 	});
 	
@@ -1162,7 +1201,7 @@ var acf = {
 	
 		// create and add the new field
 		var new_id = uniqid(),
-			new_field_html = repeater.find('> table > tbody > tr.row-clone').html().replace(/(=["]*[\w-\[\]]*?)(\[999\])/g, '$1[' + new_id + ']'),
+			new_field_html = repeater.find('> table > tbody > tr.row-clone').html().replace(/acfcloneindex/g, new_id ),
 			new_field = $('<tr class="row"></tr>').append( new_field_html );
 		
 		
@@ -1414,7 +1453,7 @@ var acf = {
 		
 		// create new field
 		var new_id = uniqid(),
-			new_field_html = div.find('> .clones > .layout[data-layout="' + layout + '"]').html().replace(/(=["]*[\w-\[\]]*?)(\[999\])/g, '$1[' + new_id + ']'),
+			new_field_html = div.find('> .clones > .layout[data-layout="' + layout + '"]').html().replace(/acfcloneindex/g, new_id ),
 			new_field = $('<div class="layout" data-layout="' + layout + '"></div>').append( new_field_html );
 			
 			
@@ -1500,7 +1539,7 @@ var acf = {
 	
 	acf.is_clone_field = function( input )
 	{
-		if( input.attr('name') && input.attr('name').indexOf('[999]') != -1 )
+		if( input.attr('name') && input.attr('name').indexOf('[acfcloneindex]') != -1 )
 		{
 			return true;
 		}

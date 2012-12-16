@@ -58,7 +58,7 @@ class acf_Flexible_content extends acf_Field
 			
 				<div class="layout" data-layout="<?php echo $layout['name']; ?>">
 					
-					<input type="hidden" name="<?php echo $field['name']; ?>[999][acf_fc_layout]" value="<?php echo $layout['name']; ?>" />
+					<input type="hidden" name="<?php echo $field['name']; ?>[acfcloneindex][acf_fc_layout]" value="<?php echo $layout['name']; ?>" />
 					
 					<a class="ir fc-delete-layout" href="#"></a>
 					<p class="menu-item-handle"><span class="fc-layout-order"><?php echo $i+1; ?></span>. <?php echo $layout['label']; ?></p>
@@ -127,7 +127,7 @@ class acf_Flexible_content extends acf_Field
 									$sub_field['value'] = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
 									
 									// add name
-									$sub_field['name'] = $field['name'] . '[999][' . $sub_field['key'] . ']';
+									$sub_field['name'] = $field['name'] . '[acfcloneindex][' . $sub_field['key'] . ']';
 									
 									// create field
 									$this->parent->create_field($sub_field);
@@ -641,7 +641,7 @@ class acf_Flexible_content extends acf_Field
 		if($value)
 		{
 			// remove dummy field
-			unset($value[999]);
+			unset($value['acfcloneindex']);
 			
 			$i = -1;
 			
