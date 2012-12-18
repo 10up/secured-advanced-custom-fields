@@ -943,10 +943,14 @@ var acf = {
 	
 	$(window).load(function(){
 		
+		// trigger click on hidden wysiwyg (to get in HTML mode)
+		if( $('#wp-acf_settings-wrap').exists() )
+		{
+			$('#acf_settings-tmce').trigger('click');
+		}
 		
-		$('#acf_settings-tmce').trigger('click');
 		
-		
+		// setup fields
 		$(document).trigger('acf/setup_fields', $('#poststuff'));
 		
 		
@@ -958,7 +962,11 @@ var acf = {
 		
 		
 		// add wysiwyg events to standard editor
-		acf.add_wysiwyg_events( 'content' );
+		if( $('#wp-content-wrap').exists() )
+		{
+			acf.add_wysiwyg_events( 'content' );
+		}
+		
 		
 	});
 	
