@@ -3,7 +3,8 @@ var acf = {
 	text : {
 		'move_to_trash' : "Move to trash. Are you sure?",
 		'checked' : 'checked',
-		'conditional_no_fields' : 'No "toggle" fields available'
+		'conditional_no_fields' : 'No "toggle" fields available',
+		'flexible_content_no_fields' : 'Flexible Content requires at least 1 layout'
 	},
 	fields : [],
 	sortable_helper : null,
@@ -180,7 +181,11 @@ var acf = {
 			type: 'post',
 			dataType: 'html',
 			success: function( new_id ){
-
+				
+				// remove phantom new lines...
+				new_id = new_id.replace(/(\r\n|\n|\r)/gm,"");
+				
+				
 				// give field a new id
 				field.attr('data-id', new_id);
 				
@@ -669,7 +674,7 @@ var acf = {
 		
 		// reset layout meta values
 		new_tr.find('.acf_cf_meta input[type="text"]').val('');
-		new_tr.find('.acf_cf_meta select').val('row').trigger('change');
+		
 		
 		// update id / names
 		new_tr.find('[name]').each(function(){
@@ -685,6 +690,9 @@ var acf = {
 		
 		// add new tr
 		tr.after(new_tr);
+		
+		// display
+		new_tr.find('.acf_cf_meta select').val('row').trigger('change');
 		
 		
 		return false;
@@ -741,12 +749,12 @@ var acf = {
 	
 	$('#acf_fields .acf_fc_delete').live('click', function(){
 
-		var tr = $(this).closest('tr.field_option_flexible_content');
-		var tr_count = tr.siblings('tr.field_option.field_option_flexible_content').length;
+		var tr = $(this).closest('tr.field_option_flexible_content'),
+			tr_count = tr.siblings('tr.field_option.field_option_flexible_content').length;
 
-		if(tr_count == 0)
+		if( tr_count <= 1 )
 		{
-			alert('Flexible Content requires at least 1 layout');
+			alert( acf.text.flexible_content_no_fields );
 			return false;
 		}
 		

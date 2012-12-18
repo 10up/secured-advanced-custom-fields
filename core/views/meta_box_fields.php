@@ -62,6 +62,7 @@ $conditional_logic_rule = array(
 	acf.text.move_to_trash = "<?php _e("Move to trash. Are you sure?",'acf'); ?>";
 	acf.text.checked = "<?php _e("checked",'acf'); ?>";
 	acf.text.conditional_no_fields = "<?php _e('No toggle fields available','acf'); ?>";
+	acf.text.flexible_content_no_fields = "<?php _e('Flexible Content requires at least 1 layout','acf'); ?>";
 	</script>
 	<input type="hidden" name="acf_field_group" value="<?php echo wp_create_nonce( 'acf_field_group' ); ?>" />
 </div>
