@@ -154,8 +154,8 @@ class acf_Image extends acf_Field
 	<div class="has-image">
 		<div class="hover">
 			<ul class="bl">
-				<li><a class="remove-image ir" href="#"><?php _e("Remove",'acf'); ?></a></li>
-				<li><a class="edit-image ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
+				<li><a class="acf-button-delete ir" href="#"><?php _e("Remove",'acf'); ?></a></li>
+				<li><a class="acf-button-edit ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
 		<img src="<?php echo $file_src; ?>" alt=""/>

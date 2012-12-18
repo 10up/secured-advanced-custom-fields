@@ -215,7 +215,7 @@ class acf_Relationship extends acf_Field
 					$title = apply_filters('acf_relationship_result-' . $options['field_key'], $title);
 					
 					
-					echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="add"></span></a></li>';
+					echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
 				}
 			}
 		}
@@ -279,7 +279,7 @@ class acf_Relationship extends acf_Field
 	<!-- Template for value -->
 	<script type="text/html" class="tmpl-li">
 	<li>
-		<a href="#" data-post_id="{post_id}">{title}<span class="remove"></span></a>
+		<a href="#" data-post_id="{post_id}">{title}<span class="acf-button-remove"></span></a>
 		<input type="hidden" name="<?php echo $field['name']; ?>[]" value="{post_id}" />
 	</li>
 	</script>
@@ -345,7 +345,7 @@ class acf_Relationship extends acf_Field
 				}
 				
 				echo '<li>
-					<a href="' . get_permalink($post->ID) . '" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="remove"></span></a>
+					<a href="' . get_permalink($post->ID) . '" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
 					<input type="hidden" name="' . $field['name'] . '[]" value="' . $post->ID . '" />
 				</li>';
 				

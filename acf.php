@@ -436,10 +436,12 @@ class Acf
 	{
 		// hide upgrade page from nav
 		echo '<style type="text/css"> 
-			#toplevel_page_edit-post_type-acf a[href="edit.php?post_type=acf&page=acf-upgrade"]{ display:none; }
-			#toplevel_page_edit-post_type-acf .wp-menu-image { background: url("../wp-admin/images/menu.png") no-repeat scroll 0 -33px transparent; }
-			#toplevel_page_edit-post_type-acf:hover .wp-menu-image { background-position: 0 -1px; }
-			#toplevel_page_edit-post_type-acf .wp-menu-image img { display:none; }
+			#adminmenu #toplevel_page_edit-post_type-acf a[href="edit.php?post_type=acf&page=acf-upgrade"]{ display:none; }
+			#adminmenu #toplevel_page_edit-post_type-acf .wp-menu-image { background-position: 1px -33px; }
+			#adminmenu #toplevel_page_edit-post_type-acf:hover .wp-menu-image,
+			#adminmenu #toplevel_page_edit-post_type-acf.wp-menu-open .wp-menu-image { background-position: 1px -1px; }
+			#adminmenu #toplevel_page_edit-post_type-acf .wp-menu-image img { display:none; }
+			
 		</style>';
 	}
 	
@@ -793,7 +795,7 @@ class Acf
 
 		// conditional logic
 		// - isset is needed for the edit field group page where fields are created without many parameters
-		if( isset($field['conditional_logic']) && $field['conditional_logic']['status'] ):
+		if( isset($field['conditional_logic']['status']) && $field['conditional_logic']['status'] ):
 		
 			$join = ' && ';
 			if( $field['conditional_logic']['allorany'] == "any" )

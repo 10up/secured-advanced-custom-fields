@@ -281,7 +281,7 @@ class acf_File extends acf_Field
 	
 	#media-items .media-item .filename.new {
 		min-height: 0;
-		padding: 20px 10px 10px 10px;
+		padding: 10px;
 		line-height: 15px;
 	}
 	
@@ -311,6 +311,14 @@ class acf_File extends acf_Field
 		float: left;
 		margin: 0 10px 0 0;
 	}
+	
+	#media-items .media-item .acf-filename {
+		color: #999;
+		font-size: 11px;
+		margin: 0 0 3px;
+		display: block;
+	}
+	
 	
 <?php if( $options['tab'] == 'gallery' ): ?>
 	#sort-buttons,
@@ -549,9 +557,12 @@ class acf_File extends acf_Field
 				$(this).prepend('<input type="checkbox" class="acf-checkbox" value="' + id + '" <?php if( $options['tab'] == 'type' ){echo 'checked="checked"';} ?> />');
 			}
 			
+			// find file url
+			var file_url = $(this).find('.slidetoggle tr.url .urlfile').attr('data-link-url');
+			$(this).find('.filename.new').append('<span class="acf-filename">' + file_url + '</span>');
 			
 			// Add edit button
-			$(this).find('.filename.new').append('<br /><a href="#" class="acf-toggle-edit">Edit</a>');
+			$(this).find('.filename.new').append('<a href="#" class="acf-toggle-edit">Edit</a>');
 			
 			// Add select button
 			$(this).find('.filename.new').before('<a href="' + id + '" class="button acf-select"><?php _e("Select File",'acf'); ?></a>');

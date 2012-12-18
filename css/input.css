@@ -278,26 +278,6 @@
 	margin: 0 0 5px 0;
 }
 
-.acf-image-uploader .hover a {
-	background: url("../images/sprite.png") no-repeat scroll -54px -102px #fff;
-    display: block;
-    height: 22px;
-    width: 22px;
-    border-radius: 15px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
-
-.acf-image-uploader .hover a:hover {
-	background-position: -54px -152px;
-}
-
-.acf-image-uploader .hover a.edit-image {
-	background-position: -45px -345px;
-}
-.acf-image-uploader .hover a.edit-image:hover {
-	background-position: -45px -395px;
-}
-
 
 /*---------------------------------------------------------------------------------------------
 *
@@ -448,8 +428,8 @@ ul.checkbox_list {
 *
 *---------------------------------------------------------------------------------------------*/
 
-.repeater > .acf-input-table > tbody > tr:hover > td.remove > a.remove-row,
-.repeater > .acf-input-table > tbody > tr:hover > td.remove > a.add-row {
+.repeater > .acf-input-table > tbody > tr:hover > td.remove > a.acf-button-add,
+.repeater > .acf-input-table > tbody > tr:hover > td.remove > a.acf-button-remove {
 
 	-webkit-transition-delay:0s;
 	-moz-transition-delay:0s;
@@ -460,21 +440,14 @@ ul.checkbox_list {
 	opacity: 1;
 }
 
-.repeater.disabled > .acf-input-table > tbody > tr:hover > td.remove > a.add-row {
+.repeater.disabled > .acf-input-table > tbody > tr:hover > td.remove > a.acf-button-add {
 	visibility: hidden !important;
 }
 
-
-a.add-row {
-	display: block;
-	width: 16px;
-	height: 16px;
-	background: url(../images/button_add.png) 0 0 no-repeat;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-	border-radius: 8px;
+.repeater a.acf-button-add,
+.repeater a.acf-button-remove {
 	position: absolute;
 	
-	
 	-webkit-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
 	-moz-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
 	-o-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 	
@@ -484,29 +457,8 @@ a.add-row {
 	opacity: 0;
 }
 
-a.add-row:hover {
-	background-position: 0 100%;
-}
-
-a.remove-row {
-	display: block;
-	width: 16px;
-	height: 16px;
-	background: url(../images/button_remove.png) 0 0 no-repeat;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-	border-radius: 8px;
-	
-	-webkit-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
-	-moz-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s;
-	-o-transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 	
-	transition: opacity 0.25s 0s ease-in-out, visibility 0s linear 0.25s; 
-	
-	visibility: hidden;
-	opacity: 0;
-}
-
-a.remove-row:hover {
-	background-position: 0 100%;
+.repeater a.acf-button-remove {
+	position: relative;
 }
 
 .repeater > table > thead > tr > th.order,
@@ -518,8 +470,6 @@ a.remove-row:hover {
 	text-shadow: #fff 0 1px 0;
 	
 	cursor: move;
-	
-	
 }
 
 .repeater > table > tbody > tr > td.order {
@@ -542,14 +492,6 @@ a.remove-row:hover {
 	width: 16px;
 	vertical-align: middle;
 }
-
-
-/*
-.repeater table tr td select {
-	width: 120px;
-	margin: 0;
-}
-*/
 
 .repeater .repeater-footer {
 	margin: 8px 0;
@@ -582,12 +524,6 @@ a.remove-row:hover {
 td.acf_input-wrap {
 	padding: 0 !important;;
 }
-
-/*
-.repeater > table > tbody > tr > td.acf_input-wrap .acf_input {
-	width: 100%;
-}
-*/
 
 .sub-field-instructions {
 	color: #999999;
@@ -701,6 +637,7 @@ td.acf_input-wrap {
 .acf_relationship .relationship_list li a:focus {
 	background: #eaf2fa;
 	color: #000;
+	box-shadow: #d6e1ec 0 0 0 1px;
 }
 
 .acf_relationship .relationship_right .relationship_list {
@@ -709,53 +646,25 @@ td.acf_input-wrap {
 	border-top-width:1px; 
 }
 
-.acf_relationship .relationship_list li a .add {
-	width: 16px;
-	height: 16px;
-	background: url(../images/button_add.png) 0 0 no-repeat;
+.acf_relationship .relationship_list li a .acf-button-add,
+.acf_relationship .relationship_list li a .acf-button-remove {
 	position: absolute;
-	top: 2px;
-	right: 0;
-	cursor: pointer;
-	margin: 5px 9px 0 0;
+	top: 5px;
+	right: 5px;
 	display: none;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-	border-radius: 8px;
+	
+	cursor: pointer;
 }
 
-.acf_relationship .relationship_list li a:hover .add {
+.acf_relationship .relationship_list li a:hover .acf-button-add,
+.acf_relationship .relationship_list li a:hover .acf-button-remove {
 	display: block;
 }
 
-.acf_relationship .relationship_list li.hide a:hover .add {
+.acf_relationship .relationship_list li.hide a:hover .acf-button-add {
 	display: none;
 }
 
-.acf_relationship .relationship_list li a .add:hover {
-	background-position: 0 100%;
-}
-
-.acf_relationship .relationship_list li a .remove {
-	width: 16px;
-	height: 16px;
-	background: url(../images/button_remove.png) 0 0 no-repeat;
-	position: absolute;
-	top: 2px;
-	right: 0;
-	cursor: pointer;
-	margin: 5px 9px 0 0;
-	display: none;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-	border-radius: 8px;
-}
-
-.acf_relationship .relationship_list li a:hover .remove {
-	display: block;
-}
-
-.acf_relationship .relationship_list li a .remove:hover {
-	background-position: 0 100%;
-}
 
 .acf_relationship .relationship_right .relationship_list li a {
 	cursor: move;
@@ -806,15 +715,17 @@ td.acf_input-wrap {
 }
 
 .acf_flexible_content .layout .fc-delete-layout {
-	width: 30px;
-	height: 25px;
-	display: none;
-	background: url(../images/sprite.png) -50px -100px no-repeat;
-	
+	width: 35px;
+	height: 35px;
+
 	position: absolute;
-	top: 6px;
-	right: 6px;
+	top: 1px;
+	right: 1px;
 	z-index: 1;
+	
+	display: none;
+	
+	background: url(../images/sprite.png) no-repeat scroll -57px -208px;
 }
 
 .acf_flexible_content .layout:hover .fc-delete-layout {
@@ -822,7 +733,7 @@ td.acf_input-wrap {
 }
 
 .acf_flexible_content .layout .fc-delete-layout:hover {
-	background-position: -50px -150px;
+	background-position: -57px -258px;
 }
 
 .acf_flexible_content .clones {
@@ -1034,14 +945,6 @@ td.acf_input-wrap {
 
 .acf-gallery .thumbnails {
 	background-color:#f9f9f9;
-	/*
-background-image:-ms-linear-gradient(top,#f9f9f9,#ececec);
-	background-image:-moz-linear-gradient(top,#f9f9f9,#ececec);
-	background-image:-o-linear-gradient(top,#f9f9f9,#ececec);
-	background-image:-webkit-gradient(linear,left top,left bottom,from(#f9f9f9),to(#ececec));
-	background-image:-webkit-linear-gradient(top,#f9f9f9,#ececec);
-	background-image:linear-gradient(top,#f9f9f9,#ececec);
-*/
 	
 	box-shadow: inset 0px 1px 5px rgba(0,0,0,0.06);
 	
@@ -1156,23 +1059,21 @@ background-image:-ms-linear-gradient(top,#f9f9f9,#ececec);
 	margin-left: -1px;
 }
 
-.acf-gallery .toolbar .view-grid {
-	width: 36px;
-	height: 36px;
-	background: url(../images/sprite.png) 11px -438px no-repeat;
-}
-
+.acf-gallery .toolbar .view-grid,
 .acf-gallery .toolbar .view-list {
 	width: 36px;
 	height: 36px;
-	background: url(../images/sprite.png) -40px -438px no-repeat;
+	background: url(../images/sprite.png) -8px -307px no-repeat;
+}
+
+.acf-gallery .toolbar .view-list {
+	background-position: -58px -307px;
 }
 
 .acf-gallery .toolbar .view-grid-li,
 .acf-gallery .toolbar .view-list-li {
 	position: absolute;
 	left: 50%;
-	
 }
 
 .acf-gallery .toolbar .view-grid-li {
@@ -1222,25 +1123,7 @@ background-image:-ms-linear-gradient(top,#f9f9f9,#ececec);
 	margin: 0 0 5px 0;
 }
 
-.acf-gallery .hover a {
-	background: url("../images/sprite.png") no-repeat scroll -54px -102px #fff;
-    display: block;
-    height: 22px;
-    width: 22px;
-    border-radius: 15px;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-}
 
-.acf-gallery .hover a:hover {
-	background-position: -54px -152px;
-}
-
-.acf-gallery .hover a.edit-image {
-	background-position: -45px -345px;
-}
-.acf-gallery .hover a.edit-image:hover {
-	background-position: -45px -395px;
-}
 
 /*
 *  List Data
@@ -1383,4 +1266,30 @@ background-image:-ms-linear-gradient(top,#f9f9f9,#ececec);
 .acf_postbox.no_box .acf-tab-group li a {
     background: #fff;
     
+}
+
+
+/*--------------------------------------------------------------------------
+*
+*	Retina
+*	
+*-------------------------------------------------------------------------*/
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+	
+	.acf_flexible_content .layout .fc-delete-layout,
+	.acf-popup .bit,
+	.acf-gallery .toolbar .view-grid,
+	.acf-gallery .toolbar .view-list {
+		background-image: url(../images/sprite@2x.png);
+		background-size: 100px 600px;
+	}
+
+	
 }

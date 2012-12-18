@@ -27,8 +27,9 @@ input.ir { border: 0 none; background: none; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+
 #icon-acf {
-	background: url("../images/sprite.png") no-repeat scroll 0 0 transparent !important;
+	background: url("../images/sprite.png") 0 0 no-repeat;
 }
 
 .acf-loading {
@@ -363,4 +364,90 @@ input[type="submit"].acf-button[disabled]:hover {
 	background-image:         linear-gradient(to bottom, #2c8bbe, #246f99); /* Firefox 16+ */
 
 	box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+
+/*--------------------------------------------------------------------------
+*
+*	ACF add / remove
+*	
+*-------------------------------------------------------------------------*/
+
+.acf-button-add,
+.acf-button-remove,
+.acf-button-edit,
+.acf-button-delete {
+	background: url(../images/sprite.png) -16px -116px no-repeat #fff;
+    display: block;
+    height: 18px;
+    width: 18px;
+    border-radius: 9px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.acf-button-edit,
+.acf-button-delete {
+	width: 22px;
+	height: 22px;
+	border-radius: 11px;
+}
+
+.acf-button-add:hover {
+	background-position: -16px -166px;
+}
+
+.acf-button-remove {
+	background-position: -66px -116px;
+}
+
+.acf-button-remove:hover {
+	background-position: -66px -166px;
+}
+
+.acf-button-edit {
+	background-position: -14px -214px;
+}
+
+.acf-button-edit:hover {
+	background-position: -14px -264px;
+}
+
+.acf-button-delete {
+	background-position: -64px -214px;
+}
+
+.acf-button-delete:hover {
+	background-position: -64px -264px;
+}
+
+
+
+/*--------------------------------------------------------------------------
+*
+*	Retina
+*	
+*-------------------------------------------------------------------------*/
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+	
+	#icon-acf,
+	.acf-button-add,
+	.acf-button-remove,
+	.acf-button-edit,
+	.acf-button-delete {
+		background-image: url(../images/sprite@2x.png);
+		background-size: 100px 600px;
+	}
+	
+	.acf-loading {
+		background-image: url("../../../../wp-admin/images/wpspin_light-2x.gif");
+		background-size: 16px 16px;
+	}
+	
 }

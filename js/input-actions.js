@@ -463,7 +463,7 @@ var acf = {
 	});
 	
 	// remove image
-	$('.acf-image-uploader .remove-image').live('click', function(){
+	$('.acf-image-uploader .acf-button-delete').live('click', function(){
 		
 		// vars
 		var div = $(this).closest('.acf-image-uploader');
@@ -477,7 +477,7 @@ var acf = {
 	});
 	
 	// edit image
-	$('.acf-image-uploader .edit-image').live('click', function(){
+	$('.acf-image-uploader .acf-button-edit').live('click', function(){
 		
 		// vars
 		var div = $(this).closest('.acf-image-uploader'),
@@ -1321,7 +1321,7 @@ var acf = {
 	
 	
 	// remove field
-	$('.repeater .remove-row').live('click', function(){
+	$('.repeater .acf-button-remove').live('click', function(){
 		var tr = $(this).closest('tr');
 		repeater_remove_row( tr );
 		return false;
@@ -1331,7 +1331,7 @@ var acf = {
 	// hover over tr, align add-row button to top
 	$('.repeater tr').live('mouseenter', function(){
 		
-		var button = $(this).find('> td.remove > a.add-row');
+		var button = $(this).find('> td.remove > a.acf-button-add');
 		var margin = ( button.parent().height() / 2 ) + 9; // 9 = padding + border
 		
 		button.css('margin-top', '-' + margin + 'px' );
@@ -1721,7 +1721,7 @@ var acf = {
 	
 	
 	// remove image
-	$('.acf-gallery .thumbnail .remove-image').live('click', function(){
+	$('.acf-gallery .thumbnail .acf-button-delete').live('click', function(){
 		
 		// vars
 		var thumbnail = $(this).closest('.thumbnail'),
@@ -1744,7 +1744,7 @@ var acf = {
 	
 	
 	// remove image
-	$('.acf-gallery .thumbnail .edit-image').live('click', function(){
+	$('.acf-gallery .thumbnail .acf-button-edit').live('click', function(){
 		
 		// vars
 		var div = $(this).closest('.thumbnail'),
@@ -1777,7 +1777,7 @@ var acf = {
 			
 			
 		// show the thickbox
-		tb_show( acf.text.gallery_tb_title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&type=image&acf_type=gallery&acf_preview_size=' + preview_size + 'TB_iframe=1');
+		tb_show( acf.text.gallery_tb_title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=gallery&acf_preview_size=' + preview_size + 'TB_iframe=1');
 			
 			
 		return false;

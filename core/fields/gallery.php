@@ -223,8 +223,8 @@ class acf_Gallery extends acf_Field
 				</div>
 				<div class="hover">
 					<ul class="bl">
-						<li><a href="#" class="remove-image ir"><?php _e("Remove",'acf'); ?></a></li>
-						<li><a href="#" class="edit-image ir"><?php _e("Edit",'acf'); ?></a></li>
+						<li><a href="#" class="acf-button-delete ir"><?php _e("Remove",'acf'); ?></a></li>
+						<li><a href="#" class="acf-button-edit ir"><?php _e("Edit",'acf'); ?></a></li>
 					</ul>
 				</div>
 				
@@ -253,8 +253,8 @@ class acf_Gallery extends acf_Field
 		</div>
 		<div class="hover">
 			<ul class="bl">
-				<li><a href="#" class="remove-image ir"><?php _e("Remove",'acf'); ?></a></li>
-				<li><a href="#" class="edit-image ir"><?php _e("Edit",'acf'); ?></a></li>
+				<li><a href="#" class="acf-button-delete ir"><?php _e("Remove",'acf'); ?></a></li>
+				<li><a href="#" class="acf-button-edit ir"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
 		

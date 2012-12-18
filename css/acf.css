@@ -3,12 +3,10 @@
 *	ACF manage field groups
 *
 *--------------------------------------------------------------------------------------------*/
+
 #icon-edit {
-	background: url(../images/sprite.png) 0 0 no-repeat !important;
+	background: url(../images/sprite.png) 0 0 no-repeat;
 }
-
-#toplevel_page_edit-post_type-acf .wp-menu-image { background: url("../../../../wp-admin/images/menu.png") no-repeat scroll 0 -1px transparent; }
-
 
 #acf-cols {
 	position: relative; clear: both;
@@ -152,9 +150,37 @@ body.custom-fields_page_acf-settings .wp-pointer-arrow {
 	border-radius: 0;
 }
 
-/*--------------------------------------------------------------------------------------------
-	Columns
---------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------
+*
+*	Columns
+*	
+*-------------------------------------------------------------------------*/
+
 .row-actions .inline {
 	display: none;
+}
+
+
+/*--------------------------------------------------------------------------
+*
+*	Retina
+*	
+*-------------------------------------------------------------------------*/
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) { 
+	
+	#icon-edit,
+	#icon-acf  {
+		background-image: url(../images/sprite@2x.png);
+		background-size: 100px 600px;
+	}
+
+	
 }

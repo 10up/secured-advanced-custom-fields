@@ -554,7 +554,7 @@ var acf = {
 	*  @created: 15/10/12
 	*/
 	
-	$('#location_rules a.add').live('click',function(){
+	$('#location_rules a.acf-button-add').live('click',function(){
 			
 		// vars
 		var old_tr = $(this).closest('tr'),
@@ -597,7 +597,7 @@ var acf = {
 	*  @created: 15/10/12
 	*/
 	
-	$('#location_rules a.remove').live('click',function(){
+	$('#location_rules a.acf-button-remove').live('click',function(){
 			
 		var table = $(this).closest('table');
 		

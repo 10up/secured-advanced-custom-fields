@@ -109,8 +109,10 @@ if( empty($location['rules']) )
 							
 						?></td>
 						<td class="buttons">
-							<a href="javascript:;" class="remove"></a>
-							<a href="javascript:;" class="add"></a>
+							<ul class="hl clearfix">
+								<li><a href="javascript:;" class="acf-button-remove"></a></li>
+								<li><a href="javascript:;" class="acf-button-add"></a></li>
+							</ul>
 						</td>
 						</tr>
 						<?php endforeach; ?>

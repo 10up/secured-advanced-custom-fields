@@ -232,8 +232,8 @@ class acf_Repeater extends acf_Field
 		
 		if( $field['row_min'] < $field['row_limit'] ): ?>
 			<td class="remove">
-				<a class="add-row add-row-before" href="javascript:;"></a>
-				<a class="remove-row" href="javascript:;"></a>
+				<a class="acf-button-add add-row-before" href="javascript:;"></a>
+				<a class="acf-button-remove" href="javascript:;"></a>
 			</td>
 		<?php endif; ?>
 		
