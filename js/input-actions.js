@@ -1578,7 +1578,7 @@ var acf = {
 			
 			// vars
 			var input = $(this),
-				alt_field = input.siblings('.acf-hidden-datepicker');
+				alt_field = input.siblings('.acf-hidden-datepicker'),
 				save_format = input.attr('data-save_format'),
 				display_format = input.attr('data-display_format');
 			
