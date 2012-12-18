@@ -85,7 +85,7 @@ var acf = {
 		
 		// vars
 		var select = $(this),
-			tbody = select.closest('tbody')
+			tbody = select.closest('tbody'),
 			field = tbody.closest('.field'),
 			field_type = field.attr('data-type'),
 			field_key = field.attr('data-id'),
@@ -1040,7 +1040,7 @@ var acf = {
 		if( type == "true_false" )
 		{
 			choices = [
-				{ value : 1, label : acf.text.checked },
+				{ value : 1, label : acf.text.checked }
 			];
 						
 		}
