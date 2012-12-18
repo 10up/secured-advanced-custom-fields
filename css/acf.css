@@ -150,6 +150,10 @@ body.custom-fields_page_acf-settings .wp-pointer-arrow {
 	border-radius: 0;
 }
 
+.acf-form-table select option {
+    padding: 3px;
+}
+
 
 /*--------------------------------------------------------------------------
 *
