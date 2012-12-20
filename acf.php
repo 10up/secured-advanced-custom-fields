@@ -440,8 +440,6 @@ class Acf
 			#adminmenu #toplevel_page_edit-post_type-acf .wp-menu-image { background-position: 1px -33px; }
 			#adminmenu #toplevel_page_edit-post_type-acf:hover .wp-menu-image,
 			#adminmenu #toplevel_page_edit-post_type-acf.wp-menu-open .wp-menu-image { background-position: 1px -1px; }
-			#adminmenu #toplevel_page_edit-post_type-acf .wp-menu-image img { display:none; }
-			
 		</style>';
 	}
 	
