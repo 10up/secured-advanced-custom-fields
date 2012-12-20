@@ -66,36 +66,43 @@ class acf_Image extends acf_Field
 	
    	function acf_get_preview_image()
    	{
+   		$options = array(
+   			'id' => false,
+   			'preview_size' => 'thumbnail'
+   		);
+   		$options = array_merge($options, $_GET);
+   		
+   		
    		
    		// vars
-   		$id_string = isset($_GET['id']) ? $_GET['id'] : false;
-   		$preview_size = isset($_GET['preview_size']) ? $_GET['preview_size'] : 'thumbnail';
 		$return = array();
 		
 		
-		// attachment ID is required
-   		if($id_string)
-   		{
+		// validate
+		if( ! $options['id'] )
+		{
+			die( 0 );
+		}
+		
+		
+		// convert id_string into an array
+		$ids = explode(',' , $options['id']);
+		if( ! is_array($ids) )
+		{
+			$ids = array( $options['id'] );
+		}
+		
+		
+		// find image preview url for each image
+		foreach( $ids as $k => $v )
+		{
+			$url = wp_get_attachment_image_src( $v, $options['preview_size'] );
+			$return[] = array(
+				'id' => $v,
+				'url' => $url[0],
+			);
+		}
    		
-   			// convert id_string into an array
-   			$id_array = explode(',' , $id_string);
-   			if(!is_array($id_array))
-   			{
-   				$id_array = array( $id_string );
-   			}
-   			
-   			
-   			// find image preview url for each image
-   			foreach($id_array as $id)
-   			{
-   				$file_src = wp_get_attachment_image_src($id, $preview_size);
-				$return[] = array(
-					'id' => $id,
-					'url' => $file_src[0],
-				);
-   			}
-   		}
-
 
 		// return json
 		echo json_encode( $return );

@@ -433,7 +433,7 @@ class acf_Gallery extends acf_Field
 		$defaults = array(
 			'acf_type' => '',
 			'acf_gallery_id' => '',
-			'preview_size' => 'thumbnail',
+			'acf_preview_size' => 'thumbnail',
 			'tab'	=>	'type',	
 		);
 		
@@ -705,7 +705,7 @@ class acf_Gallery extends acf_Field
 		
 		$('form#filter').each(function(){
 			
-			$(this).append('<input type="hidden" name="acf_preview_size" value="<?php echo $options['preview_size']; ?>" />');
+			$(this).append('<input type="hidden" name="acf_preview_size" value="<?php echo $options['acf_preview_size']; ?>" />');
 			$(this).append('<input type="hidden" name="acf_type" value="gallery" />');
 						
 		});
@@ -713,7 +713,7 @@ class acf_Gallery extends acf_Field
 		$('form#image-form, form#library-form').each(function(){
 			
 			var action = $(this).attr('action');
-			action += "&acf_type=gallery&acf_preview_size=<?php $options['preview_size']; ?>";
+			action += "&acf_type=gallery&acf_preview_size=<?php $options['acf_preview_size']; ?>";
 			$(this).attr('action', action);
 			
 		});
@@ -737,7 +737,7 @@ class acf_Gallery extends acf_Field
 			data : {
 				action: 'acf_get_preview_image',
 				id: attachment_id,
-				preview_size : "<?php echo $options['preview_size']; ?>"
+				preview_size : "<?php echo $options['acf_preview_size']; ?>"
 			},
 			cache: false,
 			dataType: "json",
