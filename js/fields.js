@@ -1138,7 +1138,7 @@ var acf = {
 	*  @created: 15/10/12
 	*/
 	
-	$('tr.conditional-logic a.add').live('click',function(){
+	$('tr.conditional-logic .acf-button-add').live('click',function(){
 		
 		// vars
 		var old_tr = $(this).closest('tr'),
@@ -1181,7 +1181,7 @@ var acf = {
 	*  @created: 15/10/12
 	*/
 	
-	$('tr.conditional-logic a.remove').live('click',function(){
+	$('tr.conditional-logic .acf-button-remove').live('click',function(){
 		
 		var table = $(this).closest('table');
 		

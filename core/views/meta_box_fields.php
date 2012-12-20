@@ -262,8 +262,10 @@ $conditional_logic_rule = array(
 												</td>
 												<td><input class="conditional-logic-value" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][value]" value="<?php echo $rule['value']; ?>" /></td>
 												<td class="buttons">
-													<a class="remove disabled" href="javascript:;"></a>
-													<a class="add" href="javascript:;"></a>
+													<ul class="hl clearfix">
+														<li><a class="acf-button-remove" href="javascript:;"></a></li>
+														<li><a class="acf-button-add" href="javascript:;"></a></li>
+													</ul>
 												</td>
 											</tr>	
 										<?php endforeach; ?>
