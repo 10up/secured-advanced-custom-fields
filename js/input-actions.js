@@ -847,12 +847,20 @@ var acf = {
 	
 	acf.add_wysiwyg_events = function( id ){
 		
+		// validate tinymce
+		if( typeof(tinyMCE) != "object" )
+		{
+			return;
+		}
+		
+		
 		var editor = tinyMCE.get( id );
 		
 		if( !editor )
 		{
 			return;
 		}
+		
 		
 		var	container = $('#wp-' + id + '-wrap'),
 			body = $( editor.getBody() );
