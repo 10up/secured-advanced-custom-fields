@@ -133,6 +133,7 @@ class Acf
 		    'not_found_in_trash' => __('No Field Groups found in Trash', 'acf'), 
 		);
 		
+		
 		register_post_type('acf', array(
 			'labels' => $labels,
 			'public' => false,
