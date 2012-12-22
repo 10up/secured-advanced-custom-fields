@@ -568,7 +568,10 @@ class acf_Flexible_content extends acf_Field
 								</tr>
 								<?php 
 								
-								$this->parent->fields[$sub_field['type']]->create_options($key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'], $sub_field);
+								if( isset($this->parent->fields[ $sub_field['type'] ]) )
+								{
+									$this->parent->fields[$sub_field['type']]->create_options($key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'], $sub_field);
+								}
 								
 								?>
 								<tr class="field_save">

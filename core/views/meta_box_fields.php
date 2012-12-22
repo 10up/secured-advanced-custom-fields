@@ -199,7 +199,10 @@ $conditional_logic_rule = array(
 						</tr>
 						<?php 
 						
-						$this->parent->fields[$field['type']]->create_options($field['key'], $field);
+						if( isset($this->parent->fields[ $field['type'] ]) )
+						{
+							$this->parent->fields[$field['type']]->create_options($field['key'], $field);
+						}
 						
 						?>
 						<tr class="conditional-logic" data-field_name="<?php echo $field['key']; ?>">

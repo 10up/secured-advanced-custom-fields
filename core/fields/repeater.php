@@ -449,7 +449,10 @@ class acf_Repeater extends acf_Field
 								</tr>
 								<?php 
 								
-								$this->parent->fields[$sub_field['type']]->create_options($key.'][sub_fields]['.$sub_field['key'], $sub_field);
+								if( isset($this->parent->fields[ $sub_field['type'] ]) )
+								{
+									$this->parent->fields[$sub_field['type']]->create_options($key.'][sub_fields]['.$sub_field['key'], $sub_field);
+								}
 								
 								?>
 								<tr class="field_save">
