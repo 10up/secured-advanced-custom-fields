@@ -2021,13 +2021,12 @@ var acf = {
 			
 			if( tab.attr('id') == field.attr('id') )
 			{
-				tab.nextUntil('.field-tab').show();
+				tab.nextUntil('.field-tab').removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
 			}
 			else
 			{
-				tab.nextUntil('.field-tab').hide();
+				tab.nextUntil('.field-tab').removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
 			}
-			
 			
 		});
 

@@ -821,11 +821,11 @@ class Acf
 ?>
 		if(<?php echo implode( $join, $if ); ?>)
 		{
-			field.show();
+			field.removeClass('acf-conditional_logic-hide').addClass('acf-conditional_logic-show');
 		}
 		else
 		{
-			field.hide();
+			field.removeClass('acf-conditional_logic-show').addClass('acf-conditional_logic-hide');
 		}
 		
 	});
