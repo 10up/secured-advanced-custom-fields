@@ -156,8 +156,9 @@ class acf_options_page
 			foreach($acfs as $acf)
 			{
 				// hide / show
-				$show = in_array($acf['id'], $metabox_ids) ? "true" : "false";
-				if($show == "true")
+				$show = in_array($acf['id'], $metabox_ids) ? 1 : 0;
+
+				if( $show )
 				{				
 					// add meta box
 					add_meta_box(
