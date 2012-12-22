@@ -949,32 +949,62 @@ var acf = {
 	});
 
 	
+	/*
+	*  window load
+	*
+	*  @description: 
+	*  @since: 3.5.5
+	*  @created: 22/12/12
+	*/
+	
 	$(window).load(function(){
 		
-		// trigger click on hidden wysiwyg (to get in HTML mode)
-		if( $('#wp-acf_settings-wrap').exists() )
-		{
-			$('#acf_settings-tmce').trigger('click');
-		}
+		// vars
+		var has_editor = false,
+			html_mode = false,
+			timeout = 0;
 		
 		
-		// setup fields
-		$(document).trigger('acf/setup_fields', $('#poststuff'));
-		
-		
-		// trigger html mode for people who want to stay in HTML mode
-		if( $('#wp-content-wrap').hasClass('html-active') )
-		{
-			$('#wp-content-wrap #content-html').trigger('click');
-		}
-		
-		
-		// add wysiwyg events to standard editor
+		// has_editor
 		if( $('#wp-content-wrap').exists() )
 		{
+			has_editor = true;
+			timeout = 10;
+			
+			// html_mode
+			if( $('#wp-content-wrap').hasClass('html-active') )
+			{
+				html_mode = true;
+			}
+			
+			// add wysiwyg events to standard editor
 			acf.add_wysiwyg_events( 'content' );
+			
 		}
 		
+		
+		setTimeout(function(){
+			
+			
+			// trigger click on hidden wysiwyg (to get in HTML mode)
+			if( $('#wp-acf_settings-wrap').exists() )
+			{
+				$('#acf_settings-tmce').trigger('click');
+			}
+			
+			
+			// setup fields
+			$(document).trigger('acf/setup_fields', $('#poststuff'));
+			
+			
+			// trigger html mode for people who want to stay in HTML mode
+			if( html_mode )
+			{
+				$('#wp-content-wrap #content-html').trigger('click');
+			}
+			
+			
+		}, timeout);
 		
 	});
 	
