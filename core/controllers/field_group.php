@@ -655,6 +655,10 @@ class acf_field_group
 				$field['key'] = $key;
 				
 				
+				// trim key
+				$field['key'] = preg_replace('/\s+/' , '' , $field['key']);
+				
+				
 				// save
 				$this->parent->update_field( $post_id, $field);
 				
