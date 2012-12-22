@@ -73,7 +73,7 @@ var acf = {
 			$(this).addClass(layout);
 			
 			// show / hide
-			if( show == 'true' )
+			if( show == "1" )
 			{
 				$(this).removeClass('acf-hidden');
 				$('#adv-settings .acf_hide_label[for="acf_' + id + '-hide"]').show();

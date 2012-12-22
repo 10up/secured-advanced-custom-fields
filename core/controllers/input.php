@@ -211,12 +211,13 @@ class acf_input
 			foreach($acfs as $acf)
 			{
 				// hide / show
-				$show = in_array($acf['id'], $metabox_ids) ? "true" : "false";
+				$show = in_array($acf['id'], $metabox_ids) ? 1 : 0;
 				$priority = 'high';
 				if( $acf['options']['position'] == 'side' )
 				{
 					$priority = 'core';
 				}
+				
 				
 				// add meta box
 				add_meta_box(
@@ -355,34 +356,32 @@ class acf_input
 	function meta_box_input($post, $args)
 	{
 		// vars
-		$fields = isset($args['args']['fields']) ? $args['args']['fields'] : false ;	
-		$options = isset($args['args']['options']) ? $args['args']['options'] : false;
-		$show = isset($args['args']['show']) ? $args['args']['show'] : "false";
-		$post_id = isset($args['args']['post_id']) ? $args['args']['post_id'] : false;
-		
-
-		// defaults
-		if(!$options)
-		{
-			$options = array(
+		$options = array(
+			'fields' => array(),
+			'options' => array(
 				'layout'	=>	'default'
-			);
-		}
+			),
+			'show' => 0,
+			'post_id' => 0,
+		);
+		$options = array_merge( $options, $args['args'] );
 		
-		if($fields)
+		
+		// needs fields
+		if( $options['fields'] )
 		{
 			echo '<input type="hidden" name="save_input" value="true" />';
-			echo '<div class="options" data-layout="' . $options['layout'] . '" data-show="' . $show . '" style="display:none"></div>';
+			echo '<div class="options" data-layout="' . $options['options']['layout'] . '" data-show="' . $options['show'] . '" style="display:none"></div>';
 			
-			if($show == "false")
+			if( $options['show'] )
 			{
-				// don't create fields
-				echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
+				$this->parent->render_fields_for_input( $options['fields'], $options['post_id'] );
 			}
 			else
 			{
-				$this->parent->render_fields_for_input($fields, $post_id);
+				echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
 			}
+			
 		}
 	}
 	

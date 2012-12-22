@@ -782,6 +782,7 @@ class Acf
 			$id = $field['name'];
 			$id = str_replace('][', '_', $id);
 			$id = str_replace('fields[', '', $id);
+			$id = str_replace('[', '-', $id); // location rules (select) does'nt have "fields[" in it
 			$id = str_replace(']', '', $id);
 			
 			
@@ -1659,10 +1660,15 @@ class Acf
 		    // Post Format
 		    case "post_format":
 		        
-		       	
+
 		       	$post_format = isset($overrides['post_format']) ? $overrides['post_format'] : get_post_format( $post->ID );
-		        if($post_format == 0) $post_format = "standard";
-		        
+		       
+		        if( is_numeric($post_format) && $post_format == 0 )
+		        {
+		        	$post_format = "standard";
+		        }
+		       
+		       	
 		        if($rule['operator'] == "==")
 		        {
 		        	if($post_format == $rule['value'])
