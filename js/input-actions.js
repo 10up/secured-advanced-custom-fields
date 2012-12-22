@@ -1969,7 +1969,7 @@ var acf = {
 			// create tab group if it doesnt exist
 			if( ! inside.children('.acf-tab-group').exists() )
 			{
-				inside.prepend('<ul class="hl clearfix acf-tab-group"></ul>');
+				inside.children('.field-tab:first').before('<ul class="hl clearfix acf-tab-group"></ul>');
 			}
 			
 			
@@ -2015,10 +2015,22 @@ var acf = {
 		
 		
 		// hide / show
-		inside.children('.field').hide();
-		field.nextUntil('.field-tab').show();
-		
-		
+		inside.children('.field-tab').each(function(){
+			
+			var tab = $(this);
+			
+			if( tab.attr('id') == field.attr('id') )
+			{
+				tab.nextUntil('.field-tab').show();
+			}
+			else
+			{
+				tab.nextUntil('.field-tab').hide();
+			}
+			
+			
+		});
+
 		$(this).trigger('blur');
 		
 		return false;
