@@ -973,10 +973,6 @@ var acf = {
 			{
 				mode = 'html';
 			}
-			
-			// add wysiwyg events to standard editor
-			acf.add_wysiwyg_events( 'content' );
-			
 		}
 		
 		
@@ -1001,6 +997,12 @@ var acf = {
 			if( wp_acf_settings && mode == 'html' )
 			{
 				$('#acf_settings-html').trigger('click');
+			}
+			
+			// Add events to content editor
+			if( wp_content )
+			{
+				acf.add_wysiwyg_events( 'content' );
 			}
 			
 			
