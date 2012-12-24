@@ -90,6 +90,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.6.2 =
+* [Fixed] Fix WYSIWYG webkit browser issues.
+
 = 3.5.6.1 =
 * [Fixed] Fix bug causing field groups to not display on the options page.
 
