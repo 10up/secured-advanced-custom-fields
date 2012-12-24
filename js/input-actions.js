@@ -960,21 +960,18 @@ var acf = {
 	$(window).load(function(){
 		
 		// vars
-		var has_editor = false,
-			html_mode = false,
-			timeout = 0;
+		var wp_content = $('#wp-content-wrap').exists(),
+			wp_acf_settings = $('#wp-acf_settings-wrap').exists()
+			mode = 'tmce';
 		
 		
 		// has_editor
-		if( $('#wp-content-wrap').exists() )
+		if( wp_content )
 		{
-			has_editor = true;
-			timeout = 10;
-			
 			// html_mode
 			if( $('#wp-content-wrap').hasClass('html-active') )
 			{
-				html_mode = true;
+				mode = 'html';
 			}
 			
 			// add wysiwyg events to standard editor
@@ -985,26 +982,29 @@ var acf = {
 		
 		setTimeout(function(){
 			
-			
 			// trigger click on hidden wysiwyg (to get in HTML mode)
-			if( $('#wp-acf_settings-wrap').exists() )
+			if( wp_acf_settings && mode == 'html' )
 			{
 				$('#acf_settings-tmce').trigger('click');
 			}
 			
-			
+		}, 1);
+		
+		
+		setTimeout(function(){
+
 			// setup fields
 			$(document).trigger('acf/setup_fields', $('#poststuff'));
 			
 			
 			// trigger html mode for people who want to stay in HTML mode
-			if( html_mode )
+			if( wp_acf_settings && mode == 'html' )
 			{
-				$('#wp-content-wrap #content-html').trigger('click');
+				$('#acf_settings-html').trigger('click');
 			}
 			
 			
-		}, timeout);
+		}, 10);
 		
 	});
 	
