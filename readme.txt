@@ -90,6 +90,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.6.3 =
+* [Fixed] Fix bug with 3.5.6 not showing front end form
+
 = 3.5.6.2 =
 * [Fixed] Fix WYSIWYG webkit browser issues.
 
