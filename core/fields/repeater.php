@@ -77,10 +77,21 @@ class acf_Repeater extends acf_Field
 		{
 			for( $i = 0; $i < $field['row_min']; $i++ )
 			{
-				if( ! isset($field['value'][$i]) )
+				// already have a value? continue...
+				if( isset($field['value'][$i]) )
 				{
-					$field['value'][$i] = array();
+					continue;
 				}
+				
+				// populate values
+				$field['value'][$i] = array();
+				
+				foreach( $field['sub_fields'] as $sub_field)
+				{
+					$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
+					$field['value'][$i][ $sub_field['name'] ] = $sub_value;
+				}
+				
 			}
 		}
 
@@ -103,7 +114,7 @@ class acf_Repeater extends acf_Field
 		foreach( $field['sub_fields'] as $sub_field)
 		{
 			$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
-			$field['value']['acfcloneindex'][$sub_field['name']] = $sub_value;
+			$field['value']['acfcloneindex'][ $sub_field['name'] ] = $sub_value;
 		}
 
 ?>
