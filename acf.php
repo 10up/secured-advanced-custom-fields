@@ -2129,5 +2129,58 @@ class Acf
 	}
 	
 	
+	/*
+	*  get_next_field_id
+	*
+	*  @description: 
+	*  @since: 3.5.5
+	*  @created: 31/12/12
+	*/
+	
+	function get_next_field_id()
+	{
+		// vars
+		global $wpdb;
+		$exists = true;
+		
+		
+		// get next id
+		$next_id = intval( get_option('acf_next_field_id', 1) );
+		
+			
+		// while doesnt exist
+		while( $exists == true )
+		{
+			// get field from postmeta
+			$row = $wpdb->get_row($wpdb->prepare(
+				"
+				SELECT meta_id 
+				FROM $wpdb->postmeta 
+				WHERE meta_key = %s
+				", 
+				'field_' . $next_id
+			), ARRAY_A );
+			
+			
+			// loop again or break through?
+			if( ! $row )
+			{
+				$exists = false;
+			}
+			else
+			{
+				$next_id++;
+			}
+		}
+		
+		
+		// update the acf_next_field_id
+		update_option('acf_next_field_id', ($next_id + 1) );
+		
+		
+		// return
+		return $next_id;
+	}
+	
 }
 ?>

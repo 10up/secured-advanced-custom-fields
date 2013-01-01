@@ -742,16 +742,12 @@ class acf_field_group
 		}
 		
 		
-		// get next id
-		$next_id = intval( get_option('acf_next_field_id', 1) );
-		
-		
-		// update the acf_next_field_id
-		update_option('acf_next_field_id', ($next_id + 1) );
-		
-		
 		// return id
-		die('field_' . $next_id);
+		$id = $this->parent->get_next_field_id();
+		
+		
+		// die
+		die( 'field_' . $id );
 	}
 
 }
