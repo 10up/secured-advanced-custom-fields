@@ -741,7 +741,7 @@ class Acf
 			// numbers
 			if( is_numeric($value) )
 			{
-				$value = (int) $value;
+				$value = floatval( $value );
 			}
 		}
 		
