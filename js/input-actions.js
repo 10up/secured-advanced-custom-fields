@@ -1314,7 +1314,7 @@ var acf = {
 	
 	
 	// add row - before
-	$('.repeater .add-row-before').live('click', function(){
+	$('.repeater td.remove .add-row-before').live('click', function(){
 		
 		var repeater = $(this).closest('.repeater'),
 			before = $(this).closest('tr');
@@ -1369,7 +1369,7 @@ var acf = {
 	
 	
 	// remove field
-	$('.repeater .acf-button-remove').live('click', function(){
+	$('.repeater td.remove .acf-button-remove').live('click', function(){
 		var tr = $(this).closest('tr');
 		repeater_remove_row( tr );
 		return false;
