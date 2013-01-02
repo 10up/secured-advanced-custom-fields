@@ -189,7 +189,7 @@ class acf_Image extends acf_Field
 	{	
 		// vars
 		$defaults = array(
-			'save_format'	=>	'object',
+			'save_format'	=>	'id',
 			'preview_size'	=>	'thumbnail',
 		);
 		

@@ -189,7 +189,7 @@ class acf_File extends acf_Field
 	{
 		// vars
 		$defaults = array(
-			'save_format'	=>	'object',
+			'save_format'	=>	'id',
 		);
 		
 		$field = array_merge($defaults, $field);
