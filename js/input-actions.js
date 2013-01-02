@@ -161,6 +161,13 @@ var acf = {
 			div.data('validation', true);
 			
 
+			// if is hidden by conditional logic, ignore
+			if( div.hasClass('acf-conditional_logic-hide') )
+			{
+				return;
+			}
+			
+			
 			// text / textarea
 			if( div.find('input[type="text"], input[type="number"], input[type="hidden"], textarea').val() == "" )
 			{
