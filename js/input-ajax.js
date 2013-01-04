@@ -204,7 +204,15 @@
 	
 	$('#post-formats-select input[type="radio"]').live('change', function(){
 		
-		acf.data.post_format = $(this).val();
+		var val = $(this).val();
+		
+		if( val == '0' )
+		{
+			val = 'standard';
+		}
+		
+		acf.data.post_format = val;
+		
 		update_fields();
 		
 	});	

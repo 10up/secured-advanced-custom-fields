@@ -564,18 +564,11 @@ class acf_location
 	function rule_match_post_format( $match, $rule, $options )
 	{
 		// vars
-		$post_format = $options['page_template'];
+		$post_format = $options['post_format'];
 		if( ! $post_format )
 		{
 			$post_format = get_post_format( $options['post_id'] );
 		}
-
-		       
-		// 0 = standard
-        if( is_numeric($post_format) && $post_format == 0 )
-        {
-        	$post_format = "standard";
-        }
        
        	
        	if($rule['operator'] == "==")
@@ -672,20 +665,24 @@ class acf_location
 		$ef_taxonomy = $options['ef_taxonomy'];
 		
 		
-		if($rule['operator'] == "==")
-        {
-        	$match = ( $ef_taxonomy == $rule['value'] );
-        }
-        elseif($rule['operator'] == "!=")
-        {
-        	$match = ( $ef_taxonomy != $rule['value'] );
-        }
-		
-        
-        // override for "all"
-        if( $rule['value'] == "all" )
+		if( $ef_taxonomy )
 		{
-			$match = true;
+			if($rule['operator'] == "==")
+	        {
+	        	$match = ( $ef_taxonomy == $rule['value'] );
+	        }
+	        elseif($rule['operator'] == "!=")
+	        {
+	        	$match = ( $ef_taxonomy != $rule['value'] );
+	        }
+			
+	        
+	        // override for "all"
+	        if( $rule['value'] == "all" )
+			{
+				$match = true;
+			}
+			
 		}
 		
         
@@ -708,20 +705,23 @@ class acf_location
 		$ef_user = $options['ef_user'];
 		
 		
-		if($rule['operator'] == "==")
-        {
-        	$match = ( user_can($ef_user, $rule['value']) );
-        }
-        elseif($rule['operator'] == "!=")
-        {
-        	$match = ( !user_can($ef_user, $rule['value']) );
-        }
-		
-        
-        // override for "all"
-        if( $rule['value'] == "all" )
+		if( $ef_user )
 		{
-			$match = true;
+			if($rule['operator'] == "==")
+	        {
+	        	$match = ( user_can($ef_user, $rule['value']) );
+	        }
+	        elseif($rule['operator'] == "!=")
+	        {
+	        	$match = ( !user_can($ef_user, $rule['value']) );
+	        }
+			
+	        
+	        // override for "all"
+	        if( $rule['value'] == "all" )
+			{
+				$match = true;
+			}
 		}
 		
         
@@ -744,20 +744,19 @@ class acf_location
 		$ef_media = $options['ef_media'];
 		
         
-        // override for "all"
-        if( $rule['value'] == "all" )
-		{
-			$match = true;
-		}
+        if( $ef_media )
+        {
+	        // override for "all"
+	        if( $rule['value'] == "all" )
+			{
+				$match = true;
+			}
+        }
 		
         
         return $match;
         
     }
-    
-    
-    
-
 
 }
 
