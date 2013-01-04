@@ -660,9 +660,14 @@ function acf_form($options = null)
 	
 	
 	// register post box
-	if(!$options['field_groups'])
+	if( !$options['field_groups'] )
 	{
-		$options['field_groups'] = $acf->get_input_metabox_ids(array('post_id' => $options['post_id']), false);
+		// get field groups
+		$filter = array(
+			'post_id' => $options['post_id']
+		);
+		$options['field_groups'] = array();
+		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $options['field_groups'], $filter );
 	}
 	
 	

@@ -7,7 +7,6 @@
 *  @since 3.2.6
 *  @created: 23/06/12
 */
-
  
 class acf_input
 {
@@ -62,6 +61,7 @@ class acf_input
 		// edit attachment hooks (used by image / file / gallery)
 		add_action('admin_head-media.php', array($this, 'admin_head_media'));
 		add_action('admin_head-upload.php', array($this, 'admin_head_upload'));
+		
 	}
 	
 	
@@ -185,13 +185,25 @@ class acf_input
 		}
 		
 			
-		// get style for page
-		$metabox_ids = $this->parent->get_input_metabox_ids( array( 'post_id' => $post_id, 'post_type' => $typenow ), false);
-		$style = isset($metabox_ids[0]) ? $this->get_input_style($metabox_ids[0]) : '';
-		echo '<style type="text/css" id="acf_style" >' .$style . '</style>';
+		// get field groups
+		$filter = array( 
+			'post_id' => $post_id, 
+			'post_type' => $typenow 
+		);
+		$metabox_ids = array();
+		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $metabox_ids, $filter );
 		
-
+		
+		// get style of first field group
+		$style = '';
+		if( isset($metabox_ids[0]) )
+		{
+			$style = $this->get_input_style( $metabox_ids[0] );
+		}
+		
+		
 		// Style
+		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
 		echo '<style type="text/css">.acf_postbox, .postbox[id*="acf_"] { display: none; }</style>';
 		
 		

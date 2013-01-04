@@ -132,7 +132,10 @@ class acf_options_page
 		}
 		
 		
-		$metabox_ids = $this->parent->get_input_metabox_ids(false, false);
+		// get field groups
+		$filter = array();
+		$metabox_ids = array();
+		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $metabox_ids, $filter );
 
 		
 		if(empty($metabox_ids))

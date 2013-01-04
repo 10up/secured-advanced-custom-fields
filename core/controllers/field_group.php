@@ -559,6 +559,12 @@ class acf_field_group
 				
 		}
 		
+		
+		// allow custom location rules
+		$choices = apply_filters( 'acf/location/rule_values/' . $options['param'], $choices );
+							
+		
+		// create field
 		$this->parent->create_field(array(
 			'type'	=>	'select',
 			'name'	=>	'location[rules][' . $options['key'] . '][value]',

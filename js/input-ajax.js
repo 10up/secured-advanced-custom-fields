@@ -30,16 +30,17 @@
 	*/
 	
 	acf.data = {
-		action 			:	'get_input_metabox_ids',
-		post_id			:	0,
-		page_template	:	false,
-		page_parent		:	0,
-		page_type		:	false,
-		page			:	0,
-		post			:	0,
-		post_category	:	false,
-		post_format		:	false,
-		taxonomy		:	false
+		'action' 			:	'acf/location/match_field_groups_ajax',
+		'post_id'			:	0,
+		'page_template'		:	0,
+		'page_parent'		:	0,
+		'page_type'			:	0,
+		'post_category'		:	0,
+		'post_format'		:	0,
+		'taxonomy'			:	0,
+		'lang'				:	0,
+		'nonce'				:	0,
+		'return'			:	'json'
 	};
 	
 		
@@ -55,8 +56,7 @@
 		
 		// update post_id
 		acf.data.post_id = acf.post_id;
-		acf.data.page = acf.post_id;
-		acf.data.post = acf.post_id;
+		acf.data.nonce = acf.nonce;
 		
 		
 		// MPML
@@ -91,13 +91,20 @@
 			dataType: 'json',
 			success: function(result){
 				
+				// validate
+				if( !result )
+				{
+					return false;
+				}
+				
+				
 				// hide all metaboxes
 				$('#poststuff .acf_postbox').addClass('acf-hidden');
 				$('#adv-settings .acf_hide_label').hide();
 				
 				
 				// dont bother loading style or html for inputs
-				if(result.length == 0)
+				if( result.length == 0 )
 				{
 					return false;
 				}
@@ -208,11 +215,11 @@
 		
 		
 		// vars
-		var values = ['0'];
+		var values = [];
 		
 		
 		$('.categorychecklist input[type="checkbox"]:checked').each(function(){
-			values.push($(this).val());
+			values.push( $(this).val() );
 		});
 
 		

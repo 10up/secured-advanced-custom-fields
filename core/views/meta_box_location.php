@@ -75,6 +75,11 @@ if( empty($location['rules']) )
 							}
 							
 							
+							// allow custom location rules
+							$choices = apply_filters( 'acf/location/rule_types', $choices );
+							
+							
+							// create field
 							$args = array(
 								'type'	=>	'select',
 								'name'	=>	'location[rules]['.$k.'][param]',
@@ -88,14 +93,22 @@ if( empty($location['rules']) )
 						?></td>
 						<td class="operator"><?php 	
 							
+							$choices = array(
+								'=='	=>	__("is equal to",'acf'),
+								'!='	=>	__("is not equal to",'acf'),
+							);
+							
+							
+							// allow custom location rules
+							$choices = apply_filters( 'acf/location/rule_operators', $choices );
+							
+							
+							// create field
 							$this->parent->create_field(array(
 								'type'	=>	'select',
 								'name'	=>	'location[rules]['.$k.'][operator]',
 								'value'	=>	$rule['operator'],
-								'choices' => array(
-									'=='	=>	__("is equal to",'acf'),
-									'!='	=>	__("is not equal to",'acf'),
-								)
+								'choices' => $choices
 							)); 	
 							
 						?></td>
