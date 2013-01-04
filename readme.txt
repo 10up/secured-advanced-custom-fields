@@ -90,6 +90,13 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.7 =
+* [Fixed] Fix sub field default value - http://support.advancedcustomfields.com/discussion/3706/select-field-default-value-not-working
+* [Added] Add filters for custom location rules - http://support.advancedcustomfields.com/discussion/4285/how-to-retrieve-a-custom-field-within-the-function-php
+* [Fixed] Fix XML import to create unique field ID's - http://support.advancedcustomfields.com/discussion/4328/check-acf_next_field_id-to-avoid-data-corruption
+* [Fixed] Fix conditional logic with validation - http://support.advancedcustomfields.com/discussion/4295/issue-with-conditional-logic-and-obrigatory-fields
+* [Fixed] Fix repeater + relationship bug - http://support.advancedcustomfields.com/discussion/4296/relationship-field-bug
+
 = 3.5.6.3 =
 * [Fixed] Fix bug with 3.5.6 not showing front end form
 

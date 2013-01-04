@@ -90,10 +90,6 @@ class Acf
 		add_filter('acf_parse_value', array($this, 'acf_parse_value'));
 		
 		
-		// ajax
-		
-		
-		
 		return true;
 	}
 	
@@ -377,7 +373,7 @@ class Acf
 		$this->third_party = new acf_third_party($this);
 		
 		
-		// Third Party Compatibility
+		// Location
 		include_once('core/controllers/location.php');
 		$this->location = new acf_location($this);
 	}
@@ -1272,24 +1268,6 @@ class Acf
 		
 		// not json, normal return
 		return $return;
-		
-	}
-	
-	
-	
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	match_location_rule
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.0
-	* 
-	*-------------------------------------------------------------------------------------*/
-
-	function match_location_rule($post = null, $rule = array(), $overrides = array())
-	{
 		
 	}
 	
