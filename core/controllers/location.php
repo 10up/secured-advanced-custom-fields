@@ -127,6 +127,9 @@ class acf_location
 			'post_category' => array(),
 			'post_format' => 0,
 			'taxonomy' => array(),
+			'ef_taxonomy' => 0,
+			'ef_user' => 0,
+			'ef_media' => 0,
 			'lang' => 0,
 			'return' => 'php'
 		);

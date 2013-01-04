@@ -667,7 +667,7 @@ function acf_form($options = null)
 			'post_id' => $options['post_id']
 		);
 		$options['field_groups'] = array();
-		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $options['field_groups'], $filter );
+		$options['field_groups'] = apply_filters( 'acf/location/match_field_groups', $options['field_groups'], $filter );
 	}
 	
 	
