@@ -99,6 +99,13 @@ var acf = {
 		field.attr('data-type', val);
 		
 		
+		// tab - override field_name
+		if( val == 'tab' )
+		{
+			tbody.find('tr.field_name input[type="text"]').val('').trigger('keyup');
+		}
+		
+		
 		// show field options if they already exist
 		if( tbody.children( 'tr.field_option_' + val ).exists() )
 		{

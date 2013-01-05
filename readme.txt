@@ -90,6 +90,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.7.1 =
+* [Fixed] Fix issues with location rules wrongly matching
+
 = 3.5.7 =
 * [Fixed] Fix sub field default value - http://support.advancedcustomfields.com/discussion/3706/select-field-default-value-not-working
 * [Added] Add filters for custom location rules - http://support.advancedcustomfields.com/discussion/4285/how-to-retrieve-a-custom-field-within-the-function-php
