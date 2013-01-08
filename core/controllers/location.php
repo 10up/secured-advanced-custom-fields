@@ -265,6 +265,12 @@ class acf_location
 	
 	function rule_match_post( $match, $rule, $options )
 	{
+		// validation
+		if( !$options['post_id'] )
+		{
+			return false;
+		}
+		
 		$post = $options['post_id'];
 		        
         if($rule['operator'] == "==")
@@ -291,6 +297,12 @@ class acf_location
 	
 	function rule_match_page_type( $match, $rule, $options )
 	{
+		// validation
+		if( !$options['post_id'] )
+		{
+			return false;
+		}
+
 		$post = get_post( $options['post_id'] );
 		        
         if( $rule['value'] == 'front_page')
@@ -380,6 +392,13 @@ class acf_location
 	
 	function rule_match_page_parent( $match, $rule, $options )
 	{
+		// validation
+		if( !$options['post_id'] )
+		{
+			return false;
+		}
+		
+		
 		// vars
 		$post = get_post( $options['post_id'] );
 		$page_parent = $post->post_parent;
