@@ -587,6 +587,7 @@ function acf_form_head()
 	do_action('acf_print_scripts-input');
 	do_action('acf_print_styles-input');
 	
+	
 	// need wp styling
 	wp_enqueue_style(array(
 		'colors-fresh'
@@ -600,20 +601,6 @@ function acf_form_head()
 
 function acf_form_wp_head()
 {
-	// global vars
-	global $post, $acf;
-	
-
-	// Style
-	echo '<link rel="stylesheet" type="text/css" href="'.$acf->dir.'/css/global.css?ver=' . $acf->version . '" />';
-	echo '<link rel="stylesheet" type="text/css" href="'.$acf->dir.'/css/input.css?ver=' . $acf->version . '" />';
-
-
-	// Javascript
-	echo '<script type="text/javascript" src="'.$acf->dir.'/js/input-actions.js?ver=' . $acf->version . '" ></script>';
-	
-	
-	
 	// add user js + css
 	do_action('acf_head-input');
 }
