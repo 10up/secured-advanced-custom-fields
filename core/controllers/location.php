@@ -468,6 +468,11 @@ class acf_location
 		
 		if( empty($cats) )
 		{
+			if( !$options['post_id'] )
+			{
+				return false;
+			}
+			
 			$all_cats = get_the_category( $options['post_id'] );
         	foreach( $all_cats as $cat )
 			{
@@ -624,14 +629,22 @@ class acf_location
 	{
 		$terms = $options['taxonomy'];
 		
+		
 		if( empty($terms) )
 		{
-			$taxonomies = get_object_taxonomies($post->post_type);
+			if( !$options['post_id'] )
+			{
+				return false;
+			}
+			
+			$post_type = get_post_type( $options['post_id'] );
+			$taxonomies = get_object_taxonomies( $post_type );
+			
         	if($taxonomies)
         	{
 	        	foreach($taxonomies as $tax)
 				{
-					$all_terms = get_the_terms($post->ID, $tax);
+					$all_terms = get_the_terms( $options['post_id'], $tax );
 					if($all_terms)
 					{
 						foreach($all_terms as $all_term)
