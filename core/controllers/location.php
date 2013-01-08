@@ -233,8 +233,14 @@ class acf_location
 	
 	function rule_match_post_type( $match, $rule, $options )
 	{
-		$post_type = get_post_type( $options['post_id'] );
-		        
+		$post_type = $options['post_type'];
+
+		if( !$post_type )
+		{
+			$post_type = get_post_type( $options['post_id'] );
+		}
+		
+
         if( $rule['operator'] == "==" )
         {
         	$match = ( $post_type == $rule['value'] );
@@ -244,6 +250,7 @@ class acf_location
         	$match = ( $post_type != $rule['value'] );
         }
 		
+	
 		return $match;
 	}
 	
