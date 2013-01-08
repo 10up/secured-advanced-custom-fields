@@ -709,18 +709,28 @@ class acf_location
 			if($rule['operator'] == "==")
 	        {
 	        	$match = ( $ef_taxonomy == $rule['value'] );
+	        	
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = true;
+				}
+				
 	        }
 	        elseif($rule['operator'] == "!=")
 	        {
 	        	$match = ( $ef_taxonomy != $rule['value'] );
+	        		
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = false;
+				}
+				
 	        }
 			
 	        
-	        // override for "all"
-	        if( $rule['value'] == "all" )
-			{
-				$match = true;
-			}
+	        
 			
 		}
 		
@@ -749,18 +759,24 @@ class acf_location
 			if($rule['operator'] == "==")
 	        {
 	        	$match = ( user_can($ef_user, $rule['value']) );
+	        	
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = true;
+				}
 	        }
 	        elseif($rule['operator'] == "!=")
 	        {
 	        	$match = ( !user_can($ef_user, $rule['value']) );
+	        	
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = false;
+				}
 	        }
-			
-	        
-	        // override for "all"
-	        if( $rule['value'] == "all" )
-			{
-				$match = true;
-			}
+
 		}
 		
         
@@ -779,20 +795,41 @@ class acf_location
 	
 	function rule_match_ef_media( $match, $rule, $options )
 	{
-	
+		global $wp_version;
+
+		
+		if( version_compare($wp_version, '3.5', '>=') )
+		{
+			// in 3.5, the media rule should check the post type
+			$rule['param'] = 'post_type';
+			$rule['value'] = 'attachment';
+			return $this->rule_match_post_type( $match, $rule, $options );
+		}
+		
+		
 		$ef_media = $options['ef_media'];
 		
-        
         if( $ef_media )
-        {
-	        // override for "all"
-	        if( $rule['value'] == "all" )
-			{
-				$match = true;
-			}
-        }
+		{
+			if($rule['operator'] == "==")
+	        {
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = true;
+				}
+	        }
+	        elseif($rule['operator'] == "!=")
+	        {
+	        	// override for "all"
+		        if( $rule['value'] == "all" )
+				{
+					$match = false;
+				}
+	        }
+
+		}
 		
-        
         return $match;
         
     }
