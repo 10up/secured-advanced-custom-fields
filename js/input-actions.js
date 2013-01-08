@@ -1197,11 +1197,14 @@ var acf = {
 		if( row_count >= max_rows )
 		{
 			repeater.addClass('disabled');
+			repeater.find('> .repeater-footer .acf-button').addClass('disabled');
 		}
 		else
 		{
 			repeater.removeClass('disabled');
+			repeater.find('> .repeater-footer .acf-button').removeClass('disabled');
 		}
+		
 	}
 	
 	
