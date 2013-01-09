@@ -653,6 +653,19 @@ function acf_form($options = null)
 		$filter = array(
 			'post_id' => $options['post_id']
 		);
+		
+		if( strpos($options['post_id'], 'user_') !== false )
+		{
+			$user_id = str_replace('user_', '', $options['post_id']);
+			$filter['ef_user'] = $user_id;
+		}
+		elseif( strpos($options['post_id'], 'taxonomy_') !== false )
+		{
+			$taxonomy_id = str_replace('taxonomy_', '', $options['post_id']);
+			$filter['ef_taxonomy'] = $taxonomy_id;
+		}
+		
+		
 		$options['field_groups'] = array();
 		$options['field_groups'] = apply_filters( 'acf/location/match_field_groups', $options['field_groups'], $filter );
 	}
@@ -666,7 +679,8 @@ function acf_form($options = null)
 	
 	
 	// Javascript
-	echo '<script type="text/javascript">acf.post_id = ' . $options['post_id'] . '; acf.nonce = "' . wp_create_nonce( 'acf_nonce' ) . '";</script>';
+	$script_post_id = is_numeric($options['post_id']) ? $options['post_id'] : 0;
+	echo '<script type="text/javascript">acf.post_id = ' . $script_post_id . '; acf.nonce = "' . wp_create_nonce( 'acf_nonce' ) . '";</script>';
 	
 	
 	// display form
