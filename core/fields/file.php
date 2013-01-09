@@ -200,18 +200,20 @@ class acf_File extends acf_Field
 				<label><?php _e("Return Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
-					'type'	=>	'radio',
-					'name'	=>	'fields['.$key.'][save_format]',
-					'value'	=>	$field['save_format'],
+				<?php
+				
+				do_action('acf/create_field', array(
+					'type'		=>	'radio',
+					'name'		=>	'fields['.$key.'][save_format]',
+					'value'		=>	$field['save_format'],
 					'layout'	=>	'horizontal',
-					'choices' => array(
+					'choices' 	=>	array(
 						'object'	=>	__("File Object",'acf'),
 						'url'		=>	__("File URL",'acf'),
 						'id'		=>	__("File ID",'acf')
 					)
 				));
+				
 				?>
 			</td>
 		</tr>

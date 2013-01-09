@@ -84,6 +84,10 @@ class Acf
 		add_action('acf_save_post', array($this, 'acf_save_post'), 10); // save post, called from many places (api, input, everything, options)
 		
 		
+		// action functions
+		add_action('acf/create_field', array($this, 'create_field'), 10, 1);
+		
+		
 		// filters
 		add_filter('acf_load_field', array($this, 'acf_load_field'), 5);
 		add_filter('post_updated_messages', array($this, 'post_updated_messages'));
@@ -811,7 +815,7 @@ class Acf
 		// conditional logic
 		// - isset is needed for the edit field group page where fields are created without many parameters
 		if( isset($field['conditional_logic']['status']) && $field['conditional_logic']['status'] ):
-		
+			
 			$join = ' && ';
 			if( $field['conditional_logic']['allorany'] == "any" )
 			{

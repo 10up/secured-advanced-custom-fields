@@ -35,16 +35,22 @@ class acf_Radio extends acf_Field
 	
 	function create_field($field)
 	{
-		// defaults
-		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'vertical';
-		$field['choices'] = isset($field['choices']) ? $field['choices'] : array();
+		// vars
+		$defaults = array(
+			'layout'		=>	'vertical',
+			'choices'		=>	array(),
+		);
+		
+		$field = array_merge($defaults, $field);
+		
 		
 		// no choices
-		if(empty($field['choices']))
+		if( empty($field['choices']) )
 		{
 			echo '<p>' . __("No choices to choose from",'acf') . '</p>';
 			return false;
 		}
+		
 				
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
 		
@@ -86,29 +92,28 @@ class acf_Radio extends acf_Field
 	*-------------------------------------------------------------------------------------*/
 	
 	function create_options($key, $field)
-	{	
-		// defaults
-		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'vertical';
-		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
-
+	{
+		// vars
+		$defaults = array(
+			'layout'		=>	'vertical',
+			'default_value'	=>	'',
+			'choices'		=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+		
 		
 		// implode checkboxes so they work in a textarea
-		if(isset($field['choices']) && is_array($field['choices']))
+		if( is_array($field['choices']) )
 		{		
-			foreach($field['choices'] as $choice_key => $choice_val)
+			foreach( $field['choices'] as $k => $v )
 			{
-				$field['choices'][$choice_key] = $choice_key.' : '.$choice_val;
+				$field['choices'][ $k ] = $k . ' : ' . $v;
 			}
 			$field['choices'] = implode("\n", $field['choices']);
 		}
-		else
-		{
-			$field['choices'] = "";
-		}
 		
 		?>
-
-
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
@@ -122,13 +127,15 @@ class acf_Radio extends acf_Field
 				</p>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'class' => 	'textarea field_option-choices',
 					'name'	=>	'fields['.$key.'][choices]',
 					'value'	=>	$field['choices'],
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -137,12 +144,14 @@ class acf_Radio extends acf_Field
 				<label><?php _e("Default Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -151,8 +160,9 @@ class acf_Radio extends acf_Field
 				<label for=""><?php _e("Layout",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][layout]',
 					'value'	=>	$field['layout'],
@@ -162,6 +172,7 @@ class acf_Radio extends acf_Field
 						'horizontal' => __("Horizontal",'acf')
 					)
 				));
+				
 				?>
 			</td>
 		</tr>

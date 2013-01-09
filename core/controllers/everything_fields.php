@@ -512,7 +512,7 @@ class acf_everything_fields
 							echo '</p>';
 							
 							$field['name'] = 'fields[' . $field['key'] . ']';
-							$this->parent->create_field($field);
+							do_action('acf/create_field', $field);
 						
 						echo '</div>';
 					}
@@ -521,7 +521,7 @@ class acf_everything_fields
 						echo '<div id="acf-' . $field['name'] . '" class="form-field field field-' . $field['type'] . ' field-'.$field['key'] . $required_class . '">';
 							echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';	
 							$field['name'] = 'fields[' . $field['key'] . ']';
-							$this->parent->create_field($field);
+							do_action('acf/create_field', $field );
 							if($field['instructions']) echo '<p class="description">' . $field['instructions'] . '</p>';
 						echo '</div>';
 					}
@@ -531,7 +531,7 @@ class acf_everything_fields
 							echo '<th valign="top" scope="row"><label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label></th>';	
 							echo '<td>';
 								$field['name'] = 'fields[' . $field['key'] . ']';
-								$this->parent->create_field($field);
+								do_action('acf/create_field', $field );
 								
 								if($field['instructions']) echo '<p class="description">' . $field['instructions'] . '</p>';
 							echo '</td>';

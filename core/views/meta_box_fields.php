@@ -129,7 +129,7 @@ $conditional_logic_rule = array(
 							</td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields['.$field['key'].'][label]',
 									'value'	=>	$field['label'],
@@ -145,7 +145,7 @@ $conditional_logic_rule = array(
 							</td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'text',
 									'name'	=>	'fields['.$field['key'].'][name]',
 									'value'	=>	$field['name'],
@@ -158,7 +158,7 @@ $conditional_logic_rule = array(
 							<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'		=>	'select',
 									'name'		=>	'fields['.$field['key'].'][type]',
 									'value'		=>	$field['type'],
@@ -172,7 +172,7 @@ $conditional_logic_rule = array(
 							<p class="description"><?php _e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'textarea',
 									'name'	=>	'fields['.$field['key'].'][instructions]',
 									'value'	=>	$field['instructions'],
@@ -184,7 +184,7 @@ $conditional_logic_rule = array(
 							<td class="label"><label><?php _e("Required?",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields['.$field['key'].'][required]',
 									'value'	=>	$field['required'],
@@ -209,7 +209,7 @@ $conditional_logic_rule = array(
 							<td class="label"><label><?php _e("Conditional Logic",'acf'); ?></label></td>
 							<td>
 								<?php 
-								$this->parent->create_field(array(
+								do_action('acf/create_field', array(
 									'type'	=>	'radio',
 									'name'	=>	'fields['.$field['key'].'][conditional_logic][status]',
 									'value'	=>	$field['conditional_logic']['status'],
@@ -252,7 +252,7 @@ $conditional_logic_rule = array(
 												</td>
 												<td width="25%">
 													<?php 
-													$this->parent->create_field(array(
+													do_action('acf/create_field', array(
 														'type'	=>	'select',
 														'name'	=>	'fields['.$field['key'].'][conditional_logic][rules][' . $rule_i . '][operator]',
 														'value'	=>	$rule['operator'],
@@ -277,7 +277,7 @@ $conditional_logic_rule = array(
 									
 									<ul class="hl clearfix">
 										<li style="padding:4px 4px 0 0;"><?php _e("Show this field when",'acf'); ?></li>
-										<li><?php $this->parent->create_field(array(
+										<li><?php do_action('acf/create_field', array(
 												'type'	=>	'select',
 												'name'	=>	'fields['.$field['key'].'][conditional_logic][allorany]',
 												'value'	=>	$field['conditional_logic']['allorany'],

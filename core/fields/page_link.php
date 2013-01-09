@@ -38,7 +38,7 @@ class acf_Page_link extends acf_Field
 		// let post_object create the field
 		$field['type'] = 'post_object';
 		
-		$this->parent->create_field( $field );
+		do_action('acf/create_field', $field );
 
 	}
 	
@@ -75,16 +75,17 @@ class acf_Page_link extends acf_Field
 				$choices = array(
 					''	=>	__("All",'acf')
 				);
+				$choices = array_merge( $choices, $this->parent->get_post_types() );
 				
-				$choices = $this->parent->get_post_types();
 				
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][post_type]',
 					'value'	=>	$field['post_type'],
 					'choices'	=>	$choices,
 					'multiple'	=>	1,
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -93,8 +94,9 @@ class acf_Page_link extends acf_Field
 				<label><?php _e("Allow Null?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][allow_null]',
 					'value'	=>	$field['allow_null'],
@@ -104,6 +106,7 @@ class acf_Page_link extends acf_Field
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -112,8 +115,9 @@ class acf_Page_link extends acf_Field
 				<label><?php _e("Select multiple values?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][multiple]',
 					'value'	=>	$field['multiple'],
@@ -123,6 +127,7 @@ class acf_Page_link extends acf_Field
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>

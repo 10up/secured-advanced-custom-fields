@@ -55,6 +55,7 @@ class acf_Post_object extends acf_Field
 
 		$field = array_merge($defaults, $field);
 		
+		
 		// validate taxonomy
 		if( !is_array($field['taxonomy']) )
 		{
@@ -67,7 +68,6 @@ class acf_Post_object extends acf_Field
 			$field['post_type'] = $this->parent->get_post_types();
 		}
 		
-
 		
 		// create tax queries
 		if( ! in_array('all', $field['taxonomy']) )
@@ -189,7 +189,7 @@ class acf_Post_object extends acf_Field
 		
 		
 		// create field
-		$this->parent->create_field( $field );
+		do_action('acf/create_field', $field );
 		
 		
 	}
@@ -228,21 +228,17 @@ class acf_Post_object extends acf_Field
 				$choices = array(
 					''	=>	__("All",'acf')
 				);
+				$choices = array_merge( $choices, $this->parent->get_post_types() );
 				
-				$post_types = $this->parent->get_post_types();
 				
-				foreach( $post_types as $post_type )
-				{
-					$choices[$post_type] = $post_type;
-				}
-				
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][post_type]',
 					'value'	=>	$field['post_type'],
 					'choices'	=>	$choices,
 					'multiple'	=>	1,
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -258,7 +254,8 @@ class acf_Post_object extends acf_Field
 					)
 				);
 				$choices = array_merge($choices, $this->parent->get_taxonomies_for_select());
-				$this->parent->create_field(array(
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][taxonomy]',
 					'value'	=>	$field['taxonomy'],
@@ -266,6 +263,7 @@ class acf_Post_object extends acf_Field
 					'optgroup' => true,
 					'multiple'	=>	1,
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -274,8 +272,9 @@ class acf_Post_object extends acf_Field
 				<label><?php _e("Allow Null?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][allow_null]',
 					'value'	=>	$field['allow_null'],
@@ -285,6 +284,7 @@ class acf_Post_object extends acf_Field
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>
@@ -293,8 +293,9 @@ class acf_Post_object extends acf_Field
 				<label><?php _e("Select multiple values?",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][multiple]',
 					'value'	=>	$field['multiple'],
@@ -304,6 +305,7 @@ class acf_Post_object extends acf_Field
 					),
 					'layout'	=>	'horizontal',
 				));
+				
 				?>
 			</td>
 		</tr>

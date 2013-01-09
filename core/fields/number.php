@@ -65,12 +65,14 @@ class acf_Number extends acf_Field
 				<label><?php _e("Default Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
+				<?php
+				
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
 				));
+
 				?>
 			</td>
 		</tr>

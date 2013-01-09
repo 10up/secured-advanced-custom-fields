@@ -130,7 +130,7 @@ class acf_Flexible_content extends acf_Field
 									$sub_field['name'] = $field['name'] . '[acfcloneindex][' . $sub_field['key'] . ']';
 									
 									// create field
-									$this->parent->create_field($sub_field);
+									do_action('acf/create_field', $sub_field);
 									
 									?>
 								</td>
@@ -256,7 +256,7 @@ class acf_Flexible_content extends acf_Field
 										$sub_field['name'] = $field['name'] . '[' . $i . '][' . $sub_field['key'] . ']';
 										
 										// create field
-										$this->parent->create_field($sub_field);
+										do_action('acf/create_field', $sub_field);
 										
 										?>
 									</td>
@@ -399,7 +399,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_label" style="padding-left:0;">
 						<label><?php _e('Label','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'text',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][label]',
 							'value'	=>	$layout['label'],
@@ -409,7 +409,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_name">
 						<label><?php _e('Name','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'text',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][name]',
 							'value'	=>	$layout['name'],
@@ -419,7 +419,7 @@ class acf_Flexible_content extends acf_Field
 					<td class="acf_fc_display" style="padding-right:0;">
 						<label><?php _e('Display','acf'); ?></label>
 						<?php 
-						$this->parent->create_field(array(
+						do_action('acf/create_field', array(
 							'type'	=>	'select',
 							'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][display]',
 							'value'	=>	$layout['display'],
@@ -486,7 +486,7 @@ class acf_Flexible_content extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][label]',
 											'value'	=>	$sub_field['label'],
@@ -502,7 +502,7 @@ class acf_Flexible_content extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][name]',
 											'value'	=>	$sub_field['name'],
@@ -515,7 +515,7 @@ class acf_Flexible_content extends acf_Field
 									<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'select',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][type]',
 											'value'	=>	$sub_field['type'],
@@ -535,7 +535,7 @@ class acf_Flexible_content extends acf_Field
 											$sub_field['instructions'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][instructions]',
 											'value'	=>	$sub_field['instructions'],
@@ -557,7 +557,7 @@ class acf_Flexible_content extends acf_Field
 											$sub_field['column_width'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'number',
 											'name'	=>	'fields['.$key.'][layouts][' . $layout_key . '][sub_fields]['.$sub_field['key'].'][column_width]',
 											'value'	=>	$sub_field['column_width'],
@@ -607,7 +607,7 @@ class acf_Flexible_content extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][button_label]',
 			'value'	=>	$field['button_label'],

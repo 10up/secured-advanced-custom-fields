@@ -69,7 +69,7 @@ class acf_Color_picker extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],

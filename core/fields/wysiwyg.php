@@ -82,7 +82,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'name'	=>	'fields['.$key.'][default_value]',
 					'value'	=>	$field['default_value'],
@@ -96,7 +96,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][toolbar]',
 					'value'	=>	$field['toolbar'],
@@ -115,7 +115,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][media_upload]',
 					'value'	=>	$field['media_upload'],
@@ -136,7 +136,7 @@ class acf_Wysiwyg extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'radio',
 					'name'	=>	'fields['.$key.'][the_content]',
 					'value'	=>	$field['the_content'],

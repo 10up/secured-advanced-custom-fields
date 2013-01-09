@@ -201,13 +201,13 @@ class acf_Image extends acf_Field
 				<label><?php _e("Return Value",'acf'); ?></label>
 			</td>
 			<td>
-				<?php 
-				$this->parent->create_field(array(
-					'type'	=>	'radio',
-					'name'	=>	'fields['.$key.'][save_format]',
-					'value'	=>	$field['save_format'],
+				<?php
+				do_action('acf/create_field', array(
+					'type'		=>	'radio',
+					'name'		=>	'fields['.$key.'][save_format]',
+					'value'		=>	$field['save_format'],
 					'layout'	=>	'horizontal',
-					'choices' => array(
+					'choices'	=> array(
 						'object'	=>	__("Image Object",'acf'),
 						'url'		=>	__("Image URL",'acf'),
 						'id'		=>	__("Image ID",'acf')
@@ -225,14 +225,14 @@ class acf_Image extends acf_Field
 				
 				$image_sizes = $this->parent->get_all_image_sizes();
 				
-				$this->parent->create_field(array(
-					'type'	=>	'radio',
-					'name'	=>	'fields['.$key.'][preview_size]',
-					'value'	=>	$field['preview_size'],
+				do_action('acf/create_field', array(
+					'type'		=>	'radio',
+					'name'		=>	'fields['.$key.'][preview_size]',
+					'value'		=>	$field['preview_size'],
 					'layout'	=>	'horizontal',
-					'choices' => $image_sizes
+					'choices' 	=>	$image_sizes
 				));
-				
+
 				?>
 			</td>
 		</tr>

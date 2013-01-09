@@ -413,7 +413,7 @@ class acf_Relationship extends acf_Field
 					$choices[$post_type] = $post_type;
 				}
 				
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][post_type]',
 					'value'	=>	$field['post_type'],
@@ -436,7 +436,7 @@ class acf_Relationship extends acf_Field
 					)
 				);
 				$choices = array_merge($choices, $this->parent->get_taxonomies_for_select());
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'select',
 					'name'	=>	'fields['.$key.'][taxonomy]',
 					'value'	=>	$field['taxonomy'],
@@ -453,7 +453,7 @@ class acf_Relationship extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][max]',
 					'value'	=>	$field['max'],

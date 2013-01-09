@@ -213,7 +213,7 @@ class acf_Repeater extends acf_Field
 				$sub_field['name'] = $field['name'] . '[' . $i . '][' . $sub_field['key'] . ']';
 					
 				// create field
-				$this->parent->create_field($sub_field);
+				do_action('acf/create_field', $sub_field);
 				
 				?>
 			</td>
@@ -378,7 +378,7 @@ class acf_Repeater extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][sub_fields]['.$sub_field['key'].'][label]',
 											'value'	=>	$sub_field['label'],
@@ -394,7 +394,7 @@ class acf_Repeater extends acf_Field
 									</td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][sub_fields]['.$sub_field['key'].'][name]',
 											'value'	=>	$sub_field['name'],
@@ -407,7 +407,7 @@ class acf_Repeater extends acf_Field
 									<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
 									<td>
 										<?php 
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'select',
 											'name'	=>	'fields['.$key.'][sub_fields]['.$sub_field['key'].'][type]',
 											'value'	=>	$sub_field['type'],
@@ -427,7 +427,7 @@ class acf_Repeater extends acf_Field
 											$sub_field['instructions'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'text',
 											'name'	=>	'fields['.$key.'][sub_fields]['.$sub_field['key'].'][instructions]',
 											'value'	=>	$sub_field['instructions'],
@@ -449,7 +449,7 @@ class acf_Repeater extends acf_Field
 											$sub_field['column_width'] = "";
 										}
 										
-										$this->parent->create_field(array(
+										do_action('acf/create_field', array(
 											'type'	=>	'number',
 											'name'	=>	'fields['.$key.'][sub_fields]['.$sub_field['key'].'][column_width]',
 											'value'	=>	$sub_field['column_width'],
@@ -500,7 +500,7 @@ class acf_Repeater extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][row_min]',
 			'value'	=>	$field['row_min'],
@@ -514,7 +514,7 @@ class acf_Repeater extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][row_limit]',
 			'value'	=>	$field['row_limit'],
@@ -528,7 +528,7 @@ class acf_Repeater extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][layout]',
 			'value'	=>	$field['layout'],
@@ -547,7 +547,7 @@ class acf_Repeater extends acf_Field
 	</td>
 	<td>
 		<?php 
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][button_label]',
 			'value'	=>	$field['button_label'],

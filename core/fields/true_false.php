@@ -70,7 +70,7 @@ class acf_True_false extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'text',
 					'name'	=>	'fields['.$key.'][message]',
 					'value'	=>	$field['message'],

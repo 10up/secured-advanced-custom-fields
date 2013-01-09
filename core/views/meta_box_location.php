@@ -88,7 +88,7 @@ if( empty($location['rules']) )
 								'optgroup' => true,
 							);
 							
-							$this->parent->create_field($args);							
+							do_action('acf/create_field', $args);							
 							
 						?></td>
 						<td class="operator"><?php 	
@@ -104,7 +104,7 @@ if( empty($location['rules']) )
 							
 							
 							// create field
-							$this->parent->create_field(array(
+							do_action('acf/create_field', array(
 								'type'	=>	'select',
 								'name'	=>	'location[rules]['.$k.'][operator]',
 								'value'	=>	$rule['operator'],
@@ -134,7 +134,7 @@ if( empty($location['rules']) )
 				</table>
 				<ul class="hl clearfix">
 					<li style="padding:4px 4px 0 0;"><?php _e("match",'acf'); ?></li>
-					<li><?php $this->parent->create_field(array(
+					<li><?php do_action('acf/create_field', array(
 									'type'	=>	'select',
 									'name'	=>	'location[allorany]',
 									'value'	=>	$location['allorany'],

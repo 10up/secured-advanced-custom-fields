@@ -122,7 +122,7 @@ class acf_Gallery extends acf_Field
 		
 		$image_sizes = $this->parent->get_all_image_sizes();
 		
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'		=>	'radio',
 			'name'		=>	'fields['.$key.'][preview_size]',
 			'value'		=>	$field['preview_size'],

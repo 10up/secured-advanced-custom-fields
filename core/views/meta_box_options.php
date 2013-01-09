@@ -26,7 +26,7 @@ $options = $this->parent->get_acf_options($post->ID);
 		<td>
 			<?php 
 			
-			$this->parent->create_field(array(
+			do_action('acf/create_field', array(
 				'type'	=>	'text',
 				'name'	=>	'menu_order',
 				'value'	=>	$post->menu_order,
@@ -42,7 +42,7 @@ $options = $this->parent->get_acf_options($post->ID);
 		<td>
 			<?php 
 			
-			$this->parent->create_field(array(
+			do_action('acf/create_field', array(
 				'type'	=>	'radio',
 				'name'	=>	'options[position]',
 				'value'	=>	$options['position'],
@@ -62,7 +62,7 @@ $options = $this->parent->get_acf_options($post->ID);
 		<td>
 			<?php 
 			
-			$this->parent->create_field(array(
+			do_action('acf/create_field', array(
 				'type'	=>	'radio',
 				'name'	=>	'options[layout]',
 				'value'	=>	$options['layout'],
@@ -84,7 +84,7 @@ $options = $this->parent->get_acf_options($post->ID);
 		<td>
 			<?php 
 			
-			$this->parent->create_field(array(
+			do_action('acf/create_field', array(
 				'type'	=>	'checkbox',
 				'name'	=>	'options[hide_on_screen]',
 				'value'	=>	$options['hide_on_screen'],

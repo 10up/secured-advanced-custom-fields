@@ -565,7 +565,7 @@ class acf_field_group
 							
 		
 		// create field
-		$this->parent->create_field(array(
+		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'location[rules][' . $options['key'] . '][value]',
 			'value'	=>	$options['value'],

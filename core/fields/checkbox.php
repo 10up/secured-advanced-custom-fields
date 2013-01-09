@@ -122,7 +122,7 @@ class acf_Checkbox extends acf_Field
 			</td>
 			<td>
 				<?php 
-				$this->parent->create_field(array(
+				do_action('acf/create_field', array(
 					'type'	=>	'textarea',
 					'class' => 	'textarea field_option-choices',
 					'name'	=>	'fields['.$key.'][choices]',

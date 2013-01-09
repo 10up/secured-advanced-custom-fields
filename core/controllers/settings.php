@@ -357,7 +357,7 @@ class acf_settings
 					<input type="hidden" name="action" value="export_xml" />
 					<?php
 
-					$this->parent->create_field(array(
+					do_action('acf/create_field', array(
 						'type'	=>	'select',
 						'name'	=>	'acf_posts',
 						'value'	=>	'',
@@ -394,7 +394,7 @@ class acf_settings
 					<input type="hidden" name="action" value="export_php" />
 					<?php
 					
-					$this->parent->create_field(array(
+					do_action('acf/create_field', array(
 						'type'	=>	'select',
 						'name'	=>	'acf_posts',
 						'value'	=>	'',
