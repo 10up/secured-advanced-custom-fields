@@ -545,12 +545,14 @@ class acf_input
 	
 	function acf_head_input()
 	{
+		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
 		
 		?>
 <script type="text/javascript">
 
 // admin url
 acf.admin_url = "<?php echo admin_url(); ?>";
+	
 	
 // messages
 acf.text.validation_error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
@@ -562,8 +564,28 @@ acf.text.relationship_max_alert = "<?php _e("Maximum values reached ( {max} valu
 acf.text.gallery_tb_title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
 acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 
+
+// WYSIWYG
+<?php 
+
+if( is_array($toolbars) ):
+	foreach( $toolbars as $label => $rows ):
+		$name = sanitize_title( $label );
+		$name = str_replace('-', '_', $name);
+	?>
+acf.wysiwyg_toolbars.<?php echo $name; ?> = {};
+		<?php if( is_array($rows) ): 
+			foreach( $rows as $k => $v ): ?>
+acf.wysiwyg_toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
+			<?php endforeach; 
+		endif;
+	endforeach;
+endif;
+
+?>
 </script>
 		<?php
+		
 		
 		foreach($this->parent->fields as $field)
 		{

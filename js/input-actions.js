@@ -24,7 +24,7 @@ var acf = {
 	},
 	conditional_logic : {},
 	sortable_helper : null,
-	tinyMCE_settings : null
+	wysiwyg_toolbars : {}
 };
 
 (function($){
@@ -786,13 +786,7 @@ var acf = {
 		}
 		
 		
-		// store settings
-		if( ! acf.tinyMCE_settings )
-		{
-			acf.tinyMCE_settings = $.extend( {}, tinyMCE.settings );
-		}
-				
-		
+
 		// activate
 		$(div).find('.acf_wysiwyg textarea').each(function(){
 
@@ -810,18 +804,16 @@ var acf = {
 			
 			
 			// reset tinyMCE settings
-			tinyMCE.settings = $.extend( {}, acf.tinyMCE_settings );
+			tinyMCE.settings.theme_advanced_buttons1 = '';
+			tinyMCE.settings.theme_advanced_buttons2 = '';
+			tinyMCE.settings.theme_advanced_buttons3 = '';
+			tinyMCE.settings.theme_advanced_buttons4 = '';
 			
-			
-			// Set toolbar
-			if( toolbar == 'basic' )
+			if( acf.wysiwyg_toolbars[ toolbar ] )
 			{
-				tinyMCE.settings.theme_advanced_buttons1 = "bold, italic, underline, blockquote, |, strikethrough, bullist, numlist, justifyleft, justifycenter, justifyright, undo, redo, link, unlink, fullscreen";
-				tinyMCE.settings.theme_advanced_buttons2 = "";
-			}
-			else
-			{
-				tinyMCE.settings.theme_advanced_buttons2 += ",code";
+				$.each( acf.wysiwyg_toolbars[ toolbar ], function( k, v ){
+					tinyMCE.settings[ k ] = v;
+				})
 			}
 			
 			
