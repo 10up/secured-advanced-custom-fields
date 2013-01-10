@@ -75,13 +75,13 @@
 	
 	
 	/*
-	*  update_fields
+	*  update_field_groups
 	*
 	*  @description: finds the new id's for metaboxes and show's hides metaboxes
 	*  @created: 1/03/2011
 	*/
 	
-	function update_fields()
+	acf.update_field_groups = function()
 	{
 
 		$.ajax({
@@ -167,16 +167,16 @@
 
 	
 	/*
-	*  update_fields (Live change events)
+	*  acf.update_field_groups (Live change events)
 	*
-	*  @description: call the update_fields function on live events
+	*  @description: call the acf.update_field_groups function on live events
 	*  @created: 1/03/2011
 	*/
 		
 	$('#page_template').live('change', function(){
 		
 		acf.data.page_template = $(this).val();
-		update_fields();
+		acf.update_field_groups();
 	    
 	});
 	
@@ -197,7 +197,7 @@
 			acf.data.page_parent = 0;
 		}
 		
-		update_fields();
+		acf.update_field_groups();
 	    
 	});
 
@@ -213,7 +213,7 @@
 		
 		acf.data.post_format = val;
 		
-		update_fields();
+		acf.update_field_groups();
 		
 	});	
 	
@@ -235,7 +235,7 @@
 		acf.data.taxonomy = values;
 
 
-		update_fields();
+		acf.update_field_groups();
 		
 	});
 	

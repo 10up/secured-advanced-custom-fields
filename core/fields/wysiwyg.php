@@ -52,7 +52,7 @@ class acf_Wysiwyg extends acf_Field
    		$toolbars['Basic'][1] = apply_filters( 'teeny_mce_buttons', array('bold', 'italic', 'underline', 'blockquote', 'strikethrough', 'bullist', 'numlist', 'justifyleft', 'justifycenter', 'justifyright', 'undo', 'redo', 'link', 'unlink', 'fullscreen'), $editor_id );
    		
    		
-   		// Custom - can be added with acf/fields/wysiwyg/get_toolbars filter
+   		// Custom - can be added with acf/fields/wysiwyg/toolbars filter
    	
 	   	return $toolbars;
    	}
