@@ -973,10 +973,10 @@ var acf = {
 		
 		
 		// has_editor
-		if( wp_content )
+		if( wp_acf_settings )
 		{
 			// html_mode
-			if( $('#wp-content-wrap').hasClass('html-active') )
+			if( $('#wp-acf_settings-wrap').hasClass('html-active') )
 			{
 				mode = 'html';
 			}
