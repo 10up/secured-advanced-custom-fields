@@ -81,9 +81,8 @@
 	*  @created: 1/03/2011
 	*/
 	
-	acf.update_field_groups = function()
-	{
-
+	$(document).live('acf/update_field_groups', function(){
+		
 		$.ajax({
 			url: ajaxurl,
 			data: acf.data,
@@ -163,22 +162,24 @@
 				
 			}
 		});
-	}
+	});
 
 	
 	/*
-	*  acf.update_field_groups (Live change events)
+	*  $(document).trigger('acf/update_field_groups'); (Live change events)
 	*
-	*  @description: call the acf.update_field_groups function on live events
+	*  @description: call the $(document).trigger('acf/update_field_groups'); event on live events
 	*  @created: 1/03/2011
 	*/
 		
 	$('#page_template').live('change', function(){
 		
 		acf.data.page_template = $(this).val();
-		acf.update_field_groups();
+		
+		$(document).trigger('acf/update_field_groups');
 	    
 	});
+	
 	
 	$('#parent_id').live('change', function(){
 		
@@ -197,7 +198,8 @@
 			acf.data.page_parent = 0;
 		}
 		
-		acf.update_field_groups();
+		
+		$(document).trigger('acf/update_field_groups');
 	    
 	});
 
@@ -213,7 +215,7 @@
 		
 		acf.data.post_format = val;
 		
-		acf.update_field_groups();
+		$(document).trigger('acf/update_field_groups');
 		
 	});	
 	
@@ -235,7 +237,7 @@
 		acf.data.taxonomy = values;
 
 
-		acf.update_field_groups();
+		$(document).trigger('acf/update_field_groups');
 		
 	});
 	
