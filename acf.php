@@ -622,7 +622,7 @@ class Acf
 				{
 					if( isset($field[ $key ]) )
 					{
-						$value = apply_filters('acf_load_field-' . $field[ $key ], $field);
+						$field = apply_filters('acf_load_field-' . $field[ $key ], $field);
 					}
 				}
 				
@@ -659,7 +659,7 @@ class Acf
 							{
 								if( isset($field[ $key ]) )
 								{
-									$value = apply_filters('acf_load_field-' . $field[ $key ], $field);
+									$field = apply_filters('acf_load_field-' . $field[ $key ], $field);
 								}
 							}
 							
