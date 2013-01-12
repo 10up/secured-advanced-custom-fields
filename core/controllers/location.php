@@ -488,6 +488,14 @@ class acf_location
 				$cats[] = $cat->term_id;
 			}
 		}
+		
+		
+		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
+		if( empty($cats) )
+		{
+			$cats[] = '1';
+		}
+		
 
         if($rule['operator'] == "==")
         {
