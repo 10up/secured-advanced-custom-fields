@@ -41,16 +41,18 @@ class acf_everything_fields
 		// save
 		add_action('create_term', array($this, 'save_taxonomy'));
 		add_action('edited_term', array($this, 'save_taxonomy'));
-		
 		add_action('edit_user_profile_update', array($this, 'save_user'));
 		add_action('personal_options_update', array($this, 'save_user'));
 		add_action('user_register', array($this, 'save_user'));
-		
-		
 		add_filter("attachment_fields_to_save", array($this, 'save_attachment'), null , 2);
+
 
 		// shopp
 		add_action('shopp_category_saved', array($this, 'shopp_category_saved'));
+		
+		
+		// delete
+		add_action('delete_term', array($this, 'delete_term'), 10, 4);
 	}
 	
 	
@@ -561,6 +563,25 @@ class acf_everything_fields
 		// exit for ajax
 		die();
 
+	}
+	
+	
+	/*
+	*  delete_term
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 12/01/13
+	*/
+	
+	function delete_term( $term, $tt_id, $taxonomy, $deleted_term )
+	{
+		global $wpdb;
+		
+		$values = $wpdb->query($wpdb->prepare(
+			"DELETE FROM $wpdb->options WHERE option_name LIKE %s",
+			'%' . $taxonomy . '_' . $term . '%'
+		));
 	}
 	
 			

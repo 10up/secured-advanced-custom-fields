@@ -144,10 +144,12 @@ class acf_location
 		
 
 		// WPML
-		if( $options['lang'] )
+		if( defined('ICL_LANGUAGE_CODE') )
 		{
-			global $sitepress;
-			$sitepress->switch_lang( $options['lang'] );
+			$options['lang'] = ICL_LANGUAGE_CODE;
+			
+			//global $sitepress;
+			//$sitepress->switch_lang( $options['lang'] );
 		}
 		
 		
