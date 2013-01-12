@@ -489,6 +489,23 @@ class acf_location
 			}
 		}
 		
+		$post_type = $options['post_type'];
+
+		if( !$post_type )
+		{
+			$post_type = get_post_type( $options['post_id'] );
+		}
+		
+		$taxonomies = get_object_taxonomies( $post_type );
+	
+			
+		
+		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
+		if( in_array('category', $taxonomies) && empty($cats) )
+		{
+			$terms[] = '1';
+		}
+		
 		
 		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
 		if( empty($cats) )
@@ -654,7 +671,13 @@ class acf_location
 				return false;
 			}
 			
-			$post_type = get_post_type( $options['post_id'] );
+			$post_type = $options['post_type'];
+
+			if( !$post_type )
+			{
+				$post_type = get_post_type( $options['post_id'] );
+			}
+			
 			$taxonomies = get_object_taxonomies( $post_type );
 			
         	if($taxonomies)
@@ -675,7 +698,7 @@ class acf_location
 		
 		
 		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
-		if( empty($terms) )
+		if( in_array('category', $taxonomies) && empty($terms) )
 		{
 			$terms[] = '1';
 		}
