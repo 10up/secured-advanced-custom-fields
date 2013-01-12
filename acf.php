@@ -85,11 +85,13 @@ class Acf
 		
 		
 		// action functions
-		add_action('acf/create_field', array($this, 'create_field'), 10, 1);
+		add_action('acf/create_field', array($this, 'create_field'), 1, 1);
+		add_filter('acf/get_field_groups', array($this, 'get_field_groups'), 1, 1);
+		//add_filter('acf/get_field', array($this, 'get_field'), 10, 1);
 		
 		
 		// filters
-		add_filter('acf_load_field', array($this, 'acf_load_field'), 5);
+		add_filter('acf_load_field', array($this, 'acf_load_field'), 1, 1);
 		add_filter('post_updated_messages', array($this, 'post_updated_messages'));
 		add_filter('acf_parse_value', array($this, 'acf_parse_value'));
 		
@@ -450,31 +452,17 @@ class Acf
 		</style>';
 	}
 	
-
-	/*--------------------------------------------------------------------------------------
-	*
-	*	get_field_groups
-	*
-	*	This function returns an array of post objects found in the get_posts and the 
-	*	register_field_group calls.
-	*
-	*	@author Elliot Condon
-	*	@since 3.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
 	
-	function get_field_groups()
+	/*
+	*  get_field_groups
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 12/01/13
+	*/
+	
+	function get_field_groups( $return )
 	{
-		// return cache
-		$cache = $this->get_cache('acf_field_groups');
-		if($cache != false)
-		{
-			return $cache;
-		}
-		
-		// vars
-		$acfs = array();
-		
 		// get acf's
 		$result = get_posts(array(
 			'numberposts' 	=> -1,
@@ -488,9 +476,11 @@ class Acf
 		// populate acfs
 		if($result)
 		{
+			$return = array();
+			
 			foreach($result as $acf)
 			{
-				$acfs[] = array(
+				$return[] = array(
 					'id' => $acf->ID,
 					'title' => get_the_title($acf->ID),
 					'fields' => $this->get_acf_fields($acf->ID),
@@ -502,19 +492,9 @@ class Acf
 		}
 		
 		// hook to load in registered field groups
-		$acfs = apply_filters('acf_register_field_group', $acfs);
+		//$return = apply_filters('acf_register_field_group', $return);
 		
-		// update cache
-		$this->set_cache('acf_field_groups', $acfs);
-		
-		// return
-		if(empty($acfs))
-		{
-			return false;
-		}
-		
-		
-		return $acfs;
+		return $return;
 	}
 	
 	
@@ -637,7 +617,7 @@ class Acf
 
 
 		// hook to load in registered field groups
-		$acfs = $this->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		
 		if($acfs)
 		{
@@ -1198,7 +1178,7 @@ class Acf
 		
 		
 		// find all acf objects
-		$acfs = $this->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		
 		
 		// blank array to hold acfs

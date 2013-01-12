@@ -127,7 +127,7 @@ class acf_third_party
 	function tabify_add_meta_boxes( $post_type )
 	{
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		
 		if($acfs)
 		{

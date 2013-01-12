@@ -152,7 +152,7 @@ class acf_location
 		
 		
 		// find all acf objects
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		
 		
 		// blank array to hold acfs
@@ -271,8 +271,15 @@ class acf_location
 			return false;
 		}
 		
-		$post = $options['post_id'];
-		        
+		 
+		// translate $rule['value']
+		// - this variable will hold the origional post_id, but $options['post_id'] will hold the translated version
+		if( function_exists('icl_object_id') )
+		{
+			$rule['value'] = icl_object_id( $rule['value'], $options['post_type'], true );
+		}
+		
+		
         if($rule['operator'] == "==")
         {
         	$match = ( $post == $rule['value'] );

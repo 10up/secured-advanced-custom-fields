@@ -419,8 +419,8 @@ class acf_everything_fields
 		
 			
 		// get acfs
-		$acfs = $this->parent->get_field_groups();
-		
+		$acfs = apply_filters('acf/get_field_groups', false);
+			
 		
 		// layout
 		$layout = 'tr';	

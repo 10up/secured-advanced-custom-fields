@@ -153,7 +153,7 @@ class acf_options_page
 		
 
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		if($acfs)
 		{
 			foreach($acfs as $acf)

@@ -426,34 +426,41 @@ function register_field_group($array)
 	$GLOBALS['acf_register_field_group'][] = $array;
 }
 
-function acf_register_field_group($array)
+
+add_filter('acf/get_field_groups', 'acf_register_field_group', 10, 1);
+function acf_register_field_group( $return )
 {
-	$array = array_merge($array, $GLOBALS['acf_register_field_group']);
-	
+
+	// validate
 	if( empty($GLOBALS['acf_register_field_group']) )
 	{
-		return $array;
+		return $return;
 	}
+	
+	
+	// merge in custom
+	$return = array_merge($return, $GLOBALS['acf_register_field_group']);
+	
 	
 	
 	// order field groups based on menu_order, title
 	// Obtain a list of columns
-	foreach ($array as $key => $row) {
-	    $menu_order[$key] = $row['menu_order'];
-	    $title[$key] = $row['title'];
+	foreach ($return as $key => $row)
+	{
+	    $menu_order[ $key ] = $row['menu_order'];
+	    $title[ $key ] = $row['title'];
 	}
 	
 	// Sort the array with menu_order ascending
 	// Add $array as the last parameter, to sort by the common key
 	if(isset($menu_order))
 	{
-		array_multisort($menu_order, SORT_ASC, $title, SORT_ASC, $array);
+		array_multisort($menu_order, SORT_ASC, $title, SORT_ASC, $return);
 	}
 	
-	
-	return $array;
+	return $return;
 }
-add_filter('acf_register_field_group', 'acf_register_field_group');
+
 
 
 /*--------------------------------------------------------------------------------------
@@ -699,7 +706,8 @@ function acf_form($options = null)
 	// html before fields
 	echo $options['html_before_fields'];
 	
-	$field_groups = $acf->get_field_groups();
+	$field_groups = apply_filters('acf/get_field_groups', false);
+
 	if($field_groups):
 		foreach($field_groups as $field_group):
 			

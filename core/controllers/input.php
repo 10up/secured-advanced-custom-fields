@@ -216,7 +216,8 @@ class acf_input
 		
 		
 		// get acf's
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
+		
 		
 		if($acfs)
 		{
@@ -260,7 +261,7 @@ class acf_input
 	function get_input_style($acf_id = false)
 	{
 		// vars
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		$html = "";
 		
 		// find acf
@@ -426,7 +427,7 @@ class acf_input
 		}
 		
 		// get acfs
-		$acfs = $this->parent->get_field_groups();
+		$acfs = apply_filters('acf/get_field_groups', false);
 		if( $acfs )
 		{
 			foreach( $acfs as $acf )
