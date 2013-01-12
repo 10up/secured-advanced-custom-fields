@@ -672,6 +672,13 @@ class acf_location
 				}
 			}
 		}
+		
+		
+		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
+		if( empty($terms) )
+		{
+			$terms[] = '1';
+		}
 
         
         if($rule['operator'] == "==")
