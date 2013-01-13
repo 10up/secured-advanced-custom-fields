@@ -122,6 +122,7 @@ var acf = {
 	
 	$(document).ready(function(){
 		
+		
 		//acf.wp_version = '1';
 		
 		
@@ -138,8 +139,6 @@ var acf = {
 				acf.farbtastic = $.farbtastic('#acf_color_picker');
 			}
 		}
-		
-		
 		
 		
 		/*
@@ -519,7 +518,7 @@ var acf = {
 		
 		
 		// reset acf_div and return false
-		acf.fields.image.div = null;
+		acf.fields.file.div = null;
 		
 	};
 	

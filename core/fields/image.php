@@ -459,24 +459,47 @@ class acf_Image extends acf_Field
 				}
 				
 				
-				// add file
-				$.each( json, function( k, image ){
-					
-					if( k != 0 )
+				
+				var selection = json,
+		    		i = 0;
+		    		
+		    	
+		    	$.each( json, function( k, image ){
+
+			    	// counter
+			    	i++;
+			    	
+			    	
+			    	// vars
+			    	var div = self.parent.acf.fields.image.div;
+			    	
+			    	
+			    	// add image to field
+			        self.parent.acf.fields.image.add( image );
+			        
+			        
+			        // select / add another file field?
+			        if( i < selection.length )
 					{
-						var repeater = self.parent.acf.fields.image.div.closest('.repeater');
+						var tr = div.closest('tr'),
+							repeater = tr.closest('.repeater');
 						
-						// add row 
-		 				repeater.find('.add-row-end').trigger('click'); 
-		 			 
-		 				// set acf_div to new row file 
-		 				self.parent.acf.fields.image.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
-	 				
+						
+						if( tr.next('.row').exists() )
+						{
+							self.parent.acf.fields.image.div = tr.next('.row').find('.acf-image-uploader');
+						}
+						else
+						{
+							// add row 
+			 				repeater.find('.add-row-end').trigger('click'); 
+			 			 
+			 				// set div to new row file 
+			 				self.parent.acf.fields.image.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+						}
 					}
 					
-					self.parent.acf.fields.image.add( image );
-					
-				});
+			    });
 				
 				
 	 			self.parent.tb_remove();
@@ -535,7 +558,7 @@ class acf_Image extends acf_Field
 	function add_buttons()
 	{
 		// vars
-		var is_sub_field = (self.parent.acf_div && self.parent.acf_div.closest('.repeater').length > 0) ? true : false;
+		var is_sub_field = (self.parent.acf.fields.image.div.closest('.repeater').length > 0) ? true : false;
 		
 		
 		// add submit after media items (on for sub fields)
