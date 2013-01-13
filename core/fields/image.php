@@ -22,8 +22,12 @@ class acf_Image extends acf_Field
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('get_media_item_args', array($this, 'allow_img_insertion'));
-		add_action('wp_ajax_acf_get_preview_image', array($this, 'acf_get_preview_image'));
 		add_action('acf_head-update_attachment-image', array($this, 'acf_head_update_attachment'));
+		
+		add_action('wp_ajax_acf/fields/image/get_images', array($this, 'ajax_get_images'));
+		//add_filter('image_size_names_choose', array($this, 'image_size_names_choose'));
+		add_action('wp_prepare_attachment_for_js', array($this, 'wp_prepare_attachment_for_js'), 10, 3);
+		
    	}
    	
    	
@@ -42,7 +46,7 @@ class acf_Image extends acf_Field
 (function($){
 	
 	// vars
-	var div = self.parent.acf_edit_attachment;
+	var div = self.parent.acf.fields.image.div;
 	
 	
 	// add message
@@ -54,59 +58,56 @@ class acf_Image extends acf_Field
 		<?php
 	}
 	
-   	/*--------------------------------------------------------------------------------------
-	*
-	*	acf_get_preview_image
-	*
-	*	@description 		Returns a json array of preview sized urls
-	*	@author 			Elliot Condon
-	*	@since 				3.1.7
-	* 
-	*-------------------------------------------------------------------------------------*/
 	
-   	function acf_get_preview_image()
+	/*
+   	*  ajax_get_images
+   	*
+   	*  @description: 
+   	*  @since: 3.5.7
+   	*  @created: 13/01/13
+   	*/
+	
+   	function ajax_get_images()
    	{
-   		$options = array(
-   			'id' => false,
-   			'preview_size' => 'thumbnail'
-   		);
-   		$options = array_merge($options, $_GET);
-   		
-   		
-   		
    		// vars
+		$options = array(
+			'nonce' => '',
+			'images' => array(),
+			'preview_size' => 'thumbnail'
+		);
 		$return = array();
 		
 		
-		// validate
-		if( ! $options['id'] )
+		// load post options
+		$options = array_merge($options, $_POST);
+		
+		
+		// verify nonce
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
 		{
-			die( 0 );
+			die(0);
 		}
 		
 		
-		// convert id_string into an array
-		$ids = explode(',' , $options['id']);
-		if( ! is_array($ids) )
+		if( $options['images'] )
 		{
-			$ids = array( $options['id'] );
+			foreach( $options['images'] as $id )
+			{
+				$src = wp_get_attachment_image_src( $id, $options['preview_size'] );
+				
+				
+				$return[] = array(
+					'id' => $id,
+					'src' => $src[0],
+				);
+			}
 		}
 		
 		
-		// find image preview url for each image
-		foreach( $ids as $k => $v )
-		{
-			$url = wp_get_attachment_image_src( $v, $options['preview_size'] );
-			$return[] = array(
-				'id' => $v,
-				'url' => $url[0],
-			);
-		}
-   		
-
 		// return json
 		echo json_encode( $return );
-		die();
+		die;
+		
    	}
    	
    	
@@ -157,7 +158,7 @@ class acf_Image extends acf_Field
 		
 		?>
 <div class="acf-image-uploader clearfix <?php echo $class; ?>" data-preview_size="<?php echo $preview_size; ?>">
-	<input class="value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
+	<input class="acf-image-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 	<div class="has-image">
 		<div class="hover">
 			<ul class="bl">
@@ -346,7 +347,7 @@ class acf_Image extends acf_Field
 </style>
 <script type="text/javascript">
 (function($){	
-		
+	
 	/*
 	*  Select Image
 	*
@@ -368,9 +369,10 @@ class acf_Image extends acf_Field
 		}
 		
 		
-		var data = {
-			action: 'acf_get_preview_image',
-			id: id,
+		var ajax_data = {
+			action : 'acf/fields/image/get_images',
+			nonce : self.parent.acf.nonce,
+			images : [ id ],
 			preview_size : "<?php echo $options['acf_preview_size']; ?>"
 		};
 	
@@ -378,45 +380,32 @@ class acf_Image extends acf_Field
 		// ajax
 		$.ajax({
 			url: ajaxurl,
-			data : data,
+			type: 'post',
+			data : ajax_data,
 			cache: false,
 			dataType: "json",
-			success: function( json ) {
-		    	
+			success: function( json ) {	    	
 
 				// validate
-				if(!json)
+				if( !json )
 				{
 					return false;
 				}
 				
 				
-				// get item
-				var item = json[0],
-					div = self.parent.acf_div;
+				// add file
+				self.parent.acf.fields.image.add( json[0] );
 				
-				
-				// update acf_div
-				div.find('input.value').val( item.id ).trigger('change');
-	 			div.find('img').attr( 'src', item.url );
-	 			div.addClass('active');
-	 	
-	 	
-	 			// validation
-	 			div.closest('.field').removeClass('error');
-	 			
-	 			
-	 			// reset acf_div and return false
-	 			self.parent.acf_div = null;
 	 			self.parent.tb_remove();
 	 	
 	 	
 			}
 		});
 		
+ 						
 		return false;
-		
 	});
+	
 	
 	
 	/*
@@ -437,68 +426,69 @@ class acf_Image extends acf_Field
 			return false; 
 		} 
 		
-		
-		// generate id's
-		var attachment_ids = [];
-		$('#media-items .media-item .acf-checkbox:checked').each(function(){
-			attachment_ids.push( $(this).val() );
-		});
-		
-		
-		// creae json data
-		var data = {
-			action: 'acf_get_preview_image',
-			id: attachment_ids.join(','),
+		 
+		var ajax_data = {
+			action : 'acf/fields/image/get_images',
+			nonce : self.parent.acf.nonce,
+			images : [],
 			preview_size : "<?php echo $options['acf_preview_size']; ?>"
 		};
 		
 		
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		$.getJSON(ajaxurl, data, function( json ) {
+		// add to id array
+		$('#media-items .media-item .acf-checkbox:checked').each(function(){
 			
-			// validate
-			if(!json)
-			{
-				return false;
-			}
+			ajax_data.images.push( $(this).val() );
 			
-			$.each(json, function(i ,item){
-			
-				// update acf_div
-				self.parent.acf_div.find('input.value').val( item.id ).trigger('change'); 
-	 			self.parent.acf_div.find('img').attr('src', item.url ); 
-	 			self.parent.acf_div.addClass('active'); 
-	 	 
-	 	 
-	 			// validation 
-	 			self.parent.acf_div.closest('.field').removeClass('error'); 
-	
-	 			 
-	 			if((i+1) < total) 
-	 			{ 
-	 				// add row 
-	 				self.parent.acf_div.closest('.repeater').find('.add-row-end').trigger('click'); 
-	 			 
-	 				// set acf_div to new row image 
-	 				self.parent.acf_div = self.parent.acf_div.closest('.repeater').find('> table > tbody > tr.row:last .acf-image-uploader'); 
-	 			} 
-	 			else 
-	 			{ 
-	 				// reset acf_div and return false 
-					self.parent.acf_div = null; 
-					self.parent.tb_remove(); 
-	 			} 
-				
-    		});
-
-			
-		
 		});
 		
-		return false;
+		
+		// ajax
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {
+			
+				// validate
+				if( !json )
+				{
+					return false;
+				}
+				
+				
+				// add file
+				$.each( json, function( k, image ){
+					
+					if( k != 0 )
+					{
+						var repeater = self.parent.acf.fields.image.div.closest('.repeater');
+						
+						// add row 
+		 				repeater.find('.add-row-end').trigger('click'); 
+		 			 
+		 				// set acf_div to new row file 
+		 				self.parent.acf.fields.image.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+	 				
+					}
+					
+					self.parent.acf.fields.image.add( image );
+					
+				});
+				
+				
+	 			self.parent.tb_remove();
+	 	
+			}
+		});
+ 		
+ 		
+		return false; 
 		 
 	}); 
-	
+		
 	
 	/*
 	*  Edit Attachment Toggle
@@ -716,6 +706,68 @@ class acf_Image extends acf_Field
 		return $value;
 	}
 	
+	
+	/*
+	*  image_size_names_choose
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 13/01/13
+	*/
+	
+	function image_size_names_choose( $sizes )
+	{
+		global $_wp_additional_image_sizes;
+			
+		if( $_wp_additional_image_sizes )
+		{
+			foreach( $_wp_additional_image_sizes as $k => $v )
+			{
+				$title = $k;
+				$title = str_replace('-', ' ', $title);
+				$title = str_replace('_', ' ', $title);
+				$title = ucwords( $title );
+				
+				$sizes[ $k ] = $title;
+			}
+			// foreach( $image_sizes as $image_size )
+		}
+		
+        return $sizes;
+	}
+	
+	
+	/*
+	*  wp_prepare_attachment_for_js
+	*
+	*  @description: This sneaky hook adds the missing sizes to each attachment in the 3.5 uploader. It would be a lot easier to add all the sizes to the 'image_size_names_choose' filter but then it will show up on the normal the_content editor
+	*  @since: 3.5.7
+	*  @created: 13/01/13
+	*/
+	
+	function wp_prepare_attachment_for_js( $response, $attachment, $meta )
+	{
+		$attachment_url = $response['url'];
+		$base_url = str_replace( wp_basename( $attachment_url ), '', $attachment_url );
+		
+		if( is_array($meta['sizes']) )
+		{
+			foreach( $meta['sizes'] as $k => $v )
+			{
+				if( !isset($response['sizes'][ $k ]) )
+				{
+					$response['sizes'][ $k ] = array(
+						'height'      =>  $v['height'],
+						'width'       =>  $v['width'],
+						'url'         => $base_url .  $v['file'],
+						'orientation' => $v['height'] > $v['width'] ? 'portrait' : 'landscape',
+					);
+				}
+			}
+		}
+
+		return $response;
+	}
 	
 		
 }

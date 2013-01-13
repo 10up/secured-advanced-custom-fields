@@ -22,8 +22,9 @@ class acf_File extends acf_Field
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('get_media_item_args', array($this, 'allow_file_insertion'));
-		add_action('wp_ajax_acf_select_file', array($this, 'ajax_select_file'));
 		add_action('acf_head-update_attachment-file', array($this, 'acf_head_update_attachment'));
+		
+		add_action('wp_ajax_acf/fields/file/get_files', array($this, 'ajax_get_files'));
    	}
    	
    	
@@ -42,7 +43,7 @@ class acf_File extends acf_Field
 (function($){
 	
 	// vars
-	var div = self.parent.acf_edit_attachment;
+	var div = self.parent.acf.fields.file.div;
 	
 	
 	// add message
@@ -55,71 +56,57 @@ class acf_File extends acf_Field
 	}
    	
    	
-   	/*--------------------------------------------------------------------------------------
-	*
-	*	render_file
-	*
-	*	@description : Renders the file html from an ID
-	*	@author Elliot Condon
-	*	@since 3.1.6
-	* 
-	*-------------------------------------------------------------------------------------*/
+   	/*
+   	*  ajax_get_files
+   	*
+   	*  @description: 
+   	*  @since: 3.5.7
+   	*  @created: 13/01/13
+   	*/
 	
-   	function render_file($id = null)
+   	function ajax_get_files()
    	{
-   		if(!$id)
-   		{
-   			echo "";
-   			return;
-   		}
-   		
-   		
    		// vars
-		$file_src = wp_get_attachment_url($id);
-		preg_match("~[^/]*$~", $file_src, $file_name);
-		$class = "active";
-   		
-   		
-   		?>
-		<ul class="hl clearfix">
-			<li data-mime="<?php echo get_post_mime_type( $id ) ; ?>">
-				<img class="acf-file-icon" src="<?php echo wp_mime_type_icon( $id ); ?>" alt=""/>
-			</li>
-			<li>
-				<span class="acf-file-name"><?php echo $file_name[0]; ?></span><br />
-				<a href="#" class="edit-file"><?php _e('Edit','acf'); ?></a> 
-				<a href="#" class="remove-file"><?php _e('Remove','acf'); ?></a>
-			</li>
-		</ul>
-		<?php
-   		
-   	}
-   	
-   	/*--------------------------------------------------------------------------------------
-	*
-	*	ajax_select_file
-	*
-	*	@description ajax function to provide url of selected file
-	*	@author Elliot Condon
-	*	@since 3.1.5
-	* 
-	*-------------------------------------------------------------------------------------*/
-	
-   	function ajax_select_file()
-   	{
-   		$id = isset($_POST['id']) ? $_POST['id'] : false;
-   				
+		$options = array(
+			'nonce' => '',
+			'files' => array()
+		);
+		$return = array();
 		
-		// attachment ID is required
-   		if(!$id)
-   		{
-   			echo "";
-   			die();
-   		}
-   		
-   		$this->render_file($id);
-   		
-		die();
+		
+		// load post options
+		$options = array_merge($options, $_POST);
+		
+		
+		// verify nonce
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
+		{
+			die(0);
+		}
+		
+		
+		if( $options['files'] )
+		{
+			foreach( $options['files'] as $id )
+			{
+				$file_src = wp_get_attachment_url( $id );
+				preg_match("~[^/]*$~", $file_src, $file_name);
+					
+					
+				// vars
+				$return[] = array(
+					'id' => $id,
+					'icon' => wp_mime_type_icon( $id ),
+					'name' => $file_name[0]
+				);
+			}
+		}
+		
+		
+		// return json
+		echo json_encode( $return );
+		die;
+		
    	}
 	
 	
@@ -153,18 +140,41 @@ class acf_File extends acf_Field
 	{
 		
 		// vars
-		$class = $field['value'] ? "active" : "";
+		$options = array(
+			'class' => '',
+			'icon' => '',
+			'file_name' => ''
+		);
+		
+		if( $field['value'] )
+		{
+			$file_src = wp_get_attachment_url( $field['value'] );
+			preg_match("~[^/]*$~", $file_src, $file_name);
+		
+			$options['class'] = 'active';
+			$options['icon'] = wp_mime_type_icon( $field['value'] );
+			$options['file_name'] = $file_name[0];
+		}
 		
 		?>
-		<div class="acf-file-uploader <?php echo $class; ?>">
-			<input class="value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
+		<div class="acf-file-uploader <?php echo $options['class']; ?>">
+			<input class="acf-file-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 			<div class="has-file">
-				<?php $this->render_file( $field['value'] ); ?>
+				<ul class="hl clearfix">
+					<li>
+						<img class="acf-file-icon" src="<?php echo $options['icon']; ?>" alt=""/>
+					</li>
+					<li>
+						<span class="acf-file-name"><?php echo $options['file_name']; ?></span><br />
+						<a href="#" class="edit-file"><?php _e('Edit','acf'); ?></a> 
+						<a href="#" class="remove-file"><?php _e('Remove','acf'); ?></a>
+					</li>
+				</ul>
 			</div>
 			<div class="no-file">
 				<ul class="hl clearfix">
 					<li>
-						<span class="acf-file-name"><?php _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><?php _e('Add File','acf'); ?></a>
+						<span><?php _e('No File Selected','acf'); ?></span>. <a href="#" class="button add-file"><?php _e('Add File','acf'); ?></a>
 					</li>
 				</ul>
 			</div>
@@ -335,83 +345,6 @@ class acf_File extends acf_Field
 <script type="text/javascript">
 (function($){
 	
-	/*
-	*  Vars
-	*
-	*  @description: 
-	*  @since: 2.0.4
-	*  @created: 11/12/12
-	*/
-	
-	var options = {
-		id : []
-	};
-	
-	
-	/*
-	*  add_next_file
-	*
-	*  @description: 
-	*  @since: 2.0.4
-	*  @created: 11/12/12
-	*/
-	
-	function add_next_file()
-	{
-		// vars
-		var next_id = options.id[0],
-			ajax_data = {
-				action	:	'acf_select_file',
-				id		:	next_id
-			};
-		
-		
-		// ajax
-		$.post( ajaxurl, ajax_data, function( html ){
-			
-			// validate
-			if( !html )
-			{
-				return false;
-			}
-			
-			
-			// add file to acf_div
-			self.parent.acf_div.find('input.value').val( next_id ).trigger('change');
-			self.parent.acf_div.find('.has-file').html(html);
- 			self.parent.acf_div.addClass('active');
- 			
- 			
- 			// validation
- 			self.parent.acf_div.closest('.field').removeClass('error');
- 			
- 			
- 			// remove first id from array
- 			options.id.splice(0, 1);
- 			
- 			
- 			// are there more id's to add? (multiple selection for repeater)
- 			if( options.id.length > 0 ) 
- 			{ 
- 				// add row 
- 				self.parent.acf_div.closest('.repeater').find('.add-row-end').trigger('click'); 
- 			 
- 				// set acf_div to new row file 
- 				self.parent.acf_div = self.parent.acf_div.closest('.repeater').find('> table > tbody > tr.row:last .acf-file-uploader');
- 				
- 				// add the next file
- 				add_next_file();
- 			} 
- 			else 
- 			{ 
- 				// reset acf_div and return false 
-				self.parent.acf_div = null; 
-				self.parent.tb_remove(); 
- 			} 
- 	 
-		});
-	}
-	
 	
 	/*
 	*  Select File
@@ -423,25 +356,49 @@ class acf_File extends acf_Field
 	
 	$('#media-items .media-item a.acf-select').live('click', function(){
 		
-		// vars
-		var new_id = $(this).attr('href');
+		var id = $(this).attr('href');
 		
 		
 		// IE7 Fix
-		if( new_id.indexOf("/") != -1 )
+		if( id.indexOf("/") != -1 )
 		{
-			var split = new_id.split("/");
-			new_id = split[ split.length-1 ];
+			var split = id.split("/");
+			id = split[split.length-1];
 		}
 		
 		
-		// add to id array
-		options.id.push( new_id );
+		var ajax_data = {
+			action : 'acf/fields/file/get_files',
+			nonce : self.parent.acf.nonce,
+			files : [ id ]
+		};
+	
 		
+		// ajax
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {	    	
+
+				// validate
+				if( !json )
+				{
+					return false;
+				}
+				
+				
+				// add file
+				self.parent.acf.fields.file.add( json[0] );
+				
+	 			self.parent.tb_remove();
+	 	
+	 	
+			}
+		});
 		
-		// add the next file
- 		add_next_file();
- 				
  						
 		return false;
 	});
@@ -465,17 +422,62 @@ class acf_File extends acf_Field
 			return false; 
 		} 
 		
+		 
+		var ajax_data = {
+			action : 'acf/fields/file/get_files',
+			nonce : self.parent.acf.nonce,
+			files : []
+		};
+		
 		
 		// add to id array
 		$('#media-items .media-item .acf-checkbox:checked').each(function(){
-		
-			options.id.push( $(this).val() );
+			
+			ajax_data.files.push( $(this).val() );
 			
 		});
-		 
-		 
-		// add the next file
- 		add_next_file();
+		
+		
+		// ajax
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {
+			
+				// validate
+				if( !json )
+				{
+					return false;
+				}
+				
+				
+				// add file
+				$.each( json, function( k, file ){
+					
+					if( k != 0 )
+					{
+						var repeater = self.parent.acf.fields.file.div.closest('.repeater');
+						
+						// add row 
+		 				repeater.find('.add-row-end').trigger('click'); 
+		 			 
+		 				// set acf_div to new row file 
+		 				self.parent.acf.fields.file.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+	 				
+					}
+					
+					self.parent.acf.fields.file.add( file );
+					
+				});
+				
+				
+	 			self.parent.tb_remove();
+	 	
+			}
+		});
  		
  		
 		return false; 

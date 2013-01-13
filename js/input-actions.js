@@ -8,6 +8,7 @@
 
 var acf = {
 	admin_url : '',
+	wp_version : '0',
 	post_id : 0,
 	validation : false,
 	text : {
@@ -24,12 +25,81 @@ var acf = {
 	},
 	conditional_logic : {},
 	sortable_helper : null,
-	wysiwyg_toolbars : {}
+	media : null,
+	fields : {
+		image : {
+			div : null,
+			add : function(){},
+			remove : function(){},
+			text : {
+				title_add : "Select Image",
+				title_edit : "Edit Image",
+				button_add : "Select Image",
+			}
+		},
+		file : {
+			div : null,
+			add : function(){},
+			remove : function(){},
+			text : {
+				title_add : "Select File",
+				title_edit : "Edit File",
+				button_add : "Select File",
+			}
+		},
+		wysiwyg : {
+			toolbars : {}
+		}
+	}
 };
 
 (function($){
 	
-		
+	
+	/**
+	 * Simply compares two string version values.
+	 * 
+	 * Example:
+	 * versionCompare('1.1', '1.2') => -1
+	 * versionCompare('1.1', '1.1') =>  0
+	 * versionCompare('1.2', '1.1') =>  1
+	 * versionCompare('2.23.3', '2.22.3') => 1
+	 * 
+	 * Returns:
+	 * -1 = left is LOWER than right
+	 *  0 = they are equal
+	 *  1 = left is GREATER = right is LOWER
+	 *  And FALSE if one of input versions are not valid
+	 *
+	 * @function
+	 * @param {String} left  Version #1
+	 * @param {String} right Version #2
+	 * @return {Integer|Boolean}
+	 * @author Alexey Bass (albass)
+	 * @since 2011-07-14
+	 */
+	 
+	acf.version_compare = function(left, right)
+	{
+	    if (typeof left + typeof right != 'stringstring')
+	        return false;
+	    
+	    var a = left.split('.')
+	    ,   b = right.split('.')
+	    ,   i = 0, len = Math.max(a.length, b.length);
+	        
+	    for (; i < len; i++) {
+	        if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
+	            return 1;
+	        } else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
+	            return -1;
+	        }
+	    }
+	    
+	    return 0;
+	};
+	
+	
 	/*
 	*  Exists
 	*
@@ -51,7 +121,31 @@ var acf = {
 	*/
 	
 	$(document).ready(function(){
-	
+		
+		//acf.wp_version = '1';
+		
+		
+		/*
+		*  Color Picker
+		*/
+
+		if( $.farbtastic )
+		{
+			if( !acf.farbtastic )
+			{
+				$('body').append('<div id="acf_color_picker" />');
+		
+				acf.farbtastic = $.farbtastic('#acf_color_picker');
+			}
+		}
+		
+		
+		
+		
+		/*
+		*  3.5 Show / Hide Metaboxes
+		*/
+		
 		// add classes
 		$('#poststuff .postbox[id*="acf_"]').addClass('acf_postbox');
 		$('#adv-settings label[for*="acf_"]').addClass('acf_hide_label');
@@ -297,20 +391,6 @@ var acf = {
 	*  @description: 
 	*  @created: 1/03/2011
 	*/
-			
-	$(document).ready(function(){
-	
-		// validate
-		if( ! $.farbtastic )
-		{
-			return;
-		}
-		
-		$('body').append('<div id="acf_color_picker" />');
-		
-		acf.farbtastic = $.farbtastic('#acf_color_picker');
-		
-	});
 	
 	
 	// update colors
@@ -398,18 +478,139 @@ var acf = {
 	*  @created: 1/03/2011
 	*/
 	
+	acf.fields.file.add = function( file )
+	{
+		// vars
+		var div = acf.fields.file.div;
+		
+		
+		// set atts
+		div.find('.acf-file-value').val( file.id ).trigger('change');
+	 	div.find('.acf-file-icon').attr( 'src', file.icon );
+	 	div.find('.acf-file-name').text( file.name );
+	 	
+	 	
+	 	// set div class
+	 	div.addClass('active');
+	 	
+	 	
+	 	// validation
+		div.closest('.field').removeClass('error');
+		
+		
+		// reset acf_div and return false
+		acf.fields.file.div = null;
+	};
+	
+	acf.fields.file.remove = function()
+	{
+		// vars
+		var div = acf.fields.file.div;
+		
+		
+		// remove atts
+		div.find('.acf-file-value').val( '' ).trigger('change');
+	 	div.find('.acf-file-icon').attr( 'src', '' );
+	 	div.find('.acf-file-name').text( '' );
+		
+		
+		// remove class
+		div.removeClass('active');
+		
+		
+		// reset acf_div and return false
+		acf.fields.image.div = null;
+		
+	};
+	
+	
 	// add file
 	$('.acf-file-uploader .add-file').live('click', function(){
-				
+		
 		// vars
 		var div = $(this).closest('.acf-file-uploader');
 		
+		
 		// set global var
-		window.acf_div = div;
+		acf.fields.file.div = div;
+			
 			
 		// show the thickbox
-		tb_show( acf.text.file_tb_title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=file&acf_type=file&TB_iframe=1');
+		if( acf.version_compare(acf.wp_version, '3.5') > -1 )
+		{
+			// clear var
+			acf.media = null;
+			
+			// Create the media frame.
+			acf.media = wp.media({
+				title : acf.fields.file.text.title_add,
+				button : {
+					text: acf.fields.file.text.button_add,
+				},
+				multiple: (div.closest('.repeater').exists() ? true : false)
+			});
 	
+			
+			// When an image is selected, run a callback.
+		    acf.media.on( 'select', function()
+		    {
+		    	var selection = acf.media.state().get('selection'),
+		    		i = 0;
+		    		
+		    	
+			    selection.each(function(attachment){
+			    	
+			    	// counter
+			    	i++;
+			    	
+			    	
+			    	// vars
+			    	var div = acf.fields.file.div,
+			    		file = {
+					    	id : attachment.id,
+					    	name : attachment.attributes.filename,
+					    	icon : attachment.attributes.icon
+				    	};
+			    	
+			    	
+			    	// add image to field
+			        acf.fields.file.add( file );
+			        
+			        
+			        // select / add another file field?
+			        if( i < selection.length )
+					{
+						var tr = div.closest('tr'),
+							repeater = tr.closest('.repeater');
+						
+						
+						if( tr.next('.row').exists() )
+						{
+							acf.fields.file.div = tr.next('.row').find('.acf-file-uploader');
+						}
+						else
+						{
+							// add row 
+			 				repeater.find('.add-row-end').trigger('click'); 
+			 			 
+			 				// set acf_div to new row file 
+			 				acf.fields.file.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+						}
+					}
+					
+					
+			        
+			    });
+
+		    });
+		    
+		    acf.media.open();
+		}
+		else
+		{	
+			tb_show( acf.fields.file.text.title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=file&acf_type=file&TB_iframe=1');
+		}
+		
 		return false;
 	});
 	
@@ -419,7 +620,9 @@ var acf = {
 		// vars
 		var div = $(this).closest('.acf-file-uploader');
 		
-		div.removeClass('active').find('input.value').val('').trigger('change');
+		acf.fields.file.div = div;
+		
+		acf.fields.file.remove();
 		
 		return false;
 		
@@ -430,15 +633,15 @@ var acf = {
 		
 		// vars
 		var div = $(this).closest('.acf-file-uploader'),
-			id = div.find('input.value').val();
+			id = div.find('.acf-file-value').val();
 		
 
 		// set global var
-		window.acf_edit_attachment = div;
+		acf.fields.file.div = div;
 				
 		
 		// show edit attachment
-		tb_show( acf.text.file_tb_title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=file&TB_iframe=1');
+		tb_show( acf.fields.file.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=file&TB_iframe=1');
 		
 		
 		return false;
@@ -447,11 +650,55 @@ var acf = {
 	
 	
 	/*
-	*  Field: Image
+	*  Image
 	*
 	*  @description: 
-	*  @created: 1/03/2011
+	*  @since: 3.5.7
+	*  @created: 13/01/13
 	*/
+	
+	acf.fields.image.add = function( image )
+	{
+		// vars
+		var div = acf.fields.image.div;
+		
+		// set atts
+		div.find('.acf-image-value').val( image.id ).trigger('change');
+	 	div.find('img').attr( 'src', image.src );
+	 	
+	 	
+	 	// set div class
+	 	div.addClass('active');
+	 	
+	 	
+	 	// validation
+		div.closest('.field').removeClass('error');
+		
+		
+		// reset acf_div and return false
+		acf.fields.image.div = null;
+	};
+	
+	acf.fields.image.remove = function()
+	{
+		// vars
+		var div = acf.fields.image.div;
+		
+		
+		// remove atts
+		div.find('.acf-image-value').val('').trigger('change');
+		div.find('img').attr('src', '');
+		
+		
+		// remove class
+		div.removeClass('active');
+		
+		
+		// reset acf_div and return false
+		acf.fields.image.div = null;
+		
+	};
+	
 	
 	// add image
 	$('.acf-image-uploader .add-image').live('click', function(){
@@ -460,11 +707,91 @@ var acf = {
 		var div = $(this).closest('.acf-image-uploader'),
 			preview_size = div.attr('data-preview_size');
 		
+		
 		// set global var
-		window.acf_div = div;
+		acf.fields.image.div = div;
+			
 			
 		// show the thickbox
-		tb_show( acf.text.image_tb_title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+		if( acf.version_compare(acf.wp_version, '3.5') > -1 )
+		{
+			// clear var
+			acf.media = null;
+			
+			// Create the media frame.
+			acf.media = wp.media({
+				title : acf.fields.image.text.title_add,
+				button : {
+					text: acf.fields.image.text.button_add,
+				},
+				multiple: (div.closest('.repeater').exists() ? true : false)
+			});
+	
+			
+			// When an image is selected, run a callback.
+		    acf.media.on( 'select', function()
+		    {
+		    	var selection = acf.media.state().get('selection'),
+		    		i = 0;
+		    		
+		    	
+			    selection.each(function(attachment){
+			    	console.log( attachment );
+			    	// counter
+			    	i++;
+			    	
+			    	
+			    	// vars
+			    	var div = acf.fields.image.div,
+				    	image = {
+					    	id : attachment.id,
+					    	src : attachment.attributes.url
+				    	};
+			    	
+
+			    	// is preview size available?
+			    	if( attachment.attributes.sizes[ preview_size ] )
+			    	{
+				    	image.src = attachment.attributes.sizes[ preview_size ].url;
+			    	}
+			    	
+			    	
+			    	// add image to field
+			        acf.fields.image.add( image );
+			        
+			        
+			        // select / add another file field?
+			        if( i < selection.length )
+					{
+						var tr = div.closest('tr'),
+							repeater = tr.closest('.repeater');
+						
+						
+						if( tr.next('.row').exists() )
+						{
+							acf.fields.image.div = tr.next('.row').find('.acf-image-uploader');
+						}
+						else
+						{
+							// add row 
+			 				repeater.find('.add-row-end').trigger('click'); 
+			 			 
+			 				// set acf_div to new row file 
+			 				acf.fields.image.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+						}
+					}
+					
+			    });
+
+		    });
+		    
+		    acf.media.open();
+		}
+		else
+		{
+			tb_show( acf.fields.image.text.title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+		}
+		
 	
 		return false;
 	});
@@ -475,9 +802,10 @@ var acf = {
 		// vars
 		var div = $(this).closest('.acf-image-uploader');
 		
-		div.removeClass('active');
-		div.find('input.value').val('').trigger('change');
-		div.find('img').attr('src', '');
+		
+		acf.fields.image.div = div;
+		acf.fields.image.remove();
+		
 		
 		return false;
 			
@@ -488,15 +816,15 @@ var acf = {
 		
 		// vars
 		var div = $(this).closest('.acf-image-uploader'),
-			id = div.find('input.value').val();
+			id = div.find('.acf-image-value').val();
 		
 
 		// set global var
-		window.acf_edit_attachment = div;
+		acf.fields.image.div = div;
 				
 		
 		// show edit attachment
-		tb_show( acf.text.image_tb_title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
+		tb_show( acf.fields.image.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
 		
 		
 		return false;
@@ -809,9 +1137,9 @@ var acf = {
 			tinyMCE.settings.theme_advanced_buttons3 = '';
 			tinyMCE.settings.theme_advanced_buttons4 = '';
 			
-			if( acf.wysiwyg_toolbars[ toolbar ] )
+			if( acf.fields.wysiwyg.toolbars[ toolbar ] )
 			{
-				$.each( acf.wysiwyg_toolbars[ toolbar ], function( k, v ){
+				$.each( acf.fields.wysiwyg.toolbars[ toolbar ], function( k, v ){
 					tinyMCE.settings[ k ] = v;
 				})
 			}

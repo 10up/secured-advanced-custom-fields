@@ -546,24 +546,33 @@ class acf_input
 	
 	function acf_head_input()
 	{
+		global $wp_version;
 		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
 		
 		?>
 <script type="text/javascript">
 
-// admin url
+// vars
 acf.admin_url = "<?php echo admin_url(); ?>";
+acf.wp_version = "<?php echo $wp_version; ?>";
 	
 	
-// messages
+// text
 acf.text.validation_error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
 acf.text.file_tb_title_add = "<?php _e("Add File to Field",'acf'); ?>";
 acf.text.file_tb_title_edit = "<?php _e("Edit File",'acf'); ?>";
-acf.text.image_tb_title_add = "<?php _e("Add Image to Field",'acf'); ?>";
-acf.text.image_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
 acf.text.relationship_max_alert = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
 acf.text.gallery_tb_title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
 acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
+
+
+acf.fields.image.text.title_add = "Select Image";
+acf.fields.image.text.title_edit = "Edit Image";
+acf.fields.image.text.button_add = "Select Image";
+
+acf.fields.file.text.title_add = "Select File";
+acf.fields.file.text.title_edit = "Edit File";
+acf.fields.file.text.button_add = "Select File";
 
 
 // WYSIWYG
@@ -574,10 +583,10 @@ if( is_array($toolbars) ):
 		$name = sanitize_title( $label );
 		$name = str_replace('-', '_', $name);
 	?>
-acf.wysiwyg_toolbars.<?php echo $name; ?> = {};
+acf.fields.wysiwyg.toolbars.<?php echo $name; ?> = {};
 		<?php if( is_array($rows) ): 
 			foreach( $rows as $k => $v ): ?>
-acf.wysiwyg_toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
+acf.fields.wysiwyg.toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
 			<?php endforeach; 
 		endif;
 	endforeach;
