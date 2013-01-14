@@ -444,14 +444,26 @@ class acf_location
 		}
 		
 		
+		if( ! $page_template )
+		{
+			$post_type = $options['post_type'];
+
+			if( !$post_type )
+			{
+				$post_type = get_post_type( $options['post_id'] );
+			}
+			
+			if( $post_type == 'page' )
+			{
+				$page_template = "default";
+			}
+		}
+		
+		
+		
         if($rule['operator'] == "==")
         {
         	$match = ( $page_template == $rule['value'] );
-        	
-        	if( $rule['value'] == "default" && !$page_template )
-        	{
-        		$match = true;
-        	}
         }
         elseif($rule['operator'] == "!=")
         {
