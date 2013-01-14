@@ -1980,7 +1980,8 @@ var acf = {
 				changeYear: true,
 				yearRange: "-100:+100",
 				changeMonth: true,
-				showButtonPanel : true
+				showButtonPanel : true,
+				firstDay: 1
 			});
 			
 			
