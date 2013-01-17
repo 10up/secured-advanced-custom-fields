@@ -157,7 +157,7 @@ class Acf
 		$scripts = array(
 			'acf-field-group' => $this->dir . '/js/field-group.js',
 			'acf-input' => $this->dir . '/js/input.php',
-			//'acf-input-ajax' => $this->dir . '/js/input-ajax.js',
+			'acf-input-ajax' => $this->dir . '/js/input/ajax.js',
 			'acf-datepicker' => $this->dir . '/core/fields/date_picker/jquery.ui.datepicker.js',
 		);
 		
