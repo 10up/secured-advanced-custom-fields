@@ -13,42 +13,50 @@ var acf = {
 	validation : false,
 	text : {
 		'validation_error' : "Validation Failed. One or more fields below are required.",
-		'file_tb_title_add' : "Add File to Field",
-		'file_tb_title_edit' : "Edit File",
-		'image_tb_title_add' : "Add Image to Field",
-		'image_tb_title_edit' : "Edit Image",
 		'relationship_max_alert' : "Maximum values reached ( {max} values )",
-		'gallery_tb_title_add' : "Add Image to Gallery",
-		'gallery_tb_title_edit' : "Edit Image",
 		'repeater_min_alert' : "Minimum rows reached ( {min} rows )",
 		'repeater_max_alert' : "Maximum rows reached ( {max} rows )"
 	},
 	conditional_logic : {},
 	sortable_helper : null,
-	media : null,
+	media : {
+		frame : null,
+		div : null,
+		set_multiple : function(){},
+		set_title : function(){}
+	},
 	fields : {
 		image : {
 			div : null,
 			add : function(){},
+			edit : function(){},
 			remove : function(){},
 			text : {
 				title_add : "Select Image",
 				title_edit : "Edit Image",
-				button_add : "Select Image",
 			}
 		},
 		file : {
 			div : null,
 			add : function(){},
+			edit : function(){},
 			remove : function(){},
 			text : {
 				title_add : "Select File",
 				title_edit : "Edit File",
-				button_add : "Select File",
 			}
 		},
 		wysiwyg : {
 			toolbars : {}
+		},
+		gallery : {
+			div : null,
+			add : function(){},
+			update_count : function(){},
+			hide_selected_items : function(){},
+			text : {
+				title_add : "Select Images",
+			}
 		}
 	}
 };
@@ -123,7 +131,83 @@ var acf = {
 	$(document).ready(function(){
 		
 		
-		//acf.wp_version = '1';
+		/*
+		*  Media
+		*/
+		
+		if( typeof(wp) == "object" )
+		{
+			// Create the media frame. Leave options blank for defaults
+			acf.media.frame = wp.media();
+			
+	
+			// event fired when viewing "Media Library"
+			acf.media.frame.on('all', function( e ){
+				
+				console.log( e );
+			});
+			
+			acf.media.frame.on('content:activate:browse', function(){
+				
+				$(document).trigger('acf/media/browse');
+				
+				// event fired after a search
+				acf.media.frame.content.get().collection.on( 'add', function( item ){
+				    $(document).trigger('acf/media/add' );
+			    });
+			    
+			    // event fired after a search
+				acf.media.frame.content.get().collection.on( 'reset', function( item ){
+				
+					$(document).trigger('acf/media/reset');
+					/*
+setTimeout(function(){
+						$(document).trigger('acf/media/browse', [acf.media.frame.content.get().collection] );
+					}, 10);
+*/
+				    
+			    });
+			});
+			
+			
+			// event fired when viewing "Upload Files"
+			acf.media.frame.on('content:activate:upload', function(){
+				$(document).trigger('acf/media/upload');
+			});
+	
+			// event fired when opening the media popup
+			acf.media.frame.on('open', function( e ){
+				
+				acf.media.frame.content.get().attachments.render();
+				acf.media.frame.reset();
+				$(document).trigger('acf/media/open');
+				
+				
+		    });
+		    
+		    acf.media.frame.on('reset', function( e ){
+				$(document).trigger('acf/media/reset');
+				
+				console.log('main reset');
+		    });
+		    
+		    
+		    // event fired when closing the media popup
+			acf.media.frame.on('close', function( e ){
+				
+				// clear the div
+				$(document).trigger('acf/media/close');
+		    });
+		    
+		    
+			// When an image is selected, run a callback.
+		    acf.media.frame.on('select', function()
+		    {
+		    	$(document).trigger('acf/media/select', [acf.media.frame.state().get('selection')]);
+		    });
+		    
+		}
+		
 		
 		
 		/*
@@ -142,7 +226,7 @@ var acf = {
 		
 		
 		/*
-		*  3.5 Show / Hide Metaboxes
+		*  Show / Hide Metaboxes
 		*/
 		
 		// add classes
@@ -176,6 +260,25 @@ var acf = {
 	
 	});
 	
+	
+	/*
+	*  3.5 Media
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 16/01/13
+	*/
+	
+	acf.media.set_multiple = function( val )
+	{
+		acf.media.frame.content.get().options.selection.multiple = val;
+	};
+	
+	acf.media.set_title = function( val )
+	{
+		acf.media.frame.title.get().$el.text( val );
+	};
+
 	
 	/*
 	*  Save Draft
@@ -477,11 +580,12 @@ var acf = {
 	*  @created: 1/03/2011
 	*/
 	
+	// add
 	acf.fields.file.add = function( file )
 	{
+
 		// vars
-		var div = acf.fields.file.div;
-		
+		var div = acf.media.div;
 		
 		// set atts
 		div.find('.acf-file-value').val( file.id ).trigger('change');
@@ -495,16 +599,29 @@ var acf = {
 	 	
 	 	// validation
 		div.closest('.field').removeClass('error');
-		
-		
-		// reset acf_div and return false
-		acf.fields.file.div = null;
+
 	};
 	
+	
+	// edit
+	acf.fields.file.edit = function(){
+		
+		// vars
+		var div = acf.media.div,
+			id = div.find('.acf-file-value').val();
+		
+		
+		// show edit attachment
+		tb_show( acf.fields.file.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
+		
+	};
+	
+	
+	// remove 
 	acf.fields.file.remove = function()
 	{
 		// vars
-		var div = acf.fields.file.div;
+		var div = acf.media.div;
 		
 		
 		// remove atts
@@ -516,94 +633,102 @@ var acf = {
 		// remove class
 		div.removeClass('active');
 		
-		
-		// reset acf_div and return false
-		acf.fields.file.div = null;
-		
 	};
+	
+	
+	// Media title / Button
+	$(document).live('acf/media/open', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-file-uploader') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var div = acf.media.div,
+			multiple = div.closest('.repeater').exists() ? true : false;
+		
+		
+		// set media atts
+		acf.media.set_multiple( multiple );
+		acf.media.set_title( acf.fields.file.text.title_add );
+		
+	});
+	
+	
+	$(document).live('acf/media/select', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-file-uploader') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var div = acf.media.div,
+			i = 0;
+		
+		    		
+	    selection.each(function(attachment){
+
+	    	// counter
+	    	i++;
+	    	
+	    	
+	    	// select / add another file field?
+	    	if( i > 1 )
+			{
+				var tr = acf.media.div.closest('tr'),
+					repeater = tr.closest('.repeater');
+				
+				
+				if( tr.next('.row').exists() )
+				{
+					acf.media.div = tr.next('.row').find('.acf-file-uploader');
+				}
+				else
+				{
+					// add row 
+	 				repeater.find('.add-row-end').trigger('click'); 
+	 			 
+	 				// set acf_div to new row file 
+	 				acf.media.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+				}
+			}
+			
+			
+	    	// vars
+	    	var file = {
+		    	id : attachment.id,
+		    	name : attachment.attributes.filename,
+		    	icon : attachment.attributes.icon
+	    	};
+	    	
+	    	
+	    	// add file to field
+	        acf.fields.file.add( file );
+	        
+	    });
+	    
+	});
+	
+	
 	
 	
 	// add file
 	$('.acf-file-uploader .add-file').live('click', function(){
-		
+				
 		// vars
-		var div = $(this).closest('.acf-file-uploader');
+		var div = acf.media.div = $(this).closest('.acf-file-uploader');
 		
-		
-		// set global var
-		acf.fields.file.div = div;
-			
-			
-		// show the thickbox
-		if( acf.version_compare(acf.wp_version, '3.5') > -1 )
-		{
-			// clear var
-			acf.media = null;
-			
-			// Create the media frame.
-			acf.media = wp.media({
-				title : acf.fields.file.text.title_add,
-				button : {
-					text: acf.fields.file.text.button_add,
-				},
-				multiple: (div.closest('.repeater').exists() ? true : false)
-			});
-	
-			
-			// When an image is selected, run a callback.
-		    acf.media.on( 'select', function()
-		    {
-		    	var selection = acf.media.state().get('selection'),
-		    		i = 0;
-		    		
-		    	
-			    selection.each(function(attachment){
-			    	
-			    	// counter
-			    	i++;
-			    	
-			    	
-			    	// vars
-			    	var div = acf.fields.file.div,
-			    		file = {
-					    	id : attachment.id,
-					    	name : attachment.attributes.filename,
-					    	icon : attachment.attributes.icon
-				    	};
-			    	
-			    	
-			    	// add image to field
-			        acf.fields.file.add( file );
-			        
-			        
-			        // select / add another file field?
-			        if( i < selection.length )
-					{
-						var tr = div.closest('tr'),
-							repeater = tr.closest('.repeater');
-						
-						
-						if( tr.next('.row').exists() )
-						{
-							acf.fields.file.div = tr.next('.row').find('.acf-file-uploader');
-						}
-						else
-						{
-							// add row 
-			 				repeater.find('.add-row-end').trigger('click'); 
-			 			 
-			 				// set acf_div to new row file 
-			 				acf.fields.file.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
-						}
-					}
-					
-					
-			        
-			    });
 
-		    });
-		    
-		    acf.media.open();
+		// show the thickbox
+		if( acf.media.frame )
+		{
+		    acf.media.frame.open();
 		}
 		else
 		{	
@@ -611,36 +736,33 @@ var acf = {
 		}
 		
 		return false;
+		
 	});
+	
 	
 	// remove file
 	$('.acf-file-uploader .remove-file').live('click', function(){
 		
 		// vars
-		var div = $(this).closest('.acf-file-uploader');
-		
-		acf.fields.file.div = div;
-		
+		acf.media.div = $(this).closest('.acf-file-uploader');
+				
+
 		acf.fields.file.remove();
 		
-		return false;
 		
+		return false;
+			
 	});
 	
-	// edit file
+	
+	// edit image
 	$('.acf-file-uploader .edit-file').live('click', function(){
 		
 		// vars
-		var div = $(this).closest('.acf-file-uploader'),
-			id = div.find('.acf-file-value').val();
-		
-
-		// set global var
-		acf.fields.file.div = div;
+		acf.media.div = $(this).closest('.acf-file-uploader');
 				
-		
-		// show edit attachment
-		tb_show( acf.fields.file.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=file&TB_iframe=1');
+
+		acf.fields.file.edit();
 		
 		
 		return false;
@@ -659,7 +781,7 @@ var acf = {
 	acf.fields.image.add = function( image )
 	{
 		// vars
-		var div = acf.fields.image.div;
+		var div = acf.media.div;
 		
 		// set atts
 		div.find('.acf-image-value').val( image.id ).trigger('change');
@@ -672,16 +794,29 @@ var acf = {
 	 	
 	 	// validation
 		div.closest('.field').removeClass('error');
-		
-		
-		// reset acf_div and return false
-		acf.fields.image.div = null;
+
 	};
 	
+	
+	// edit image
+	acf.fields.image.edit = function(){
+		
+		// vars
+		var div = acf.media.div,
+			id = div.find('.acf-image-value').val();
+		
+		
+		// show edit attachment
+		tb_show( acf.fields.image.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
+		
+	};
+	
+	
+	// remove Image
 	acf.fields.image.remove = function()
 	{
 		// vars
-		var div = acf.fields.image.div;
+		var div = acf.media.div;
 		
 		
 		// remove atts
@@ -692,99 +827,111 @@ var acf = {
 		// remove class
 		div.removeClass('active');
 		
-		
-		// reset acf_div and return false
-		acf.fields.image.div = null;
-		
 	};
+	
+	
+	// Media title / Button
+	$(document).live('acf/media/open', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-image-uploader') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var div = acf.media.div,
+			multiple = div.closest('.repeater').exists() ? true : false;
+		
+		
+		// set media atts
+		acf.media.set_multiple( multiple );
+		acf.media.set_title( acf.fields.image.text.title_add );
+		
+	});
+	
+	
+	$(document).live('acf/media/select', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-image-uploader') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var div = acf.media.div,
+			preview_size = div.attr('data-preview_size'),
+			i = 0;
+		
+		    		
+	    selection.each(function(attachment){
+
+	    	// counter
+	    	i++;
+	    	
+	    	
+	    	// select / add another file field?
+	    	if( i > 1 )
+			{
+				var tr = acf.media.div.closest('tr'),
+					repeater = tr.closest('.repeater');
+				
+				
+				if( tr.next('.row').exists() )
+				{
+					acf.media.div = tr.next('.row').find('.acf-image-uploader');
+				}
+				else
+				{
+					// add row 
+	 				repeater.find('.add-row-end').trigger('click'); 
+	 			 
+	 				// set acf_div to new row file 
+	 				acf.media.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+				}
+			}
+			
+			
+	    	// vars
+	    	var image = {
+		    	id : attachment.id,
+		    	src : attachment.attributes.url
+	    	};
+	    	
+
+	    	// is preview size available?
+	    	if( attachment.attributes.sizes[ preview_size ] )
+	    	{
+		    	image.src = attachment.attributes.sizes[ preview_size ].url;
+	    	}
+	    	
+	    	
+	    	// add image to field
+	        acf.fields.image.add( image );
+	        
+			
+	    });
+		
+		
+		
+	});
 	
 	
 	// add image
 	$('.acf-image-uploader .add-image').live('click', function(){
 				
 		// vars
-		var div = $(this).closest('.acf-image-uploader'),
+		var div = acf.media.div = $(this).closest('.acf-image-uploader'),
 			preview_size = div.attr('data-preview_size');
 		
-		
-		// set global var
-		acf.fields.image.div = div;
-			
-			
+
 		// show the thickbox
-		if( acf.version_compare(acf.wp_version, '3.5') > -1 )
+		if( acf.media.frame )
 		{
-			// clear var
-			acf.media = null;
-			
-			// Create the media frame.
-			acf.media = wp.media({
-				title : acf.fields.image.text.title_add,
-				button : {
-					text: acf.fields.image.text.button_add,
-				},
-				multiple: (div.closest('.repeater').exists() ? true : false)
-			});
-	
-			
-			// When an image is selected, run a callback.
-		    acf.media.on( 'select', function()
-		    {
-		    	var selection = acf.media.state().get('selection'),
-		    		i = 0;
-		    		
-		    	
-			    selection.each(function(attachment){
-			    	console.log( attachment );
-			    	// counter
-			    	i++;
-			    	
-			    	
-			    	// vars
-			    	var div = acf.fields.image.div,
-				    	image = {
-					    	id : attachment.id,
-					    	src : attachment.attributes.url
-				    	};
-			    	
-
-			    	// is preview size available?
-			    	if( attachment.attributes.sizes[ preview_size ] )
-			    	{
-				    	image.src = attachment.attributes.sizes[ preview_size ].url;
-			    	}
-			    	
-			    	
-			    	// add image to field
-			        acf.fields.image.add( image );
-			        
-			        
-			        // select / add another file field?
-			        if( i < selection.length )
-					{
-						var tr = div.closest('tr'),
-							repeater = tr.closest('.repeater');
-						
-						
-						if( tr.next('.row').exists() )
-						{
-							acf.fields.image.div = tr.next('.row').find('.acf-image-uploader');
-						}
-						else
-						{
-							// add row 
-			 				repeater.find('.add-row-end').trigger('click'); 
-			 			 
-			 				// set acf_div to new row file 
-			 				acf.fields.image.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
-						}
-					}
-					
-			    });
-
-		    });
-		    
-		    acf.media.open();
+		    acf.media.frame.open();
 		}
 		else
 		{
@@ -795,14 +942,14 @@ var acf = {
 		return false;
 	});
 	
+	
 	// remove image
 	$('.acf-image-uploader .acf-button-delete').live('click', function(){
 		
 		// vars
-		var div = $(this).closest('.acf-image-uploader');
-		
-		
-		acf.fields.image.div = div;
+		acf.media.file = $(this).closest('.acf-image-uploader');
+				
+
 		acf.fields.image.remove();
 		
 		
@@ -810,26 +957,21 @@ var acf = {
 			
 	});
 	
+	
 	// edit image
 	$('.acf-image-uploader .acf-button-edit').live('click', function(){
 		
 		// vars
-		var div = $(this).closest('.acf-image-uploader'),
-			id = div.find('.acf-image-value').val();
-		
-
-		// set global var
-		acf.fields.image.div = div;
+		acf.media.div = $(this).closest('.acf-image-uploader');
 				
-		
-		// show edit attachment
-		tb_show( acf.fields.image.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
+
+		acf.fields.image.edit();
 		
 		
 		return false;
 			
 	});
-	
+		
 	
 	/*
 	*  Field: Relationship
@@ -2046,7 +2188,37 @@ var acf = {
 	*  @created: 10/07/2012
 	*/
 	
-	acf.update_gallery_count = function( div )
+	acf.fields.gallery.add = function( image ){
+	
+	
+		// vars
+		var gallery = acf.media.div,
+			tpml = gallery.find('.tmpl-thumbnail').html();
+		
+		
+		
+		// update vars on tmpl
+		$.each(image, function( k, v ){
+			var regex = new RegExp('{' + k + '}', 'g');
+			tpml = tpml.replace(regex, v);
+		});
+		
+	    
+	    // add div
+	    gallery.find('.thumbnails > .inner').append( tpml );
+		
+		
+		// update gallery count
+		acf.fields.gallery.update_count( gallery );
+		
+			 	
+	 	// validation
+		gallery.closest('.field').removeClass('error');
+		
+	};
+	
+	
+	acf.fields.gallery.update_count = function( div )
 	{
 		// vars
 		var count = div.find('.thumbnails .thumbnail').length,
@@ -2113,7 +2285,7 @@ var acf = {
 			
 			thumbnail.remove();
 			
-			acf.update_gallery_count( gallery );
+			acf.fields.gallery.update_count( gallery );
 			
 		});
 		
@@ -2126,16 +2298,10 @@ var acf = {
 	$('.acf-gallery .thumbnail .acf-button-edit').live('click', function(){
 		
 		// vars
-		var div = $(this).closest('.thumbnail'),
-			id = div.attr('data-id');
+		acf.media.div = $(this).closest('.thumbnail');
 		
 		
-		// set global var
-		window.acf_edit_attachment = div;
-				
-		
-		// show edit attachment
-		tb_show( acf.text.gallery_tb_title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=gallery&TB_iframe=1');
+		acf.fields.image.edit();
 		
 		
 		return false;
@@ -2143,24 +2309,132 @@ var acf = {
 	});
 	
 	
+	// Media title / Button
+	$(document).live('acf/media/open', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-gallery') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var multiple = true;
+		
+		
+		// set media atts
+		acf.media.set_multiple( multiple );
+		acf.media.set_title( acf.fields.gallery.text.title_add );
+		
+	});
+	
+	
+	acf.fields.gallery.hide_selected_items = function(){
+		
+		// vars
+		var gallery = acf.media.div,
+			div = acf.media.frame.content.get().$el;
+			collection = acf.media.frame.content.get().collection;
+			
+		
+		collection.each(function( item ){
+			
+			var src = item.attributes.url.substr(0, item.attributes.url.lastIndexOf('.')) || item.attributes.url;
+			
+			// if image is already inside the gallery, disable it!
+			if( gallery.find('.thumbnails .thumbnail[data-id="' + item.attributes.id + '"]').exists() )
+			{
+				var attachment = div.find('.attachments .attachment img[src^="' + src + '"]').closest('.attachment');
+				
+				item.off('selection:single');
+				attachment.css({
+					opacity : 0.5
+				});
+			}
+			
+		});
+	
+	}
+	
+	
+	$(document).live('acf/media/open acf/media/add acf/media/reset acf/media/browse', function(e ){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-gallery') )
+		{
+			return;
+		}
+		
+		
+		acf.fields.gallery.hide_selected_items();
+	    
+	});
+	
+	
+	$(document).live('acf/media/select', function(e, selection){
+		
+		// validate
+		if( !acf.media.div.hasClass('acf-gallery') )
+		{
+			return;
+		}
+		
+		
+		// vars
+		var div = acf.media.div,
+			preview_size = div.attr('data-preview_size');
+		
+		    		
+	    selection.each(function(attachment){
+
+	    	var image = {
+			    id : attachment.id,
+			    src : attachment.attributes.url,
+			    title : attachment.attributes.title,
+			    caption : attachment.attributes.caption,
+			    alt : attachment.attributes.alt,
+			    description : attachment.attributes.description
+		    };
+	    	
+
+	    	// is preview size available?
+	    	if( attachment.attributes.sizes[ preview_size ] )
+	    	{
+		    	image.src = attachment.attributes.sizes[ preview_size ].url;
+	    	}
+	    	
+	    	
+	    	// add image to field
+	        acf.fields.gallery.add( image );
+	        
+	    });
+	    
+	});
+	
+	
+	
 	// add image
 	$('.acf-gallery .toolbar .add-image').live('click', function(){
 		
 		// vars
-		var gallery = $(this).closest('.acf-gallery'),
-			preview_size = gallery.attr('data-preview_size');
+		var div = acf.media.div = $(this).closest('.acf-gallery'),
+			preview_size = div.attr('data-preview_size');
 		
-		
-		// set global var
-		window.acf_div = gallery;
-			
-			
+
 		// show the thickbox
-		tb_show( acf.text.gallery_tb_title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=gallery&acf_preview_size=' + preview_size + 'TB_iframe=1');
-			
-			
+		if( acf.media.frame )
+		{
+		    acf.media.frame.open();
+		}
+		else
+		{
+			tb_show( acf.fields.gallery.text.title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+		}
+		
+	
 		return false;
-			
+					
 	});
 	
 	
@@ -2181,7 +2455,7 @@ var acf = {
 				
 			
 			// update count
-			acf.update_gallery_count( div );
+			acf.fields.gallery.update_count( div );
 
 			
 			// sortable
@@ -2203,42 +2477,6 @@ var acf = {
 		});
 	
 	});
-	
-	
-	// gallery ajax
-	acf.gallery_update_tile = function(){
-	
-		// vars
-		var div = window.acf_edit_attachment,
-			attachment_id = div.attr('data-id');
-		
-		
-		// ajax find new list data
-		$.ajax({
-			url: ajaxurl,
-			data : {
-				'action' : 'acf_get_gallery_list_data',
-				'attachment_id' : attachment_id
-			},
-			cache: false,
-			dataType: "html",
-			success: function( html ) {
-		    	
-	
-				// validate
-				if(!html)
-				{
-					return false;
-				}
-				
-				
-				// update list-item html
-				div.find('.list-data').html( html ); 	
-	 	
-			}
-		});
-		
-	};
 	
 	
 	/*

@@ -105,7 +105,7 @@ class acf_field_group
 		
 		// custom scripts
 		wp_enqueue_script(array(
-			'acf-fields',
+			'acf-field-group',
 		));
 		
 		
@@ -130,7 +130,7 @@ class acf_field_group
 		// custom styles
 		wp_enqueue_style(array(
 			'acf-global',
-			'acf-fields',
+			'acf-field-group',
 		));
 		
 		

@@ -558,13 +558,9 @@ acf.wp_version = "<?php echo $wp_version; ?>";
 	
 	
 // text
-acf.text.validation_error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
-acf.text.file_tb_title_add = "<?php _e("Add File to Field",'acf'); ?>";
-acf.text.file_tb_title_edit = "<?php _e("Edit File",'acf'); ?>";
-acf.text.relationship_max_alert = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
-acf.text.gallery_tb_title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
-acf.text.gallery_tb_title_edit = "<?php _e("Edit Image",'acf'); ?>";
+acf.validation.text.error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
 
+acf.fields.relationship.max = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
 
 acf.fields.image.text.title_add = "Select Image";
 acf.fields.image.text.title_edit = "Edit Image";
@@ -573,6 +569,9 @@ acf.fields.image.text.button_add = "Select Image";
 acf.fields.file.text.title_add = "Select File";
 acf.fields.file.text.title_edit = "Edit File";
 acf.fields.file.text.button_add = "Select File";
+
+acf.fields.gallery.title_add = "<?php _e("Add Image to Gallery",'acf'); ?>";
+acf.fields.gallery.title_edit = "<?php _e("Edit Image",'acf'); ?>";
 
 
 // WYSIWYG
@@ -623,7 +622,7 @@ endif;
 			'farbtastic',
 			'thickbox',
 			'media-upload',
-			'acf-input-actions',
+			'acf-input',
 			'acf-datepicker',	
 		));
 

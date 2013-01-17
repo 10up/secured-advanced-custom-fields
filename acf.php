@@ -155,9 +155,9 @@ class Acf
 		
 		// register acf scripts
 		$scripts = array(
-			'acf-fields' => $this->dir . '/js/fields.js',
-			'acf-input-actions' => $this->dir . '/js/input-actions.js',
-			'acf-input-ajax' => $this->dir . '/js/input-ajax.js',
+			'acf-field-group' => $this->dir . '/js/field-group.js',
+			'acf-input' => $this->dir . '/js/input.php',
+			//'acf-input-ajax' => $this->dir . '/js/input-ajax.js',
 			'acf-datepicker' => $this->dir . '/core/fields/date_picker/jquery.ui.datepicker.js',
 		);
 		
@@ -170,7 +170,7 @@ class Acf
 		// register acf styles
 		$styles = array(
 			'acf' => $this->dir . '/css/acf.css',
-			'acf-fields' => $this->dir . '/css/fields.css',
+			'acf-field-group' => $this->dir . '/css/field-group.css',
 			'acf-global' => $this->dir . '/css/global.css',
 			'acf-input' => $this->dir . '/css/input.css',
 			'acf-datepicker' => $this->dir . '/core/fields/date_picker/style.date_picker.css',
