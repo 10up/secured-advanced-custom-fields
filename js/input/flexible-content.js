@@ -113,7 +113,7 @@
 	_flex.remove_layout = function( layout )
 	{
 		// vars
-		var div = layout.closest('.acf_flex');
+		var div = layout.closest('.acf_flexible_content');
 		var temp = $('<div style="height:' + layout.height() + 'px"></div>');
 		
 		
@@ -147,7 +147,7 @@
 	
 	$(document).live('acf/setup_fields', function(e, postbox){
 		
-		$(postbox).find('.acf_flex').each(function(){
+		$(postbox).find('.acf_flexible_content').each(function(){
 			
 			var div =  $(this);
 
@@ -174,7 +174,7 @@
 	*  @created: 17/01/13
 	*/
 	
-	$('.acf_flex .flexible-footer .add-row-end').live('click', function()
+	$('.acf_flexible_content .flexible-footer .add-row-end').live('click', function()
 	{
 		$(this).trigger('focus');
 		
@@ -200,7 +200,7 @@
 	*  @created: 17/01/13
 	*/
 	
-	$('.acf_flex .fc-delete-layout').live('click', function(){
+	$('.acf_flexible_content .fc-delete-layout').live('click', function(){
 	
 		var layout = $(this).closest('.layout');
 		
@@ -218,10 +218,10 @@
 	*  @created: 17/01/13
 	*/
 	
-	$('.acf_flex .acf-popup ul li a').live('click', function(){
+	$('.acf_flexible_content .acf-popup ul li a').live('click', function(){
 
 		var layout = $(this).attr('data-layout'),
-			div = $(this).closest('.acf_flex');
+			div = $(this).closest('.acf_flexible_content');
 		
 		_flex.add_layout( layout, div );
 		
@@ -238,7 +238,7 @@
 	*  @created: 11/11/12
 	*/
 	
-	$('.acf_flex .layout .menu-item-handle').live('click', function(){
+	$('.acf_flexible_content .layout .menu-item-handle').live('click', function(){
 		
 		// vars
 		var layout = $(this).closest('.layout');

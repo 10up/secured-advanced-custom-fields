@@ -10,7 +10,7 @@ $files = array(
 	'color-picker.js',
 	'date-picker.js',
 	'file.js',
-	'flexible_content.js',
+	'flexible-content.js',
 	'gallery.js',
 	'image.js',
 	'relationship.js',
