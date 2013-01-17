@@ -832,7 +832,22 @@ class Acf
 	
 	
 	// add change events to all fields
-<?php foreach( $field['conditional_logic']['rules'] as $rule ): ?>
+<?php 
+
+$already_added = array();
+
+foreach( $field['conditional_logic']['rules'] as $rule ): 
+
+	if( in_array( $rule['field'], $already_added) )
+	{
+		continue;
+	}
+	else
+	{
+		$already_added[] = $rule['field'];
+	}
+	
+	?>
 	$('.field-<?php echo $rule['field']; ?> *[name]').live('change', function(){
 		$(document).trigger('acf/conditional_logic/<?php echo $field['key']; ?>');
 	});
