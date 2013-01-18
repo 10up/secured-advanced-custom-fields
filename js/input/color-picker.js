@@ -1,5 +1,5 @@
 /*
-*  Date Picker
+*  Color Picker
 *
 *  @description: 
 *  @since: 3.5.8
@@ -8,7 +8,110 @@
 
 (function($){
 	
-	_color_picker = acf.fields.color_picker;
+	_cp = acf.fields.color_picker;
+	
+	/*
+	*  acf/setup_fields
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	$(document).live('acf/setup_fields', function(e, postbox){
+		
+		// validate
+		if( ! $.farbtastic )
+		{
+			return;
+		}
+		
+
+		$(postbox).find('input.acf_color_picker').each(function(){
+			
+			// vars
+			var input = $(this);
+
+			
+			// is clone field?
+			if( acf.helpers.is_clone_field(input) )
+			{
+				return;
+			}
+			
+
+			if( input.val() )
+			{
+				$.farbtastic( input ).setColor( input.val() ).hsl[2] > 0.5 ? color = '#000' : color = '#fff';
+				
+				input.css({ 
+					backgroundColor : input.val(),
+					color : color
+				});
+			}
+			
+		});
+		
+	});
+	
+	
+	/*
+	*  Input Focus
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	$('input.acf_color_picker').live('focus', function(){
+		
+		var input = $(this);
+		
+		if( ! input.val() )
+		{
+			input.val( '#FFFFFF' );
+		}
+		
+		$('#acf_color_picker').css({
+			left: input.offset().left,
+			top: input.offset().top - $('#acf_color_picker').height(),
+			display: 'block'
+		});
+		
+		_cp.farbtastic.linkTo(this);
+		
+	});
+	
+	
+	/*
+	*  Input Blur
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	$('input.acf_color_picker').live('blur', function(){
+		
+		var input = $(this);
+		
+		
+		// reset the css
+		if( ! input.val() )
+		{
+			input.css({ 
+				backgroundColor : '#fff',
+				color : '#000'
+			});
+			
+		}
+		
+		
+		$('#acf_color_picker').css({
+			display: 'none'
+		});
+						
+	});
 	
 	
 	/*
@@ -28,82 +131,13 @@
 
 		if( $.farbtastic )
 		{
-			if( !_color_picker.farbtastic )
+			if( !_cp.farbtastic )
 			{
 				$('body').append('<div id="acf_color_picker" />');
 		
-				_color_picker.farbtastic = $.farbtastic('#acf_color_picker');
+				_cp.farbtastic = $.farbtastic('#acf_color_picker');
 			}
 		}
-		
-	});
-	
-	
-	/*
-	*  acf/setup_fields
-	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	$(document).live('acf/setup_fields', function(e, postbox){
-		
-		$(postbox).find('input.acf_datepicker').each(function(){
-			
-			// vars
-			var input = $(this),
-				alt_field = input.siblings('.acf-hidden-datepicker'),
-				save_format = input.attr('data-save_format'),
-				display_format = input.attr('data-display_format');
-			
-			
-			// is clone field?
-			if( acf.helpers.is_clone_field(alt_field) )
-			{
-				return;
-			}
-			
-			
-			// get and set value from alt field
-			input.val( alt_field.val() );
-			
-			
-			// add date picker and refocus
-			input.addClass('active').datepicker({ 
-				dateFormat : save_format,
-				altField : alt_field,
-				altFormat :  save_format,
-				changeYear: true,
-				yearRange: "-100:+100",
-				changeMonth: true,
-				showButtonPanel : true,
-				firstDay: 1
-			});
-			
-			
-			// now change the format back to how it should be.
-			input.datepicker( "option", "dateFormat", display_format );
-			
-			
-			// wrap the datepicker (only if it hasn't already been wrapped)
-			if($('body > #ui-datepicker-div').length > 0)
-			{
-				$('#ui-datepicker-div').wrap('<div class="ui-acf" />');
-			}
-			
-			
-			// allow null
-			input.blur(function(){
-				
-				if( !input.val() )
-				{
-					alt_field.val('');
-				}
-				
-			});
-			
-		});
 		
 	});
 	
