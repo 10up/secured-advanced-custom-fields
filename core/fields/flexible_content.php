@@ -250,7 +250,7 @@ class acf_Flexible_content extends acf_Field
 										<?php
 										
 										// add value
-										$sub_field['value'] = isset($value[$sub_field['name']]) ? $value[$sub_field['name']] : false;
+										$sub_field['value'] = isset($value[$sub_field['key']]) ? $value[$sub_field['key']] : false;
 										
 										// add name
 										$sub_field['name'] = $field['name'] . '[' . $i . '][' . $sub_field['key'] . ']';
@@ -658,7 +658,7 @@ class acf_Flexible_content extends acf_Field
 				unset($row['acf_fc_layout']);
 					
 				// loop through sub fields
-				foreach($row as $field_key => $value)
+				foreach($row as $field_key => $v)
 				{
 					$sub_field = $sub_fields[$field_key];
 
@@ -666,7 +666,7 @@ class acf_Flexible_content extends acf_Field
 					$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 					
 					// save sub field value
-					$this->parent->update_value($post_id, $sub_field, $value);
+					$this->parent->update_value($post_id, $sub_field, $v);
 				}
 			}
 		}
@@ -783,13 +783,10 @@ class acf_Flexible_content extends acf_Field
 					// loop through sub fields
 					foreach($layouts[$layout]['sub_fields'] as $sub_field)
 					{
-						// store name
-						$field_name = $sub_field['name'];
-						
 						// update full name
-						$sub_field['name'] = $field['name'] . '_' . $i . '_' . $field_name;
+						$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 						
-						$values[$i][$field_name] = $this->parent->get_value($post_id, $sub_field);
+						$values[$i][ $sub_field['key'] ] = $this->parent->get_value($post_id, $sub_field);
 					}
 				}
 			}

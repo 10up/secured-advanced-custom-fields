@@ -43,11 +43,11 @@ class acf_File extends acf_Field
 (function($){
 	
 	// vars
-	var div = self.parent.acf.fields.file.div;
+	var div = self.parent.acf.media.div;
 	
 	
 	// add message
-	self.parent.acf.add_message("<?php _e("File Updated.",'acf'); ?>", div);
+	self.parent.acf.helpers.add_message("<?php _e("File Updated.",'acf'); ?>", div);
 	
 
 })(jQuery);
@@ -466,7 +466,7 @@ class acf_File extends acf_Field
 			    	
 			    	
 			    	// vars
-			    	var div = self.parent.acf.fields.file.div;
+			    	var div = self.parent.acf.media.div;
 			    	
 			    	
 			    	// add image to field
@@ -482,7 +482,7 @@ class acf_File extends acf_Field
 						
 						if( tr.next('.row').exists() )
 						{
-							self.parent.acf.fields.file.div = tr.next('.row').find('.acf-file-uploader');
+							self.parent.acf.media.div = tr.next('.row').find('.acf-file-uploader');
 						}
 						else
 						{
@@ -490,7 +490,7 @@ class acf_File extends acf_Field
 			 				repeater.find('.add-row-end').trigger('click'); 
 			 			 
 			 				// set div to new row file 
-			 				self.parent.acf.fields.file.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
+			 				self.parent.acf.media.div = repeater.find('> table > tbody > tr.row:last .acf-file-uploader');
 						}
 					}
 					
@@ -553,7 +553,7 @@ class acf_File extends acf_Field
 	function add_buttons()
 	{
 		// vars
-		var is_sub_field = (self.parent.acf.fields.file.div.closest('.repeater').length > 0) ? true : false;
+		var is_sub_field = (self.parent.acf.media.div.closest('.repeater').length > 0) ? true : false;
 		
 		
 		// add submit after media items (on for sub fields)

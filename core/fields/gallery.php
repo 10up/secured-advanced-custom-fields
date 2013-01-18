@@ -28,62 +28,55 @@ class acf_Gallery extends acf_Field
 		// actions
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_action('acf_head-update_attachment-gallery', array($this, 'acf_head_update_attachment'));
-		add_action('wp_ajax_acf_get_gallery_list_data', array($this, 'acf_get_gallery_list_data'));
+		add_action('wp_ajax_acf/fields/gallery/get_metadata', array($this, 'get_metadata'));
    	}
 
 	
 	/*
-	*  acf_get_gallery_list_data
+	*  get_metadata
 	*
-	*  @description: AJAX call to get updated list data after an image is edited
-	*  @created: 5/07/12
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 18/01/13
 	*/
 	
-   	function acf_get_gallery_list_data()
+   	function get_metadata()
    	{
+   		
    		// vars
-		$defaults = array(
-			'attachment_id'	=>	false,
+		$options = array(
+			'nonce' => '',
+			'id' => '',
 		);
+		$return = array();
 		
-		$options = array_merge($defaults, $_GET);
+		
+		// load post options
+		$options = array_merge($options, $_POST);
+
+		
+		// verify nonce
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
+		{
+			die(0);
+		}
 		
 		
 		// get attachment object
-		$attachment = get_post( $options['attachment_id'] );
+		$attachment = get_post( $options['id'] );
 		
 		
-		// get fields
-		$alt = get_post_meta($attachment->ID, '_wp_attachment_image_alt', true);
-		$image_title = $attachment->post_title;
-		$caption = $attachment->post_excerpt;
-		$description = $attachment->post_content;
+		$return = array(
+			'id' => $attachment->ID,
+			'title'=> $attachment->post_title,
+			'caption'=> $attachment->post_excerpt,
+			'alt'=> get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
+			'description'=> $attachment->post_content,
+		);
 		
-		?>
-<table>
-	<tbody>
-		<tr>
-			<th><label><?php _e("Title",'acf'); ?>:</label></th>
-			<td><?php echo $image_title; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Alternate Text",'acf'); ?>:</label></th>
-			<td><?php echo $alt; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Caption",'acf'); ?>:</label></th>
-			<td><?php echo $caption; ?></td>
-		</tr>
-		<tr>
-			<th><label><?php _e("Description",'acf'); ?>:</label></th>
-			<td><?php echo $description; ?></td>
-		</tr>
-	</tbody>
-</table>
-		<?php
 		
-		// end ajax
-		die();
+		echo json_encode($return);
+		die;
    	}
    	
    	
@@ -143,16 +136,16 @@ class acf_Gallery extends acf_Field
 		?>
 <script type="text/javascript">
 (function($){
-	
+
 	// vars
-	var div = self.parent.acf_edit_attachment;
+	var div = self.parent.acf.media.div;
 	
 	
-	self.parent.acf.gallery_update_tile();
+	self.parent.acf.fields.gallery.update_image();
 	
 	
 	// add message
-	self.parent.acf.add_message('<?php _e("Image Updated",'acf'); ?>.', div);
+	self.parent.acf.helpers.add_message('<?php _e("Image Updated",'acf'); ?>.', div);
 	
 		
 })(jQuery);

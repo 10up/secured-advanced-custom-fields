@@ -10,6 +10,7 @@ var acf = {
 	admin_url : '',
 	wp_version : '0',
 	post_id : 0,
+	nonce : '',
 	validation : {
 		status : true,
 		run : function(){},
@@ -36,7 +37,6 @@ var acf = {
 			farbtastic : null
 		},
 		image : {
-			div : null,
 			add : function(){},
 			edit : function(){},
 			remove : function(){},
@@ -46,7 +46,6 @@ var acf = {
 			}
 		},
 		file : {
-			div : null,
 			add : function(){},
 			edit : function(){},
 			remove : function(){},
@@ -61,8 +60,8 @@ var acf = {
 			has_tinymce : function(){}
 		},
 		gallery : {
-			div : null,
 			add : function(){},
+			edit : function(){},
 			update_count : function(){},
 			hide_selected_items : function(){},
 			text : {

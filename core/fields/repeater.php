@@ -89,7 +89,7 @@ class acf_Repeater extends acf_Field
 				foreach( $field['sub_fields'] as $sub_field)
 				{
 					$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
-					$field['value'][$i][ $sub_field['name'] ] = $sub_value;
+					$field['value'][$i][ $sub_field['key'] ] = $sub_value;
 				}
 				
 			}
@@ -114,7 +114,7 @@ class acf_Repeater extends acf_Field
 		foreach( $field['sub_fields'] as $sub_field)
 		{
 			$sub_value = isset($sub_field['default_value']) ? $sub_field['default_value'] : false;
-			$field['value']['acfcloneindex'][ $sub_field['name'] ] = $sub_value;
+			$field['value']['acfcloneindex'][ $sub_field['key'] ] = $sub_value;
 		}
 
 ?>
@@ -207,7 +207,7 @@ class acf_Repeater extends acf_Field
 				<?php
 				
 				// add value
-				$sub_field['value'] = isset($value[$sub_field['name']]) ? $value[$sub_field['name']] : '';
+				$sub_field['value'] = isset($value[$sub_field['key']]) ? $value[$sub_field['key']] : '';
 					
 				// add name
 				$sub_field['name'] = $field['name'] . '[' . $i . '][' . $sub_field['key'] . ']';
@@ -648,9 +648,6 @@ class acf_Repeater extends acf_Field
 					// get sub field data
 					$v = isset($row[$sub_field['key']]) ? $row[$sub_field['key']] : '';
 					
-					// add to parent value
-					//$parent_value[$i][$sub_field['name']] = $v;
-					
 					// update full name
 					$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 					
@@ -693,13 +690,10 @@ class acf_Repeater extends acf_Field
 				// loop through sub fields
 				foreach($field['sub_fields'] as $sub_field)
 				{
-					// store name
-					$field_name = $sub_field['name'];
-					
 					// update full name
-					$sub_field['name'] = $field['name'] . '_' . $i . '_' . $field_name;
+					$sub_field['name'] = $field['name'] . '_' . $i . '_' . $sub_field['name'];
 					
-					$values[$i][$field_name] = $this->parent->get_value($post_id, $sub_field);
+					$values[$i][ $sub_field['key'] ] = $this->parent->get_value($post_id, $sub_field);
 				}
 			}
 			

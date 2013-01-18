@@ -51,6 +51,82 @@
 	
 	
 	/*
+	*  Edit
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	_gallery.edit_image = function(){
+	
+	
+		// vars
+		var div = _media.div,
+			id = div.attr('data-id');
+		
+		
+		// show edit attachment
+		tb_show( acf.fields.image.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=gallery&TB_iframe=1');
+		
+		
+	};
+	
+	
+	/*
+	*  Update Image
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	_gallery.update_image = function(){
+	
+	
+		// vars
+		var div = acf.media.div,
+			id = div.attr('data-id'),
+			ajax_data = {
+				action : 'acf/fields/gallery/get_metadata',
+				id : id,
+				nonce : acf.nonce
+			};
+		
+		
+		// ajax find new list data
+		$.ajax({
+			url: ajaxurl,
+			type: 'post',
+			data : ajax_data,
+			cache: false,
+			dataType: "json",
+			success: function( json ) {
+		    	
+	
+				// validate
+				if( !json )
+				{
+					return false;
+				}
+				
+				
+				// update list-item html
+				$.each(json, function( k, v ){
+					if( div.find('.td-' + k).exists() )
+					{
+						div.find('.td-' + k).text( v );
+					}
+				});
+	 	
+			}
+		});
+		
+		
+	};
+	
+	
+	/*
 	*  Update Count
 	*
 	*  @description: 
@@ -308,9 +384,7 @@ acf.media.frame.content.get().collection.on( 'all', function( e ){
 		// vars
 		_media.div = $(this).closest('.thumbnail');
 		
-		
-		acf.fields.image.edit();
-		
+		_gallery.edit_image();
 		
 		return false;
 			

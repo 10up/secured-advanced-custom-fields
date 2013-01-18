@@ -177,12 +177,7 @@ class acf_input
 		
 		
 		// vars
-		$post_id = 0;
-		
-		if( $post )
-		{
-			$post_id = $post->ID;
-		}
+		$post_id = $post ? $post->ID : 0;
 		
 			
 		// get field groups
@@ -205,10 +200,6 @@ class acf_input
 		// Style
 		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
 		echo '<style type="text/css">.acf_postbox, .postbox[id*="acf_"] { display: none; }</style>';
-		
-		
-		// Javascript
-		echo '<script type="text/javascript">acf.post_id = ' . $post_id . '; acf.nonce = "' . wp_create_nonce( 'acf_nonce' ) . '";</script>';
 		
 		
 		// add user js + css
@@ -546,13 +537,24 @@ class acf_input
 	
 	function acf_head_input()
 	{
-		global $wp_version;
+		// global
+		global $wp_version, $post;
+		
+				
+		// vars
 		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
+		$post_id = 0;
+		if( $post )
+		{
+			$post_id = $post->ID;
+		}
 		
 		?>
 <script type="text/javascript">
 
 // vars
+acf.post_id = <?php echo $post_id; ?>;
+acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
 acf.admin_url = "<?php echo admin_url(); ?>";
 acf.wp_version = "<?php echo $wp_version; ?>";
 	
@@ -699,17 +701,12 @@ endif;
 		?>
 <script type="text/javascript">
 
-	// reset global
-	self.parent.acf_edit_attachment = null;
-	
 	// remove tb
 	self.parent.tb_remove();
 	
 </script>
 </head>
 <body>
-	
-	<div class="updated" id="message"><p><?php _e("Attachment updated",'acf'); ?>.</div>
 	
 </body>
 </html

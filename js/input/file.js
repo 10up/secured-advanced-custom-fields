@@ -58,7 +58,7 @@
 		
 		
 		// show edit attachment
-		tb_show( _file.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=image&TB_iframe=1');
+		tb_show( _file.text.title_edit , acf.admin_url + 'media.php?attachment_id=' + id + '&action=edit&acf_action=edit_attachment&acf_field=file&TB_iframe=1');
 		
 	};
 	
