@@ -687,7 +687,7 @@ function acf_form($options = null)
 	
 	// Javascript
 	$script_post_id = is_numeric($options['post_id']) ? $options['post_id'] : 0;
-	echo '<script type="text/javascript">acf.post_id = ' . $script_post_id . '; acf.nonce = "' . wp_create_nonce( 'acf_nonce' ) . '";</script>';
+	echo '<script type="text/javascript">acf.post_id = ' . $script_post_id . '; </script>';
 	
 	
 	// display form
