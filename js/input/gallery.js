@@ -362,7 +362,7 @@ acf.media.frame.content.get().collection.on( 'all', function( e ){
 		}
 		else
 		{
-			tb_show( _gallery.text.title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+			tb_show( _gallery.text.title_add , acf.admin_url + 'media-upload.php?post_id=' + acf.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=gallery&acf_preview_size=' + preview_size + 'TB_iframe=1');
 		}
 		
 	
