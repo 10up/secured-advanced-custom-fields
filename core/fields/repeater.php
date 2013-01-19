@@ -643,7 +643,7 @@ class acf_Repeater extends acf_Field
 				$total++;
 					
 				// loop through sub fields
-				foreach($field['sub_fields'] as $sub_field)
+				foreach( $field['sub_fields'] as $sub_field )
 				{
 					// get sub field data
 					$v = isset($row[$sub_field['key']]) ? $row[$sub_field['key']] : '';
@@ -657,6 +657,28 @@ class acf_Repeater extends acf_Field
 			}
 		}
 		
+		
+		/*
+		*  Remove Old Data
+		*
+		*  @credit: http://support.advancedcustomfields.com/discussion/1994/deleting-single-repeater-fields-does-not-remove-entry-from-database
+		*/
+		
+		$old_total = (int) parent::get_value($post_id, $field);
+		
+		if( $old_total > $total )
+		{
+			foreach( $field['sub_fields'] as $sub_field )
+			{
+				for ( $j = $total; $j < $old_total; $j++ )
+				{ 
+					parent::delete_value( $post_id, $field['name'] . '_' . $j . '_' . $sub_field['name'] );
+				}
+			}
+		}
+		
+		
+		// update repeater count
 		parent::update_value($post_id, $field, $total);
 		
 	}

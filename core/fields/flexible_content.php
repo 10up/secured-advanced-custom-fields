@@ -671,6 +671,28 @@ class acf_Flexible_content extends acf_Field
 			}
 		}
 		
+		
+		/*
+		*  Remove Old Data
+		*
+		*  @credit: http://support.advancedcustomfields.com/discussion/1994/deleting-single-repeater-fields-does-not-remove-entry-from-database
+		*/
+		
+		$old_total = parent::get_value($post_id, $field);
+		$old_total = count( $old_total );
+		$new_total = count( $total );
+
+		if( $old_total > $new_total )
+		{
+			foreach( $sub_fields as $sub_field )
+			{
+				for ( $j = $new_total; $j < $old_total; $j++ )
+				{ 
+					parent::delete_value( $post_id, $field['name'] . '_' . $j . '_' . $sub_field['name'] );
+				}
+			}
+		}
+		
 		parent::update_value($post_id, $field, $total);
 		
 	}

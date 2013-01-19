@@ -153,6 +153,37 @@ class acf_Field
 	}
 	
 	
+	/*
+	*  delete_value
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 19/01/13
+	*/
+	
+	function delete_value($post_id, $key)
+	{
+		// if $post_id is a string, then it is used in the everything fields and can be found in the options table
+		if( is_numeric($post_id) )
+		{
+			delete_post_meta( $post_id, $key );
+			delete_post_meta( $post_id, '_' . $key );
+		}
+		elseif( strpos($post_id, 'user_') !== false )
+		{
+			$post_id = str_replace('user_', '', $post_id);
+			delete_user_meta( $post_id, $key );
+			delete_user_meta( $post_id, '_' . $key );
+		}
+		else
+		{
+			delete_option( $post_id . '_' . $key );
+			delete_option( '_' . $post_id . '_' . $key );
+		}
+		
+	}
+	
+	
 	
 	/*--------------------------------------------------------------------------------------
 	*
