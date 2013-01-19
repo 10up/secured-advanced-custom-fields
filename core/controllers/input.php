@@ -748,6 +748,7 @@ endif;
 #adminmenuback,
 #adminmenuwrap,
 #footer,
+#wpfooter,
 #media-single-form > .submit:first-child,
 #media-single-form td.savesend,
 .add-new-h2 {

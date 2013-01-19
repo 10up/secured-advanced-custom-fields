@@ -847,10 +847,10 @@ class acf_location
 	
 	function rule_match_ef_media( $match, $rule, $options )
 	{
-		global $wp_version;
+		global $pagenow;
 
 		
-		if( version_compare($wp_version, '3.5', '>=') )
+		if( $pagenow == 'post.php' )
 		{
 			// in 3.5, the media rule should check the post type
 			$rule['param'] = 'post_type';
