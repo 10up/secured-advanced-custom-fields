@@ -636,7 +636,7 @@ endif;
 		
 		
 		// 3.5 media gallery
-		if( function_exists('wp_enqueue_media') )
+		if( function_exists('wp_enqueue_media') && !did_action( 'wp_enqueue_media' ))
 		{
 			wp_enqueue_media();
 		}

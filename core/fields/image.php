@@ -770,6 +770,13 @@ class acf_Image extends acf_Field
 	
 	function wp_prepare_attachment_for_js( $response, $attachment, $meta )
 	{
+		// only for image
+		if( $response['type'] != 'image' )
+		{
+			return $response;
+		}
+		
+		
 		$attachment_url = $response['url'];
 		$base_url = str_replace( wp_basename( $attachment_url ), '', $attachment_url );
 		

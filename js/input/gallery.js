@@ -228,9 +228,11 @@
 		    // Create the media frame. Leave options blank for defaults
 			_media.frame = wp.media({
 				title : _gallery.title_add,
-				multiple : true
+				multiple : true,
+				library: {
+					type: 'image',
+				},
 			});
-			
 			
 			// When an image is selected, run a callback.
 			_media.frame.on( 'select', function() {

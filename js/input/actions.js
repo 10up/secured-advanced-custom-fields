@@ -190,6 +190,7 @@ var acf = {
 		
 		
 		acf.media.frame.detach();
+		acf.media.frame.dispose();
 		acf.media.frame = null;
 		
 	};
