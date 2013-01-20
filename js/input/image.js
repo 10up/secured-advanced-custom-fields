@@ -113,9 +113,16 @@
 			_media.frame = wp.media({
 				title : _image.text.title_add,
 				multiple : multiple,
-				library: {
-					type: 'image'
+				library : {
+					type : 'image'
 				}
+			});
+			
+			
+			// add filter by overriding the option when the title is being created. This is an evet fired before the rendering / creating of the library content so it works but is a bit of a hack. In the future, this should be changed to an init / options event
+			_media.frame.on('title:create', function(){
+				var state = _media.frame.state();
+				state.set('filterable', 'uploaded');
 			});
 			
 			

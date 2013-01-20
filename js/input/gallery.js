@@ -225,14 +225,24 @@
 			_media.clear_frame();
 			
 			
+			// acf.media.frame.content.get().options.filters=true;
+			
 		    // Create the media frame. Leave options blank for defaults
 			_media.frame = wp.media({
 				title : _gallery.text.title_add,
 				multiple : true,
-				library: {
-					type: 'image',
+				library : {
+					type : 'image',
 				}
 			});
+			
+			
+			// add filter by overriding the option when the title is being created. This is an evet fired before the rendering / creating of the library content so it works but is a bit of a hack. In the future, this should be changed to an init / options event
+			_media.frame.on('title:create', function(){
+				var state = _media.frame.state();
+				state.set('filterable', 'uploaded');
+			});
+			
 			
 			// When an image is selected, run a callback.
 			_media.frame.on( 'select', function() {
