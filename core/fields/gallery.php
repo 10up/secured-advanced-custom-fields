@@ -774,9 +774,6 @@ class acf_Gallery extends acf_Field
 				// add file
 				self.parent.acf.fields.gallery.add( json );
 				
-	 			self.parent.tb_remove();
-	 	
-	 	
 			}
 		});
 		
