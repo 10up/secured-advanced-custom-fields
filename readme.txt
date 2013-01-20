@@ -90,6 +90,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.8.1 =
+* [Fixed] Fix PHP error in text / textarea fields
+
 = 3.5.8 =
 * [Fixed] Fix bug preventing fields to load on user / taxonomy front end form - http://support.advancedcustomfields.com/discussion/4393/front-end-user-profile-field-form-causes-referenceerror
 * [Added] Added 'acf/fields/wysiwyg/toolbars' filter to customize WYSIWYG toolbars - http://support.advancedcustomfields.com/discussion/2205/can-we-change-wysiwyg-basic-editor-buttons

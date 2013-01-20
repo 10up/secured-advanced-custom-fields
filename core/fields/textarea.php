@@ -127,16 +127,16 @@ class acf_Textarea extends acf_Field
 		}
 		
 		
-		if($format == 'none')
+		if($field['formatting'] == 'none')
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
 		}
-		elseif($format == 'html')
+		elseif($field['formatting'] == 'html')
 		{
 			//$value = html_entity_decode($value);
 			//$value = nl2br($value);
 		}
-		elseif($format == 'br')
+		elseif($field['formatting'] == 'br')
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
 			$value = nl2br($value);

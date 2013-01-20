@@ -145,11 +145,11 @@ class acf_Text extends acf_Field
 		}
 		
 		
-		if( $format == 'none' )
+		if( $field['formatting'] == 'none' )
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
 		}
-		elseif( $format == 'html' )
+		elseif( $field['formatting'] == 'html' )
 		{
 			$value = nl2br($value);
 		}
