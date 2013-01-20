@@ -6,7 +6,6 @@ $out = '';
 $prefix = 'input/';
 $files = array(
 	'actions.js',
-	//'ajax.js',
 	'color-picker.js',
 	'date-picker.js',
 	'file.js',

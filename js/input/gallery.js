@@ -232,7 +232,7 @@
 				title : _gallery.text.title_add,
 				multiple : true,
 				library : {
-					type : 'image',
+					type : 'image'
 				}
 			});
 			

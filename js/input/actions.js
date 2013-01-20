@@ -92,7 +92,7 @@ var acf = {
 			add_sortable : function(){},
 			update_order : function(){},
 			add_layout : function(){},
-			remove_layout : function(){},
+			remove_layout : function(){}
 		}
 	}
 };

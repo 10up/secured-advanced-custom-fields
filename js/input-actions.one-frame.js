@@ -33,7 +33,7 @@ var acf = {
 			remove : function(){},
 			text : {
 				title_add : "Select Image",
-				title_edit : "Edit Image",
+				title_edit : "Edit Image"
 			}
 		},
 		file : {
@@ -43,7 +43,7 @@ var acf = {
 			remove : function(){},
 			text : {
 				title_add : "Select File",
-				title_edit : "Edit File",
+				title_edit : "Edit File"
 			}
 		},
 		wysiwyg : {
@@ -55,7 +55,7 @@ var acf = {
 			update_count : function(){},
 			hide_selected_items : function(){},
 			text : {
-				title_add : "Select Images",
+				title_add : "Select Images"
 			}
 		}
 	}
