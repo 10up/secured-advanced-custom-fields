@@ -116,7 +116,7 @@
 				title : _file.text.title_add,
 				multiple : multiple,
 				library: {
-					type: 'file'
+					//type: 'any'
 				}
 			});
 			
