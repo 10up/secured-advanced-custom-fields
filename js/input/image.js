@@ -111,11 +111,11 @@
 			
 		    // Create the media frame. Leave options blank for defaults
 			_media.frame = wp.media({
-				title : _image.title_add,
+				title : _image.text.title_add,
 				multiple : multiple,
 				library: {
 					type: 'image'
-				},
+				}
 			});
 			
 			
