@@ -90,6 +90,19 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 3.5.8 =
+* [Fixed] Fix bug preventing fields to load on user / taxonomy front end form - http://support.advancedcustomfields.com/discussion/4393/front-end-user-profile-field-form-causes-referenceerror
+* [Added] Added 'acf/fields/wysiwyg/toolbars' filter to customize WYSIWYG toolbars - http://support.advancedcustomfields.com/discussion/2205/can-we-change-wysiwyg-basic-editor-buttons
+* [Fixed] Fix acf_load_filters as they are not working! - http://support.advancedcustomfields.com/discussion/comment/12770#Comment_12770
+* [Added] Clean up wp_options after term delete - http://support.advancedcustomfields.com/discussion/4396/delete-taxonomy-term-custom-fields-after-term-delete
+* [Fixed] Fix location rule - category / taxonomy on new post - http://support.advancedcustomfields.com/discussion/3635/show-custom-fields-on-post-adding
+* [Added] Added 'acf/create_field' action for third party usage - docs to come soon
+* [Added] Add support for new media uploader in WP 3.5!
+* [Fixed] Fix conditional logic error - http://support.advancedcustomfields.com/discussion/4502/conditional-logic-script-output-causes-events-to-fire-multiple-times
+* [Fixed] Fix Uploader not working on taxonomy edit screens - http://support.advancedcustomfields.com/discussion/4536/media-upload-button-for-wysiwyg-does-not-work-when-used-on-a-taxonomy-term
+* [Added] Add data cleanup after removing a repeater / flexible content row - http://support.advancedcustomfields.com/discussion/1994/deleting-single-repeater-fields-does-not-remove-entry-from-database 
+
+
 = 3.5.7.2 =
 * [Fixed] Fix fields not showing on attachment edit page in WP 3.5 - http://support.advancedcustomfields.com/discussion/4261/after-upgrading-to-3-5-acf-fields-assigned-to-show-on-attachments-media-edit-are-not-showing
 * [Fixed] Fix sub repeater css bug - http://support.advancedcustomfields.com/discussion/4361/repeater-add-button-inappropriately-disabled
