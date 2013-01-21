@@ -463,6 +463,13 @@ class Acf
 	
 	function get_field_groups( $return )
 	{
+		// return must be an array
+		if( !is_array($return) )
+		{
+			$return = array();
+		}
+		
+		
 		// get acf's
 		$result = get_posts(array(
 			'numberposts' 	=> -1,
@@ -476,8 +483,6 @@ class Acf
 		// populate acfs
 		if($result)
 		{
-			$return = array();
-			
 			foreach($result as $acf)
 			{
 				$return[] = array(
