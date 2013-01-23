@@ -777,6 +777,13 @@ class acf_Image extends acf_Field
 		}
 		
 		
+		// make sure sizes exist. Perhaps they dont?
+		if( !isset($meta['sizes']) )
+		{
+			return $response;
+		}
+		
+		
 		$attachment_url = $response['url'];
 		$base_url = str_replace( wp_basename( $attachment_url ), '', $attachment_url );
 		
