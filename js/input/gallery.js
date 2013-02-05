@@ -232,7 +232,7 @@
 				title : _gallery.text.title_add,
 				multiple : true,
 				library : {
-					type : 'image'
+					//type : 'image'
 				}
 			});
 			
@@ -270,9 +270,16 @@
 						    description : attachment.attributes.description
 					    };
 				    	
-			
+					    
+					    // file?
+					    if( attachment.attributes.type != 'image' )
+					    {
+						    image.src = attachment.attributes.icon;
+					    }
+					    
+					    
 				    	// is preview size available?
-				    	if( attachment.attributes.sizes[ preview_size ] )
+				    	if( attachment.attributes.sizes && attachment.attributes.sizes[ preview_size ] )
 				    	{
 					    	image.src = attachment.attributes.sizes[ preview_size ].url;
 				    	}
@@ -443,20 +450,22 @@ acf.media.frame.content.get().collection.on( 'all', function( e ){
 		// vars
 		var gallery = _media.div,
 			div = _media.frame.content.get().$el;
-			collection = _media.frame.content.get().collection || null;
+			collection = _media.frame.content.get().collection || null,
+			i = -1;
 			
 		
 		if( collection )
 		{
 			collection.each(function( item ){
 			
-				var src = item.attributes.url.substr(0, item.attributes.url.lastIndexOf('.')) || item.attributes.url;
+				i++;
+				
+				var attachment = div.find('.attachments > .attachment:eq(' + i + ')');
+				
 				
 				// if image is already inside the gallery, disable it!
 				if( gallery.find('.thumbnails .thumbnail[data-id="' + item.id + '"]').exists() )
 				{
-					var attachment = div.find('.attachments .attachment img[src^="' + src + '"]').closest('.attachment');
-					
 					item.off('selection:single');
 					attachment.addClass('acf-selected');
 				}
