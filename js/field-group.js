@@ -175,7 +175,40 @@ var acf = {
 	$.fn.update_names = function()
 	{
 		var field = $(this),
-			old_id = field.attr('data-id');
+			old_id = field.attr('data-id'),
+			new_id = uniqid();
+		
+		
+		// temp give field unique ID for id / name.
+		// Because this is an AJAX call, it will take some time to get back the new_id.
+		// in this time, the new field will be added and the origional, and duplicate field
+		// will both use the same ID! This will cause browsers to remove the input settings on the first field
+
+		field.attr('data-id', new_id);
+		
+		
+		// update class
+		field.attr('class', field.attr('class').replace(old_id, new_id) );
+		
+		
+		// update field key column
+		field.find('.field_meta td.field_key').text( new_id );
+		
+		
+		// update attributes
+		field.find('[id*="' + old_id + '"]').each(function()
+		{	
+			$(this).attr('id', $(this).attr('id').replace(old_id, new_id) );
+		});
+		
+		field.find('[name*="' + old_id + '"]').each(function()
+		{	
+			$(this).attr('name', $(this).attr('name').replace(old_id, new_id) );
+		});
+		
+		
+		// onld_id is now the unique_id() value
+		old_id = new_id;
 		
 		
 		// load location html
@@ -198,34 +231,22 @@ var acf = {
 				
 				
 				// update class
-				var new_class = field.attr('class');
-				new_class = new_class.replace(old_id, new_id);
-				field.attr('class', new_class);
+				field.attr('class', field.attr('class').replace(old_id, new_id) );
 				
 				
 				// update field key column
 				field.find('.field_meta td.field_key').text( new_id );
 				
 				
-				// update inputs
-				field.find('[name]').each(function()
+				// update attributes
+				field.find('[id*="' + old_id + '"]').each(function()
 				{	
-					
-					var name = $(this).attr('name');
-					var id = $(this).attr('id');
-		
-					if(name && name.indexOf('[' + old_id + ']') != -1)
-					{
-						name = name.replace('[' + old_id + ']','[' + new_id + ']');
-					}
-					if(id && id.indexOf('[' + old_id + ']') != -1)
-					{
-						id = id.replace('[' + old_id + ']','[' + new_id + ']');
-					}
-					
-					$(this).attr('name', name);
-					$(this).attr('id', id);
-					
+					$(this).attr('id', $(this).attr('id').replace(old_id, new_id) );
+				});
+				
+				field.find('[name*="' + old_id + '"]').each(function()
+				{	
+					$(this).attr('name', $(this).attr('name').replace(old_id, new_id) );
 				});
 
 			}
@@ -340,7 +361,6 @@ var acf = {
 		// vars
 		var a = $(this),
 			field = a.closest('.field'),
-			orig_type = field.find('tr.field_type select').val(),
 			new_field = field.clone();
 			
 			
@@ -354,8 +374,14 @@ var acf = {
 		
 		
 		// open up form
-		new_field.find('a.acf_edit_field').first().trigger('click');
-		new_field.find('tr.field_type select').first().val( orig_type ).trigger('change');
+		if( field.hasClass('form_open') )
+		{
+			field.find('.acf_edit_field').first().trigger('click');
+		}
+		else
+		{
+			new_field.find('.acf_edit_field').first().trigger('click');
+		}
 		
 		
 		// update order numbers
