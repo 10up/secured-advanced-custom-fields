@@ -172,7 +172,7 @@
 				    	
 				
 				    	// is preview size available?
-				    	if( attachment.attributes.sizes[ preview_size ] )
+				    	if( attachment.attributes.sizes && attachment.attributes.sizes[ preview_size ] )
 				    	{
 					    	image.src = attachment.attributes.sizes[ preview_size ].url;
 				    	}
