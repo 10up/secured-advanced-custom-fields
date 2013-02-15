@@ -61,24 +61,48 @@ class acf_True_false extends acf_Field
 	
 	function create_options($key, $field)
 	{	
-		$field['message'] = isset($field['message']) ? $field['message'] : '';
+		// vars
+		$defaults = array(
+			'default_value'	=>	0,
+			'message'	=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+		$key = $field['name'];
+		
+		
 		?>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
-			<td class="label">
-				<label><?php _e("Message",'acf'); ?></label>
-				<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
-			</td>
-			<td>
-				<?php 
-				do_action('acf/create_field', array(
-					'type'	=>	'text',
-					'name'	=>	'fields['.$key.'][message]',
-					'value'	=>	$field['message'],
-				));
-				?>
-			</td>
-		</tr>
-
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Message",'acf'); ?></label>
+		<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields['.$key.'][message]',
+			'value'	=>	$field['message'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Default Value",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'	=>	'true_false',
+			'name'	=>	'fields['.$key.'][default_value]',
+			'value'	=>	$field['default_value'],
+		));
+		
+		?>
+	</td>
+</tr>
 		<?php
 	}
 

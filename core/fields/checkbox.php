@@ -91,46 +91,68 @@ class acf_Checkbox extends acf_Field
 	
 	function create_options($key, $field)
 	{	
-		// defaults
+		// vars
+		$defaults = array(
+			'default_value'	=>	'',
+			'choices'		=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+		$key = $field['name'];
 		
 		
 		// implode checkboxes so they work in a textarea
-		if(isset($field['choices']) && is_array($field['choices']))
+		if( is_array($field['choices']) )
 		{		
-			foreach($field['choices'] as $choice_key => $choice_val)
+			foreach( $field['choices'] as $k => $v )
 			{
-				$field['choices'][$choice_key] = $choice_key.' : '.$choice_val;
+				$field['choices'][ $k ] = $k . ' : ' . $v;
 			}
 			$field['choices'] = implode("\n", $field['choices']);
 		}
-		else
-		{
-			$field['choices'] = "";
-		}
+		
 		?>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
-			<td class="label">
-				<label for=""><?php _e("Choices",'acf'); ?></label>
-				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
-				<br />
-				<?php _e("Red",'acf'); ?><br />
-				<?php _e("Blue",'acf'); ?><br />
-				<br />
-				<?php _e("red : Red",'acf'); ?><br />
-				<?php _e("blue : Blue",'acf'); ?><br />
-				</p>
-			</td>
-			<td>
-				<?php 
-				do_action('acf/create_field', array(
-					'type'	=>	'textarea',
-					'class' => 	'textarea field_option-choices',
-					'name'	=>	'fields['.$key.'][choices]',
-					'value'	=>	$field['choices'],
-				));
-				?>
-			</td>
-		</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label for=""><?php _e("Choices",'acf'); ?></label>
+		<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
+		<br />
+		<?php _e("Red",'acf'); ?><br />
+		<?php _e("Blue",'acf'); ?><br />
+		<br />
+		<?php _e("red : Red",'acf'); ?><br />
+		<?php _e("blue : Blue",'acf'); ?><br />
+		</p>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'	=>	'textarea',
+			'class' => 	'textarea field_option-choices',
+			'name'	=>	'fields['.$key.'][choices]',
+			'value'	=>	$field['choices'],
+		));
+		
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Default Value",'acf'); ?></label>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields['.$key.'][default_value]',
+			'value'	=>	$field['default_value'],
+		));
+		
+		?>
+	</td>
+</tr>
 		<?php
 	}
 		
