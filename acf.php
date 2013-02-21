@@ -47,10 +47,9 @@ class Acf
 	
 	function __construct()
 	{
-
 		// vars
 		$this->path = plugin_dir_path(__FILE__);
-		$this->dir = plugins_url('',__FILE__);
+		$this->dir = plugin_dir_url( __FILE__ );
 		$this->version = '3.5.8.1';
 		$this->upgrade_version = '3.4.1'; // this is the latest version which requires an upgrade
 		$this->cache = array(); // basic array cache to hold data throughout the page load
@@ -155,10 +154,10 @@ class Acf
 		
 		// register acf scripts
 		$scripts = array(
-			'acf-field-group' => $this->dir . '/js/field-group.js',
-			'acf-input' => $this->dir . '/js/input.php',
-			'acf-input-ajax' => $this->dir . '/js/input/ajax.js',
-			'acf-datepicker' => $this->dir . '/core/fields/date_picker/jquery.ui.datepicker.js',
+			'acf-field-group' => $this->dir . 'js/field-group.js',
+			'acf-input' => $this->dir . 'js/input.php',
+			'acf-input-ajax' => $this->dir . 'js/input/ajax.js',
+			'acf-datepicker' => $this->dir . 'core/fields/date_picker/jquery.ui.datepicker.js',
 		);
 		
 		foreach( $scripts as $k => $v )
@@ -169,11 +168,11 @@ class Acf
 		
 		// register acf styles
 		$styles = array(
-			'acf' => $this->dir . '/css/acf.css',
-			'acf-field-group' => $this->dir . '/css/field-group.css',
-			'acf-global' => $this->dir . '/css/global.css',
-			'acf-input' => $this->dir . '/css/input.css',
-			'acf-datepicker' => $this->dir . '/core/fields/date_picker/style.date_picker.css',
+			'acf' => $this->dir . 'css/acf.css',
+			'acf-field-group' => $this->dir . 'css/field-group.css',
+			'acf-global' => $this->dir . 'css/global.css',
+			'acf-input' => $this->dir . 'css/input.css',
+			'acf-datepicker' => $this->dir . 'core/fields/date_picker/style.date_picker.css',
 		);
 		
 		foreach( $styles as $k => $v )
