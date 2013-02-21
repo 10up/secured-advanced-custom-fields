@@ -48,7 +48,7 @@ class Acf
 	function __construct()
 	{
 		// vars
-		$this->path = plugin_dir_path(__FILE__);
+		$this->path = plugin_dir_path( __FILE__ );
 		$this->dir = plugin_dir_url( __FILE__ );
 		$this->version = '3.5.8.1';
 		$this->upgrade_version = '3.4.1'; // this is the latest version which requires an upgrade

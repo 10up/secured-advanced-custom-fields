@@ -23,9 +23,56 @@ class acf_Repeater extends acf_Field
 		
 		// filters
 		add_filter('acf_save_field-' . $this->name, array($this, 'acf_save_field'));
+		add_filter('acf_load_field-' . $this->name, array($this, 'acf_load_field'));
    	}
    	
 	
+	/*
+	*  acf_load_field
+	*
+	*  @description: 
+	*  @since: 3.6
+	*  @created: 21/02/13
+	*/
+	
+	function acf_load_field( $field )
+	{
+		// apply_load field to all sub fields
+		if( isset($field['sub_fields']) && is_array($field['sub_fields']) )
+		{
+			foreach( $field['sub_fields'] as $k => $sub_field )
+			{
+				// apply filters
+				$sub_field = apply_filters('acf_load_field', $sub_field);
+				
+				
+				$keys = array('type', 'name', 'key');
+				$called = array(); // field[type] && field[name] may be the same! Don't run the same filter twice!
+				foreach( $keys as $key )
+				{
+					// validate
+					if( !isset($field[ $key ]) ){ continue; }
+					if( in_array($field[ $key ], $called) ){ continue; }
+					
+					
+					// add to $called
+					$action = $field[ $key ] . '-' . $sub_field[ $key ];
+					$called[] = $action;
+					
+					
+					// run filters
+					$sub_field = apply_filters('acf_load_field-' . $action, $sub_field); // old filter
+					
+				}
+				
+				
+				// update sub field
+				$field['sub_fields'][ $k ] = $sub_field;
+			}
+		}
+		
+		return $field;
+	}
 	
 	/*--------------------------------------------------------------------------------------
 	*
