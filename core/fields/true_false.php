@@ -68,7 +68,6 @@ class acf_True_false extends acf_Field
 		);
 		
 		$field = array_merge($defaults, $field);
-		$key = $field['name'];
 		
 		
 		?>
