@@ -627,7 +627,7 @@ class acf_Repeater extends acf_Field
 	{
 		$total = 0;
 		
-		if($value)
+		if( is_array( $value ) )
 		{
 			// remove dummy field
 			unset($value['acfcloneindex']);
