@@ -98,7 +98,6 @@ class acf_Checkbox extends acf_Field
 		);
 		
 		$field = array_merge($defaults, $field);
-		$key = $field['name'];
 		
 		
 		// implode checkboxes so they work in a textarea
