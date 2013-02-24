@@ -444,7 +444,13 @@ var acf = {
 	$(window).load(function(){
 		
 		setTimeout(function(){
-
+			
+			// Hack for CPT without a content editor
+			wp.media.view.settings.post = { 
+				id: acf.post_id
+			};
+			
+			
 			// setup fields
 			$(document).trigger('acf/setup_fields', $('#poststuff'));
 			
