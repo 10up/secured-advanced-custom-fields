@@ -228,6 +228,10 @@
 		
 		wpActiveEditor = null;
 		
+		// update the hidden textarea
+		// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden tetarea is never populated!
+		tinyMCE.get( id ).save();
+		
 	});
 	
 	
