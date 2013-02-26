@@ -98,7 +98,7 @@ class acf_Repeater extends acf_Field
 		
 		$field = array_merge($defaults, $field);
 		
-		
+
 		// validate types
 		$field['row_limit'] = (int) $field['row_limit'];
 		$field['row_min'] = (int) $field['row_min'];

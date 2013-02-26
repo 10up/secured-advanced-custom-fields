@@ -225,7 +225,7 @@ class acf_Wysiwyg extends acf_Field
 		
 		
 		?>
-		<div id="wp-<?php echo $id; ?>-wrap" class="acf_wysiwyg wp-editor-wrap" data-toolbar="<?php echo $field['toolbar']; ?>">
+		<div id="wp-<?php echo $id; ?>-wrap" class="acf_wysiwyg wp-editor-wrap" data-toolbar="<?php echo $field['toolbar']; ?>" data-upload="<?php echo $field['media_upload']; ?>">
 			<?php if($field['media_upload'] == 'yes'): ?>
 				<?php if( version_compare($wp_version, '3.3', '<') ): ?>
 					<div id="editor-toolbar">
