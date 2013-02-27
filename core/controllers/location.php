@@ -485,47 +485,57 @@ class acf_location
 	
 	function rule_match_post_category( $match, $rule, $options )
 	{
-		$cats = $options['post_category'];
-		
-		if( empty($cats) )
+		// validate
+		if( !$options['post_id'] )
 		{
-			if( !$options['post_id'] )
-			{
-				return false;
-			}
-			
-			$all_cats = get_the_category( $options['post_id'] );
-        	foreach( $all_cats as $cat )
-			{
-				$cats[] = $cat->term_id;
-			}
+			return false;
 		}
-		
-		$post_type = $options['post_type'];
 
-		if( !$post_type )
+		
+		// post type
+		if( !$options['post_type'] )
 		{
-			$post_type = get_post_type( $options['post_id'] );
+			$options['post_type'] = get_post_type( $options['post_id'] );
 		}
 		
-		$taxonomies = get_object_taxonomies( $post_type );
-	
-			
 		
-		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
-		if( in_array('category', $taxonomies) && empty($cats) )
+		// vars
+		$taxonomies = get_object_taxonomies( $options['post_type'] );
+		$terms = $options['post_category'];
+		
+		
+		// no terms? This is not an ajax call. Load them from the post_id
+		if( empty($terms) )
 		{
-			$cats[] = '1';
+			$all_terms = get_the_terms( $options['post_id'], 'category' );
+			if($all_terms)
+			{
+				foreach($all_terms as $all_term)
+				{
+					$terms[] = $all_term->term_id;
+				}
+			}
 		}
 		
+		
+		// no terms at all? 
+		if( empty($terms) )
+		{
+			// If no ters, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
+			if( is_array($taxonomies) && in_array('category', $taxonomies) )
+			{
+				$terms[] = '1';
+			}
+		}
 
+        
         if($rule['operator'] == "==")
         {
         	$match = false;
         	
-        	if($cats)
+        	if($terms)
 			{
-				if( in_array($rule['value'], $cats) )
+				if( in_array($rule['value'], $terms) )
 				{
 					$match = true; 
 				}
@@ -536,18 +546,19 @@ class acf_location
         {
         	$match = true;
         	
-        	if($cats)
+        	if($terms)
 			{
-				if( in_array($rule['value'], $cats) )
+				if( in_array($rule['value'], $terms) )
 				{
 					$match = false; 
 				}
 			}
 
         }
+    
         
         return $match;
-        
+
     }
     
     
@@ -666,28 +677,31 @@ class acf_location
 	
 	function rule_match_taxonomy( $match, $rule, $options )
 	{
+		// validate
+		if( !$options['post_id'] )
+		{
+			return false;
+		}
+		
+		
+		// post type
+		if( !$options['post_type'] )
+		{
+			$options['post_type'] = get_post_type( $options['post_id'] );
+		}
+		
+		
+		// vars
+		$taxonomies = get_object_taxonomies( $options['post_type'] );
 		$terms = $options['taxonomy'];
 		
 		
+		// no terms? This is not an ajax call. Load them from the post_id
 		if( empty($terms) )
 		{
-			if( !$options['post_id'] )
-			{
-				return false;
-			}
-			
-			$post_type = $options['post_type'];
-
-			if( !$post_type )
-			{
-				$post_type = get_post_type( $options['post_id'] );
-			}
-			
-			$taxonomies = get_object_taxonomies( $post_type );
-			
-        	if($taxonomies)
+        	if( is_array($taxonomies) )
         	{
-	        	foreach($taxonomies as $tax)
+	        	foreach( $taxonomies as $tax )
 				{
 					$all_terms = get_the_terms( $options['post_id'], $tax );
 					if($all_terms)
@@ -702,10 +716,14 @@ class acf_location
 		}
 		
 		
-		// If no $cats, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
-		if( in_array('category', $taxonomies) && empty($terms) )
+		// no terms at all? 
+		if( empty($terms) )
 		{
-			$terms[] = '1';
+			// If no ters, this is a new post and should be treated as if it has the "Uncategorized" (1) category ticked
+			if( is_array($taxonomies) && in_array('category', $taxonomies) )
+			{
+				$terms[] = '1';
+			}
 		}
 
         
