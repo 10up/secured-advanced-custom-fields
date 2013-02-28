@@ -406,7 +406,10 @@ class acf_Gallery extends acf_Field
 			foreach( $value as $k => $v )
 			{
 				// full url
-				$value[$k]['url'] = wp_get_attachment_url( $v['id'] );
+				$src = wp_get_attachment_image_src( $v['id'], 'full' );
+				$value[$k]['url'] => $src[0],
+				$value[$k]['width'] => $src[1],
+				$value[$k]['height'] => $src[2],
 				
 				// sizes
 				if( $image_sizes )
@@ -419,7 +422,10 @@ class acf_Gallery extends acf_Field
 						$src = wp_get_attachment_image_src( $v['id'], $image_size );
 						
 						// add src
-						$value[$k]['sizes'][$image_size] = $src[0];
+						$value[$k]['sizes'][ $image_size ] = $src[0];
+						$value[$k]['sizes'][ $image_size . '-width' ] = $src[1];
+						$value[$k]['sizes'][ $image_size . '-height' ] = $src[2];
+
 					}
 					// foreach( $image_sizes as $image_size )
 				}

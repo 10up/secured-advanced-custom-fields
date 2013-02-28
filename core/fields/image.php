@@ -697,15 +697,20 @@ class acf_Image extends acf_Field
 			
 			
 			// create array to hold value data
+			$src = wp_get_attachment_image_src( $attachment->ID, 'full' );
+			
 			$value = array(
 				'id' => $attachment->ID,
 				'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
 				'title' => $attachment->post_title,
 				'caption' => $attachment->post_excerpt,
 				'description' => $attachment->post_content,
-				'url' => wp_get_attachment_url( $attachment->ID ),
+				'url' => $src[0],
+				'width' => $src[1],
+				'height' => $src[2],
 				'sizes' => array(),
 			);
+
 			
 			// find all image sizes
 			$image_sizes = get_intermediate_image_sizes();
@@ -718,7 +723,9 @@ class acf_Image extends acf_Field
 					$src = wp_get_attachment_image_src( $attachment->ID, $image_size );
 					
 					// add src
-					$value['sizes'][$image_size] = $src[0];
+					$value[ 'sizes' ][ $image_size ] = $src[0];
+					$value[ 'sizes' ][ $image_size . '-width' ] = $src[1];
+					$value[ 'sizes' ][ $image_size . '-height' ] = $src[2];
 				}
 				// foreach( $image_sizes as $image_size )
 			}
