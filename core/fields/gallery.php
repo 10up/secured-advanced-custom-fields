@@ -407,9 +407,9 @@ class acf_Gallery extends acf_Field
 			{
 				// full url
 				$src = wp_get_attachment_image_src( $v['id'], 'full' );
-				$value[$k]['url'] => $src[0],
-				$value[$k]['width'] => $src[1],
-				$value[$k]['height'] => $src[2],
+				$value[$k]['url'] = $src[0];
+				$value[$k]['width'] = $src[1];
+				$value[$k]['height'] = $src[2];
 				
 				// sizes
 				if( $image_sizes )
