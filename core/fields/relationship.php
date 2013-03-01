@@ -210,9 +210,9 @@ class acf_Relationship extends acf_Field
 					}
 					
 					
-					$title = apply_filters('acf_relationship_result', $title);
-					$title = apply_filters('acf_relationship_result-' . $options['field_name'] , $title);
-					$title = apply_filters('acf_relationship_result-' . $options['field_key'], $title);
+					$title = apply_filters('acf_relationship_result', $title, $post);
+					$title = apply_filters('acf_relationship_result-' . $options['field_name'] , $title, $post);
+					$title = apply_filters('acf_relationship_result-' . $options['field_key'], $title, $post);
 					
 					
 					echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
