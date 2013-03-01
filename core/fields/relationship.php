@@ -167,15 +167,15 @@ class acf_Relationship extends acf_Field
 		
 		
 		// filters
-		$options = apply_filters('acf_relationship_query', $options);
-		$options = apply_filters('acf_relationship_query-' . $options['field_name'] , $options);
-		$options = apply_filters('acf_relationship_query-' . $options['field_key'], $options);
+		$options = apply_filters('acf/fields/relationship/query', $options);
+		$options = apply_filters('acf/fields/relationship/query-' . $options['field_name'] , $options);
+		$options = apply_filters('acf/fields/relationship/query-' . $options['field_key'], $options);
 		
 		
-		$results = false;
-		$results = apply_filters('acf_relationship_results', $results, $options);
-		$results = apply_filters('acf_relationship_results-' . $options['field_name'] , $results, $options);
-		$results = apply_filters('acf_relationship_results-' . $options['field_key'], $results, $options);
+		$results = '';
+		$results = apply_filters('acf/fields/relationship/results', $results, $options);
+		$results = apply_filters('acf/fields/relationship/results-' . $options['field_name'] , $results, $options);
+		$results = apply_filters('acf/fields/relationship/results-' . $options['field_key'], $results, $options);
 		
 		
 		if( ! $results )
@@ -209,16 +209,19 @@ class acf_Relationship extends acf_Field
 						$title .= " ($post->post_status)";
 					}
 					
+					// filters
+					$title = apply_filters('acf/fields/relationship/result', $title, $post);
+					$title = apply_filters('acf/fields/relationship/result-' . $options['field_name'] , $title, $post);
+					$title = apply_filters('acf/fields/relationship/result-' . $options['field_key'], $title, $post);
+
 					
-					$title = apply_filters('acf_relationship_result', $title, $post);
-					$title = apply_filters('acf_relationship_result-' . $options['field_name'] , $title, $post);
-					$title = apply_filters('acf_relationship_result-' . $options['field_key'], $title, $post);
-					
-					
-					echo '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
+					$results .= '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
 				}
 			}
 		}
+		
+		
+		echo $results;
 		
 		
 		// die?
