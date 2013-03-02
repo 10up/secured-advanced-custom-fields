@@ -8,17 +8,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-06-15 10:19+0100\n"
+"PO-Revision-Date: 2013-03-01 12:15+0100\n"
 "Last-Translator: ale <alala@asdasda.it>\n"
 "Language-Team:  <a.mignogna@asernet.it>\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"Language: it_IT\n"
+"X-Generator: Poedit 1.5.5\n"
 
-#: acf.php:289
-#: core/admin/meta_box_options.php:83
+#: acf.php:289 core/admin/meta_box_options.php:83
 msgid "Custom Fields"
-msgstr "Campi personalizzati"
+msgstr "Advanced Custom Fields"
 
 #: acf.php:290
 msgid "Settings"
@@ -40,9 +39,7 @@ msgstr "Location"
 msgid "Add Fields to Edit Screens"
 msgstr "Aggiungi campi alle schermate di modifica"
 
-#: acf.php:505
-#: core/admin/meta_box_location.php:133
-#: core/options_page.php:62
+#: acf.php:505 core/admin/meta_box_location.php:133 core/options_page.php:62
 #: core/options_page.php:74
 msgid "Options"
 msgstr "Opzioni"
@@ -51,9 +48,7 @@ msgstr "Opzioni"
 msgid "Customise the edit page"
 msgstr "Personalizza la pagina di modifica"
 
-#: acf.php:533
-#: core/api.php:503
-#: core/everything_fields.php:202
+#: acf.php:533 core/api.php:503 core/everything_fields.php:202
 #: core/options_page.php:182
 msgid "Validation Failed. One or more fields below are required."
 msgstr "Validazione fallita. Uno o più campi sono obbligatori."
@@ -82,8 +77,7 @@ msgstr "Template di default"
 msgid "No ACF groups selected"
 msgstr "Nessun gruppo ACF selezionato"
 
-#: core/actions/init.php:21
-#: core/actions/init.php:116
+#: core/actions/init.php:21 core/actions/init.php:116
 #: core/admin/page_acf.php:14
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
@@ -150,10 +144,9 @@ msgstr "Licenza non riconosciuta"
 
 #: core/actions/init.php:115
 msgid "Field&nbsp;Groups"
-msgstr "Field&nbsp;Groups"
+msgstr "Gruppo di custom field"
 
-#: core/actions/init.php:117
-#: core/fields/flexible_content.php:257
+#: core/actions/init.php:117 core/fields/flexible_content.php:257
 msgid "Add New"
 msgstr "Aggiungi nuovo"
 
@@ -185,8 +178,7 @@ msgstr "Nessun gruppo di campi trovato"
 msgid "No Field Groups found in Trash"
 msgstr "Nessun gruppo di campi trovato nel cestino"
 
-#: core/actions/init.php:153
-#: core/actions/init.php:156
+#: core/actions/init.php:153 core/actions/init.php:156
 msgid "Field group updated."
 msgstr "Gruppo di campi aggiornato."
 
@@ -227,8 +219,7 @@ msgstr "Bozza del gruppo di campi aggiornata."
 msgid "Title"
 msgstr "Titolo"
 
-#: core/admin/meta_box_fields.php:17
-#: core/fields/flexible_content.php:245
+#: core/admin/meta_box_fields.php:17 core/fields/flexible_content.php:245
 #: core/fields/repeater.php:218
 msgid "New Field"
 msgstr "Nuovo campo"
@@ -237,104 +228,85 @@ msgstr "Nuovo campo"
 msgid "Move to trash. Are you sure?"
 msgstr "Sei sicuro di spostarlo nel cestino?"
 
-#: core/admin/meta_box_fields.php:50
-#: core/fields/flexible_content.php:309
+#: core/admin/meta_box_fields.php:50 core/fields/flexible_content.php:309
 #: core/fields/repeater.php:244
 msgid "Field Order"
 msgstr "Ordine del campo"
 
-#: core/admin/meta_box_fields.php:51
-#: core/admin/meta_box_fields.php:92
-#: core/fields/flexible_content.php:310
-#: core/fields/flexible_content.php:357
-#: core/fields/repeater.php:245
-#: core/fields/repeater.php:292
+#: core/admin/meta_box_fields.php:51 core/admin/meta_box_fields.php:92
+#: core/fields/flexible_content.php:310 core/fields/flexible_content.php:357
+#: core/fields/repeater.php:245 core/fields/repeater.php:292
 msgid "Field Label"
 msgstr "Etichetta del campo"
 
-#: core/admin/meta_box_fields.php:52
-#: core/admin/meta_box_fields.php:108
-#: core/fields/flexible_content.php:311
-#: core/fields/flexible_content.php:373
-#: core/fields/repeater.php:246
-#: core/fields/repeater.php:308
+#: core/admin/meta_box_fields.php:52 core/admin/meta_box_fields.php:108
+#: core/fields/flexible_content.php:311 core/fields/flexible_content.php:373
+#: core/fields/repeater.php:246 core/fields/repeater.php:308
 msgid "Field Name"
 msgstr "Nome del campo"
 
-#: core/admin/meta_box_fields.php:53
-#: core/admin/meta_box_fields.php:123
-#: core/admin/page_settings.php:44
-#: core/fields/flexible_content.php:312
-#: core/fields/flexible_content.php:388
-#: core/fields/repeater.php:247
+#: core/admin/meta_box_fields.php:53 core/admin/meta_box_fields.php:123
+#: core/admin/page_settings.php:44 core/fields/flexible_content.php:312
+#: core/fields/flexible_content.php:388 core/fields/repeater.php:247
 #: core/fields/repeater.php:323
 msgid "Field Type"
 msgstr "Tipo del campo"
 
 #: core/admin/meta_box_fields.php:60
-msgid "No fields. Click the <strong>+ Add Field</strong> button to create your first field."
-msgstr "Nessun campo. Clicca sul pulsante <strong> + Aggiungi campo</strong> per creare il tuo primo campo."
+msgid ""
+"No fields. Click the <strong>+ Add Field</strong> button to create your "
+"first field."
+msgstr ""
+"Non hai inserito nessun custom field. Clicca sul pulsante <strong> + "
+"Aggiungi campo</strong> per creare il tuo primo campo personalizzato."
 
-#: core/admin/meta_box_fields.php:71
-#: core/admin/meta_box_fields.php:74
-#: core/fields/flexible_content.php:336
-#: core/fields/flexible_content.php:339
-#: core/fields/repeater.php:270
-#: core/fields/repeater.php:273
+#: core/admin/meta_box_fields.php:71 core/admin/meta_box_fields.php:74
+#: core/fields/flexible_content.php:336 core/fields/flexible_content.php:339
+#: core/fields/repeater.php:270 core/fields/repeater.php:273
 msgid "Edit this Field"
 msgstr "Modifica questo campo"
 
-#: core/admin/meta_box_fields.php:74
-#: core/fields/flexible_content.php:339
+#: core/admin/meta_box_fields.php:74 core/fields/flexible_content.php:339
 #: core/fields/repeater.php:273
 msgid "Edit"
 msgstr "Modifica"
 
-#: core/admin/meta_box_fields.php:75
-#: core/fields/flexible_content.php:340
+#: core/admin/meta_box_fields.php:75 core/fields/flexible_content.php:340
 #: core/fields/repeater.php:274
 msgid "Read documentation for this field"
 msgstr "Leggi la documentazione per questo campo"
 
-#: core/admin/meta_box_fields.php:75
-#: core/fields/flexible_content.php:340
+#: core/admin/meta_box_fields.php:75 core/fields/flexible_content.php:340
 #: core/fields/repeater.php:274
 msgid "Docs"
 msgstr "Docs"
 
-#: core/admin/meta_box_fields.php:76
-#: core/fields/flexible_content.php:341
+#: core/admin/meta_box_fields.php:76 core/fields/flexible_content.php:341
 #: core/fields/repeater.php:275
 msgid "Duplicate this Field"
 msgstr "Duplica questo campo"
 
-#: core/admin/meta_box_fields.php:76
-#: core/fields/flexible_content.php:341
+#: core/admin/meta_box_fields.php:76 core/fields/flexible_content.php:341
 #: core/fields/repeater.php:275
 msgid "Duplicate"
 msgstr "Duplica"
 
-#: core/admin/meta_box_fields.php:77
-#: core/fields/flexible_content.php:342
+#: core/admin/meta_box_fields.php:77 core/fields/flexible_content.php:342
 #: core/fields/repeater.php:276
 msgid "Delete this Field"
 msgstr "Cancella questo campo"
 
-#: core/admin/meta_box_fields.php:77
-#: core/fields/flexible_content.php:258
-#: core/fields/flexible_content.php:342
-#: core/fields/repeater.php:276
+#: core/admin/meta_box_fields.php:77 core/fields/flexible_content.php:258
+#: core/fields/flexible_content.php:342 core/fields/repeater.php:276
 msgid "Delete"
 msgstr "Cancella"
 
-#: core/admin/meta_box_fields.php:93
-#: core/fields/flexible_content.php:358
+#: core/admin/meta_box_fields.php:93 core/fields/flexible_content.php:358
 #: core/fields/repeater.php:293
 msgid "This is the name which will appear on the EDIT page"
 msgstr "Questo è il nome che apparirà nella pagina di modifica"
 
-#: core/admin/meta_box_fields.php:109
-#: core/fields/flexible_content.php:374
+#: core/admin/meta_box_fields.php:109 core/fields/flexible_content.php:374
 #: core/fields/repeater.php:309
 msgid "Single word, no spaces. Underscores and dashes allowed"
 msgstr "Una parola, senza spazi. \"_\" e trattini permessi"
@@ -345,26 +317,24 @@ msgstr "Istruzioni del campo"
 
 #: core/admin/meta_box_fields.php:137
 msgid "Instructions for authors. Shown when submitting data"
-msgstr "Istruzioni per gli autori. Visualizzate quando si inseriscono dati"
+msgstr ""
+"Istruzioni per gli autori. Vengono visualizzate al di sopra del custom field"
 
 #: core/admin/meta_box_fields.php:149
 msgid "Required?"
 msgstr "Obbligatorio?"
 
-#: core/admin/meta_box_fields.php:172
-#: core/fields/flexible_content.php:408
+#: core/admin/meta_box_fields.php:172 core/fields/flexible_content.php:408
 #: core/fields/repeater.php:343
 msgid "Save Field"
 msgstr "Salva campo"
 
-#: core/admin/meta_box_fields.php:177
-#: core/fields/flexible_content.php:413
+#: core/admin/meta_box_fields.php:177 core/fields/flexible_content.php:413
 #: core/fields/repeater.php:348
 msgid "Close Field"
 msgstr "Chiudi campo"
 
-#: core/admin/meta_box_fields.php:190
-#: core/fields/flexible_content.php:427
+#: core/admin/meta_box_fields.php:190 core/fields/flexible_content.php:427
 #: core/fields/repeater.php:363
 msgid "Drag and drop to reorder"
 msgstr "Trascina e rilascia per riordinare"
@@ -375,21 +345,22 @@ msgstr "+ Aggiungi campo"
 
 #: core/admin/meta_box_location.php:25
 msgid "Rules"
-msgstr "Regole"
+msgstr "Condizioni"
 
 #: core/admin/meta_box_location.php:26
-msgid "Create a set of rules to determine which edit screens will use these advanced custom fields"
-msgstr "Crea un insieme di regole per determinare quali schermate di modifica dovranno usare questi campi personalizzati"
+msgid ""
+"Create a set of rules to determine which edit screens will use these "
+"advanced custom fields"
+msgstr ""
+"Crea una o pi&ugrave; condizioni per determinare quali post type faranno uso "
+"di questi campi personalizzati"
 
-#: core/admin/meta_box_location.php:37
-#: core/fields/wysiwyg.php:142
+#: core/admin/meta_box_location.php:37 core/fields/wysiwyg.php:142
 msgid "Basic"
 msgstr "Basic"
 
-#: core/admin/meta_box_location.php:38
-#: core/fields/page_link.php:194
-#: core/fields/post_object.php:209
-#: core/fields/relationship.php:246
+#: core/admin/meta_box_location.php:38 core/fields/page_link.php:194
+#: core/fields/post_object.php:209 core/fields/relationship.php:246
 msgid "Post Type"
 msgstr "Post Type"
 
@@ -453,8 +424,7 @@ msgstr "Utente (Aggiungi / Modifica)"
 msgid "Media (Edit)"
 msgstr "Media (Aggiungi/Modifica)"
 
-#: core/admin/meta_box_location.php:64
-#: core/admin/page_settings.php:92
+#: core/admin/meta_box_location.php:64 core/admin/page_settings.php:92
 msgid "Options Page"
 msgstr "Pagina delle opzioni"
 
@@ -468,19 +438,19 @@ msgstr "non è uguale a"
 
 #: core/admin/meta_box_location.php:111
 msgid "match"
-msgstr "unisci"
+msgstr "combina le condizioni di sopra con "
 
 #: core/admin/meta_box_location.php:117
 msgid "all"
-msgstr "tutti"
+msgstr "AND"
 
 #: core/admin/meta_box_location.php:118
 msgid "any"
-msgstr "alcuni"
+msgstr "OR"
 
 #: core/admin/meta_box_location.php:121
 msgid "of the above"
-msgstr "di sopra"
+msgstr "operatore logico"
 
 #: core/admin/meta_box_location.php:134
 msgid "Unlock options add-on with an activation code"
@@ -527,8 +497,13 @@ msgid "Deselect items to hide them on the edit page"
 msgstr "Deseleziona gli elementi per nasconderli nella pagina di modifica"
 
 #: core/admin/meta_box_options.php:72
-msgid "If multiple ACF groups appear on an edit page, the first ACF group's options will be used. The first ACF group is the one with the lowest order number."
-msgstr "SE più gruppi ACF appaiono in una pagina di modifica, verrano utilizzate le opzioni del primo gruppo ACF. Il primo gruppo è quello con il numero d'oridne pià basso."
+msgid ""
+"If multiple ACF groups appear on an edit page, the first ACF group's options "
+"will be used. The first ACF group is the one with the lowest order number."
+msgstr ""
+"SE più gruppi ACF appaiono in una pagina di modifica, verrano utilizzate le "
+"opzioni del primo gruppo ACF. Il primo gruppo è quello con il numero "
+"d'oridne pià basso."
 
 #: core/admin/meta_box_options.php:82
 msgid "Content Editor"
@@ -563,8 +538,12 @@ msgid "Resources"
 msgstr "Risorse"
 
 #: core/admin/page_acf.php:20
-msgid "Read documentation, learn the functions and find some tips &amp; tricks for your next web project."
-msgstr "Leggi la documentazione, impara le funzioni e scopri alcuni trucchi per il tuo prossimo progetto web."
+msgid ""
+"Read documentation, learn the functions and find some tips &amp; tricks for "
+"your next web project."
+msgstr ""
+"Leggi la documentazione, impara le funzioni e scopri alcuni trucchi per il "
+"tuo prossimo progetto web."
 
 #: core/admin/page_acf.php:21
 msgid "View the ACF website"
@@ -602,14 +581,12 @@ msgstr "Codice di Attivazione"
 msgid "Repeater Field"
 msgstr "Repeater Field"
 
-#: core/admin/page_settings.php:53
-#: core/admin/page_settings.php:73
+#: core/admin/page_settings.php:53 core/admin/page_settings.php:73
 #: core/admin/page_settings.php:93
 msgid "Active"
 msgstr "Attivo"
 
-#: core/admin/page_settings.php:53
-#: core/admin/page_settings.php:73
+#: core/admin/page_settings.php:53 core/admin/page_settings.php:73
 #: core/admin/page_settings.php:93
 msgid "Inactive"
 msgstr "Inattivo"
@@ -619,8 +596,12 @@ msgid "Flexible Content Field"
 msgstr "Flexible Content Field"
 
 #: core/admin/page_settings.php:115
-msgid "Add-ons can be unlocked by purchasing a license key. Each key can be used on multiple sites."
-msgstr "Gli Add-ons possono essere sbloccati comprando una lienza. Ogni chiave può essere usata su più siti."
+msgid ""
+"Add-ons can be unlocked by purchasing a license key. Each key can be used on "
+"multiple sites."
+msgstr ""
+"Gli Add-ons possono essere sbloccati comprando una lienza. Ogni chiave può "
+"essere usata su più siti."
 
 #: core/admin/page_settings.php:115
 msgid "Find Add-ons"
@@ -631,8 +612,12 @@ msgid "Export Field Groups to XML"
 msgstr "Esporta i gruppi di campi in XML"
 
 #: core/admin/page_settings.php:166
-msgid "ACF will create a .xml export file which is compatible with the native WP import plugin."
-msgstr "ACF creerà un file di export XML che è compatibile con tutti i pulugin di importazione nativi."
+msgid ""
+"ACF will create a .xml export file which is compatible with the native WP "
+"import plugin."
+msgstr ""
+"ACF creerà un file di export XML che è compatibile con tutti i pulugin di "
+"importazione nativi."
 
 #: core/admin/page_settings.php:169
 msgid "Export XML"
@@ -682,25 +667,22 @@ msgstr "ACF genererà il codice PHP da includere nel tuo tema"
 msgid "Create PHP"
 msgstr "Genera PHP"
 
-#: core/admin/page_settings.php:242
-#: core/admin/page_settings.php:270
+#: core/admin/page_settings.php:242 core/admin/page_settings.php:270
 msgid "Register Field Groups with PHP"
 msgstr "Registra i gruppi di campi con PHP"
 
-#: core/admin/page_settings.php:244
-#: core/admin/page_settings.php:272
+#: core/admin/page_settings.php:244 core/admin/page_settings.php:272
 msgid "Copy the PHP code generated"
 msgstr "Copia il codice PHP generato"
 
-#: core/admin/page_settings.php:245
-#: core/admin/page_settings.php:273
+#: core/admin/page_settings.php:245 core/admin/page_settings.php:273
 msgid "Paste into your functions.php file"
 msgstr "Incolla nel tuo file functions.php"
 
-#: core/admin/page_settings.php:246
-#: core/admin/page_settings.php:274
+#: core/admin/page_settings.php:246 core/admin/page_settings.php:274
 msgid "To activate any Add-ons, edit and use the code in the first few lines."
-msgstr "Per attivare qualsiasi add-ons, modifica e usa il codice nelle prime linee."
+msgstr ""
+"Per attivare qualsiasi add-ons, modifica e usa il codice nelle prime linee."
 
 #: core/admin/page_settings.php:267
 msgid "Back to settings"
@@ -710,34 +692,47 @@ msgstr "Torna alle impostazioni"
 msgid ""
 "/**\n"
 " * Activate Add-ons\n"
-" * Here you can enter your activation codes to unlock Add-ons to use in your theme. \n"
-" * Since all activation codes are multi-site licenses, you are allowed to include your key in premium themes. \n"
-" * Use the commented out code to update the database with your activation code. \n"
-" * You may place this code inside an IF statement that only runs on theme activation.\n"
+" * Here you can enter your activation codes to unlock Add-ons to use in your "
+"theme. \n"
+" * Since all activation codes are multi-site licenses, you are allowed to "
+"include your key in premium themes. \n"
+" * Use the commented out code to update the database with your activation "
+"code. \n"
+" * You may place this code inside an IF statement that only runs on theme "
+"activation.\n"
 " */"
 msgstr ""
 "/**\n"
 " * Attiva Add-ons\n"
-" * Qui puoi digitare il tuo codice di attivazione per sbloccare gli add-ons da utilizzare nel tuo tema. \n"
-" * Visto che tutti i codici d'attivazione sono multisito, puoi includere la tua chiave nei temi premium. \n"
-" * Usa il codice commentato per aggiornare il database con il tuo codice di attivazione. \n"
-" * Puoi inserire questo codice all'interno di una condizione IF relativa all'attivazione del tema.\n"
+" * Qui puoi digitare il tuo codice di attivazione per sbloccare gli add-ons "
+"da utilizzare nel tuo tema. \n"
+" * Visto che tutti i codici d'attivazione sono multisito, puoi includere la "
+"tua chiave nei temi premium. \n"
+" * Usa il codice commentato per aggiornare il database con il tuo codice di "
+"attivazione. \n"
+" * Puoi inserire questo codice all'interno di una condizione IF relativa "
+"all'attivazione del tema.\n"
 " */"
 
 #: core/admin/page_settings.php:308
 msgid ""
 "/**\n"
 " * Register field groups\n"
-" * The register_field_group function accepts 1 array which holds the relevant data to register a field group\n"
-" * You may edit the array as you see fit. However, this may result in errors if the array is not compatible with ACF\n"
+" * The register_field_group function accepts 1 array which holds the "
+"relevant data to register a field group\n"
+" * You may edit the array as you see fit. However, this may result in errors "
+"if the array is not compatible with ACF\n"
 " * This code must run every time the functions.php file is read\n"
 " */"
 msgstr ""
 "/**\n"
 " * Registra i gruppi di campi\n"
-" * La funzione register_field_group function accetta 1 array che contiene le informazioni necessarie per registrare un gruppo di campi\n"
-" * Puoi modificare questo array. Tuttavia, potresti generare degli errori se l'array non è compatibile con ACF\n"
-" * Questo codice deve essere eseguito ogni qual volta viene letto il file functions.php\n"
+" * La funzione register_field_group function accetta 1 array che contiene le "
+"informazioni necessarie per registrare un gruppo di campi\n"
+" * Puoi modificare questo array. Tuttavia, potresti generare degli errori se "
+"l'array non è compatibile con ACF\n"
+" * Questo codice deve essere eseguito ogni qual volta viene letto il file "
+"functions.php\n"
 " */"
 
 #: core/admin/page_settings.php:336
@@ -748,44 +743,37 @@ msgstr "Nessun gruppo di campi è stato selezionato"
 msgid "Checkbox"
 msgstr "Checkbox"
 
-#: core/fields/checkbox.php:44
-#: core/fields/radio.php:45
+#: core/fields/checkbox.php:44 core/fields/radio.php:45
 #: core/fields/select.php:50
 msgid "No choices to choose from"
 msgstr "Nessuna opzione da scegliere da"
 
-#: core/fields/checkbox.php:102
-#: core/fields/radio.php:114
+#: core/fields/checkbox.php:102 core/fields/radio.php:114
 #: core/fields/select.php:164
 msgid "Choices"
 msgstr "Opzioni"
 
-#: core/fields/checkbox.php:103
-#: core/fields/radio.php:115
+#: core/fields/checkbox.php:103 core/fields/radio.php:115
 #: core/fields/select.php:165
 msgid "Enter your choices one per line"
 msgstr "Inserisci una opzione per linea"
 
-#: core/fields/checkbox.php:105
-#: core/fields/radio.php:117
+#: core/fields/checkbox.php:105 core/fields/radio.php:117
 #: core/fields/select.php:167
 msgid "Red"
 msgstr "Rosso"
 
-#: core/fields/checkbox.php:106
-#: core/fields/radio.php:118
+#: core/fields/checkbox.php:106 core/fields/radio.php:118
 #: core/fields/select.php:168
 msgid "Blue"
 msgstr "Blu"
 
-#: core/fields/checkbox.php:108
-#: core/fields/radio.php:120
+#: core/fields/checkbox.php:108 core/fields/radio.php:120
 #: core/fields/select.php:170
 msgid "red : Red"
 msgstr "rosso : Rosso"
 
-#: core/fields/checkbox.php:109
-#: core/fields/radio.php:121
+#: core/fields/checkbox.php:109 core/fields/radio.php:121
 #: core/fields/select.php:171
 msgid "blue : Blue"
 msgstr "blu : Blu"
@@ -822,8 +810,7 @@ msgstr "Nessun file selezionato"
 msgid "Add File"
 msgstr "Aggiungi file"
 
-#: core/fields/file.php:194
-#: core/fields/image.php:177
+#: core/fields/file.php:194 core/fields/image.php:177
 msgid "Return Value"
 msgstr "Restituisci valore"
 
@@ -843,15 +830,12 @@ msgstr "Seleziona file"
 msgid "Flexible Content"
 msgstr "Contenuto flessibile"
 
-#: core/fields/flexible_content.php:38
-#: core/fields/flexible_content.php:218
-#: core/fields/repeater.php:65
-#: core/fields/repeater.php:213
+#: core/fields/flexible_content.php:38 core/fields/flexible_content.php:218
+#: core/fields/repeater.php:65 core/fields/repeater.php:213
 msgid "+ Add Row"
 msgstr "+ Aggiungi riga"
 
-#: core/fields/flexible_content.php:254
-#: core/fields/radio.php:144
+#: core/fields/flexible_content.php:254 core/fields/radio.php:144
 #: core/fields/repeater.php:386
 msgid "Layout"
 msgstr "Layout"
@@ -888,28 +872,26 @@ msgstr "Display"
 msgid "Table"
 msgstr "Tabella"
 
-#: core/fields/flexible_content.php:296
-#: core/fields/repeater.php:397
+#: core/fields/flexible_content.php:296 core/fields/repeater.php:397
 msgid "Row"
 msgstr "Riga"
 
-#: core/fields/flexible_content.php:320
-#: core/fields/repeater.php:255
-msgid "No fields. Click the \"+ Add Sub Field button\" to create your first field."
-msgstr "Nessun campo. Clicca su \"+ Aggiungi un campo\" per creare il tuo primo campo."
+#: core/fields/flexible_content.php:320 core/fields/repeater.php:255
+msgid ""
+"No fields. Click the \"+ Add Sub Field button\" to create your first field."
+msgstr ""
+"Nessun campo. Clicca su \"+ Aggiungi un campo\" per creare il tuo primo "
+"campo."
 
-#: core/fields/flexible_content.php:413
-#: core/fields/repeater.php:348
+#: core/fields/flexible_content.php:413 core/fields/repeater.php:348
 msgid "Close Sub Field"
 msgstr "Chiudi il campo"
 
-#: core/fields/flexible_content.php:428
-#: core/fields/repeater.php:364
+#: core/fields/flexible_content.php:428 core/fields/repeater.php:364
 msgid "+ Add Sub Field"
 msgstr "+ Aggiungi campo"
 
-#: core/fields/flexible_content.php:435
-#: core/fields/repeater.php:405
+#: core/fields/flexible_content.php:435 core/fields/repeater.php:405
 msgid "Button Label"
 msgstr "Etichetta del bottone"
 
@@ -949,8 +931,7 @@ msgstr "Media"
 msgid "Large"
 msgstr "Grande"
 
-#: core/fields/image.php:209
-#: core/fields/wysiwyg.php:141
+#: core/fields/image.php:209 core/fields/wysiwyg.php:141
 msgid "Full"
 msgstr "Dimensione reale"
 
@@ -970,11 +951,10 @@ msgstr "Seleziona immagine"
 msgid "Page Link"
 msgstr "Link a pagina"
 
-#: core/fields/page_link.php:71
-#: core/fields/post_object.php:64
+#: core/fields/page_link.php:71 core/fields/post_object.php:64
 #: core/fields/select.php:21
 msgid "Select"
-msgstr "Seleziona"
+msgstr "Select HTML"
 
 #: core/fields/page_link.php:195
 msgid ""
@@ -982,44 +962,35 @@ msgid ""
 "\t\t\t\tTip: deselect all post types to show all post type's posts"
 msgstr ""
 "Filtra i contenuti selezionato un tipo di contenuto<br />\n"
-"\t\t\t\tTrucco: deleziona tutti i tipi di contenuto per visualizzarne tutti i tipi"
+"\t\t\t\tTrucco: deleziona tutti i tipi di contenuto per visualizzarne tutti "
+"i tipi"
 
-#: core/fields/page_link.php:200
-#: core/fields/post_object.php:213
-#: core/fields/post_object.php:237
-#: core/fields/relationship.php:250
+#: core/fields/page_link.php:200 core/fields/post_object.php:213
+#: core/fields/post_object.php:237 core/fields/relationship.php:250
 #: core/fields/relationship.php:301
 msgid "All"
 msgstr "Tutti"
 
-#: core/fields/page_link.php:223
-#: core/fields/post_object.php:281
+#: core/fields/page_link.php:223 core/fields/post_object.php:281
 #: core/fields/select.php:194
 msgid "Allow Null?"
 msgstr "Campo nullo permesso?"
 
-#: core/fields/page_link.php:232
-#: core/fields/page_link.php:251
-#: core/fields/post_object.php:290
-#: core/fields/post_object.php:309
-#: core/fields/select.php:203
-#: core/fields/select.php:222
+#: core/fields/page_link.php:232 core/fields/page_link.php:251
+#: core/fields/post_object.php:290 core/fields/post_object.php:309
+#: core/fields/select.php:203 core/fields/select.php:222
 #: core/fields/wysiwyg.php:160
 msgid "Yes"
 msgstr "Si"
 
-#: core/fields/page_link.php:233
-#: core/fields/page_link.php:252
-#: core/fields/post_object.php:291
-#: core/fields/post_object.php:310
-#: core/fields/select.php:204
-#: core/fields/select.php:223
+#: core/fields/page_link.php:233 core/fields/page_link.php:252
+#: core/fields/post_object.php:291 core/fields/post_object.php:310
+#: core/fields/select.php:204 core/fields/select.php:223
 #: core/fields/wysiwyg.php:161
 msgid "No"
 msgstr "No"
 
-#: core/fields/page_link.php:242
-#: core/fields/post_object.php:300
+#: core/fields/page_link.php:242 core/fields/post_object.php:300
 #: core/fields/select.php:213
 msgid "Select multiple values?"
 msgstr "E' possibile selezionare più valori?"
@@ -1028,8 +999,7 @@ msgstr "E' possibile selezionare più valori?"
 msgid "Post Object"
 msgstr "Post Object"
 
-#: core/fields/post_object.php:231
-#: core/fields/relationship.php:295
+#: core/fields/post_object.php:231 core/fields/relationship.php:295
 msgid "Filter from Taxonomy"
 msgstr "Filtro da Tassonomia"
 
@@ -1037,10 +1007,8 @@ msgstr "Filtro da Tassonomia"
 msgid "Radio Button"
 msgstr "Radio Button"
 
-#: core/fields/radio.php:130
-#: core/fields/select.php:180
-#: core/fields/text.php:61
-#: core/fields/textarea.php:62
+#: core/fields/radio.php:130 core/fields/select.php:180
+#: core/fields/text.php:61 core/fields/textarea.php:62
 msgid "Default Value"
 msgstr "Valore di default"
 
@@ -1088,22 +1056,19 @@ msgstr "Tabella (default)"
 msgid "Text"
 msgstr "Testo"
 
-#: core/fields/text.php:75
-#: core/fields/textarea.php:76
+#: core/fields/text.php:75 core/fields/textarea.php:76
 msgid "Formatting"
 msgstr "Formattazione"
 
 #: core/fields/text.php:76
 msgid "Define how to render html tags"
-msgstr "Definisci come renderizzare i tag html"
+msgstr "Definisci come gestire i tag html"
 
-#: core/fields/text.php:85
-#: core/fields/textarea.php:86
+#: core/fields/text.php:85 core/fields/textarea.php:86
 msgid "None"
 msgstr "Niente"
 
-#: core/fields/text.php:86
-#: core/fields/textarea.php:88
+#: core/fields/text.php:86 core/fields/textarea.php:88
 msgid "HTML"
 msgstr "HTML"
 
@@ -1158,4 +1123,3 @@ msgstr "Crea un gruppo di campi"
 #: core/options_page.php:286
 msgid "Publish"
 msgstr "Pubblica"
-
