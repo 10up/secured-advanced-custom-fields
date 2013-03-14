@@ -4,6 +4,65 @@
 $GLOBALS['acf_field'] = array();
 
 
+/*
+*  acf_filter_post_id()
+*
+*  A helper function to filter the post_id variable.
+*
+*  @type	function
+*  @since	3.6
+*  @date	29/01/13
+*
+*  @param	$post_id
+*
+*  @return	$post_id
+*/
+
+function acf_filter_post_id( $post_id )
+{
+	// global
+	global $post; 
+	 
+	
+	// set post_id to global
+	if( !$post_id )
+	{
+		$post_id = $post->ID;
+	}
+	
+	
+	// allow for option == options
+	if( $post_id == "option" )
+	{
+		$post_id = "options";
+	}
+	
+	
+	/*
+	*  Override for preview
+	*  
+	*  If the $_GET['preview_id'] is set, then the user wants to see the preview data.
+	*  There is also the case of previewing a page with post_id = 1, but using get_field
+	*  to load data from another post_id.
+	*  In this case, we need to make sure that the autosave revision is actually related
+	*  to the $post_id variable. If they match, then the autosave data will be used, otherwise, 
+	*  the user wants to load data from a completely different post_id
+	*/
+	
+	if( isset($_GET['preview_id']) )
+	{
+		$autosave = wp_get_post_autosave( $_GET['preview_id'] );
+		if( $autosave->post_parent == $post_id )
+		{
+			$post_id = $autosave->ID;
+		}
+	}
+	
+	
+	// return
+	return $post_id;
+}
+
 /*--------------------------------------------------------------------------------------
 *
 *	get_fields
@@ -18,17 +77,9 @@ function get_fields($post_id = false)
 	// vars
 	global $post, $wpdb;
 	
-	if(!$post_id)
-	{
-		$post_id = $post->ID;
-	}
 	
-	
-	// allow for option == options
-	if( $post_id == "option" )
-	{
-		$post_id = "options";
-	}
+	// filter post_id
+	$post_id = acf_filter_post_id( $post_id );
 	
 	
 	// vars
@@ -97,18 +148,10 @@ function get_field($field_key, $post_id = false, $format_value = true)
 { 
 	global $post, $acf; 
 	 
-	if(!$post_id) 
-	{ 
-		$post_id = $post->ID; 
-	}
-	
-	
-	// allow for option == options
-	if( $post_id == "option" )
-	{
-		$post_id = "options";
-	}
-	
+	 
+	// filter post_id
+	$post_id = acf_filter_post_id( $post_id );
+
 	
 	// return cache 
 	$cache = wp_cache_get('acf_get_field_' . $post_id . '_' . $field_key); 
@@ -218,10 +261,11 @@ function has_sub_field($field_name, $post_id = false)
 	// needs a post_id
 	global $post; 
 	 
-	if( !$post_id ) 
-	{ 
-		$post_id = $post->ID; 
-	}
+	
+	// filter post_id
+	$post_id = acf_filter_post_id( $post_id );
+
+
 	
 	// empty?
 	if( empty($GLOBALS['acf_field']) )
@@ -770,18 +814,10 @@ function acf_form($options = null)
 function update_field($field_key, $value, $post_id = false)
 {
 	global $post, $acf; 
-	 
-	if(!$post_id) 
-	{ 
-		$post_id = $post->ID; 
-	}
 	
 	
-	// allow for option == options
-	if( $post_id == "option" )
-	{
-		$post_id = "options";
-	}
+	// filter post_id
+	$post_id = acf_filter_post_id( $post_id );
 	
 	
 	// is $field_name a name? pre 3.4.0
@@ -973,17 +1009,9 @@ function get_field_object($field_key, $post_id = false, $options = array())
 	// vars
 	global $post, $acf; 
 	 
-	if(!$post_id) 
-	{ 
-		$post_id = $post->ID; 
-	}
 	
-	
-	// allow for option == options
-	if( $post_id == "option" )
-	{
-		$post_id = "options";
-	}
+	// filter post_id
+	$post_id = acf_filter_post_id( $post_id );
 	
 	
 	// is $field_name a name? pre 3.4.0
