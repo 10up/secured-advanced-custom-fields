@@ -2,7 +2,7 @@
 Contributors: Elliot Condon
 Tags: custom, field, custom field, advanced, simple fields, magic fields, more fields, repeater, matrix, post, type, text, textarea, file, image, edit, admin
 Requires at least: 3.3.0
-Tested up to: 3.5.0
+Tested up to: 3.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,13 @@ http://support.advancedcustomfields.com/
 
 
 == Changelog ==
+
+= 3.5.8.2 =
+* [Fixed] Fix field data not saving caused by Types 1.2
+* [Fixed] Fix featured image issue - http://support.advancedcustomfields.com/discussion/5032/featured-image-broken
+* [Fixed] Fix WP 3.5 uploader not attaching images to posts - http://support.advancedcustomfields.com/discussion/4960/image-photo039s-uploaded-through-image-field-not-attached-to-post
+* [Added] Add filter 'acf_load_field' for sub field - http://support.advancedcustomfields.com/discussion/4153/select-an-image-from-a-drop-down-list
+* [Fixed] Fix WYSWYG field showing the upload image button in full screen - http://support.advancedcustomfields.com/discussion/4981/media-button-on-fullscreen-wysiwyg-editor
 
 = 3.5.8.1 =
 * [Fixed] Fix PHP error in text / textarea fields
