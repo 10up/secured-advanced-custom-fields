@@ -112,7 +112,8 @@ class acf_Field
 	function update_value($post_id, $field, $value)
 	{
 		// strip slashes
-		$value = stripslashes_deep($value);
+		// - not needed? http://support.advancedcustomfields.com/discussion/3168/backslashes-stripped-in-wysiwyg-filed
+		//$value = stripslashes_deep($value);
 		
 		
 		// apply filters
