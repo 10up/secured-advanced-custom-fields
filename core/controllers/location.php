@@ -656,11 +656,14 @@ class acf_location
 	{
 		// vars
 		$post_format = $options['post_format'];
-		if( ! $post_format )
+		if( !$post_format )
 		{
-			$post_format = get_post_format( $options['post_id'] );
+			if( $options['post_id'] )
+			{
+				$post_format = get_post_format( $options['post_id'] );
+			}
 		}
-       
+
        	
        	if($rule['operator'] == "==")
         {
