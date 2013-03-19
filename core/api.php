@@ -20,14 +20,15 @@ $GLOBALS['acf_field'] = array();
 
 function acf_filter_post_id( $post_id )
 {
-	// global
-	global $post; 
-	 
-	
 	// set post_id to global
 	if( !$post_id )
 	{
-		$post_id = $post->ID;
+		global $post;
+		
+		if( $post )
+		{
+			$post_id = $post->ID;
+		}
 	}
 	
 	
