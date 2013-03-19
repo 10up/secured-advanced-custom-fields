@@ -129,7 +129,7 @@ class acf_Flexible_content extends acf_Field
 						<?php if( $layout['display'] == 'table' ): ?>
 							<thead>
 								<tr>
-									<?php foreach( $layout['sub_fields'] as $sub_field_i => $sub_field): 
+									<?php foreach( $layout['sub_fields'] as $sub_field): 
 										
 										// add width attr
 										$attr = "";
@@ -166,7 +166,7 @@ class acf_Flexible_content extends acf_Field
 		
 							// loop though sub fields
 							
-							foreach( $layout['sub_fields'] as $j => $sub_field ): ?>
+							foreach( $layout['sub_fields'] as $sub_field ): ?>
 							
 								<?php
 							
@@ -255,7 +255,7 @@ class acf_Flexible_content extends acf_Field
 							<?php if( $layout['display'] == 'table' ): ?>
 								<thead>
 									<tr>
-										<?php foreach( $layout['sub_fields'] as $sub_field_i => $sub_field): 
+										<?php foreach( $layout['sub_fields'] as $sub_field): 
 											
 											// add width attr
 											$attr = "";
@@ -292,7 +292,7 @@ class acf_Flexible_content extends acf_Field
 			
 								// loop though sub fields
 								
-								foreach( $layout['sub_fields'] as $j => $sub_field ): ?>
+								foreach( $layout['sub_fields'] as $sub_field ): ?>
 								
 									<?php
 								
@@ -772,9 +772,9 @@ class acf_Flexible_content extends acf_Field
 	
 	function acf_save_field( $field )
 	{
-
+		
 		// format sub_fields
-		if($field['layouts'])
+		if( $field['layouts'] )
 		{
 			// loop through and save fields
 			foreach($field['layouts'] as $layout_key => $layout)
@@ -783,20 +783,19 @@ class acf_Flexible_content extends acf_Field
 				if( $layout['sub_fields'] )
 				{
 					// remove dummy field
-					unset( $layout['sub_fields']['field_clone'] );
+					unset( $field['layouts'][ $layout_key ]['sub_fields']['field_clone'] );
 				
 				
 					// loop through and save fields
 					$i = -1;
-					$sub_fields = array();
 					
 					
-					foreach( $layout['sub_fields'] as $key => $f )
+					foreach( $field['layouts'][ $layout_key ]['sub_fields'] as $key => $f )
 					{
 						$i++;
-						
-						
-						// order
+				
+				
+						// order + key
 						$f['order_no'] = $i;
 						$f['key'] = $key;
 						
@@ -806,19 +805,24 @@ class acf_Flexible_content extends acf_Field
 						$f = apply_filters('acf_save_field-' . $f['type'], $f );
 						
 						
-						$sub_fields[ $f['key'] ] = $f;
+						$field['layouts'][ $layout_key ]['sub_fields'][ $key ] = $f;
 						
 					}
 					
-					$layout['sub_fields'] = $sub_fields;
+					
+					// clean array keys
+					$field['layouts'][ $layout_key ]['sub_fields'] = array_values( $field['layouts'][ $layout_key ]['sub_fields'] );
+					
 				}
 				
-				// update $layout
-				$field['layouts'][ $layout_key ] = $layout;
-				
 			}
+			
+			// clean array keys
+			$field['layouts'] = array_values( $field['layouts'] );
+			
 		}
 		
+				
 		// return updated repeater field
 		return $field;
 
