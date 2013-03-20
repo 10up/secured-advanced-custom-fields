@@ -679,7 +679,7 @@ function acf_form($options = null)
 	
 	// defaults
 	$defaults = array(
-		'post_id' => $post->ID, // post id to get field groups from and save data to
+		'post_id' => false, // post id to get field groups from and save data to
 		'field_groups' => array(), // this will find the field groups for this post
 		'form' => true,
 		'form_attributes' => array( // attributes will be added to the form element
@@ -702,6 +702,10 @@ function acf_form($options = null)
 	{
 		$options = $defaults;
 	}
+	
+	
+	// filter post_id
+	$options['post_id'] = acf_filter_post_id( $options['post_id'] );
 	
 	
 	// register post box
