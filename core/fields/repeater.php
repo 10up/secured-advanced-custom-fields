@@ -646,14 +646,14 @@ class acf_Repeater extends acf_Field
 				
 				
 				// add
-				$sub_fields[ $f['key'] ] = $f;
+				$sub_fields[] = $f;
 			}
 			
 			
 			// update sub fields
 			$field['sub_fields'] = $sub_fields;
 		}
-		
+
 		
 		// return updated repeater field
 		return $field;

@@ -776,6 +776,8 @@ class acf_Flexible_content extends acf_Field
 		// format sub_fields
 		if( $field['layouts'] )
 		{
+			$layouts = array();
+			
 			// loop through and save fields
 			foreach($field['layouts'] as $layout_key => $layout)
 			{				
@@ -783,14 +785,15 @@ class acf_Flexible_content extends acf_Field
 				if( $layout['sub_fields'] )
 				{
 					// remove dummy field
-					unset( $field['layouts'][ $layout_key ]['sub_fields']['field_clone'] );
+					unset( $layout['sub_fields']['field_clone'] );
 				
 				
 					// loop through and save fields
 					$i = -1;
+					$sub_fields = array();
 					
 					
-					foreach( $field['layouts'][ $layout_key ]['sub_fields'] as $key => $f )
+					foreach( $layout['sub_fields'] as $key => $f )
 					{
 						$i++;
 				
@@ -805,23 +808,25 @@ class acf_Flexible_content extends acf_Field
 						$f = apply_filters('acf_save_field-' . $f['type'], $f );
 						
 						
-						$field['layouts'][ $layout_key ]['sub_fields'][ $key ] = $f;
+						$sub_fields[] = $f;
 						
 					}
 					
 					
-					// clean array keys
-					$field['layouts'][ $layout_key ]['sub_fields'] = array_values( $field['layouts'][ $layout_key ]['sub_fields'] );
+					// update sub fields
+					$layout['sub_fields'] = $sub_fields;
 					
 				}
+				
+				$layouts[] = $layout;
 				
 			}
 			
 			// clean array keys
-			$field['layouts'] = array_values( $field['layouts'] );
+			$field['layouts'] = $layouts;
 			
 		}
-		
+
 				
 		// return updated repeater field
 		return $field;
