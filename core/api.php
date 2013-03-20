@@ -681,6 +681,7 @@ function acf_form($options = null)
 	$defaults = array(
 		'post_id' => $post->ID, // post id to get field groups from and save data to
 		'field_groups' => array(), // this will find the field groups for this post
+		'form' => true,
 		'form_attributes' => array( // attributes will be added to the form element
 			'class' => ''
 		),
@@ -704,7 +705,7 @@ function acf_form($options = null)
 	
 	
 	// register post box
-	if( !$options['field_groups'] )
+	if( empty($options['field_groups']) )
 	{
 		// get field groups
 		$filter = array(
@@ -741,8 +742,9 @@ function acf_form($options = null)
 	
 	
 	// display form
-	?>
+	if( $options['form'] ): ?>
 	<form action="" id="post" method="post" <?php if($options['form_attributes']){foreach($options['form_attributes'] as $k => $v){echo $k . '="' . $v .'" '; }} ?>>
+	<?php endif; ?>
 	<div style="display:none">
 		<input type="hidden" name="acf_save" value="true" />
 		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
@@ -797,8 +799,10 @@ function acf_form($options = null)
 	<!-- / Submit -->
 
 	</div><!-- <div id="poststuff"> -->
+	
+	<?php if( $options['form'] ): ?>
 	</form>
-	<?php
+	<?php endif;
 	
 }
 
