@@ -796,11 +796,14 @@ function acf_form($options = null)
 	echo $options['html_after_fields'];
 	
 	?>
+	
+	<?php if( $options['form'] ): ?>
 	<!-- Submit -->
 	<div class="field">
 		<input type="submit" value="<?php echo $options['submit_value']; ?>" />
 	</div>
 	<!-- / Submit -->
+	<?php endif; ?>
 
 	</div><!-- <div id="poststuff"> -->
 	
