@@ -341,6 +341,13 @@ class acf_Relationship extends acf_Field
 					$title .= " ($post->post_status)";
 				}
 				
+				
+				// filters
+				$title = apply_filters('acf/fields/relationship/result', $title, $post);
+				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post);
+				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post);
+				
+				
 				echo '<li>
 					<a href="' . get_permalink($post->ID) . '" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
 					<input type="hidden" name="' . $field['name'] . '[]" value="' . $post->ID . '" />
@@ -519,7 +526,11 @@ class acf_Relationship extends acf_Field
 		foreach( $value as $k => $v)
 		{
 			// check that post exists (my have been trashed)
-			if( isset($ordered_posts[ $v ]) )
+			if( !isset($ordered_posts[ $v ]) )
+			{
+				unset( $value[ $k ] );
+			}
+			else
 			{
 				$value[ $k ] = $ordered_posts[ $v ];
 			}
