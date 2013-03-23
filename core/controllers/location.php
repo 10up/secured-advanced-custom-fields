@@ -657,25 +657,47 @@ class acf_location
 		// vars
 		$post_format = $options['post_format'];
 		if( !$post_format )
-		{
-			if( $options['post_id'] )
+		{	
+			// validate
+			if( !$options['post_id'] )
+			{
+				return false;
+			}
+			
+			
+			// post type
+			if( !$options['post_type'] )
+			{
+				$options['post_type'] = get_post_type( $options['post_id'] );
+			}
+			
+		
+			// does post_type support 'post-format'
+			if( post_type_supports( $options['post_type'], 'post-formats' ) )
 			{
 				$post_format = get_post_format( $options['post_id'] );
+				
+				if( $post_format === false )
+				{
+					$post_format = 'standard';
+				}
 			}
 		}
-
+		
        	
        	if($rule['operator'] == "==")
         {
         	$match = ( $post_format == $rule['value'] );
+        	 
         }
         elseif($rule['operator'] == "!=")
         {
         	$match = ( $post_format != $rule['value'] );
         }
-         
+        
         
         return $match;
+        
         
     }
     
