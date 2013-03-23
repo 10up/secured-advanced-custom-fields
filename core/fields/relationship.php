@@ -23,6 +23,7 @@ class acf_Relationship extends acf_Field
 		
 		// actions
 		add_action('wp_ajax_acf_get_relationship_results', array($this, 'acf_get_relationship_results'));
+		add_action('wp_ajax_nopriv_acf_get_relationship_results', array($this, 'acf_get_relationship_results'));
 		
    	}
    	
