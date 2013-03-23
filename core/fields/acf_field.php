@@ -135,17 +135,23 @@ class acf_Field
 		// if $post_id is a string, then it is used in the everything fields and can be found in the options table
 		if( is_numeric($post_id) )
 		{
-			update_post_meta($post_id, $field['name'], $value);
-			update_post_meta($post_id, '_' . $field['name'], $field['key']);
+			// allow ACF to save to revision!
+			update_metadata('post', $post_id, $field['name'], $value );
+			update_metadata('post', $post_id, '_' . $field['name'], $field['key']);
 		}
 		elseif( strpos($post_id, 'user_') !== false )
 		{
-			$post_id = str_replace('user_', '', $post_id);
-			update_user_meta($post_id, $field['name'], $value);
-			update_user_meta($post_id, '_' . $field['name'], $field['key']);
+			$user_id = str_replace('user_', '', $post_id);
+			update_metadata('user', $user_id, $field['name'], $value);
+			update_metadata('user', $user_id, '_' . $field['name'], $field['key']);
 		}
 		else
 		{
+			// for some reason, update_option does not use stripslashes_deep.
+			// update_metadata -> http://core.trac.wordpress.org/browser/tags/3.4.2/wp-includes/meta.php#L82: line 101 (does use stripslashes_deep)
+			// update_option -> http://core.trac.wordpress.org/browser/tags/3.5.1/wp-includes/option.php#L0: line 215 (does not use stripslashes_deep)
+			$value = stripslashes_deep($value);
+			
 			update_option( $post_id . '_' . $field['name'], $value );
 			update_option( '_' . $post_id . '_' . $field['name'], $field['key'] );
 		}
