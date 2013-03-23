@@ -245,11 +245,11 @@ class acf_location
 
         if( $rule['operator'] == "==" )
         {
-        	$match = ( $post_type == $rule['value'] );
+        	$match = ( $post_type === $rule['value'] );
         }
         elseif( $rule['operator'] == "!=" )
         {
-        	$match = ( $post_type != $rule['value'] );
+        	$match = ( $post_type !== $rule['value'] );
         }
 		
 	
@@ -469,11 +469,11 @@ class acf_location
 		
         if($rule['operator'] == "==")
         {
-        	$match = ( $page_template == $rule['value'] );
+        	$match = ( $page_template === $rule['value'] );
         }
         elseif($rule['operator'] == "!=")
         {
-        	$match = ( $page_template != $rule['value'] );
+        	$match = ( $page_template !== $rule['value'] );
         }
                 
         return $match;
@@ -631,11 +631,11 @@ class acf_location
 		
 		if($rule['operator'] == "==")
         {
-        	$match = ( $plugin_page == $rule['value'] );
+        	$match = ( $plugin_page === $rule['value'] );
         }
         elseif($rule['operator'] == "!=")
         {
-        	$match = ( $plugin_page != $rule['value'] );
+        	$match = ( $plugin_page !== $rule['value'] );
         }
         
         
@@ -687,12 +687,12 @@ class acf_location
        	
        	if($rule['operator'] == "==")
         {
-        	$match = ( $post_format == $rule['value'] );
+        	$match = ( $post_format === $rule['value'] );
         	 
         }
         elseif($rule['operator'] == "!=")
         {
-        	$match = ( $post_format != $rule['value'] );
+        	$match = ( $post_format !== $rule['value'] );
         }
         
         
@@ -820,7 +820,7 @@ class acf_location
 	        	$match = ( $ef_taxonomy == $rule['value'] );
 	        	
 	        	// override for "all"
-		        if( $rule['value'] == "all" )
+		        if( $rule['value'] === "all" )
 				{
 					$match = true;
 				}
@@ -831,7 +831,7 @@ class acf_location
 	        	$match = ( $ef_taxonomy != $rule['value'] );
 	        		
 	        	// override for "all"
-		        if( $rule['value'] == "all" )
+		        if( $rule['value'] === "all" )
 				{
 					$match = false;
 				}
@@ -870,12 +870,12 @@ class acf_location
 	        	$match = ( user_can($ef_user, $rule['value']) );
 	        	
 	        	// override for "all"
-		        if( $rule['value'] == "all" )
+		        if( $rule['value'] === "all" )
 				{
 					$match = true;
 				}
 	        }
-	        elseif($rule['operator'] == "!=")
+	        elseif($rule['operator'] === "!=")
 	        {
 	        	$match = ( !user_can($ef_user, $rule['value']) );
 	        	
@@ -923,7 +923,7 @@ class acf_location
 			if($rule['operator'] == "==")
 	        {
 	        	// override for "all"
-		        if( $rule['value'] == "all" )
+		        if( $rule['value'] === "all" )
 				{
 					$match = true;
 				}
@@ -931,7 +931,7 @@ class acf_location
 	        elseif($rule['operator'] == "!=")
 	        {
 	        	// override for "all"
-		        if( $rule['value'] == "all" )
+		        if( $rule['value'] === "all" )
 				{
 					$match = false;
 				}
