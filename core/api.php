@@ -165,7 +165,8 @@ function get_field($field_key, $post_id = false, $format_value = true)
 	$value = ""; 
 	$field = array(
 		'type'	=>	'text',
-		'name'	=>	$field_key
+		'name'	=>	$field_key,
+		'key'	=> 'temp_key_for_' . $field_key
 	);
 	 
 	
@@ -201,11 +202,12 @@ function get_field($field_key, $post_id = false, $format_value = true)
 	{
 		$field = array(
 			'type' => 'none',
-			'name' => $field_key
+			'name' => $field_key,
+			'key' => 'temp_key_for_' . $field_key
 		);
 	}
 	
-	
+
 	// load value
 	$value = $acf->get_value_for_api($post_id, $field);
 	
