@@ -239,6 +239,11 @@ class acf_location
 
 		if( !$post_type )
 		{
+			if( !$options['post_id'] )
+			{
+				return false;
+			}
+			
 			$post_type = get_post_type( $options['post_id'] );
 		}
 		
