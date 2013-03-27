@@ -55,7 +55,7 @@
 				var id = div.find('.wp-editor-area').attr('id'),
 					editor = tinyMCE.get( id );
 
-				if( ! editor.getContent() )
+				if( editor && !editor.getContent() )
 				{
 					div.data('validation', false);
 				}
