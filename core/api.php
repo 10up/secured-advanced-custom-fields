@@ -294,7 +294,13 @@ function has_sub_field($field_name, $post_id = false)
 	if( $post_id != $id )
 	{
 		// reset
-		$GLOBALS['acf_field'] = array();
+		$GLOBALS['acf_field'][] = array(
+			'name'	=>	$field_name,
+			'value'	=>	get_field($field_name, $post_id),
+			'row'	=>	-1,
+			'post_id' => $post_id,
+		);
+		
 		return has_sub_field($field_name, $post_id);
 	}
 
