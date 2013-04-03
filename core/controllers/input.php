@@ -164,7 +164,7 @@ class acf_input
 		$style = '';
 		if( isset($metabox_ids[0]) )
 		{
-			$style = $this->ajax_get_style( $metabox_ids[0] );
+			$style = $this->get_style( $metabox_ids[0] );
 		}
 		
 		
@@ -217,19 +217,15 @@ class acf_input
 	
 	
 	/*
-	*  ajax_get_style
+	*  get_style
 	*
 	*  @description: called by admin_head to generate acf css style (hide other metaboxes)
 	*  @since 2.0.5
 	*  @created: 23/06/12
 	*/
 
-	function ajax_get_style( $acf_id )
+	function get_style( $acf_id )
 	{
-		// global
-		global $acf_field_group;
-		
-		
 		// vars
 		$options = apply_filters('acf/field_group/get_options', array(), $acf_id);
 		$html = '';
@@ -302,11 +298,11 @@ class acf_input
 	*  @created: 23/06/12
 	*/
 	
-	function ajax_get_input_style()
+	function ajax_get_style()
 	{
 		// vars
 		$options = array(
-			'post_id' => 0,
+			'acf_id' => 0,
 			'nonce' => ''
 		);
 		
@@ -322,7 +318,7 @@ class acf_input
 		
 		
 		// return style
-		echo $this->get_input_style( $options['post_id'] );
+		echo $this->get_style( $options['acf_id'] );
 		
 		
 		// die
