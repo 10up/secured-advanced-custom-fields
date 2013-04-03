@@ -435,6 +435,11 @@ class acf_field_functions
 	
 	function update_field( $field, $post_id )
 	{
+		// sanitize field name
+		// - http://support.advancedcustomfields.com/discussion/5262/sanitize_title-on-field-name
+		$field['name'] = sanitize_title( $field['name'] );
+		
+		
 		// filters
 		$field = apply_filters('acf/update_field/type=' . $field['type'], $field, $post_id ); // new filter
 		
