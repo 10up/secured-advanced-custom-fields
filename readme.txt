@@ -106,6 +106,14 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.0.1 =
+* [Improved] Improving welcome message with download instructions
+* [Fixed] Text / Fix JS issue where metaboxes are not hiding - http://support.advancedcustomfields.com/discussion/5443/bug-content-editor
+* [Fixed] Test / Fix lite mode issue causing category / user fields not to show
+* [Fixed] Sanitize field names - http://support.advancedcustomfields.com/discussion/5262/sanitize_title-on-field-name
+* [Fixed] Test / Fix conditional logic not working for mutli-select - http://support.advancedcustomfields.com/discussion/5409/conditional-logic-with-multiple-select-field
+* [Fixed] Test / Fix field group duplication in WooCommerce category w SEO plugin - http://support.advancedcustomfields.com/discussion/5440/acf-woocommerce-product-category-taxonomy-bug
+
 = 4.0.0 =
 * [IMPORTANT] This update contains major changes to premium and custom field type Add-ons. Please read the [Migrating from v3 to v4 guide](http://www.advancedcustomfields.com/resources/getting-started/migrating-from-v3-to-v4/)
 * [Optimized] Optimize performance by removing heavy class structure and implementing light weight hooks & filters!
