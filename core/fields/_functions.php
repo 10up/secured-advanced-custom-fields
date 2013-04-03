@@ -416,7 +416,7 @@ class acf_field_functions
 			$id = str_replace('[', '-', $id); // location rules (select) does'nt have "fields[" in it
 			$id = str_replace(']', '', $id);
 			
-			$field['id'] = 'acf-' . $id;
+			$field['id'] = 'acf-field-' . $id;
 		}
 		
 		

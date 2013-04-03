@@ -422,16 +422,24 @@ var acf = {
 		}
 		else
 		{
+			// get val and make sure it is an array
+			var val = toggle.find('*[name]:last').val();
+			if( !$.isArray(val) )
+			{
+				val = [ val ];
+			}
+			
+			
 			if( options.operator == "==" )
 			{
-				if( toggle.find('*[name]').val() == options.value )
+				if( $.inArray(options.value, val) > -1 )
 				{
 					r = true;
 				}
 			}
 			else
 			{
-				if( toggle.find('*[name]').val() != options.value )
+				if( $.inArray(options.value, val) < 0 )
 				{
 					r = true;
 				}
