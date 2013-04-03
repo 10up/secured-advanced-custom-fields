@@ -266,7 +266,7 @@ $(document).ready(function(){
 			{
 				if($this->data['page_action'] == "add")
 				{
-					echo "$('#createuser > table.form-table > tbody').append( html );";
+					echo "$('#createuser > table.form-table:last > tbody').append( html );";
 				}
 				else
 				{
@@ -285,7 +285,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					echo "$('#edittag > table.form-table > tbody').append( html );";
+					echo "$('#edittag > table.form-table:last > tbody').append( html );";
 				}
 			}
 			elseif($this->data['page_type'] == "media")
