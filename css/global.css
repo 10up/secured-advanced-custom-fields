@@ -77,6 +77,35 @@ input.ir { border: 0 none; background: none; }
     color: #B94A48;
 }
 
+.acf-alert.acf-alert-success {
+	background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
+
+.acf-message {
+	background: #2F353E;
+	border-radius: 4px 4px 4px 4px;
+	border: #000 solid 1px;
+	color: #fff;
+	text-shadow: 0 1px 0 #000;
+	padding: 0 10px;
+	margin: 10px 0;
+}
+
+.acf-message p {
+	font-size: 15px;
+	margin: 15px 0;
+}
+
+.acf-message .acf-button,
+.acf-alert .acf-button{
+	font-size: 15px;
+	padding: 8px 12px;
+	margin-left: 5px;
+}
+
+
 
 /*--------------------------------------------------------------------------------------------
 *

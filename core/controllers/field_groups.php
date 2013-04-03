@@ -255,9 +255,19 @@ class acf_field_groups
 		<h2 class="nav-tab-wrapper">
 			<a class="acf-tab-toggle nav-tab <?php if( $tab == 'whats-new' ){ echo 'nav-tab-active'; } ?>" href="<?php echo admin_url('edit.php?post_type=acf&info=whats-new'); ?>"><?php _e("What’s New",'acf'); ?></a>
 			<a class="acf-tab-toggle nav-tab <?php if( $tab == 'changelog' ){ echo 'nav-tab-active'; } ?>" href="<?php echo admin_url('edit.php?post_type=acf&info=changelog'); ?>"><?php _e("Changelog",'acf'); ?></a>
+			<?php if( $tab == 'download-add-ons' ): ?>
+			<a class="acf-tab-toggle nav-tab nav-tab-active" href="<?php echo admin_url('edit.php?post_type=acf&info=download-add-ons'); ?>"><?php _e("Download Add-ons",'acf'); ?></a>
+			<?php endif; ?>
 		</h2>
 
-<?php if( $tab == 'whats-new' ): ?>
+<?php if( $tab == 'whats-new' ): 
+	
+		$ac_repeater = get_option('acf_repeater_ac', '');
+		$ac_options_page = get_option('acf_options_page_ac', '');
+		$ac_flexible_content = get_option('acf_flexible_content_ac', '');
+		$ac_gallery = get_option('acf_gallery_ac', '');
+		
+		?>
 
 		<table id="acf-add-ons-table" class="alignright">
 			<tr>
@@ -269,15 +279,28 @@ class acf_field_groups
 				<td><img src="<?php echo $dir; ?>images/add-ons/flexible-content-field-thumb.jpg" /></td>
 			</tr>
 		</table>
+		
+		<div style="margin-right: 300px;">
 	
-		<h3><?php _e("Add-ons",'acf'); ?></h3>
+			<h3><?php _e("Add-ons",'acf'); ?></h3>
+			
+			<h4><?php _e("Activation codes have grown into plugins!",'acf'); ?></h4>
+			<p><?php _e("Add-ons are now activated by downloading and installing individual plugins. Although these plugins will not be hosted on the wordpress.org repository, each Add-on will continue to receive updates in the usual way.",'acf'); ?></p>
+			
+			
+			<?php if( $ac_repeater || $ac_options_page || $ac_flexible_content || $ac_gallery ): ?>
+			<div class="acf-alert acf-alert-success">
+				<p>This website uses premium Add-ons which need to be downloaded <a href="<?php echo admin_url('edit.php?post_type=acf&info=download-add-ons'); ?>" class="acf-button" style="display: inline-block;">Download your activated Add-ons</a></p>
+			</div>
+			<?php else: ?>
+			<div class="acf-alert acf-alert-success">
+				<p><?php _e("This website does not use premium Add-ons and will not be affected by this change.",'acf'); ?></p>
+			</div>
+			<?php endif; ?>
+			
+		</div>
 		
-		<h4><?php _e("Activation codes have grown into plugins!",'acf'); ?></h4>
-		<p><?php _e("Add-ons are now activated by downloading and installing individual plugins. Although these plugins will not be hosted on the wordpress.org repository, each Add-on will continue to receive updates in the usual way.",'acf'); ?></p>
-		
-		<h4><?php _e("Where can I find my Add-on plugins?",'acf'); ?></h4>
-		<p><?php _e("Download links can be found alongside the activation code in your ACF receipt.",'acf'); ?> <a href="http://www.advancedcustomfields.com/store/account/" target="_blank"><?php _e("Visit your account",'acf'); ?></a>.<br />
-		<?php _e("For faster access, this",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><?php _e("download page",'acf'); ?></a> <?php _e("has also been created.",'acf'); ?></p>
+		<div class="clear"></div>
 		
 		<hr />
 		
@@ -319,7 +342,7 @@ class acf_field_groups
 		<h3><?php _e("Thank You",'acf'); ?></h3>
 		<p><?php _e("A <strong>BIG</strong> thank you to everyone who has helped test the version 4 beta and for all the support I have received.",'acf'); ?></p>
 		<p><?php _e("Without you all, this release would not have been possible!",'acf'); ?></p>
-		
+
 <?php elseif( $tab == 'changelog' ): ?>
 		
 		<h3><?php _e("Changelog for",'acf'); ?> <?php echo $version; ?></h3>
@@ -336,12 +359,89 @@ class acf_field_groups
 		<?php foreach( $items as $item ): 
 			
 			$item = explode('http', $item);
-			
 				
 		?>
 			<li><?php echo $item[0]; ?><?php if( isset($item[1]) ): ?><a href="http<?php echo $item[1]; ?>" target="_blank"><?php _e("Learn more",'acf'); ?></a><?php endif; ?></li>
 		<?php endforeach; ?>
 		</ul>
+
+<?php elseif( $tab == 'download-add-ons' ): ?>
+		
+		<h3><?php _e("Overview",'acf'); ?></h3>
+		
+		<p>Previously, all Add-ons were unlocked via an activation code (purchased from the ACF Add-ons store). New to v4, all Add-ons act as separate plugins which need to be individually downloaded, installed and updated.</p>
+		
+		<p>This page will assist you in downloading and installing each available Add-on.</p>
+		
+		<h3><?php _e("Available Add-ons",'acf'); ?></h3>
+		
+		<p>The following Add-ons have been detected as activated on this website.</p>
+		
+		<?php 
+		
+		$ac_repeater = get_option('acf_repeater_ac', '');
+		$ac_options_page = get_option('acf_options_page_ac', '');
+		$ac_flexible_content = get_option('acf_flexible_content_ac', '');
+		$ac_gallery = get_option('acf_gallery_ac', '');
+		
+		?>
+		<table class="widefat" id="acf-download-add-ons-table">
+			<thead>
+			<tr>
+				<th colspan="2">Name</th>
+				<th>Activation Code</th>
+				<th>Download</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php if( $ac_repeater ): ?>
+			<tr>
+				<td class="td-image"><img src="<?php echo $dir; ?>images/add-ons/repeater-field-thumb.jpg" style="width:50px" /></td>
+				<th class="td-name">Repeater Field</th>
+				<td class="td-code">XXXX-XXXX-XXXX-<?php echo substr($ac_repeater,-4); ?></td>
+				<td class="td-download"><a class="button" href="http://download.advancedcustomfields.com/<?php echo $ac_repeater; ?>/trunk">Download</a></td>
+			</tr>
+			<?php endif; ?>
+			<?php if( $ac_gallery ): ?>
+			<tr>
+				<td><img src="<?php echo $dir; ?>images/add-ons/gallery-field-thumb.jpg" /></td>
+				<th>Gallery Field</th>
+				<td>XXXX-XXXX-XXXX-<?php echo substr($ac_gallery,-4); ?></td>
+				<td><a class="button" href="http://download.advancedcustomfields.com/<?php echo $ac_gallery; ?>/trunk">Download</a></td>
+			</tr>	
+			<?php endif; ?>
+			<?php if( $ac_options_page ): ?>
+			<tr>
+				<td><img src="<?php echo $dir; ?>images/add-ons/options-page-thumb.jpg" /></td>
+				<th>Options Page</th>
+				<td>XXXX-XXXX-XXXX-<?php echo substr($ac_options_page,-4); ?></td>
+				<td><a class="button" href="http://download.advancedcustomfields.com/<?php echo $ac_options_page; ?>/trunk">Download</a></td>
+			</tr>
+			<?php endif; ?>
+			<?php if($ac_flexible_content): ?>
+			<tr>
+				<td><img src="<?php echo $dir; ?>images/add-ons/flexible-content-field-thumb.jpg" /></td>
+				<th>Flexible Content</th>
+				<td>XXXX-XXXX-XXXX-<?php echo substr($ac_flexible_content,-4); ?></td>
+				<td><a class="button" href="http://download.advancedcustomfields.com/<?php echo $ac_flexible_content; ?>/trunk">Download</a></td>
+			</tr>
+			<?php endif; ?>
+			</tbody>
+		</table>
+		
+		
+		
+		<h3><?php _e("Installation",'acf'); ?></h3>
+		
+		<p>For each Add-on available, please perform the following:</p>
+		<ol>
+			<li>Download the Add-on plugin (.zip file) to your desktop</li>
+			<li>Navigate to <a target="_blank" href="<?php echo admin_url('plugin-install.php?tab=upload'); ?>">Plugins > Add New > Upload</a></li>
+			<li>Use the uploader to browse, select and install your Add-on (.zip file)</li>
+			<li>Once the plugin has been uploaded and installed, click the "Activate Plugin" link</li>
+			<li>The Add-on is now installed and activated!</li>
+		</ol>
+		
 		
 <?php endif; ?>
 

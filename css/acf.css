@@ -255,7 +255,7 @@ body.custom-fields_page_acf-settings .wp-pointer-arrow {
 }
 
 #acf-add-ons-table {
-	margin-left: 100px;
+	
 }
 
 #acf-add-ons-table img {
@@ -290,6 +290,36 @@ body.custom-fields_page_acf-settings .wp-pointer-arrow {
 	
 }
 
+
+/*
+*  Download
+*/
+
+
+#acf-download-add-ons-table {
+	width: auto;
+	min-width: 500px;
+}
+
+#acf-download-add-ons-table img {
+	width: 50px;
+}
+
+#acf-download-add-ons-table td {
+	vertical-align: middle;
+}
+
+#acf-download-add-ons-table td.td-image {
+	width: 50px;
+}
+
+#acf-download-add-ons-table td.td-name {
+	
+}
+
+#acf-download-add-ons-table td.td-download {
+	width: 90px;
+}
 
 
 /*--------------------------------------------------------------------------
