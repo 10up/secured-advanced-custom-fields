@@ -28,13 +28,17 @@ include_once('core/controllers/field_group.php');
 include_once('core/controllers/input.php');
 include_once('core/controllers/location.php');
 
-if( is_admin() && !ACF_LITE )
+if( is_admin() )
 {
-	include_once('core/controllers/export.php');
-	include_once('core/controllers/addons.php');
-	include_once('core/controllers/third_party.php');
-	include_once('core/controllers/everything_fields.php');
-	include_once('core/controllers/upgrade.php');
+	if( !ACF_LITE )
+	{
+		include_once('core/controllers/export.php');
+		include_once('core/controllers/addons.php');
+		include_once('core/controllers/third_party.php');
+		include_once('core/controllers/upgrade.php');
+	}
+	
+	include_once('core/controllers/everything_fields.php');	
 }
 
 
