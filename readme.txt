@@ -8,6 +8,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress.Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker and more!
 
+
 == Description ==
 
 Advanced Custom Fields is the perfect solution for any wordpress website which needs more flexible data like other Content Management Systems. 
@@ -23,36 +24,51 @@ Advanced Custom Fields is the perfect solution for any wordpress website which n
 * Tab (Group fields into tabs)
 * Text (type text, api returns text)
 * Text Area (type text, api returns text with `<br />` tags)
+* Number (type number, api returns integer)
+* Email (type email, api returns text)
+* Password (type password, api returns text)
+
 * WYSIWYG (a wordpress wysiwyg editor, api returns html)
 * Image (upload an image, api returns the url)
 * File (upload a file, api returns the url)
+
 * Select (drop down list of choices, api returns chosen item)
-* Checkbox (tick for a list of choices, api returns array of choices)
-* Page Link (select 1 or more page, post or custom post types, api returns the url)
-* Post Object (select 1 or more page, post or custom post types, api returns post objects)
-* Date Picker (jquery date picker, options for format, api returns string)
+* Checkbox (tickbox list of choices, api returns array of choices)
+* Radio Buttons ( radio button list of choices, api returns chosen item)
 * True / False (tick box with message, api returns true or false)
-* Relationship	(select and order post objects with a tidy interface)
+
+* Page Link (select 1 or more page, post or custom post types, api returns the selected url)
+* Post Object (select 1 or more page, post or custom post types, api returns the selected post objects)
+* Relationship (search, select and order post objects with a tidy interface, api returns the selected post objects)
+* Taxonomy (select taxonomy terms with options to load, display and save, api returns the selected term objects)
+* User (select 1 or more WP users, api returns the selected user objects)
+
+* Date Picker (jquery date picker, options for format, api returns string)
 * Color Picker (Farbtastic!)
+
 * Repeater (ability to create repeatable blocks of fields!)
 * Flexible Content (ability to create flexible blocks of fields!)
 * Gallery (Add, edit and order multiple images in 1 simple field)
+* [Custom](http://www.advancedcustomfields.com/resources/tutorials/creating-a-new-field-type/) (Create your own field type!)
 
 = Tested on =
 * Mac Firefox 	:)
 * Mac Safari 	:)
 * Mac Chrome	:)
 * PC Firefox	:)
-* PC ie7	:S
+* PC ie7		:S
 
 = Website =
 http://www.advancedcustomfields.com/
 
 = Documentation =
-http://www.advancedcustomfields.com/docs/getting-started/
-
-= Field Type Info =
-http://www.advancedcustomfields.com/docs/field-types/
+* [Getting Started](http://www.advancedcustomfields.com/resources/#getting-started)
+* [Field Types](http://www.advancedcustomfields.com/resources/#field-types)
+* [Functions](http://www.advancedcustomfields.com/resources/#functions)
+* [Actions](http://www.advancedcustomfields.com/resources/#actions)
+* [Filters](http://www.advancedcustomfields.com/resources/#filters)
+* [How to guides](http://www.advancedcustomfields.com/resources/#how-to)
+* [Tutorials](http://www.advancedcustomfields.com/resources/#tutorials)
 
 = Bug Submission and Forum Support =
 http://support.advancedcustomfields.com/
@@ -85,12 +101,13 @@ http://support.advancedcustomfields.com/
 
 3. The Page edit screen after creating the Advanced Custom Fields
 
-4. Simple and intuitive API. Read the documentation at: http://www.advancedcustomfields.com/docs/functions/
+4. Simple and intuitive API. Read the documentation at: http://www.advancedcustomfields.com/resources/
 
 
 == Changelog ==
 
 = 4.0.0 =
+* [IMPORTANT] This update contains major changes to premium and custom field type Add-ons. Please read the [Migrating from v3 to v4 guide](http://www.advancedcustomfields.com/resources/getting-started/migrating-from-v3-to-v4/)
 * [Optimized] Optimize performance by removing heavy class structure and implementing light weight hooks & filters!
 * [Changed] Remove all Add-on code from the core plugin and separate into individual plugins with self hosted updates
 * [Added] Add field 'Taxonomy'
