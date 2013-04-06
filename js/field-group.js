@@ -518,15 +518,34 @@ var acf = {
 
 	$('#acf_fields tr.field_label input.label').live('blur', function()
 	{
-		var label = $(this);
-		var name = $(this).closest('tr').siblings('tr.field_name').find('input.name');
+		var label = $(this),
+			name = label.closest('tr').siblings('tr.field_name').find('input.name');
 
-		if(name.val() == '')
+		if( name.val() == '' )
 		{
-			var val = label.val().toLowerCase().split(' ').join('_').split('\'').join('');
+			var val = label.val(),
+				replace = {
+					'ä': 'a',
+					'æ': 'a',
+					'å': 'a',
+					'ö': 'o',
+					'ø': 'o',
+					'é': 'e',
+					'ë': 'e',
+					' ' : '_',
+					'\'' : ''
+				};
+			
+			$.each( replace, function(k, v){
+				var regex = new RegExp( k, 'g' );
+				val = val.replace( regex, v );
+			});
+			
+			
 			name.val(val);
 			name.trigger('keyup');
 		}
+		
 	});
 	
 	

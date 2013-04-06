@@ -437,7 +437,8 @@ class acf_field_functions
 	{
 		// sanitize field name
 		// - http://support.advancedcustomfields.com/discussion/5262/sanitize_title-on-field-name
-		$field['name'] = sanitize_title( $field['name'] );
+		// - issue with camel case! Replaced with JS
+		//$field['name'] = sanitize_title( $field['name'] );
 		
 		
 		// filters
