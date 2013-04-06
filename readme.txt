@@ -106,6 +106,15 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.0.2 =
+* [Added] Add auto video filter to WYSIWYG value - http://support.advancedcustomfields.com/discussion/5378/video-embed-in-wysiwyg-field
+* [Fixed] Fix Repeater + WYSIWYG loosing p tags on drag/drop - http://support.advancedcustomfields.com/discussion/5476/acf-4-0-0-wysiwyg-p-tag-disappearing-after-drag-drop-save
+* [Fixed] Fix upgrade message appearing in iframe
+* [Fixed] Fix value sanitation - http://support.advancedcustomfields.com/discussion/5499/post-relationship-field-value-storage-in-update-to-acf4
+* [Added] Add JS field name validation - http://support.advancedcustomfields.com/discussion/5500/replace-foreign-letters-when-creating-input-name-from-label-in-javascript
+* [Fixed] Fix error when duplicating field group in WPML - http://support.advancedcustomfields.com/discussion/5501/4-0-1-broke-wpml-functionality-
+* [Fixed] Fix pares_type issue. Maybe remove it? - http://support.advancedcustomfields.com/discussion/5502/zeros-get-removed-major-bug
+
 = 4.0.1 =
 * [Improved] Improving welcome message with download instructions
 * [Fixed] Text / Fix JS issue where metaboxes are not hiding - http://support.advancedcustomfields.com/discussion/5443/bug-content-editor
