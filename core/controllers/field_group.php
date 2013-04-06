@@ -832,8 +832,7 @@ class acf_field_group
 		// vars
 		$dont_delete = array();
 		
-		
-		if( $_POST['fields'] )
+		if( isset($_POST['fields']) && is_array($_POST['fields']) )
 		{
 			$i = -1;
 
@@ -881,35 +880,37 @@ class acf_field_group
 		*  save location rules
 		*/
 		
-		$location = $_POST['location'];
-		update_post_meta($post_id, 'allorany', $location['allorany']);
-		
-		delete_post_meta($post_id, 'rule');
-		if($location['rules'])
+		if( isset($_POST['location']) && is_array($_POST['location']) )
 		{
-			foreach($location['rules'] as $k => $rule)
+\			update_post_meta($post_id, 'allorany', $_POST['location']['allorany']);
+			
+			delete_post_meta($post_id, 'rule');
+			if( $_POST['location']['rules'] )
 			{
-				$rule['order_no'] = $k;
-				add_post_meta($post_id, 'rule', $rule);
+				foreach($_POST['location']['rules'] as $k => $rule)
+				{
+					$rule['order_no'] = $k;
+					add_post_meta($post_id, 'rule', $rule);
+				}
 			}
+			unset( $_POST['location'] );
 		}
-		unset( $_POST['location'] );
+		
+		
+		
 		
 		
 		/*
 		*  save options
 		*/
 		
-		$options = array(
-			'position' => 'normal',
-			'layout' => 'default',
-			'hide_on_screen' => array()
-		);
-		$options = array_merge($options, $_POST['options']);
-		
-		update_post_meta($post_id, 'position', $options['position']);
-		update_post_meta($post_id, 'layout', $options['layout']);
-		update_post_meta($post_id, 'hide_on_screen', $options['hide_on_screen']);
+		if( isset($_POST['options']) && is_array($_POST['options']) )
+		{
+			update_post_meta($post_id, 'position', $_POST['options']['position']);
+			update_post_meta($post_id, 'layout', $_POST['options']['layout']);
+			update_post_meta($post_id, 'hide_on_screen', $_POST['options']['hide_on_screen']);
+		}
+
 		
 		unset( $_POST['options'] );
 	
