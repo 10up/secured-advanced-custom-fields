@@ -261,10 +261,21 @@ class acf_field_wysiwyg extends acf_field
 	
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// filters
+		// wp_embed convert urls to videos
+		if(	isset($GLOBALS['wp_embed']) )
+		{
+			$value = $GLOBALS['wp_embed']->autoembed( $value );
+		}
+		
+		
+		// auto p
 		$value = wpautop( $value );
+		
+		
+		// run all normal shortcodes
 		$value = do_shortcode( $value );
-				
+		
+	
 		return $value;
 	}
 	
