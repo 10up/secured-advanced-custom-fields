@@ -639,7 +639,8 @@ class Acf
 			foreach( $_POST['fields'] as $key => $value )
 			{
 				// parse types
-				$value = apply_filters('acf/parse_types', $value);
+				// - caused issues with saving numbers (0 were removed)
+				//$value = apply_filters('acf/parse_types', $value);
 		
 				// get field
 				$field = apply_filters('acf/load_field', false, $key );
