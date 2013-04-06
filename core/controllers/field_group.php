@@ -882,7 +882,7 @@ class acf_field_group
 		
 		if( isset($_POST['location']) && is_array($_POST['location']) )
 		{
-\			update_post_meta($post_id, 'allorany', $_POST['location']['allorany']);
+			update_post_meta($post_id, 'allorany', $_POST['location']['allorany']);
 			
 			delete_post_meta($post_id, 'rule');
 			if( $_POST['location']['rules'] )

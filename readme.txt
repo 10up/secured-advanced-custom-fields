@@ -27,25 +27,20 @@ Advanced Custom Fields is the perfect solution for any wordpress website which n
 * Number (type number, api returns integer)
 * Email (type email, api returns text)
 * Password (type password, api returns text)
-
 * WYSIWYG (a wordpress wysiwyg editor, api returns html)
 * Image (upload an image, api returns the url)
 * File (upload a file, api returns the url)
-
 * Select (drop down list of choices, api returns chosen item)
 * Checkbox (tickbox list of choices, api returns array of choices)
 * Radio Buttons ( radio button list of choices, api returns chosen item)
 * True / False (tick box with message, api returns true or false)
-
 * Page Link (select 1 or more page, post or custom post types, api returns the selected url)
 * Post Object (select 1 or more page, post or custom post types, api returns the selected post objects)
 * Relationship (search, select and order post objects with a tidy interface, api returns the selected post objects)
 * Taxonomy (select taxonomy terms with options to load, display and save, api returns the selected term objects)
 * User (select 1 or more WP users, api returns the selected user objects)
-
 * Date Picker (jquery date picker, options for format, api returns string)
 * Color Picker (Farbtastic!)
-
 * Repeater (ability to create repeatable blocks of fields!)
 * Flexible Content (ability to create flexible blocks of fields!)
 * Gallery (Add, edit and order multiple images in 1 simple field)
