@@ -523,6 +523,7 @@ var acf = {
 
 		if( name.val() == '' )
 		{
+			// thanks to https://gist.github.com/richardsweeney/5317392 for this code!
 			var val = label.val(),
 				replace = {
 					'ä': 'a',
