@@ -170,8 +170,11 @@
 			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
 			if( editor )
 			{
-				editor.save();
+				var val = editor.getContent();
+				
 				tinyMCE.execCommand("mceRemoveControl", false, id);
+			
+				textarea.val( val );
 			}
 			
 		});
