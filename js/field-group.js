@@ -551,6 +551,7 @@ var acf = {
 			});
 			
 			
+			val = val.toLowerCase();
 			name.val(val);
 			name.trigger('keyup');
 		}
