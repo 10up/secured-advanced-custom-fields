@@ -167,7 +167,16 @@
 	*  @created: 17/01/13
 	*/
 	
-	$('.acf_relationship input.relationship_search').live('keyup', function()
+	$('.acf_relationship input.relationship_search').live('keypress', function( e ){
+		
+		// don't submit form
+		if( e.which == 13 )
+		{
+			return false;
+		}
+		
+	})
+	.live('keyup', function()
 	{	
 		// vars
 		var val = $(this).val(),
@@ -199,6 +208,30 @@
 		{
 			$(this).siblings('label').show();
 		}
+	});
+	
+	
+	/*
+	*  Filter by post_type
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 9/04/13
+	*/
+	
+	$('.acf_relationship .select-post_type').live('change', function(){
+		
+		// vars
+		var val = $(this).val(),
+			div = $(this).closest('.acf_relationship');
+			
+		
+		// update data-s
+	    div.attr('data-post_type', val);
+	    
+	    // ajax
+	    _relationship.update_results( div );
+		
 	});
 	
 	
