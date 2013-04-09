@@ -209,6 +209,12 @@ class Acf
 		{
 			foreach( $value as $k => $v )
 			{
+				// if $field was passed, never modify the value! NEVER!
+				if( $k == 'value' )
+				{
+					continue;
+				}
+				
 				$value[ $k ] = apply_filters( 'acf/parse_types', $v );
 			}	
 		}
