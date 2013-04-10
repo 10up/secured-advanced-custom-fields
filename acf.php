@@ -210,7 +210,7 @@ class Acf
 			foreach( $value as $k => $v )
 			{
 				// if $field was passed, never modify the value! NEVER!
-				if( $k == 'value' )
+				if( $k === 'value' )
 				{
 					continue;
 				}
