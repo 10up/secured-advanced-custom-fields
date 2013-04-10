@@ -119,7 +119,12 @@
 
 
 		// add new li
-		right.append( new_li );
+		$el = $(new_li);
+		right.append( $el );
+		
+		
+		// trigger change on new_li
+		$el.find('input').trigger('change');
 		
 		
 		// validation
