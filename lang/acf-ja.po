@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-04-08 18:58+0900\n"
+"PO-Revision-Date: 2013-04-10 13:05+0900\n"
 "Last-Translator: Fumito MIZUNO <ounziw@gmail.com>\n"
 "Language-Team: Fumito MIZUNO <ounziw@gmail.com>\n"
 "X-Generator: Poedit 1.5.5\n"
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: core/views/meta_box_fields.php:163
 msgid "Instructions for authors. Shown when submitting data"
-msgstr "作成者向けのヒント。データ送信時に表示されます"
+msgstr "作成者向けヒント。編集時に表示されます"
 
 #: core/views/meta_box_fields.php:175
 msgid "Required?"
