@@ -30,17 +30,19 @@
 		
 		return r;
 		
-	}
+	};
+	
 	
 	/*
-	*  acf/wysiwyg_activate
+	*  add_tinymce
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  {description}
+	*  
+	*  @since: 4.0.4
+	*  @created: 11/04/13
 	*/
 	
-	$(document).live('acf/wysiwyg_activate', function(e, div){
+	_wysiwyg.add_tinymce = function( $el ){
 		
 		
 		// validate tinymce
@@ -49,10 +51,11 @@
 			return;
 		}
 		
-
+		
 		// activate
-		$(div).find('.acf_wysiwyg textarea').each(function(){
-
+		$el.find('.acf_wysiwyg textarea').each(function(){
+			
+			
 			// vars
 			var textarea = $(this),
 				id = textarea.attr('id'),
@@ -95,8 +98,9 @@
 		
 		
 		wpActiveEditor = null;
-
-	});
+		
+		
+	};
 	
 	
 	/*
@@ -143,14 +147,15 @@
 	
 	
 	/*
-	*  acf/wysiwyg_deactivate
+	*  remove_tinymce
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  {description}
+	*  
+	*  @since: 4.0.4
+	*  @created: 11/04/13
 	*/
 	
-	$(document).live('acf/wysiwyg_deactivate', function(e, div){
+	_wysiwyg.remove_tinymce = function( $el ){
 		
 		// validate tinymce
 		if( ! _wysiwyg.has_tinymce() )
@@ -159,7 +164,7 @@
 		}
 		
 		
-		$(div).find('.acf_wysiwyg textarea').each(function(){
+		$el.find('.acf_wysiwyg textarea').each(function(){
 			
 			// vars
 			var textarea = $(this),
@@ -182,7 +187,7 @@
 		
 		wpActiveEditor = null;
 
-	});
+	};
 	
 	
 	/*
@@ -232,7 +237,16 @@
 		
 		// update the hidden textarea
 		// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden tetarea is never populated!
-		tinyMCE.get( id ).save();
+		var editor = tinyMCE.get( id ),
+			el = editor.getElement();
+		
+			
+		// save to textarea	
+		editor.save();
+		
+		
+		// trigger change on textarea
+		$( el ).trigger('change');
 		
 	});
 	
@@ -247,7 +261,7 @@
 	
 	$(document).live('acf/setup_fields', function(e, div){
 		
-		$(document).trigger('acf/wysiwyg_activate', div);
+		_wysiwyg.add_tinymce( $(div) );
 
 	});
 
@@ -262,7 +276,7 @@
 	
 	$(document).live('acf/sortable_start', function(e, div) {
 		
-		$(document).trigger('acf/wysiwyg_deactivate', div);
+		_wysiwyg.remove_tinymce( $(div) );
 		
 	});
 	
@@ -277,7 +291,7 @@
 	
 	$(document).live('acf/sortable_stop', function(e, div) {
 		
-		$(document).trigger('acf/wysiwyg_activate', div);
+		_wysiwyg.add_tinymce( $(div) );
 		
 	});
 	
