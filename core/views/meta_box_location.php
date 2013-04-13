@@ -87,7 +87,6 @@ if($this->parent->is_field_unlocked('options_page'))
 								'name'	=>	'location[rules]['.$k.'][param]',
 								'value'	=>	$rule['param'],
 								'choices' => $choices,
-								'optgroup' => true,
 							);
 							
 							do_action('acf/create_field', $args);							

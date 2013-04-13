@@ -168,7 +168,6 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 									'name'		=>	'fields[' .$fake_name . '][type]',
 									'value'		=>	$field['type'],
 									'choices' 	=>	$field_types,
-									'optgroup' 	=> 	true
 								));
 								?>
 							</td>
