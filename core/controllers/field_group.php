@@ -517,7 +517,6 @@ class acf_field_group
 		
 		// vars
 		$choices = array();
-		$optgroup = false;
 		
 		
 		// some case's have the same outcome
@@ -539,7 +538,6 @@ class acf_field_group
 			
 			case "page":
 				
-				$optgroup = true;
 				$post_types = get_post_types( array('capability_type'  => 'page') );
 				unset( $post_types['attachment'], $post_types['revision'] , $post_types['nav_menu_item'], $post_types['acf']  );
 				
@@ -623,7 +621,6 @@ class acf_field_group
 			
 			case "post" :
 				
-				$optgroup = true;
 				$post_types = get_post_types( array('capability_type'  => 'post') );
 				unset( $post_types['attachment'], $post_types['revision'] , $post_types['nav_menu_item'], $post_types['acf']  );
 				
@@ -698,7 +695,6 @@ class acf_field_group
 				$choices = array();
 				$simple_value = true;
 				$choices = apply_filters('acf/get_taxonomies_for_select', $choices, $simple_value);
-				$optgroup = true;
 								
 				break;
 			
@@ -749,7 +745,6 @@ class acf_field_group
 			'name'	=>	'location[rules][' . $options['key'] . '][value]',
 			'value'	=>	$options['value'],
 			'choices' => $choices,
-			'optgroup' => $optgroup,
 		));
 		
 		
