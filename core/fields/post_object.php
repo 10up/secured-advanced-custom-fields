@@ -117,7 +117,6 @@ class acf_field_post_object extends acf_field
 		// Change Field into a select
 		$field['type'] = 'select';
 		$field['choices'] = array();
-		$field['optgroup'] = false;
 		
 		
 		foreach( $field['post_type'] as $post_type )
@@ -181,7 +180,6 @@ class acf_field_post_object extends acf_field
 						$post_type_name = $post_type_object->labels->name;
 					
 						$field['choices'][ $post_type_name ][ $post->ID ] = $title;
-						$field['optgroup'] = true;
 					}
 					
 					
@@ -268,7 +266,6 @@ class acf_field_post_object extends acf_field
 			'name'	=>	'fields['.$key.'][taxonomy]',
 			'value'	=>	$field['taxonomy'],
 			'choices' => $choices,
-			'optgroup' => true,
 			'multiple'	=>	1,
 		));
 		
