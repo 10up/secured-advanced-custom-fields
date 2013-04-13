@@ -125,7 +125,7 @@ class acf_field_select extends acf_field
 				}
 				else
 				{
-					$selected = in_array($id, $field['value']) ? 'selected="selected"' : '';
+					$selected = in_array($key, $field['value']) ? 'selected="selected"' : '';
 					
 					echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
 				}
