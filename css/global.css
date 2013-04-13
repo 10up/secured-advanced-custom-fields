@@ -336,10 +336,10 @@ ul.checkbox_list {
 	margin: 0;
 }
 
-ul.radio_list input,
-ul.checkbox_list input {
-	margin-right: 5px;
-	width: auto;
+ul.radio_list li input,
+ul.checkbox_list li input {
+	margin-right: 5px !important;
+	width: auto !important;
 }
 
 
