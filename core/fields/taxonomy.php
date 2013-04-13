@@ -321,7 +321,6 @@ class acf_field_taxonomy extends acf_field
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][field_type]',
 			'value'	=>	$field['field_type'],
-			'optgroup' => true,
 			'choices' => array(
 				__("Multiple Values",'acf') => array(
 					'checkbox' => __('Checkbox', 'acf'),
