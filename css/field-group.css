@@ -418,37 +418,69 @@ table.acf_input tr td .acf tr td {
 	clear: both;
 }
 
-/*---------------------------------------------------------------------------------------------
-	Location
----------------------------------------------------------------------------------------------*/
 
-.postbox#acf_location .inside {
+/*---------------------------------------------------------------------------------------------
+*
+*  Location
+*
+*---------------------------------------------------------------------------------------------*/
+
+#acf_location .inside {
 	margin: 0;
 	padding: 0;
 }
 
-.postbox#acf_location .widefat {
+#acf_location .location-groups {
+	padding: 5px 0;
+} 
+
+#acf_location h4 {
+	margin: 15px 0 5px;
+}
+
+#acf_location .location-group {
+	margin: 0 0 15px;
+}
+
+#acf_location .location-group h4 {
+	margin: 0 0 3px;;
+}
+
+#acf_location .location-group table.acf_input tbody tr td {
+	padding: 4px;
 	border: 0 none;
 }
 
-.postbox#acf_location h3 span.description {
-	font-size: 11px;
-	color: #666;
-	font-weight: normal;
-	font-style: normal;
-	padding-left: 4px;
-}
-
-table.acf_input > tbody > tr > td > select[multiple="multiple"] {
-    height: auto !important;
-}
-
-td.param {
+#acf_location .location-group td.param {
 	width: 40%;
 }
-td.operator {
+
+#acf_location .location-group td.operator {
 	width: 20%;
 }
+
+#acf_location .location-group td.add {
+	width: 40px;
+}
+
+#acf_location .location-group td.remove {
+	width: 18px;
+}
+
+#acf_location .location-group tr .location-remove-rule {
+	display: none;
+}
+
+#acf_location .location-group tr:hover .location-remove-rule {
+	display: block;
+}
+
+
+/* Don't allow user to delete the first field group */
+#acf_location .location-group:first-child tr:first-child:hover .location-remove-rule {
+	display: none;
+}
+
 
 /*---------------------------------------------------------------------------------------------
 	Location Rules
@@ -465,18 +497,6 @@ table.acf-rules tbody tr {
 
 }
 
-table.acf-rules tbody tr td {
-	padding: 4px;
-	border: 0 none;
-}
-
-table.acf-rules tbody tr td:first-child {
-	padding-left: 0;
-}
-
-table.acf-rules tbody tr td:last-child {
-	padding-right: 0;
-}
 
 table.acf-rules tbody tr td.buttons {
 	width: 48px;

@@ -85,8 +85,7 @@ class acf_location
 		
 		
 		// return array
-		$return = array();
-		$return = apply_filters( 'acf/location/match_field_groups', $return, $options );
+		$return = apply_filters( 'acf/location/match_field_groups', array(), $options );
 		
 		
 		// echo json
@@ -164,48 +163,34 @@ class acf_location
 				$add_box = false;
 				
 				
-				// if all of the rules are required to match, start at true and let any !$match set $add_box to false
-				if( $acf['location']['allorany'] == 'all' )
+				foreach( $acf['location'] as $group_id => $group )
 				{
-					$add_box = true;
-				}
-						
-				
-				if( is_array($acf['location']['rules']) )
-				{
-					// defaults
-					$rule_defaults = array(
-						'param' => '',
-						'operator' => '==',
-						'value' => ''
-					);
+					// start of as true, this way, any rule that doesn't match will cause this varaible to false
+					$match_group = true;
 					
-					foreach($acf['location']['rules'] as $rule)
+					if( is_array($group) )
 					{
-						// make sure rule has all 3 keys
-						$rule = array_merge( $rule_defaults, $rule );
-						
-						
-						// $match = true / false
-						$match = false;
-						$match = apply_filters( 'acf/location/rule_match/' . $rule['param'] , $match, $rule, $options );
-						
-						
-						
-						if( $acf['location']['allorany'] == 'all' && !$match )
+						foreach( $group as $rule_id => $rule )
 						{
-							// if all of the rules are required to match and this rule did not, don't add this box!
-							$add_box = false;
+							// $match = true / false
+							$match = apply_filters( 'acf/location/rule_match/' . $rule['param'] , false, $rule, $options );
+							
+							if( !$match )
+							{
+								$match_group = false;
+							}
+							
 						}
-						elseif($acf['location']['allorany'] == 'any' && $match )
-						{
-							// if any of the rules are required to match and this rule did, add this box!
-							$add_box = true;
-						}
-
 					}
-				}
 					
+					
+					// all rules must havematched!
+					if( $match_group )
+					{
+						$add_box = true;
+					}
+					
+				}
 		
 				
 				// add ID to array	

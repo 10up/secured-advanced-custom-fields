@@ -737,7 +737,45 @@ function register_field_group( $array )
 		unset( $array['options']['show_on_page'] );
 	}
 
-
+	
+	// 4.0.4 - changed location rules architecture
+	if( isset($array['location']['rules']) )
+	{
+		// vars
+		$groups = array();
+		$group_no = 0;
+		
+		
+		if( is_array($array['location']['rules']) )
+	 	{
+		 	foreach( $array['location']['rules'] as $rule )
+		 	{
+			 	$rule['group_no'] = $group_no;
+			 	
+			 	// sperate groups?
+			 	if( $array['location']['allorany'] == 'any' )
+			 	{
+				 	$group_no++;
+			 	}
+			 	
+			 	
+			 	// add to group
+			 	$groups[ $rule['group_no'] ][ $rule['order_no'] ] = $rule;
+			 	
+			 	
+			 	// sort rules
+			 	ksort( $groups[ $rule['group_no'] ] );
+	 	
+		 	}
+		 	
+		 	// sort groups
+			ksort( $groups );
+	 	}
+	 	
+	 	$array['location'] = $groups;
+	}
+	
+	
 	$GLOBALS['acf_register_field_group'][] = $array;
 }
 

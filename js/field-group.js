@@ -6,7 +6,8 @@ var acf = {
 		'checked' : 'checked',
 		'conditional_no_fields' : 'No "toggle" fields available',
 		'title' : 'Field group title is required',
-		'copy' : 'copy'
+		'copy' : 'copy',
+		'or' : "or"
 	},
 	helpers : {
 		uniqid : function(){},
@@ -16,6 +17,14 @@ var acf = {
 	conditional_logic : {
 		fields : [],
 		setup : function(){}
+	},
+	location : {
+		$el : null,
+		init : function(){},
+		add_rule : function(){},
+		remove_rule : function(){},
+		add_group : function(){},
+		remove_group : function(){}
 	}
 };
 
@@ -613,141 +622,191 @@ var acf = {
 	
 	$(document).ready(function(){
 		
-		// vars
-		var location_rules = $('#location_rules');
+		acf.location.init();
 		
-		
-		// does it have options?
-		if( !location_rules.find('td.param select option[value="options_page"]').exists() )
-		{
-			var html = $('#acf_location_options_deactivated').html();
-			location_rules.find('td.param select').append( html );
+	});
+	
+	
+	/*
+	*  location
+	*
+	*  {description}
+	*
+	*  @since: 4.0.3
+	*  @created: 13/04/13
+	*/
+	
+	acf.location = {
+		$el : null,
+		init : function(){
+			
+			// vars
+			var _this = this;
+			
+			
+			// $el
+			_this.$el = $('#acf_location');
+			
+			
+			// add rule
+			_this.$el.find('.location-add-rule').live('click', function(){
 				
-		}
-		
-	});
-	
-	
-	/*
-	*  Location Rules Change
-	*
-	*  @description: 
-	*  @since 3.5.1
-	*  @created: 15/10/12
-	*/
-
-	$('#location_rules .param select').live('change', function(){
-		
-		// vars
-		var tr = $(this).closest('tr'),
-			i = tr.attr('data-i'),
-			ajax_data = {
-				'action' : "acf/field_group/render_location",
-				'nonce' : acf.nonce,
-				'key' : i,
-				'value' : '',
-				'param' : $(this).val()
-			};
-		
-		
-		// add loading gif
-		var div = $('<div class="acf-loading"></div>');
-		tr.find('td.value').html(div);
-		
-		
-		// load location html
-		$.ajax({
-			url: ajaxurl,
-			data: ajax_data,
-			type: 'post',
-			dataType: 'html',
-			success: function(html){
-
-				div.replaceWith(html);
-
-			}
-		});
-		
-		
-	});
-	
-	
-	/*
-	*  Location Rules add
-	*
-	*  @description: 
-	*  @since 3.5.1
-	*  @created: 15/10/12
-	*/
-	
-	$('#location_rules a.acf-button-add').live('click',function(){
-			
-		// vars
-		var old_tr = $(this).closest('tr'),
-			new_tr = old_tr.clone(),
-			old_i = parseFloat( new_tr.attr('data-i') ),
-			new_i = old_i + 1;
-		
-		
-		// update names
-		new_tr.find('[name]').each(function(){
-			
-			$(this).attr('name', $(this).attr('name').replace('[' + old_i + ']', '[' + new_i + ']') );
-			$(this).attr('id', $(this).attr('id').replace('[' + old_i + ']', '[' + new_i + ']') );
-			
-		});
-			
-			
-		// update data-i
-		new_tr.attr('data-i', new_i);
-		
-		
-		// add tr
-		old_tr.after( new_tr );
-		
-		
-		// remove disabled
-		old_tr.closest('table').removeClass('remove-disabled');
+				_this.add_rule( $(this).closest('tr') );
 				
-		
-		return false;
-		
-	});
-	
-	
-	/*
-	*  Location Rules remove
-	*
-	*  @description: 
-	*  @since 3.5.1
-	*  @created: 15/10/12
-	*/
-	
-	$('#location_rules a.acf-button-remove').live('click',function(){
+				return false;
+				
+			});
 			
-		var table = $(this).closest('table');
+			
+			// remove rule
+			_this.$el.find('.location-remove-rule').live('click', function(){
+				
+				_this.remove_rule( $(this).closest('tr') );
+				
+				return false;
+				
+			});
+			
+			
+			// add rule
+			_this.$el.find('.location-add-group').live('click', function(){
+				
+				_this.add_group();
+				
+				return false;
+				
+			});
+			
+			
+			// change rule
+			_this.$el.find('.param select').live('change', function(){
+				
+				// vars
+				var $tr = $(this).closest('tr'),
+					rule_id = $tr.attr('data-id'),
+					$group = $tr.closest('.location-group'),
+					group_id = $group.attr('data-id'),
+					ajax_data = {
+						'action' : "acf/field_group/render_location",
+						'nonce' : acf.nonce,
+						'rule_id' : rule_id,
+						'group_id' : group_id,
+						'value' : '',
+						'param' : $(this).val()
+					};
+				
+				
+				// add loading gif
+				var div = $('<div class="acf-loading"></div>');
+				$tr.find('td.value').html( div );
+				
+				
+				// load location html
+				$.ajax({
+					url: ajaxurl,
+					data: ajax_data,
+					type: 'post',
+					dataType: 'html',
+					success: function(html){
 		
-		// validate
-		if( table.hasClass('remove-disabled') )
-		{
+						div.replaceWith(html);
+		
+					}
+				});
+				
+				
+			});
+			
+		},
+		add_rule : function( $tr ){
+			
+			// vars
+			var $tr2 = $tr.clone(),
+				old_id = $tr2.attr('data-id'),
+				new_id = acf.helpers.uniqid();
+			
+			
+			// update names
+			$tr2.find('[name]').each(function(){
+				
+				$(this).attr('name', $(this).attr('name').replace( old_id, new_id ));
+				$(this).attr('id', $(this).attr('id').replace( old_id, new_id ));
+				
+			});
+				
+				
+			// update data-i
+			$tr2.attr( 'data-id', new_id );
+			
+			
+			// add tr
+			$tr.after( $tr2 );
+					
+			
 			return false;
+			
+		},
+		remove_rule : function( $tr ){
+			
+			// vars
+			var siblings = $tr.siblings('tr').length;
+
+			
+			if( siblings == 0 )
+			{
+				// remove group
+				this.remove_group( $tr.closest('.location-group') );
+			}
+			else
+			{
+				// remove tr
+				$tr.remove();
+			}
+			
+		},
+		add_group : function(){
+			
+			// vars
+			var $group = this.$el.find('.location-group:last'),
+				$group2 = $group.clone(),
+				old_id = $group2.attr('data-id'),
+				new_id = acf.helpers.uniqid();
+			
+			
+			// update names
+			$group2.find('[name]').each(function(){
+				
+				$(this).attr('name', $(this).attr('name').replace( old_id, new_id ));
+				$(this).attr('id', $(this).attr('id').replace( old_id, new_id ));
+				
+			});
+			
+			
+			// update data-i
+			$group2.attr( 'data-id', new_id );
+			
+			
+			// update h4
+			$group2.find('h4').text( acf.text.or );
+			
+			
+			// remove all tr's except the first one
+			$group2.find('tr:not(:first)').remove();
+			
+			
+			// add tr
+			$group.after( $group2 );
+			
+			
+			
+		},
+		remove_group : function( $group ){
+			
+			$group.remove();
+			
 		}
-		
-		
-		// remove tr
-		$(this).closest('tr').remove();
-		
-		
-		// add clas to table
-		if( table.find('tr').length <= 1 )
-		{
-			table.addClass('remove-disabled');
-		}
-		
-		
-		return false;
-		
-	});
+	}
+	
 	
 
 	/*----------------------------------------------------------------------
@@ -1102,6 +1161,9 @@ var acf = {
 		return false;
 		
 	});
+	
+	
+	
 
 	
 
