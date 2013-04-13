@@ -40,52 +40,52 @@
 *
 *---------------------------------------------------------------------------------------------*/
 
-#poststuff .acf_postbox .field {
+.acf_postbox .field {
 	position: relative;
 	padding: 15px 10px;
 	border-bottom: #e8e8e8 solid 1px;
 }
 
-#poststuff .acf_postbox .field:last-child {
+.acf_postbox .field:last-child {
 	border-bottom: none;
 }
 
-#poststuff .acf_postbox.no_box .field { 
+.acf_postbox.no_box .field { 
     border-top: 0 none;
     border-bottom: 0 none;
     padding-left: 0;
     padding-right: 0;
-} 
+}
 
 
 /* Field Error */
-#poststuff .acf_postbox .field.error {
+.acf_postbox .field.error {
 	margin: 0;
 	border: #CC0000 solid 1px !important;
 	border-radius: 0;
 }
 
-#poststuff .acf_postbox.no_box .field.error { 
+.acf_postbox.no_box .field.error { 
 	padding-left: 10px;
 	padding-right: 10px;
 } 
 
 
-#poststuff .acf_postbox .field.error + .error {
+.acf_postbox .field.error + .error {
 	border-top: 0 none !important;
 }
 
-#poststuff .acf_postbox .field.error:last-child {
+.acf_postbox .field.error:last-child {
     border-bottom: #CC0000 solid 1px;
 }
 
-#poststuff .acf_postbox .field.error label.field_label {
+.acf_postbox .field.error label.field_label {
 	color: #CC0000;
 }
 
 
 /* Field Label */
-#poststuff .acf_postbox p.label {
+.acf_postbox p.label {
 	font-size: 11px;
 	line-height: 1.1em;
 	margin: 0 0 1em;
@@ -94,7 +94,7 @@
 	text-shadow: 0 1px 0 #FFFFFF;
 }
 
-#poststuff .acf_postbox p.label label {
+.acf_postbox p.label label {
 	color: #333333;
     font-size: 13px;
     font-weight: bold;
@@ -104,15 +104,15 @@
     vertical-align: text-bottom;
 }
 
-.field.required label span.required {
+.acf_postbox .field.required label span.required {
 	color: #CC0000;
 }
 
-#poststuff .acf_postbox label.field_label:first-child {
+.acf_postbox label.field_label:first-child {
 	padding-top: 0;
 }
 
-#poststuff .acf_postbox .field_type-message p.label {
+.acf_postbox .field_type-message p.label {
 	display: none !important;
 } 
 
@@ -273,6 +273,153 @@
 
 .acf-image-uploader .hover ul li {
 	margin: 0 0 5px 0;
+}
+
+
+.media-modal.acf-media-modal {
+	left: 20%;
+	right: 20%;
+	top: 100px;
+	bottom: 100px;
+}
+
+
+.media-modal.acf-media-modal .media-frame-router,
+.media-modal.acf-media-modal .attachments,
+.media-modal.acf-media-modal .media-frame-content .media-toolbar {
+    display: none;
+}
+
+.media-modal.acf-media-modal .media-frame-content {
+    top: 45px;
+}
+
+.media-modal.acf-media-modal .media-frame-title {
+    border-bottom: 1px solid #DFDFDF;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.1);
+}
+
+.media-modal.acf-media-modal .media-frame-content .media-sidebar {
+    width: auto;
+    left: 0px;
+}
+
+
+.media-modal.acf-media-modal .media-sidebar {
+	padding: 0 30px 24px;
+}
+
+.media-modal.acf-media-modal .media-sidebar .attachment-info .thumbnail {
+	width: 120px;
+	background: #EAEAEA;
+}
+
+.media-modal .acf_postbox .field {
+    padding: 0;
+}
+
+.media-modal.acf-media-modal .media-sidebar .setting,
+.media-modal.acf-media-modal .compat-attachment-fields tr {
+    margin: 0;
+    padding: 2px 0;
+    clear: both;
+    float: none;
+    width: auto;
+    padding: 5px 0 5px 130px;
+}
+
+.media-modal.acf-media-modal .media-sidebar .setting span,
+.media-modal.acf-media-modal .compat-attachment-fields tr th.label {
+	position: absolute;
+	left: 0;
+	width: 120px;
+	min-width: 0;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	
+	color: #999999;
+    text-shadow: 0 1px 0 #FFFFFF;
+    font-weight: normal;
+}
+
+.media-modal.acf-media-modal .compat-attachment-fields tr th.label span {
+	text-align: left;
+	padding: 0;
+}
+
+.media-modal.acf-media-modal .media-sidebar input, 
+.media-modal.acf-media-modal .media-sidebar select,
+.media-modal.acf-media-modal .media-sidebar textarea {
+    width: 100%;
+    margin: 0;
+    float: none;
+}
+
+/*
+.media-modal.acf-media-modal .compat-item th.label {
+    float: none;
+    margin-right: 0;
+    width: 130px;
+    text-align: left;
+    min-width: 0;
+    display: table-cell;
+}
+
+.media-modal.acf-media-modal .compat-item th.label span {
+	text-align: left;
+	
+}
+
+.media-modal.acf-media-modal .compat-item td.field {
+	width: auto;
+	float: none;
+	display: table-cell;
+}
+*/
+
+
+/*
+*  .media-modal 
+*/
+
+.media-modal.acf-media-modal .compat-item {
+    float: left;
+    overflow: none;
+    width: 100%;
+}
+
+.media-modal.acf-media-modal .compat-attachment-fields,
+.media-modal.acf-media-modal .compat-attachment-fields tbody,
+.media-modal.acf-media-modal .compat-attachment-fields tr,
+.media-modal.acf-media-modal .compat-attachment-fields th,
+.media-modal.acf-media-modal .compat-attachment-fields td {
+	display: block;
+	position: relative;
+}
+
+.media-modal.acf-media-modal .compat-attachment-fields td.field {
+	width: 100%;
+	float: none;
+	padding: 0;
+}
+
+.media-modal .compat-attachment-fields td.field table {
+	display: table;
+}
+.media-modal .compat-attachment-fields td.field table tbody {
+	display: table-row-group;
+}
+.media-modal .compat-attachment-fields td.field table tr {
+	display: table-row;
+}
+.media-modal .compat-attachment-fields td.field table td,
+.media-modal .compat-attachment-fields td.field table th {
+	display: table-cell;
+}
+
+.media-modal .acf_postbox {
+	display: block !important;
 }
 
 
