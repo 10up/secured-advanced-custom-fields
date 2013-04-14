@@ -418,7 +418,7 @@ if(function_exists("register_field_group"))
 				$html = preg_replace('/([\t\r\n]+?)array/', 'array', $html);
 				
 				// Remove number keys from array
-				$html = preg_replace('/[0-9] => array/', 'array', $html);
+				$html = preg_replace('/[0-9]+ => array/', 'array', $html);
 				
 				// add extra tab at start of each line
 				$html = str_replace("\n", "\n\t", $html);
