@@ -29,7 +29,8 @@ class acf_field_taxonomy extends acf_field
 			'field_type' 		=> 'checkbox',
 			'allow_null' 		=> 0,
 			'load_save_terms' 	=> 0,
-			'return_format'		=> 'id'
+			'return_format'		=> 'id',
+			'multiple'			=> 0
 		);
 		
 		
