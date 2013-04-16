@@ -29,8 +29,7 @@ class acf_field_taxonomy extends acf_field
 			'field_type' 		=> 'checkbox',
 			'allow_null' 		=> 0,
 			'load_save_terms' 	=> 0,
-			'return_format'		=> 'id',
-			'multiple'			=> 0
+			'return_format'		=> 'id'
 		);
 		
 		
@@ -322,6 +321,7 @@ class acf_field_taxonomy extends acf_field
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][field_type]',
 			'value'	=>	$field['field_type'],
+			'optgroup' => true,
 			'choices' => array(
 				__("Multiple Values",'acf') => array(
 					'checkbox' => __('Checkbox', 'acf'),
@@ -422,11 +422,11 @@ class acf_taxonomy_field_walker extends Walker
 		
 		if( $this->field['field_type'] == 'checkbox' )
 		{
-			$output .= '<li><label class="selectit"><input type="checkbox" name="' . $this->field['name'] . '" value="' . $term->term_id . '" ' . ($selected ? 'checked="checked"' : '') . ' /> ' . $term->name . '</span>';
+			$output .= '<li><label class="selectit"><input type="checkbox" name="' . $this->field['name'] . '" value="' . $term->term_id . '" ' . ($selected ? 'checked="checked"' : '') . ' /> ' . $term->name . '</label>';
 		}
 		elseif( $this->field['field_type'] == 'radio' )
 		{
-			$output .= '<li><label class="selectit"><input type="radio" name="' . $this->field['name'] . '" value="' . $term->term_id . '" ' . ($selected ? 'checked="checkbox"' : '') . ' /> ' . $term->name . '</span>';
+			$output .= '<li><label class="selectit"><input type="radio" name="' . $this->field['name'] . '" value="' . $term->term_id . '" ' . ($selected ? 'checked="checkbox"' : '') . ' /> ' . $term->name . '</label>';
 		}
 		elseif( $this->field['field_type'] == 'select' )
 		{
@@ -459,7 +459,7 @@ class acf_taxonomy_field_walker extends Walker
 		// wrap element
 		if( in_array($this->field['field_type'], array('checkbox', 'radio')) )
 		{
-			$output .= '<li><ul class="children">' . "\n";
+			$output .= '<ul class="children">' . "\n";
 		}
 	}
 
@@ -474,7 +474,7 @@ class acf_taxonomy_field_walker extends Walker
 		// wrap element
 		if( in_array($this->field['field_type'], array('checkbox', 'radio')) )
 		{
-			$output .= '</ul></li>' . "\n";
+			$output .= '</ul>' . "\n";
 		}
 	}
 	
