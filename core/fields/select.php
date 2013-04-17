@@ -22,10 +22,10 @@ class acf_field_select extends acf_field
 		$this->label = __("Select",'acf');
 		$this->category = __("Choice",'acf');
 		$this->defaults = array(
-			'value'			=>	'',
 			'multiple' 		=>	0,
 			'allow_null' 	=>	0,
 			'choices'		=>	array(),
+			'default_value'	=>	''
 		);
 		
 		
@@ -153,8 +153,8 @@ class acf_field_select extends acf_field
 	{
 		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
-		
-				
+
+
 		// implode choices so they work in a textarea
 		if( is_array($field['choices']) )
 		{		
