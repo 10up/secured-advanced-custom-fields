@@ -724,6 +724,20 @@ td.acf_input-wrap {
 }
 
 
+.acf_relationship select {
+	font-family: sans-serif;
+	font-size: 12px;
+	
+}
+
+.acf_relationship .widefat tr + tr th {
+	border-radius: 0;
+	border-top: #DFDFDF solid 1px;
+	background: #F3F3F3;
+	
+}
+
+
 /*---------------------------------------------------------------------------------------------
 *
 *  Field: Taxonomy
