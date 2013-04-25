@@ -84,6 +84,10 @@ class acf_field_checkbox extends acf_field
 			{
 				$selected = 'checked="yes"';
 			}
+			if( isset($field['disabled']) && in_array($key, $field['disabled']) )
+			{
+				$selected .= ' disabled="true"';
+			}
 			
 			
 			echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="checkbox" class="' . $field['class'] . '" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
