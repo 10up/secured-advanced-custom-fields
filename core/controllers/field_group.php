@@ -912,9 +912,6 @@ class acf_field_group
 		}
 		
 		
-		
-		
-		
 		/*
 		*  save options
 		*/
