@@ -737,6 +737,15 @@ td.acf_input-wrap {
 	
 }
 
+.acf_relationship .relationship_list .result-thumbnail {
+	width:21px; 
+	height:21px; 
+	background:#F9F9F9; 
+	border:#E1E1E1 solid 1px; 
+	float:left; 
+	margin:-3px 5px 0 0;
+}
+
 
 /*---------------------------------------------------------------------------------------------
 *
