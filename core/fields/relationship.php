@@ -556,7 +556,7 @@ class acf_field_relationship extends acf_field
 				'post_type' => 'Post Type'
 			),
 			'disabled' => array(
-				'title'
+				'post_title'
 			)
 		));
 		?>
