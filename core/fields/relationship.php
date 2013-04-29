@@ -279,13 +279,14 @@ class acf_field_relationship extends acf_field
 		
 		
 		// validate post_type
-		if( !$field['post_type'] )
+		if( !$field['post_type'] || !is_array($field['post_type']) || in_array('', $field['post_type']) )
 		{
 			$field['post_type'] = array( 'all' );
 		}
+
 		
 		// validate taxonomy
-		if( !$field['taxonomy'] )
+		if( !$field['taxonomy'] || !is_array($field['taxonomy']) || in_array('', $field['taxonomy']) )
 		{
 			$field['taxonomy'] = array( 'all' );
 		}
