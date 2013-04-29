@@ -269,8 +269,8 @@ class acf_field_relationship extends acf_field
 	{
 		// vars
 		$field = array_merge($this->defaults, $field);
-		
-		
+
+
 		// no row limit?
 		if( !$field['max'] || $field['max'] < 1 )
 		{
@@ -387,11 +387,13 @@ class acf_field_relationship extends acf_field
 		{
 			foreach( $field['value'] as $post )
 			{
-
 				// right aligned info
 				$title = '<span class="relationship-item-info">';
-				
-					$title .= $post->post_type;
+					
+					if( in_array('post_type', $field['result_elements']) )
+					{
+						$title .= $post->post_type;
+					}
 					
 					// WPML
 					if( defined('ICL_LANGUAGE_CODE') )
@@ -402,16 +404,24 @@ class acf_field_relationship extends acf_field
 				$title .= '</span>';
 				
 				
+				// featured_image
+				if( in_array('featured_image', $field['result_elements']) )
+				{
+					$image = get_the_post_thumbnail( $post->ID, array(21, 21) );
+					
+					$title .= '<div class="result-thumbnail">' . $image . '</div>';
+				}
+				
+				
 				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
 				$title .= apply_filters( 'the_title', $post->post_title, $post->ID );
-
 
 				// status
 				if($post->post_status != "publish")
 				{
 					$title .= " ($post->post_status)";
 				}
-				
+
 				
 				// filters
 				$title = apply_filters('acf/fields/relationship/result', $title, $post);
