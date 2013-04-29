@@ -543,8 +543,8 @@ class acf_field_relationship extends acf_field
 			'name'	=>	'fields['.$key.'][filters]',
 			'value'	=>	$field['filters'],
 			'choices'	=>	array(
-				'search'	=>	'Search',
-				'post_type'	=>	'Post Type Select'
+				'search'	=>	__("Search",'acf'),
+				'post_type'	=>	__("Post Type Select",'acf'),
 			)
 		));
 		?>
@@ -553,7 +553,7 @@ class acf_field_relationship extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Elements",'acf'); ?></label>
-		<p>Selected elements will be displayed in each result</p>
+		<p><?php _e("Selected elements will be displayed in each result",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -563,8 +563,8 @@ class acf_field_relationship extends acf_field
 			'value'	=>	$field['result_elements'],
 			'choices' => array(
 				'featured_image' => 'Featured Image',
-				'post_title' => 'Post Title',
-				'post_type' => 'Post Type'
+				'post_title' => __("Post Title",'acf'),
+				'post_type' => __("Post Type",'acf'),
 			),
 			'disabled' => array(
 				'post_title'
