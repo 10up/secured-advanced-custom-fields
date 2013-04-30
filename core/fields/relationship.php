@@ -221,7 +221,7 @@ class acf_field_relationship extends acf_field
 				// featured_image
 				if( in_array('featured_image', $field['result_elements']) )
 				{
-					$image = get_the_post_thumbnail( $the_post->ID, array(21, 21) );
+					$image = get_the_post_thumbnail( $post->ID, array(21, 21) );
 					
 					$title .= '<div class="result-thumbnail">' . $image . '</div>';
 				}
