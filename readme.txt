@@ -101,6 +101,10 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.1 =
+* [Fixed] Relationship field: Fix bug causing sub field to not load $field object / use elements option correctly
+* [Updated] Update German translations
+
 = 4.1.0 =
 * [Added] Field group: location rules can now be grouped into AND / OR statements
 * [Added] Relationship field: Add option for filters (search / post_type)
