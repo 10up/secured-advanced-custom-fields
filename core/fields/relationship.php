@@ -84,7 +84,8 @@ class acf_field_relationship extends acf_field
 			'lang' => false,
 			'update_post_meta_cache' => false,
 			'field_key' => '',
-			'nonce' => ''
+			'nonce' => '',
+			'ancestor' => false,
 		);
 		
 		$options = array_merge( $options, $_POST );
@@ -179,7 +180,17 @@ class acf_field_relationship extends acf_field
 		
 		
 		// load field
-		$field = apply_filters('acf/load_field', false, $options['field_key'] );
+		$field = array();
+		if( $options['ancestor'] )
+		{
+			$ancestor = apply_filters('acf/load_field', array(), $options['ancestor'] );
+			$field = acf_get_child_field_from_parent_field( $options['field_key'], $ancestor );
+		}
+		else
+		{
+			$field = apply_filters('acf/load_field', array(), $options['field_key'] );
+		}
+		
 		$field = array_merge( $this->defaults, $field );
 		
 		$the_post = get_post( $options['post_id'] );
@@ -270,7 +281,7 @@ class acf_field_relationship extends acf_field
 		// vars
 		$field = array_merge($this->defaults, $field);
 
-
+		
 		// no row limit?
 		if( !$field['max'] || $field['max'] < 1 )
 		{
@@ -301,9 +312,33 @@ class acf_field_relationship extends acf_field
 				$class .= ' has-' . $filter;
 			}
 		}
+		
+		$attributes = array(
+			'max' => $field['max'],
+			's' => '',
+			'paged' => 1,
+			'post_type' => implode(',', $field['post_type']),
+			'taxonomy' => implode(',', $field['taxonomy']),
+			'field_key' => $field['key']
+		);
+		
+		
+		// Lang
+		if( defined('ICL_LANGUAGE_CODE') )
+		{
+			$attributes['lang'] = ICL_LANGUAGE_CODE;
+		}
+		
+		
+		// parent
+		preg_match('/\[(field_.*?)\]/', $field['name'], $ancestor);
+		if( isset($ancestor[1]) && $ancestor[1] != $field['key'])
+		{
+			$attributes['ancestor'] = $ancestor[1];
+		}
 				
 		?>
-<div class="acf_relationship<?php echo $class; ?>" data-max="<?php echo $field['max']; ?>" data-s="" data-paged="1" data-post_type="<?php echo implode(',', $field['post_type']); ?>" data-taxonomy="<?php echo implode(',', $field['taxonomy']); ?>" <?php if( defined('ICL_LANGUAGE_CODE') ){ echo 'data-lang="' . ICL_LANGUAGE_CODE . '"';} ?> data-field_key="<?php echo $field['key']; ?>">
+<div class="acf_relationship<?php echo $class; ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo $k; ?>="<?php echo $v; ?>"<?php endforeach; ?>>
 	
 	<!-- Hidden Blank default value -->
 	<input type="hidden" name="<?php echo $field['name']; ?>" value="" />

@@ -657,6 +657,7 @@ td.acf_input-wrap {
 	position: relative;
 	padding: 7px 9px;
 	text-decoration: none;
+	min-height: 17px;
 }
 
 .acf_relationship .relationship_list li a .relationship-item-info {
