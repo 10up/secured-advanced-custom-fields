@@ -509,13 +509,13 @@ ul.checkbox_list {
 *
 *---------------------------------------------------------------------------------------------*/
 
-.acf-input-table {
+table.acf-input-table {
 	border-radius: 0 0 0 0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.acf-input-table > thead { }
-.acf-input-table > thead > tr > th { 
+table.acf-input-table > thead { }
+table.acf-input-table > thead > tr > th { 
 	padding: 8px;
 	position: relative;
 	
@@ -523,13 +523,13 @@ ul.checkbox_list {
 	border-right: 1px solid #e1e1e1;
 }
 
-.acf-input-table > tbody {}
+table.acf-input-table > tbody {}
 
-.acf-input-table > tbody > tr {
+table.acf-input-table > tbody > tr {
 	background: #fff;
 }
 
-.acf-input-table > tbody > tr > td {
+table.acf-input-table > tbody > tr > td {
 	background: transparent;
 	border: 0 none;
    
@@ -540,7 +540,7 @@ ul.checkbox_list {
     position: relative;
 }
 
-.acf-input-table > tbody > tr > td {
+table.acf-input-table > tbody > tr > td {
 	background: transparent;
 	border: 0 none;
    
@@ -551,15 +551,15 @@ ul.checkbox_list {
     position: relative;
 }
 
-.acf-input-table.row_layout > tbody > tr > td {
+table.acf-input-table.row_layout > tbody > tr > td {
 	border-top-color: #DFDFDF;
 }
 
-.acf-input-table > tbody > tr:first-child > td {
+table.acf-input-table > tbody > tr:first-child > td {
 	border-top: 0 none;
 }
 
-.acf-input-table > tbody > tr > td:last-child {
+table.acf-input-table > tbody > tr > td:last-child {
 	border-right: 0 none;
 }
 
@@ -657,7 +657,6 @@ td.acf_input-wrap {
 	position: relative;
 	padding: 7px 9px;
 	text-decoration: none;
-	min-height: 17px;
 }
 
 .acf_relationship .relationship_list li a .relationship-item-info {

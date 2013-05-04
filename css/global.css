@@ -238,17 +238,17 @@ table.acf_input tbody tr td {
 	border-bottom: 0 none;
 }
 
-table.acf_input tbody tr:first-child td,
-table.acf_input tbody tr:first-child td.label {
-	border-top: 0 none;
-}
-
 table.acf_input tbody tr td.label {
 	width: 24%;
 	vertical-align: top;
 	background: #F9F9F9;
 	border-top: 1px solid #f0f0f0;
     border-right: 1px solid #E1E1E1;
+}
+
+table.acf_input > tbody > tr:first-child > td,
+table.acf_input > tbody > tr:first-child > td.label {
+	border-top: 0 none;
 }
 
 table.acf_input td.label ul.hl {
