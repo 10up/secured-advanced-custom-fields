@@ -278,6 +278,11 @@ class acf_field_relationship extends acf_field
 	
 	function create_field( $field )
 	{
+		// temp store the_post
+		global $post;
+		$the_post = $post;
+		
+		
 		// vars
 		$field = array_merge($this->defaults, $field);
 
@@ -459,9 +464,9 @@ class acf_field_relationship extends acf_field
 
 				
 				// filters
-				$title = apply_filters('acf/fields/relationship/result', $title, $post);
-				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post);
-				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post);
+				$title = apply_filters('acf/fields/relationship/result', $title, $post, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post, $field, $the_post);
 				
 				
 				echo '<li>
