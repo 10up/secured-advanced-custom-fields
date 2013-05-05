@@ -741,12 +741,34 @@ html.wp-toolbar {
 				// left vs right
 				if( isset($_GET['left']) && isset($_GET['right']) )
 				{
-					$left_revision->$row['meta_key'] = get_metadata( 'post', $_GET['left'], $row['meta_key'], true );
-					$right_revision->$row['meta_key'] = get_metadata( 'post', $_GET['right'], $row['meta_key'], true );
+					$left = get_metadata( 'post', $_GET['left'], $row['meta_key'], true );
+					$right = get_metadata( 'post', $_GET['right'], $row['meta_key'], true );
+					
+					// format arrays
+					if( is_array($left) )
+					{
+						$left = implode(', ', $left);
+					}
+					if( is_array($right) )
+					{
+						$right = implode(', ', $right);
+					}
+					
+					
+					$left_revision->$row['meta_key'] = $left;
+					$right_revision->$row['meta_key'] = $right;
 				}
 				else
 				{
-					$revision->$row['meta_key'] = get_metadata( 'post', $revision->ID, $row['meta_key'], true );
+					$left = get_metadata( 'post', $revision->ID, $row['meta_key'], true );
+					
+					// format arrays
+					if( is_array($left) )
+					{
+						$left = implode(', ', $left);
+					}
+					
+					$revision->$row['meta_key'] = $left;
 				}
 				
 			}
