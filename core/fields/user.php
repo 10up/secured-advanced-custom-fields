@@ -322,21 +322,15 @@ class acf_field_user extends acf_field
 	function update_value( $value, $post_id, $field )
 	{
 		// array?
-		if( is_array($value) )
+		if( is_array($value) && isset($value['ID']) )
 		{
-			if( isset($value['ID']) )
-			{
-				$value = $value['ID'];
-			}	
+			$value = $value['ID'];	
 		}
 		
 		// object?
-		if( is_object($value) )
+		if( is_object($value) && isset($value->ID) )
 		{
-			if( isset($value->ID) )
-			{
-				$value = $value->ID;
-			}
+			$value = $value->ID;
 		}
 		
 		return $value;
