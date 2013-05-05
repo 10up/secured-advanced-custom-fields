@@ -709,6 +709,40 @@ class acf_field_file extends acf_field
 
 	}
 	
+	
+	/*
+	*  update_value()
+	*
+	*  This filter is appied to the $value before it is updated in the db
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$value - the value which will be saved in the database
+	*  @param	$post_id - the $post_id of which the value will be saved
+	*  @param	$field - the field array holding all the field options
+	*
+	*  @return	$value - the modified value
+	*/
+	
+	function update_value( $value, $post_id, $field )
+	{
+		// array?
+		if( is_array($value) && isset($value['id']) )
+		{
+			$value = $value['id'];	
+		}
+		
+		// object?
+		if( is_object($value) && isset($value->ID) )
+		{
+			$value = $value->ID;
+		}
+		
+		return $value;
+	}
+	
 }
 
 new acf_field_file();
