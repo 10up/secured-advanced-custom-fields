@@ -111,7 +111,10 @@ class acf_everything_fields
 		
 		if( $pagenow == "admin.php" && isset( $_GET['page'], $_GET['id'] ) && $_GET['page'] == "shopp-categories" )
 		{
-		
+			// filter
+			$_GET['id'] = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
+			
+			
 			$this->data['page_type'] = "shopp_category";
 			$filter['ef_taxonomy'] = "shopp_category";
 			
@@ -127,15 +130,21 @@ class acf_everything_fields
 		}
 		if( $pagenow == "edit-tags.php" && isset($_GET['taxonomy']) )
 		{
-		
+			// filter
+			$_GET['taxonomy'] = filter_var($_GET['taxonomy'], FILTER_SANITIZE_STRING);
+			
+			
 			$this->data['page_type'] = "taxonomy";
 			$filter['ef_taxonomy'] = $_GET['taxonomy'];
 			
 			$this->data['page_action'] = "add";
 			$this->data['option_name'] = "";
 			
-			if(isset($_GET['action']) && $_GET['action'] == "edit")
+			if( isset($_GET['action']) && $_GET['action'] == "edit" )
 			{
+				// filter
+				$_GET['tag_ID'] = filter_var($_GET['tag_ID'], FILTER_SANITIZE_NUMBER_INT);
+			
 				$this->data['page_action'] = "edit";
 				$this->data['option_name'] = $_GET['taxonomy'] . "_" . $_GET['tag_ID'];
 			}
@@ -143,7 +152,7 @@ class acf_everything_fields
 		}
 		elseif( $pagenow == "profile.php" )
 		{
-		
+			
 			$this->data['page_type'] = "user";
 			$filter['ef_user'] = get_current_user_id();
 			
@@ -153,7 +162,10 @@ class acf_everything_fields
 		}
 		elseif( $pagenow == "user-edit.php" && isset($_GET['user_id']) )
 		{
-		
+			// filter
+			$_GET['user_id'] = filter_var($_GET['user_id'], FILTER_SANITIZE_NUMBER_INT);
+
+			
 			$this->data['page_type'] = "user";
 			$filter['ef_user'] = $_GET['user_id'];
 			
@@ -181,6 +193,10 @@ class acf_everything_fields
 			
 			if(isset($_GET['attachment_id']))
 			{
+				// filter
+				$_GET['attachment_id'] = filter_var($_GET['attachment_id'], FILTER_SANITIZE_NUMBER_INT);
+			
+			
 				$this->data['page_action'] = "edit";
 				$this->data['option_name'] = $_GET['attachment_id'];
 			}
