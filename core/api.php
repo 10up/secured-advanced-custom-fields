@@ -676,22 +676,25 @@ function acf_get_child_field_from_parent_field( $child_name, $parent )
 				$return = $child;
 				break;
 			}
+			
+			// perhaps child has grand children?
+			$grand_child = acf_get_child_field_from_parent_field( $child_name, $child );
+			if( $grand_child )
+			{
+				$return = $grand_child;
+				break;
+			}
 		}
 	}
 	elseif( isset($parent['layouts']) && is_array($parent['layouts']) )
 	{
 		foreach( $parent['layouts'] as $layout )
 		{
-			if( isset($layout['sub_fields']) && is_array($layout['sub_fields']) )
+			$child = acf_get_child_field_from_parent_field( $child_name, $layout );
+			if( $child )
 			{
-				foreach( $layout['sub_fields'] as $child )
-				{
-					if( $child['name'] == $child_name || $child['key'] == $child_name )
-					{
-						$return = $child;
-						break;
-					}
-				}
+				$return = $child;
+				break;
 			}
 		}
 	}
