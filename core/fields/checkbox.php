@@ -90,7 +90,16 @@ class acf_field_checkbox extends acf_field
 			}
 			
 			
-			echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="checkbox" class="' . $field['class'] . '" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
+			// ID
+			// each checkbox ID is generated with the $key, however, the first checkbox must not use $key so that it matches the field's label for attribute
+			$id = $field['id'];
+			
+			if( $key > 1 )
+			{
+				$id .= '-' . $key;
+			}
+			
+			echo '<li><label><input id="' . $id . '" type="checkbox" class="' . $field['class'] . '" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
 		}
 		
 		echo '</ul>';
