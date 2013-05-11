@@ -508,6 +508,7 @@ class acf_field_relationship extends acf_field
 		$key = $field['name'];
 		
 		
+		
 		// validate taxonomy
 		if( !is_array($field['taxonomy']) )
 		{
@@ -516,11 +517,15 @@ class acf_field_relationship extends acf_field
 		
 		
 		// validate result_elements
+		if( !is_array( $field['result_elements'] ) )
+		{
+			$field['result_elements'] = array();
+		}
+		
 		if( !in_array('post_title', $field['result_elements']) )
 		{
 			$field['result_elements'][] = 'post_title';
 		}
-		
 		
 		?>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
