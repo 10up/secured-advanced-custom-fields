@@ -422,6 +422,29 @@
 	display: block !important;
 }
 
+.media-modal .acf-attachment-large-toggle {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	height: 30px;
+	width: 30px;
+	background: #f00;
+}
+
+.media-modal .acf-attachment-large {
+	
+}
+
+.media-modal .acf-attachment-large .media-toolbar {
+	right: 700px;
+}
+.media-modal .acf-attachment-large .attachments {
+	right: 700px;
+}
+.media-modal .acf-attachment-large .media-sidebar {
+	width: 667px;
+}
+
 
 /*---------------------------------------------------------------------------------------------
 *
