@@ -364,7 +364,7 @@ class acf_field_relationship extends acf_field
 				<?php if(in_array( 'search', $field['filters']) ): ?>
 				<tr>
 					<th>
-						<label class="relationship_label" for="relationship_<?php echo $field['name']; ?>"><?php _e("Search",'acf'); ?>...</label>
+						<label class="relationship_label" for="relationship_<?php echo $field['name']; ?>"><?php _e("Search...",'acf'); ?></label>
 						<input class="relationship_search" type="text" id="relationship_<?php echo $field['name']; ?>" />
 						<!-- <div class="clear_relationship_search"></div> -->
 					</th>
