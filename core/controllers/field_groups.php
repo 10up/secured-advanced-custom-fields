@@ -353,7 +353,7 @@ class acf_field_groups
 		<p><?php _e("All actions & filters have received a major facelift to make customizing ACF even easier! Please",'acf'); ?> <a href="http://www.advancedcustomfields.com/resources/getting-started/migrating-from-v3-to-v4/" target="_blank"><?php _e("read this guide",'acf'); ?></a> <?php _e("to find the updated naming convention.",'acf'); ?></p>
 		
 		<h4><?php _e("Preview draft is now working!",'acf'); ?></h4>
-		<p><?php _e("This bug has been squashed along with many other little critters!",'acf'); ?> <a class="acf-tab-toggle" href="#" data-tab="2"><?php _e("See the full changelog",'acf'); ?></a></p>
+		<p><?php _e("This bug has been squashed along with many other little critters!",'acf'); ?> <a class="acf-tab-toggle" href="<?php echo admin_url('edit.php?post_type=acf&info=changelog'); ?>" data-tab="2"><?php _e("See the full changelog",'acf'); ?></a></p>
 		
 		<hr />
 		
