@@ -370,7 +370,7 @@ class acf_field_functions
 	function load_field_defaults( $field )
 	{
 		// validate $field
-		if( ! $field )
+		if( !is_array($field) )
 		{
 			$field = array();
 		}
