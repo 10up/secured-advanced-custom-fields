@@ -115,7 +115,7 @@
 				multiple : multiple,
 				library : {
 					type : 'image'
-				},
+				}
 			});
 
 			
