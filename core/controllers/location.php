@@ -590,13 +590,15 @@ class acf_location
 	
 	function rule_match_user_type( $match, $rule, $options )
 	{
-		if($rule['operator'] == "==")
+		$user = wp_get_current_user();
+ 
+        if( $rule['operator'] == "==" )
         {
-        	$match = ( current_user_can($rule['value']) );
+            $match = in_array( $rule['value'], $user->roles );
         }
-        elseif($rule['operator'] == "!=")
+        elseif( $rule['operator'] == "!=" )
         {
-        	$match = ( ! current_user_can($rule['value']) );
+            $match = ( ! in_array( $rule['value'], $user->roles ) );
         }
         
         return $match;
