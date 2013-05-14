@@ -36,35 +36,22 @@ class acf_field_post_object extends acf_field
 	
 	
 	/*
-	*  create_field()
-	*
-	*  Create the HTML interface for your field
-	*
-	*  @param	$field - an array holding all the field's data
-	*
-	*  @type	action
-	*  @since	3.6
-	*  @date	23/01/13
+	*  load_field()
+	*  
+	*  This filter is appied to the $field after it is loaded from the database
+	*  
+	*  @type filter
+	*  @since 3.6
+	*  @date 23/01/13
+	*  
+	*  @param $field - the field array holding all the field options
+	*  
+	*  @return $field - the field array holding all the field options
 	*/
 	
-	function create_field( $field )
+	function load_field( $field )
 	{
-		// temp store the_post
-		global $post;
-		$the_post = $post;
-		
-		
-		// vars
-		$args = array(
-			'numberposts' => -1,
-			'post_type' => null,
-			'orderby' => 'title',
-			'order' => 'ASC',
-			'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
-			'suppress_filters' => false,
-		);
-		
-
+		// defaults
 		$field = array_merge($this->defaults, $field);
 		
 		
@@ -80,6 +67,40 @@ class acf_field_post_object extends acf_field
 		{
 			$field['taxonomy'] = array( 'all' );
 		}
+		
+		
+		// return
+		return $field;
+	}
+	
+	
+	/*
+	*  create_field()
+	*
+	*  Create the HTML interface for your field
+	*
+	*  @param	$field - an array holding all the field's data
+	*
+	*  @type	action
+	*  @since	3.6
+	*  @date	23/01/13
+	*/
+	
+	function create_field( $field )
+	{
+		// temp store the_post
+		global $post;
+		
+		
+		// vars
+		$args = array(
+			'numberposts' => -1,
+			'post_type' => null,
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
+			'suppress_filters' => false,
+		);
 		
 		
 		// load all post types by default
@@ -152,9 +173,9 @@ class acf_field_post_object extends acf_field
 			
 			
 			// filters
-			$args = apply_filters('acf/fields/post_object/query', $args, $field, $the_post);
-			$args = apply_filters('acf/fields/post_object/query/name=' . $field['name'], $args, $field, $the_post );
-			$args = apply_filters('acf/fields/post_object/query/key=' . $field['key'], $args, $field, $the_post );
+			$args = apply_filters('acf/fields/post_object/query', $args, $field, $post);
+			$args = apply_filters('acf/fields/post_object/query/name=' . $field['name'], $args, $field, $post );
+			$args = apply_filters('acf/fields/post_object/query/key=' . $field['key'], $args, $field, $post );
 			
 			
 			if( $get_pages )
@@ -169,11 +190,11 @@ class acf_field_post_object extends acf_field
 			
 			if($posts)
 			{
-				foreach( $posts as $post )
+				foreach( $posts as $p )
 				{
 					// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
 					$title = '';
-					$ancestors = get_ancestors( $post->ID, $post->post_type );
+					$ancestors = get_ancestors( $p->ID, $p->post_type );
 					if($ancestors)
 					{
 						foreach($ancestors as $a)
@@ -181,13 +202,13 @@ class acf_field_post_object extends acf_field
 							$title .= '–';
 						}
 					}
-					$title .= ' ' . apply_filters( 'the_title', $post->post_title, $post->ID );
+					$title .= ' ' . apply_filters( 'the_title', $p->post_title, $p->ID );
 					
 					
 					// status
-					if($post->post_status != "publish")
+					if( $p->post_status != "publish" )
 					{
-						$title .= " ($post->post_status)";
+						$title .= " ($p->post_status)";
 					}
 					
 					// WPML
@@ -198,23 +219,23 @@ class acf_field_post_object extends acf_field
 					
 					
 					// filters
-					$title = apply_filters('acf/fields/post_object/result', $title, $post, $field, $the_post);
-					$title = apply_filters('acf/fields/post_object/result/name=' . $field['name'] , $title, $post, $field, $the_post);
-					$title = apply_filters('acf/fields/post_object/result/key=' . $field['key'], $title, $post, $field, $the_post);
+					$title = apply_filters('acf/fields/post_object/result', $title, $p, $field, $post);
+					$title = apply_filters('acf/fields/post_object/result/name=' . $field['name'] , $title, $p, $field, $post);
+					$title = apply_filters('acf/fields/post_object/result/key=' . $field['key'], $title, $p, $field, $post);
 					
 					
 					// add to choices
 					if( count($field['post_type']) == 1 )
 					{
-						$field['choices'][ $post->ID ] = $title;
+						$field['choices'][ $p->ID ] = $title;
 					}
 					else
 					{
 						// group by post type
-						$post_type_object = get_post_type_object( $post->post_type );
+						$post_type_object = get_post_type_object( $p->post_type );
 						$post_type_name = $post_type_object->labels->name;
 					
-						$field['choices'][ $post_type_name ][ $post->ID ] = $title;
+						$field['choices'][ $post_type_name ][ $p->ID ] = $title;
 					}
 					
 					
@@ -247,14 +268,7 @@ class acf_field_post_object extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'post_type' 	=>	'',
-			'multiple'		=>	0,
-			'allow_null'	=>	0,
-			'taxonomy' 		=>	array('all'),
-		);
-		
-		$field = array_merge($defaults, $field);
+		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		?>
@@ -266,7 +280,7 @@ class acf_field_post_object extends acf_field
 		<?php 
 		
 		$choices = array(
-			''	=>	__("All",'acf')
+			'all'	=>	__("All",'acf')
 		);
 		$choices = apply_filters('acf/get_post_types', $choices);
 		

@@ -41,6 +41,64 @@ class acf_field_relationship extends acf_field
 	
 	
 	/*
+	*  load_field()
+	*  
+	*  This filter is appied to the $field after it is loaded from the database
+	*  
+	*  @type filter
+	*  @since 3.6
+	*  @date 23/01/13
+	*  
+	*  @param $field - the field array holding all the field options
+	*  
+	*  @return $field - the field array holding all the field options
+	*/
+	
+	function load_field( $field )
+	{
+		// defaults
+		$field = array_merge($this->defaults, $field);
+		
+		
+		// validate post_type
+		if( !$field['post_type'] || !is_array($field['post_type']) || in_array('', $field['post_type']) )
+		{
+			$field['post_type'] = array( 'all' );
+		}
+
+		
+		// validate taxonomy
+		if( !$field['taxonomy'] || !is_array($field['taxonomy']) || in_array('', $field['taxonomy']) )
+		{
+			$field['taxonomy'] = array( 'all' );
+		}
+		
+		
+		// validate result_elements
+		if( !is_array( $field['result_elements'] ) )
+		{
+			$field['result_elements'] = array();
+		}
+		
+		if( !in_array('post_title', $field['result_elements']) )
+		{
+			$field['result_elements'][] = 'post_title';
+		}
+		
+		
+		// filters
+		if( !is_array( $field['filters'] ) )
+		{
+			$field['filters'] = array();
+		}
+		
+		
+		// return
+		return $field;
+	}
+		
+
+	/*
    	*  posts_where
    	*
    	*  @description: 
@@ -191,8 +249,8 @@ class acf_field_relationship extends acf_field
 			$field = apply_filters('acf/load_field', array(), $options['field_key'] );
 		}
 		
-		$field = array_merge( $this->defaults, $field );
 		
+		// get the post from which this field is rendered on
 		$the_post = get_post( $options['post_id'] );
 		
 		
@@ -210,14 +268,14 @@ class acf_field_relationship extends acf_field
 		
 		if( $posts )
 		{
-			foreach( $posts  as $post )
+			foreach( $posts  as $p )
 			{
 				// right aligned info
 				$title = '<span class="relationship-item-info">';
 					
 					if( in_array('post_type', $field['result_elements']) )
 					{
-						$title .= $post->post_type;
+						$title .= $p->post_type;
 					}
 					
 					// WPML
@@ -232,28 +290,28 @@ class acf_field_relationship extends acf_field
 				// featured_image
 				if( in_array('featured_image', $field['result_elements']) )
 				{
-					$image = get_the_post_thumbnail( $post->ID, array(21, 21) );
+					$image = get_the_post_thumbnail( $p->ID, array(21, 21) );
 					
 					$title .= '<div class="result-thumbnail">' . $image . '</div>';
 				}
 				
 				
 				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
-				$title .= apply_filters( 'the_title', $post->post_title, $post->ID );
+				$title .= apply_filters( 'the_title', $p->post_title, $p->ID );
 
 				// status
-				if($post->post_status != "publish")
+				if($p->post_status != "publish")
 				{
-					$title .= " ($post->post_status)";
+					$title .= " ($p->post_status)";
 				}
 				
 				// filters
-				$title = apply_filters('acf/fields/relationship/result', $title, $post, $field, $the_post);
-				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post, $field, $the_post);
-				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result', $title, $p, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $p, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $p, $field, $the_post);
 				
 				
-				$results .= '<li><a href="' . get_permalink($post->ID) . '" data-post_id="' . $post->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
+				$results .= '<li><a href="' . get_permalink($p->ID) . '" data-post_id="' . $p->ID . '">' . $title .  '<span class="acf-button-add"></span></a></li>';
 			}
 		}
 		
@@ -278,33 +336,14 @@ class acf_field_relationship extends acf_field
 	
 	function create_field( $field )
 	{
-		// temp store the_post
+		// global
 		global $post;
-		$the_post = $post;
-		
-		
-		// vars
-		$field = array_merge($this->defaults, $field);
 
 		
 		// no row limit?
 		if( !$field['max'] || $field['max'] < 1 )
 		{
 			$field['max'] = 9999;
-		}
-		
-		
-		// validate post_type
-		if( !$field['post_type'] || !is_array($field['post_type']) || in_array('', $field['post_type']) )
-		{
-			$field['post_type'] = array( 'all' );
-		}
-
-		
-		// validate taxonomy
-		if( !$field['taxonomy'] || !is_array($field['taxonomy']) || in_array('', $field['taxonomy']) )
-		{
-			$field['taxonomy'] = array( 'all' );
 		}
 		
 		
@@ -425,14 +464,14 @@ class acf_field_relationship extends acf_field
 
 		if( $field['value'] )
 		{
-			foreach( $field['value'] as $post )
+			foreach( $field['value'] as $p )
 			{
 				// right aligned info
 				$title = '<span class="relationship-item-info">';
 					
 					if( in_array('post_type', $field['result_elements']) )
 					{
-						$title .= $post->post_type;
+						$title .= $p->post_type;
 					}
 					
 					// WPML
@@ -447,31 +486,31 @@ class acf_field_relationship extends acf_field
 				// featured_image
 				if( in_array('featured_image', $field['result_elements']) )
 				{
-					$image = get_the_post_thumbnail( $post->ID, array(21, 21) );
+					$image = get_the_post_thumbnail( $p->ID, array(21, 21) );
 					
 					$title .= '<div class="result-thumbnail">' . $image . '</div>';
 				}
 				
 				
 				// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
-				$title .= apply_filters( 'the_title', $post->post_title, $post->ID );
+				$title .= apply_filters( 'the_title', $p->post_title, $p->ID );
 
 				// status
-				if($post->post_status != "publish")
+				if($p->post_status != "publish")
 				{
-					$title .= " ($post->post_status)";
+					$title .= " ($p->post_status)";
 				}
 
 				
 				// filters
-				$title = apply_filters('acf/fields/relationship/result', $title, $post, $field, $the_post);
-				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post, $field, $the_post);
-				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post, $field, $the_post);
+				$title = apply_filters('acf/fields/relationship/result', $title, $p, $field, $post);
+				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $p, $field, $post);
+				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $p, $field, $post);
 				
 				
 				echo '<li>
-					<a href="' . get_permalink($post->ID) . '" class="" data-post_id="' . $post->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
-					<input type="hidden" name="' . $field['name'] . '[]" value="' . $post->ID . '" />
+					<a href="' . get_permalink($p->ID) . '" class="" data-post_id="' . $p->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
+					<input type="hidden" name="' . $field['name'] . '[]" value="' . $p->ID . '" />
 				</li>';
 				
 					
@@ -486,6 +525,7 @@ class acf_field_relationship extends acf_field
 </div>
 		<?php
 	}
+	
 	
 	
 	/*
@@ -506,26 +546,6 @@ class acf_field_relationship extends acf_field
 		// vars
 		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
-		
-		
-		
-		// validate taxonomy
-		if( !is_array($field['taxonomy']) )
-		{
-			$field['taxonomy'] = array('all');
-		}
-		
-		
-		// validate result_elements
-		if( !is_array( $field['result_elements'] ) )
-		{
-			$field['result_elements'] = array();
-		}
-		
-		if( !in_array('post_title', $field['result_elements']) )
-		{
-			$field['result_elements'][] = 'post_title';
-		}
 		
 		?>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
@@ -686,10 +706,10 @@ class acf_field_relationship extends acf_field
 
 		
 		$ordered_posts = array();
-		foreach( $posts as $post )
+		foreach( $posts as $p )
 		{
 			// create array to hold value data
-			$ordered_posts[ $post->ID ] = $post;
+			$ordered_posts[ $p->ID ] = $p;
 		}
 		
 		

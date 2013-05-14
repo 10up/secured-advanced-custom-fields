@@ -101,6 +101,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.3 =
+* [Fixed] Relationship field: Fix global $post conflict issues - http://support.advancedcustomfields.com/discussion/6022/bug-with-4-1-2-acf-rewrite-global-post
+
 = 4.1.2 =
 * [Added] Post Object field: Add filter to customize choices - http://support.advancedcustomfields.com/discussion/5883/show-extra-post-info-in-a-post-object-dropdown-list
 * [Fixed] Relationship field: Fix error when used as grand child - http://support.advancedcustomfields.com/discussion/5898/in_array-errors-on-relationship-field
