@@ -88,7 +88,11 @@ class acf_field_post_object extends acf_field
 	
 	function create_field( $field )
 	{
-		// temp store the_post
+		// defaults
+		$field = array_merge($this->defaults, $field);
+		
+		
+		// global
 		global $post;
 		
 		

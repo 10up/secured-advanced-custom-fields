@@ -2,6 +2,9 @@
 
 class acf_field_page_link extends acf_field
 {
+	// vars
+	var $defaults;
+	
 	
 	/*
 	*  __construct
@@ -18,11 +21,48 @@ class acf_field_page_link extends acf_field
 		$this->name = 'page_link';
 		$this->label = __("Page Link",'acf');
 		$this->category = __("Relational",'acf');
+		$this->defaults = array(
+			'post_type' => array('all'),
+			'multiple' => 0,
+			'allow_null' => 0,
+		);
 		
 		
 		// do not delete!
     	parent::__construct();
   
+	}
+	
+	
+	/*
+	*  load_field()
+	*  
+	*  This filter is appied to the $field after it is loaded from the database
+	*  
+	*  @type filter
+	*  @since 3.6
+	*  @date 23/01/13
+	*  
+	*  @param $field - the field array holding all the field options
+	*  
+	*  @return $field - the field array holding all the field options
+	*/
+	
+	function load_field( $field )
+	{
+		// defaults
+		$field = array_merge($this->defaults, $field);
+		
+		
+		// validate post_type
+		if( !$field['post_type'] || !is_array($field['post_type']) || in_array('', $field['post_type']) )
+		{
+			$field['post_type'] = array( 'all' );
+		}
+
+		
+		// return
+		return $field;
 	}
 	
 	
@@ -63,13 +103,7 @@ class acf_field_page_link extends acf_field
 	function create_options( $field )
 	{
 		// defaults
-		$defaults = array(
-			'post_type' 	=>	'',
-			'multiple'		=>	0,
-			'allow_null'	=>	0,
-		);
-		
-		$field = array_merge($defaults, $field);
+		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		?>
@@ -81,7 +115,7 @@ class acf_field_page_link extends acf_field
 		<?php 
 		
 		$choices = array(
-			''	=>	__("All",'acf')
+			'all'	=>	__("All",'acf')
 		);
 		$choices = apply_filters('acf/get_post_types', $choices);
 		
