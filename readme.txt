@@ -101,6 +101,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.4 =
+* [Fixed] Page Link: Fixed errors produced by recent changes to post object field - http://support.advancedcustomfields.com/discussion/6044/page-links-hierarchy-broken-and-does-not-order-correctly
+
 = 4.1.3 =
 * [Fixed] Relationship field: Fix global $post conflict issues - http://support.advancedcustomfields.com/discussion/6022/bug-with-4-1-2-acf-rewrite-global-post
 
