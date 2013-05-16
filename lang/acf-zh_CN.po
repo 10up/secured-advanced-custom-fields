@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: acf chinese\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-11 19:59+0800\n"
-"PO-Revision-Date: 2013-05-12 12:33+0800\n"
-"Last-Translator: Amos Lee <470266798@qq.com>\n"
+"PO-Revision-Date: 2013-05-16 10:58+0800\n"
+"Last-Translator: Amos Lee <4626395@gmail.com>\n"
 "Language-Team: Amos Lee <470266798@qq.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "回收站中没有找到字段组"
 
 #: ../acf.php:386 ../core/views/meta_box_options.php:94
 msgid "Custom Fields"
-msgstr "字段数量"
+msgstr "字段"
 
 #: ../acf.php:404 ../acf.php:407
 msgid "Field group updated."
