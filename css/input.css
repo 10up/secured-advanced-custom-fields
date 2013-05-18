@@ -221,10 +221,14 @@
 
 
 .acf-image-uploader img {
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
 	width:100%;
 	height: auto;
 	display: block;
+	min-width: 30px;
+	min-height: 30px;
+	background: #f1f1f1;
+	margin: 0 0 0 2px;
 }
 
 .acf-image-uploader .no-image p {

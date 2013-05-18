@@ -2,6 +2,9 @@
 
 class acf_field_radio extends acf_field
 {
+	// vars
+	var $defaults;
+	
 	
 	/*
 	*  __construct
@@ -18,6 +21,11 @@ class acf_field_radio extends acf_field
 		$this->name = 'radio';
 		$this->label = __("Radio Button",'acf');
 		$this->category = __("Choice",'acf');
+		$this->defaults = array(
+			'layout'		=>	'vertical',
+			'choices'		=>	array(),
+			'default_value'	=>	'',
+		);
 		
 		
 		// do not delete!
@@ -41,12 +49,7 @@ class acf_field_radio extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$defaults = array(
-			'layout'		=>	'vertical',
-			'choices'		=>	array(),
-		);
-		
-		$field = array_merge($defaults, $field);
+		$field = array_merge($this->defaults, $field);
 		
 		
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
@@ -96,13 +99,7 @@ class acf_field_radio extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'layout'		=>	'vertical',
-			'default_value'	=>	'',
-			'choices'		=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
+		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		// implode checkboxes so they work in a textarea

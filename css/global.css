@@ -314,29 +314,29 @@ table.acf_input select:focus {
 }
 
 
-ul.radio_list {
+ul.radio_list,
+ul.checkbox_list {
+	background: transparent !important;
 	position: relative;
 	display: block;
 	padding: 1px;
 	margin: 0;
 }
 
-ul.radio_list.horizontal {
+ul.radio_list.horizontal,
+ul.checkbox_list.horizontal {
 	overflow: hidden;
 }
 
-ul.radio_list.horizontal li {
+ul.radio_list.horizontal li,
+ul.checkbox_list.horizontal li {
 	float: left;
 	margin-right: 20px;
 }
 
-ul.checkbox_list {
-	background: transparent !important;
-	margin: 0;
-}
-
 ul.radio_list li input,
 ul.checkbox_list li input {
+	margin-top: -1px;
 	margin-right: 5px !important;
 	width: auto !important;
 }
