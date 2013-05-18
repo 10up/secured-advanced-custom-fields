@@ -142,6 +142,13 @@ class acf_field_taxonomy extends acf_field
 		$field = array_merge($this->defaults, $field);
 		
 		
+		// no value?
+		if( !$value )
+		{
+			return $value;
+		}
+		
+		
 		// temp convert to array
 		$is_array = true;
 		
