@@ -41,7 +41,7 @@
 			
 			
 			// text / textarea
-			if( div.find('input[type="text"], input[type="number"], input[type="hidden"], textarea').val() == "" )
+			if( div.find('input[type="text"], input[type="email"], input[type="number"], input[type="hidden"], textarea').val() == "" )
 			{
 				div.data('validation', false);
 			}
