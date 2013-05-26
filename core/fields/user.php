@@ -2,10 +2,6 @@
 
 class acf_field_user extends acf_field
 {
-
-	var $defaults;
-	
-	
 	/*
 	*  __construct
 	*
@@ -21,9 +17,6 @@ class acf_field_user extends acf_field
 		$this->name = 'user';
 		$this->label = __("User",'acf');
 		$this->category = __("Relational",'acf');
-		
-		
-		// settings
 		$this->defaults = array(
 			'role' 			=> 'all',
 			'field_type' 	=> 'select',
@@ -150,7 +143,6 @@ class acf_field_user extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$field['choices'] = array();
 		$args = array();
 		$editable_roles = get_editable_roles();
@@ -224,7 +216,6 @@ class acf_field_user extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		?>

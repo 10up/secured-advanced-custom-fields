@@ -2,10 +2,6 @@
 
 class acf_field_select extends acf_field
 {
-	// vars
-	var $defaults;
-	
-	
 	/*
 	*  __construct
 	*
@@ -55,7 +51,6 @@ class acf_field_select extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$optgroup = false;
 		
 		
@@ -163,7 +158,6 @@ class acf_field_select extends acf_field
 	
 	function create_options( $field )
 	{
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 
 
@@ -303,9 +297,6 @@ class acf_field_select extends acf_field
 
 	function update_field( $field, $post_id )
 	{
-		// vars
-		$field = array_merge($this->defaults, $field);
-		
 		
 		// check if is array. Normal back end edit posts a textarea, but a user might use update_field from the front end
 		if( is_array( $field['choices'] ))

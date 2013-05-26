@@ -17,6 +17,10 @@ class acf_field_textarea extends acf_field
 		// vars
 		$this->name = 'textarea';
 		$this->label = __("Text Area",'acf');
+		$this->defaults = array(
+			'default_value'	=>	'',
+			'formatting' 	=>	'br',
+		);
 		
 		
 		// do not delete!
@@ -59,12 +63,6 @@ class acf_field_textarea extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'default_value'	=>	'',
-			'formatting' 	=>	'br',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 
 ?>
@@ -125,14 +123,6 @@ class acf_field_textarea extends acf_field
 	
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// vars
-		$defaults = array(
-			'formatting'	=>	'br',
-		);
-		
-		$field = array_merge($defaults, $field);
-		
-		
 		// validate type
 		if( !is_string($value) )
 		{

@@ -82,10 +82,6 @@ acf.fields.date_picker.text = <?php echo json_encode( $l10n ); ?>;
 	
 	function create_field( $field )
 	{
-		// defaults
-		$field = array_merge($this->defaults, $field);
-		
-		
 		// make sure it's not blank
 		if( !$field['date_format'] )
 		{
@@ -120,7 +116,6 @@ acf.fields.date_picker.text = <?php echo json_encode( $l10n ); ?>;
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		

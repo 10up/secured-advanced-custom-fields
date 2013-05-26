@@ -18,6 +18,10 @@ class acf_field_message extends acf_field
 		$this->name = 'message';
 		$this->label = __("Message",'acf');
 		$this->category = __("Layout",'acf');
+		$this->defaults = array(
+			'message'	=>	'',
+		);
+		
 		
 		// do not delete!
     	parent::__construct();
@@ -58,11 +62,6 @@ class acf_field_message extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'message'		=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>

@@ -18,6 +18,11 @@ class acf_field_wysiwyg extends acf_field
 		$this->name = 'wysiwyg';
 		$this->label = __("Wysiwyg Editor",'acf');
 		$this->category = __("Content",'acf');
+		$this->defaults = array(
+			'toolbar'		=>	'full',
+			'media_upload' 	=>	'yes',
+			'default_value'	=>	'',
+		);
 		
 		
 		// do not delete!
@@ -113,12 +118,6 @@ class acf_field_wysiwyg extends acf_field
 		
 		
 		// vars
-		$defaults = array(
-			'toolbar'		=>	'full',
-			'media_upload' 	=>	'yes',
-		);
-		$field = array_merge($defaults, $field);
-		
 		$id = 'wysiwyg-' . $field['id'] . '-' . uniqid();
 		
 		
@@ -164,13 +163,6 @@ class acf_field_wysiwyg extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'toolbar'		=>	'full',
-			'media_upload' 	=>	'yes',
-			'default_value'	=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>

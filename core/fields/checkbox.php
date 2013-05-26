@@ -2,10 +2,7 @@
 
 class acf_field_checkbox extends acf_field
 {
-	// vars
-	var $defaults;
-	
-	
+
 	/*
 	*  __construct
 	*
@@ -47,10 +44,6 @@ class acf_field_checkbox extends acf_field
 	
 	function create_field( $field )
 	{
-		// vars
-		$field = array_merge($this->defaults, $field);
-		
-		
 		// value must be array
 		if( !is_array($field['value']) )
 		{
@@ -125,7 +118,6 @@ class acf_field_checkbox extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		

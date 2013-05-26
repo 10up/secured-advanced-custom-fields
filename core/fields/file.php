@@ -18,6 +18,10 @@ class acf_field_file extends acf_field
 		$this->name = 'file';
 		$this->label = __("File",'acf');
 		$this->category = __("Content",'acf');
+		$this->defaults = array(
+			'save_format'	=>	'object',
+			'library' => 'all'
+		);
 		
 		
 		// do not delete!
@@ -106,11 +110,6 @@ class acf_field_file extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'save_format'	=>	'id',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>
@@ -159,14 +158,7 @@ class acf_field_file extends acf_field
 	
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// vars
-		$defaults = array(
-			'save_format'	=>	'url',
-		);
-		
-		$field = array_merge($defaults, $field);
-		
-		
+
 		// validate
 		if( !$value )
 		{

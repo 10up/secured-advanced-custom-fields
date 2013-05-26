@@ -17,6 +17,9 @@ class acf_field_email extends acf_field
 		// vars
 		$this->name = 'email';
 		$this->label = __("Email",'acf');
+		$this->defaults = array(
+			'default_value'	=>	'',
+		);
 		
 		
 		// do not delete!
@@ -58,11 +61,6 @@ class acf_field_email extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$defaults = array(
-			'default_value'	=>	'',
-		);
-		
-		$field = array_merge($defaults, $field);
 		$key = $field['name'];
 		
 		?>

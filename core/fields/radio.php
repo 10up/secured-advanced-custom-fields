@@ -2,10 +2,6 @@
 
 class acf_field_radio extends acf_field
 {
-	// vars
-	var $defaults;
-	
-	
 	/*
 	*  __construct
 	*
@@ -49,9 +45,6 @@ class acf_field_radio extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
-		
-		
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
 		
 		$i = 0;
@@ -99,7 +92,6 @@ class acf_field_radio extends acf_field
 	function create_options( $field )
 	{
 		// vars
-		$field = array_merge($this->defaults, $field);
 		$key = $field['name'];
 		
 		// implode checkboxes so they work in a textarea
