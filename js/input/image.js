@@ -97,10 +97,15 @@
 	$('.acf-image-uploader .add-image').live('click', function(){
 				
 		// vars
-		var div = _media.div = $(this).closest('.acf-image-uploader'),
-			preview_size = div.attr('data-preview_size'),
-			multiple = div.closest('.repeater').exists() ? true : false;
+		var $el = _media.div = $(this).closest('.acf-image-uploader'),
+			o = {
+				preview_size	:	$el.attr('data-preview_size'),
+				library			:	$el.attr('data-library'),
+				multiple		:	$el.closest('.repeater').exists() ? true : false,
+				query 			:	{ type : 'image' }
+			};
 			
+		
 			
 		// show the thickbox
 		if( _media.type() == 'backbone' )
@@ -109,23 +114,77 @@
 			_media.clear_frame();
 			
 			
-		    // Create the media frame. Leave options blank for defaults
+			// library
+			if( o.library == 'uploadedTo' )
+			{
+				o.query.uploadedTo = wp.media.view.settings.post.id;
+			}
+			
+			
+		    // Create the media frame
 			_media.frame = wp.media({
-				title : _image.text.title_add,
-				multiple : multiple,
-				library : {
-					type : 'image'
+				states : [
+					new wp.media.controller.Library({
+						library		:	wp.media.query( o.query ),
+						multiple	:	o.multiple,
+						title		:	_image.text.title_add,
+						priority	:	20,
+						filterable	:	'all',
+					})
+				]
+			});
+			
+			
+			// customize model / view
+			_media.frame.on('content:activate', function(){
+				
+				var content = _media.frame.content.get(),
+					filters = content.toolbar._views.filters;
+				
+				
+				// remove no images from filter list
+				filters.$el.find('option').each(function(){
+					
+					// vars
+					var v = $(this).attr('value');
+					
+					
+					// don't remove the 'uploadedTo' if the library option is 'all'
+					if( v == 'uploaded' && o.library == 'all' )
+					{
+						return;
+					}
+					
+					if( v.indexOf('image') === -1 )
+					{
+						$(this).remove();
+					}
+					
+				});
+				
+				
+				// customize the 'uploaded' filter
+				filters.filters.uploaded.props.type = 'image';
+				
+				
+				// // customize the uploadedTo param
+				if( o.library == 'uploadedTo' )
+				{
+					$.each( filters.filters, function( k, v ){
+						
+						v.props.uploadedTo = wp.media.view.settings.post.id;
+						
+					});
 				}
-			});
-
+				
+				
+				// set default filter to 'image'
+				filters.$el.val('image').trigger('change');
+				
+				
+			}); 
 			
-			// add filter by overriding the option when the title is being created. This is an evet fired before the rendering / creating of the library content so it works but is a bit of a hack. In the future, this should be changed to an init / options event
-			_media.frame.on('title:create', function(){
-				var state = _media.frame.state();
-				state.set('filterable', 'uploaded');
-			});
-			
-			
+						
 			// When an image is selected, run a callback.
 			_media.frame.on( 'select', function() {
 				

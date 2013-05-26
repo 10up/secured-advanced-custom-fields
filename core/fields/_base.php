@@ -20,7 +20,8 @@ class acf_field
 	
 	var $name,
 		$title,
-		$category;
+		$category,
+		$defaults;
 	
 	
 	/*
@@ -36,6 +37,7 @@ class acf_field
 	{
 		// register field
 		add_filter('acf/registered_fields', array($this, 'registered_fields'), 10, 1);
+		add_filter('acf/load_field_defaults/type=' . $this->name, array($this, 'load_field_defaults'), 10, 1);
 		
 		
 		// value
@@ -127,6 +129,17 @@ class acf_field
 		
 		// return array
 		return $fields;
+	}
+	
+	
+	function load_field_defaults( $field )
+	{
+		if( !empty($this->defaults) )
+		{
+			$field = array_merge( $this->defaults, $field );
+		}
+		
+		return $field;
 	}
 	
 	

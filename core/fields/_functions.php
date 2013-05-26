@@ -400,6 +400,10 @@ class acf_field_functions
 		$field = apply_filters( 'acf/parse_types', $field );
 		
 		
+		// field specific defaults
+		$field = apply_filters('acf/load_field_defaults/type=' . $field['type'] , $field);
+				
+		
 		// class
 		if( !$field['class'] )
 		{
@@ -568,6 +572,10 @@ foreach( $field['conditional_logic']['rules'] as $rule ):
 	
 	function create_field_options($field)
 	{
+		// load standard + field specific defaults
+		$field = apply_filters('acf/load_field_defaults', $field);
+		
+		// render HTML
 		do_action('acf/create_field_options/type=' . $field['type'], $field);
 	}
 

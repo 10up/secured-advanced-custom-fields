@@ -713,6 +713,7 @@ td.acf_input-wrap {
 .acf_relationship .relationship_right .relationship_list {
 	margin-left: 10px;
 	height: 193px;
+	min-height: 193px;
 	border-top-width:1px; 
 }
 
