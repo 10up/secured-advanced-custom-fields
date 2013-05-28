@@ -142,7 +142,7 @@ function get_field_objects( $post_id = false, $options = array() )
 	
 	
 	// filter post_id
-	$post_id = acf_filter_post_id( $post_id );
+	$post_id = apply_filters('acf/get_post_id', $post_id );
 
 
 	// vars
@@ -302,7 +302,7 @@ function get_field( $field_key, $post_id = false, $format_value = true )
 function get_field_object( $field_key, $post_id = false, $options = array() )
 {
 	// filter post_id
-	$post_id = acf_filter_post_id( $post_id );
+	$post_id = apply_filters('acf/get_post_id', $post_id );
 	$field = false;
 	$orig_field_key = $field_key;
 	
@@ -411,7 +411,7 @@ function has_sub_field( $field_name, $post_id = false )
 {
 
 	// filter post_id
-	$post_id = acf_filter_post_id( $post_id );
+	$post_id = apply_filters('acf/get_post_id', $post_id );
 	
 	
 	// empty?
@@ -1102,7 +1102,7 @@ function acf_form( $options = false )
 	
 	
 	// filter post_id
-	$options['post_id'] = acf_filter_post_id( $options['post_id'] );
+	$options['post_id'] = apply_filters('acf/get_post_id', $options['post_id'] );
 	
 	
 	// register post box
@@ -1237,7 +1237,7 @@ function acf_form( $options = false )
 function update_field( $field_key, $value, $post_id = false )
 {
 	// filter post_id
-	$post_id = acf_filter_post_id( $post_id );
+	$post_id = apply_filters('acf/get_post_id', $post_id );
 	
 	
 	// vars
