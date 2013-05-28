@@ -87,6 +87,7 @@ class Acf
 		add_filter('acf/get_taxonomies_for_select', array($this, 'get_taxonomies_for_select'), 1, 2);
 		add_filter('acf/get_image_sizes', array($this, 'get_image_sizes'), 1, 1);
 		add_action('acf/create_fields', array($this, 'create_fields'), 1, 2);
+		add_action('acf/get_post_id', array($this, 'get_post_id'), 1, 1);
 		
 		
 		// admin only
@@ -158,6 +159,65 @@ class Acf
 
         return $dir;
     }
+	
+	
+	/*
+	*  acf/get_post_id
+	*
+	*  A helper function to filter the post_id variable.
+	*
+	*  @type	filter
+	*  @date	27/05/13
+	*
+	*  @param	{int}	$post_id
+	*  @return	{int}	$post_id
+	*/
+	
+	function get_post_id( $post_id )
+	{
+		// set post_id to global
+		if( !$post_id )
+		{
+			global $post;
+			
+			if( $post )
+			{
+				$post_id = $post->ID;
+			}
+		}
+		
+		
+		// allow for option == options
+		if( $post_id == "option" )
+		{
+			$post_id = "options";
+		}
+		
+		
+		/*
+		*  Override for preview
+		*  
+		*  If the $_GET['preview_id'] is set, then the user wants to see the preview data.
+		*  There is also the case of previewing a page with post_id = 1, but using get_field
+		*  to load data from another post_id.
+		*  In this case, we need to make sure that the autosave revision is actually related
+		*  to the $post_id variable. If they match, then the autosave data will be used, otherwise, 
+		*  the user wants to load data from a completely different post_id
+		*/
+		
+		if( isset($_GET['preview_id']) )
+		{
+			$autosave = wp_get_post_autosave( $_GET['preview_id'] );
+			if( $autosave->post_parent == $post_id )
+			{
+				$post_id = $autosave->ID;
+			}
+		}
+		
+		
+		// return
+		return $post_id;
+	}
 	
 	
 	/*
