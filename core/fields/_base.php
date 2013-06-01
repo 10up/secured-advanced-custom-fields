@@ -21,7 +21,8 @@ class acf_field
 	var $name,
 		$title,
 		$category,
-		$defaults;
+		$defaults,
+		$l10n;
 	
 	
 	/*
@@ -57,6 +58,7 @@ class acf_field
 		// input actions
 		$this->add_action('acf/input/admin_enqueue_scripts', array($this, 'input_admin_enqueue_scripts'), 10, 0);
 		$this->add_action('acf/input/admin_head', array($this, 'input_admin_head'), 10, 0);
+		$this->add_filter('acf/input/admin_l10n', array($this, 'input_admin_l10n'), 10, 1);
 		
 		
 		// field group actions
@@ -132,6 +134,18 @@ class acf_field
 	}
 	
 	
+	/*
+	*  load_field_defaults
+	*
+	*  action called when rendering the head of an admin screen. Used primarily for passing PHP to JS
+	*
+	*  @type	filer
+	*  @date	1/06/13
+	*
+	*  @param	$field	{array}
+	*  @return	$field	{array}
+	*/
+	
 	function load_field_defaults( $field )
 	{
 		if( !empty($this->defaults) )
@@ -140,6 +154,31 @@ class acf_field
 		}
 		
 		return $field;
+	}
+	
+	
+	/*
+	*  admin_l10n
+	*
+	*  filter is called to load all l10n text translations into the admin head script tag
+	*
+	*  @type	filer
+	*  @date	1/06/13
+	*
+	*  @param	$field	{array}
+	*  @return	$field	{array}
+	*/
+	
+	function input_admin_l10n( $l10n )
+	{
+		if( !empty($this->l10n) )
+		{
+			$l10n[ $this->name ] = $this->l10n;
+			
+			
+		}
+		
+		return $l10n;
 	}
 	
 	

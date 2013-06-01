@@ -14,6 +14,9 @@ class acf_field_date_picker extends acf_field
 	
 	function __construct()
 	{
+		global $wp_locale;
+		
+		
 		// vars
 		$this->name = 'date_picker';
 		$this->label = __("Date Picker",'acf');
@@ -22,6 +25,17 @@ class acf_field_date_picker extends acf_field
 			'date_format' => 'yymmdd',
 			'display_format' => 'dd/mm/yy',
 			'first_day' => 1, // monday
+		);
+		$this->l10n = array(
+			'closeText'         => __( 'Done', 'acf' ),
+	        'currentText'       => __( 'Today', 'acf' ),
+	        'monthNames'        => array_values( $wp_locale->month ),
+	        'monthNamesShort'   => array_values( $wp_locale->month_abbrev ),
+	        'monthStatus'       => __( 'Show a different month', 'acf' ),
+	        'dayNames'          => array_values( $wp_locale->weekday ),
+	        'dayNamesShort'     => array_values( $wp_locale->weekday_abbrev ),
+	        'dayNamesMin'       => array_values( $wp_locale->weekday_initial ),
+	        'isRTL'             => isset($wp_locale->is_rtl) ? $wp_locale->is_rtl : false,
 		);
 		
 		

@@ -24,6 +24,9 @@ class acf_field_relationship extends acf_field
 			'filters'	=>	array('search'),
 			'result_elements' => array('post_title', 'post_type')
 		);
+		$this->l10n = array(
+			'max' => __("Maximum values reached ( {max} values )",'acf')
+		);
 		
 		
 		// do not delete!

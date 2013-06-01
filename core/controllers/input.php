@@ -439,32 +439,65 @@ class acf_input
 	}
 	
 		
-	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  input_admin_head
 	*
-	*	input_admin_head
+	*  action called when rendering the head of an admin screen. Used primarily for passing PHP to JS
 	*
-	*	This is fired from an action: acf/input/admin_head
+	*  @type	action
+	*  @date	27/05/13
 	*
-	*	@author Elliot Condon
-	*	@since 3.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @param	N/A
+	*  @return	N/A
+	*/
 	
 	function input_admin_head()
 	{
 		// global
-		global $wp_version, $post;
+		global $wp_version;
 		
 				
 		// vars
 		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
-		$post_id = 0;
-		if( $post )
-		{
-			$post_id = $post->ID;
-		}
+		$post_id = apply_filters( 'acf/get_post_id', 0 );
 		
+		
+		// l10n
+		$l10n = apply_filters( 'acf/input/admin_l10n', array(
+			'validation' => array(
+				'error' => __("Validation Failed. One or more fields below are required.",'acf')
+			)
+		));
+		
+		
+		// options
+		$o = array(
+			'post_id'		=>	$post_id,
+			'nonce'			=>	wp_create_nonce( 'acf_nonce' ),
+			'admin_url'		=>	admin_url(),
+			'ajaxurl'		=>	admin_url( 'admin-ajax.php' ),
+			'wp_version'	=>	$wp_version
+		);
+		
+		
+		// toolbars
+		$t = array();
+		
+		if( is_array($toolbars) ){ foreach( $toolbars as $label => $rows ){
+			
+			$label = sanitize_title( $label );
+			$label = str_replace('-', '_', $label);
+			
+			$t[ $label ] = array();
+			
+			if( is_array($rows) ){ foreach( $rows as $k => $v ){
+				
+				$t[ $label ][ 'theme_advanced_buttons' . $k ] = implode(',', $v);
+				
+			}}
+		}}
+		
+			
 		?>
 <script type="text/javascript">
 
@@ -474,43 +507,17 @@ acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
 acf.admin_url = "<?php echo admin_url(); ?>";
 acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 acf.wp_version = "<?php echo $wp_version; ?>";
-	
-	
-// text
-acf.validation.text.error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
-
-acf.fields.relationship.max = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
-
-acf.fields.image.text.title_add = "Select Image";
-acf.fields.image.text.title_edit = "Edit Image";
-acf.fields.image.text.button_add = "Select Image";
-
-acf.fields.file.text.title_add = "Select File";
-acf.fields.file.text.title_edit = "Edit File";
-acf.fields.file.text.button_add = "Select File";
 
 
-// WYSIWYG
-<?php 
+// new vars
+acf.o = <?php echo json_encode( $o ); ?>;
+acf.l10n = <?php echo json_encode( $l10n ); ?>;
+acf.fields.wysiwyg.toolbars = <?php echo json_encode( $t ); ?>;
 
-if( is_array($toolbars) ):
-	foreach( $toolbars as $label => $rows ):
-		$name = sanitize_title( $label );
-		$name = str_replace('-', '_', $name);
-	?>
-acf.fields.wysiwyg.toolbars.<?php echo $name; ?> = {};
-		<?php if( is_array($rows) ): 
-			foreach( $rows as $k => $v ): ?>
-acf.fields.wysiwyg.toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
-			<?php endforeach; 
-		endif;
-	endforeach;
-endif;
-
-?>
 </script>
 		<?php
 	}
+	
 	
 	
 	/*

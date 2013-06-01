@@ -22,6 +22,10 @@ class acf_field_file extends acf_field
 			'save_format'	=>	'object',
 			'library' => 'all'
 		);
+		$this->l10n = array(
+			'select'	=>	__("Select File",'acf'),
+			'edit'		=>	__("Edit File",'acf'),
+		);
 		
 		
 		// do not delete!
