@@ -130,6 +130,7 @@
 	width: 100%;
 	padding: 5px;
 	resize: none;
+	margin: 0;
 }
 
 .acf_postbox .field textarea {
@@ -953,14 +954,24 @@ tr.acf-conditional_logic-show {
 }
 
 
-#acf_color_picker {
+/*--------------------------------------------------------------------------
+*
+*	Field: Color picker
+*	
+*-------------------------------------------------------------------------*/
+
+#acf-farbtastic {
 	position: absolute;
 	top: 0;
 	left: 0;
 	display: none;
-	background: #fff;
-	border: #AAAAAA solid 1px;
-	border-radius: 4px;
+	
+	background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	
+	border-radius: 3px;
+	margin: -2px 0 0;
 }
 
 
