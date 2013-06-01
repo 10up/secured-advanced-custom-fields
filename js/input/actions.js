@@ -89,6 +89,35 @@ var acf = {
 (function($){
 	
 	
+	/*
+	*  acf.helpers.get_atts
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	1/06/13
+	*
+	*  @param	{el}		$el
+	*  @return	{object}	atts
+	*/
+	
+	acf.helpers.get_atts = function( $el ){
+		
+		var atts = {};
+		
+		$.each( $el[0].attributes, function( index, attr ) {
+        	
+        	if( attr.name.substr(0, 5) == 'data-' )
+        	{
+	        	atts[ attr.name.replace('data-', '') ] = attr.value;
+        	}
+        });
+        
+        return atts;
+			
+	};
+        
+           
 	/**
 	 * Simply compares two string version values.
 	 * 
