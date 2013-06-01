@@ -24,8 +24,9 @@ class acf_field_image extends acf_field
 			'library'		=>	'all'
 		);
 		$this->l10n = array(
-			'select'	=>	__("Select Image",'acf'),
-			'edit'		=>	__("Edit Image",'acf'),
+			'select'		=>	__("Select Image",'acf'),
+			'edit'			=>	__("Edit Image",'acf'),
+			'uploadedTo'	=>	__("uploaded to this post",'acf'),
 		);
 		
 		
