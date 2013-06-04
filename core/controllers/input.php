@@ -502,7 +502,7 @@ class acf_input
 <script type="text/javascript">
 
 // vars
-acf.post_id = <?php echo $post_id; ?>;
+acf.post_id = <?php echo is_numeric($post_id) ? $post_id : '"' . $post_id . '"'; ?>;
 acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
 acf.admin_url = "<?php echo admin_url(); ?>";
 acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
