@@ -169,8 +169,8 @@ class Acf
 	*  @type	filter
 	*  @date	27/05/13
 	*
-	*  @param	{int}	$post_id
-	*  @return	{int}	$post_id
+	*  @param	{mixed}	$post_id
+	*  @return	{mixed}	$post_id
 	*/
 	
 	function get_post_id( $post_id )
@@ -182,7 +182,7 @@ class Acf
 			
 			if( $post )
 			{
-				$post_id = $post->ID;
+				$post_id = intval( $post->ID );
 			}
 		}
 		
@@ -210,7 +210,7 @@ class Acf
 			$autosave = wp_get_post_autosave( $_GET['preview_id'] );
 			if( $autosave->post_parent == $post_id )
 			{
-				$post_id = $autosave->ID;
+				$post_id = intval( $autosave->ID );
 			}
 		}
 		
