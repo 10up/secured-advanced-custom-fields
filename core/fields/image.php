@@ -85,7 +85,7 @@ class acf_field_image extends acf_field
 				<li><a class="acf-button-edit ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
-		<img src="<?php echo $file_src; ?>" alt=""/>
+		<img class="acf-image-image" src="<?php echo $file_src; ?>" alt=""/>
 	</div>
 	<div class="no-image">
 		<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />

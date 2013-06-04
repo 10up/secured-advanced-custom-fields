@@ -256,7 +256,8 @@
 	*  @type	event
 	*  @date	1/06/13
 	*
-	*/
+	*  @note	Currenlty no need for init
+	
 		
 	$(document).live('acf/setup_fields', function(e, postbox){
 		
@@ -267,6 +268,8 @@
 		});
 		
 	});
+	
+	*/
 	
 	
 	/*
