@@ -170,7 +170,6 @@ class acf_input
 		
 		// Style
 		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
-		echo '<style type="text/css">.acf_postbox, .postbox[id*="acf_"] { display: none; }</style>';
 		
 		
 		// add user js + css
@@ -213,6 +212,61 @@ class acf_input
 			// foreach($acfs as $acf)
 		}
 		// if($acfs)
+	}
+	
+	
+	/*
+	*  meta_box_input
+	*
+	*  @description: 
+	*  @since 1.0.0
+	*  @created: 23/06/12
+	*/
+	
+	function meta_box_input( $post, $args )
+	{
+		// extract $args
+		extract( $args );
+		
+		
+		// classes
+		$class = 'acf_postbox ' . $args['field_group']['options']['layout'];
+		$toggle_class = 'acf_postbox-toggle';
+		
+		
+		if( ! $args['show'] )
+		{
+			$class .= ' acf-hidden';
+			$toggle_class .= ' acf-hidden';
+		}
+
+		?>
+<script type="text/javascript">
+(function($) {
+	
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	
+})(jQuery);	
+</script>
+		<?php
+		
+		
+		// nonce
+		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+		
+		
+		// HTML
+		if( $args['show'] )
+		{
+			$fields = apply_filters('acf/field_group/get_fields', array(), $args['field_group']['id']);
+	
+			do_action('acf/create_fields', $fields, $args['post_id']);
+		}
+		else
+		{
+			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
+		}
 	}
 	
 	
@@ -323,35 +377,6 @@ class acf_input
 		
 		// die
 		die;
-	}
-	
-	
-	/*
-	*  meta_box_input
-	*
-	*  @description: 
-	*  @since 1.0.0
-	*  @created: 23/06/12
-	*/
-	
-	function meta_box_input( $post, $args )
-	{
-		// vars
-		$options = $args['args'];
-		
-		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
-		echo '<div class="options" data-layout="' . $options['field_group']['options']['layout'] . '" data-show="' . $options['show'] . '" style="display:none"></div>';
-		
-		if( $options['show'] )
-		{
-			$fields = apply_filters('acf/field_group/get_fields', array(), $options['field_group']['id']);
-	
-			do_action('acf/create_fields', $fields, $options['post_id']);
-		}
-		else
-		{
-			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
-		}
 	}
 	
 	

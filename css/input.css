@@ -4,33 +4,28 @@
 *
 *---------------------------------------------------------------------------------------------*/
 
-#poststuff .acf_postbox {
-	display: block;
-}
-
-#poststuff .acf_postbox.acf-hidden {
+.acf-hidden {
 	display: none !important;
 }
 
-#poststuff .acf_postbox .widefat th, 
-#poststuff .acf_postbox .widefat td {
-	overflow: visible;
-	
-}
-
-#poststuff .acf_postbox .inside {
+.acf_postbox .inside {
 	margin: 0;
 	padding: 0;
 }
 
-#poststuff .acf_postbox.no_box {
+.acf_postbox.no_box {
 	border: 0 none;
 	background: transparent;
 }
 
-#poststuff .acf_postbox.no_box > h3,
-#poststuff .acf_postbox.no_box > .handlediv {
+.acf_postbox.no_box > h3,
+.acf_postbox.no_box > .handlediv {
 	display: none;
+}
+
+.acf_postbox .widefat th, 
+.acf_postbox .widefat td {
+	overflow: visible;
 }
 
 

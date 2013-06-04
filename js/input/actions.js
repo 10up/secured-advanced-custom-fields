@@ -20,6 +20,7 @@ var acf = {
 		}
 	},
 	helpers : {
+		get_atts : function(){},
 		version_compare : function(){},
 		uniqid : function(){},
 		sortable : function(){},
@@ -35,30 +36,10 @@ var acf = {
 		type : function(){}
 	},
 	fields : {
-		date_picker : {
-			text : {}	
-		},
-		color_picker : {
-			farbtastic : null
-		},
-		image : {
-			add : function(){},
-			edit : function(){},
-			remove : function(){},
-			text : {
-				title_add : "Select Image",
-				title_edit : "Edit Image"
-			}
-		},
-		file : {
-			add : function(){},
-			edit : function(){},
-			remove : function(){},
-			text : {
-				title_add : "Select File",
-				title_edit : "Edit File"
-			}
-		},
+		date_picker : {},
+		color_picker : {},
+		image : {},
+		file : {},
 		wysiwyg : {
 			toolbars : {},
 			has_tinymce : function(){},
@@ -251,49 +232,6 @@ var acf = {
 		return type;
 		
 	};
-	
-	
-	
-	/*
-	*  Document Ready
-	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	$(document).ready(function(){
-		
-		// add classes
-		$('#poststuff .postbox[id*="acf_"]').addClass('acf_postbox');
-		$('#adv-settings label[for*="acf_"]').addClass('acf_hide_label');
-		
-		// hide acf stuff
-		$('#poststuff .acf_postbox').addClass('acf-hidden');
-		$('#adv-settings .acf_hide_label').hide();
-		
-		// loop through acf metaboxes
-		$('#poststuff .postbox.acf_postbox').each(function(){
-			
-			// vars
-			var options = $(this).find('> .inside > .options'),
-				show = options.attr('data-show'),
-				layout = options.attr('data-layout'),
-				id = $(this).attr('id').replace('acf_', '');
-			
-			// layout
-			$(this).addClass(layout);
-			
-			// show / hide
-			if( show == "1" )
-			{
-				$(this).removeClass('acf-hidden');
-				$('#adv-settings .acf_hide_label[for="acf_' + id + '-hide"]').show();
-			}
-			
-		});
-	
-	});
 
 	
 	/*
