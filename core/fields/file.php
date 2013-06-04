@@ -66,7 +66,7 @@ class acf_field_file extends acf_field
 			'name'		=>	'',
 		);
 		
-		if( $field['value'] )
+		if( $field['value'] && is_numeric($field['value']) )
 		{
 			$file = get_post( $field['value'] );
 			

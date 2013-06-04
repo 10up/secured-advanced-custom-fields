@@ -60,23 +60,21 @@ class acf_field_image extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$class = "";
-		$file_src = "";
+		$o = array(
+			'class'		=>	'',
+			'url'		=>	'',
+		);
 		
-		// get image url
-		if($field['value'] != '' && is_numeric($field['value']))
+		if( $field['value'] && is_numeric($field['value']) )
 		{
-			$file_src = wp_get_attachment_image_src($field['value'], $field['preview_size']);
-			$file_src = $file_src[0];
+			$url = wp_get_attachment_image_src($field['value'], $field['preview_size']);
 			
-			if($file_src)
-			{
-				$class = "active";
-			}
+			$o['class'] = 'active';
+			$o['url'] = $url[0];
 		}
 		
 		?>
-<div class="acf-image-uploader clearfix <?php echo $class; ?>" data-preview_size="<?php echo $field['preview_size']; ?>" data-library="<?php echo $field['library']; ?>" >
+<div class="acf-image-uploader clearfix <?php echo $o['class']; ?>" data-preview_size="<?php echo $field['preview_size']; ?>" data-library="<?php echo $field['library']; ?>" >
 	<input class="acf-image-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
 	<div class="has-image">
 		<div class="hover">
@@ -85,7 +83,7 @@ class acf_field_image extends acf_field
 				<li><a class="acf-button-edit ir" href="#"><?php _e("Edit",'acf'); ?></a></li>
 			</ul>
 		</div>
-		<img class="acf-image-image" src="<?php echo $file_src; ?>" alt=""/>
+		<img class="acf-image-image" src="<?php echo $o['url']; ?>" alt=""/>
 	</div>
 	<div class="no-image">
 		<p><?php _e('No image selected','acf'); ?> <input type="button" class="button add-image" value="<?php _e('Add Image','acf'); ?>" />

@@ -66,7 +66,7 @@
 			}
 					
 		},
-		update : function( file ){
+		update : function( image ){
 			
 			// this function must reference a global div variable due to the pre WP 3.5 uploader
 			// vars
@@ -74,7 +74,7 @@
 			
 			
 			// set atts
-			div.find('.acf-image-image').attr( 'src', image.src );
+			div.find('.acf-image-image').attr( 'src', image.url );
 			div.find('.acf-image-value').val( image.id ).trigger('change');
 		 	
 			
@@ -150,7 +150,7 @@
 					if( t.o.library == 'uploadedTo' )
 					{
 						filters.$el.find('option[value="uploaded"]').remove();
-						filters.$el.after('<span>' + acf.l10n.file.uploadedTo + '</span>')
+						filters.$el.after('<span>' + acf.l10n.image.uploadedTo + '</span>')
 						
 						$.each( filters.filters, function( k, v ){
 							
@@ -182,7 +182,7 @@
 					
 					
 					// set default filter
-					// + this caused an issue where when you uploaded a file, the file would not appear in the UI...?
+					// + this caused an issue where when you uploaded a image, the image would not appear in the UI...?
 					//filters.$el.val('all').trigger('change');
 					
 				});
@@ -204,7 +204,7 @@
 					    	i++;
 					    	
 					    	
-					    	// select / add another file field?
+					    	// select / add another image field?
 					    	if( i > 1 )
 							{
 								var tr = _media.div.closest('tr'),
@@ -220,7 +220,7 @@
 									// add row 
 					 				repeater.find('.add-row-end').trigger('click'); 
 					 			 
-					 				// set acf_div to new row file 
+					 				// set acf_div to new row image 
 					 				_media.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
 								}
 							}
@@ -238,8 +238,8 @@
 						    	image.url = attachment.attributes.sizes[ t.o.preview_size ].url;
 					    	}
 					    	
-					    	// add file to field
-					        acf.fields.image.update( file );
+					    	// add image to field
+					        acf.fields.image.update( image );
 					        
 							
 					    });
@@ -257,7 +257,7 @@
 			}
 			else
 			{	
-				tb_show( acf.l10n.image.select , acf.admin_url + 'media-upload.php?post_id=' + acf.o.post_id + '&post_ID=' + acf.post_id + '&type=file&acf_type=image&acf_preview_size=' + t.o.preview_size + '&TB_iframe=1');
+				tb_show( acf.l10n.image.select , acf.admin_url + 'media-upload.php?post_id=' + acf.o.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + t.o.preview_size + '&TB_iframe=1');
 			}
 			
 			return false;
@@ -317,7 +317,7 @@
 	});
 	
 	
-	$('.acf-image-uploader .add-file').live('click', function(){
+	$('.acf-image-uploader .add-image').live('click', function(){
 				
 		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).add();
 		
