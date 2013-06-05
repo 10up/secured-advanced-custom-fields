@@ -256,7 +256,7 @@
 			}
 			else
 			{	
-				tb_show( acf.l10n.image.select , acf.admin_url + 'media-upload.php?post_id=' + acf.o.post_id + '&post_ID=' + acf.post_id + '&type=image&acf_type=image&acf_preview_size=' + t.o.preview_size + '&TB_iframe=1');
+				tb_show( acf.l10n.image.select , acf.admin_url + 'media-upload.php?post_id=' + acf.o.post_id + '&post_ID=' + acf.o.post_id + '&type=image&acf_type=image&acf_preview_size=' + t.o.preview_size + '&TB_iframe=1');
 			}
 			
 			return false;

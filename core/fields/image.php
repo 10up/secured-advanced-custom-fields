@@ -345,12 +345,12 @@ class acf_field_image extends acf_field
 		{
 			foreach( $options['images'] as $id )
 			{
-				$src = wp_get_attachment_image_src( $id, $options['preview_size'] );
+				$url = wp_get_attachment_image_src( $id, $options['preview_size'] );
 				
 				
 				$return[] = array(
 					'id' => $id,
-					'src' => $src[0],
+					'url' => $url[0],
 				);
 			}
 		}
@@ -516,7 +516,7 @@ class acf_field_image extends acf_field
 				
 				
 				// add file
-				self.parent.acf.fields.image.add( json[0] );
+				self.parent.acf.fields.image.update( json[0] );
 				
 	 			self.parent.tb_remove();
 	 	
@@ -597,7 +597,7 @@ class acf_field_image extends acf_field
 			    	
 			    	
 			    	// add image to field
-			        self.parent.acf.fields.image.add( image );
+			        self.parent.acf.fields.image.update( image );
 			        
 			        
 			        // select / add another file field?
