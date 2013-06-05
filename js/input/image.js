@@ -182,8 +182,7 @@
 					
 					
 					// set default filter
-					// + this caused an issue where when you uploaded a image, the image would not appear in the UI...?
-					//filters.$el.val('all').trigger('change');
+					filters.$el.val('image').trigger('change');
 					
 				});
 				

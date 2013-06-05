@@ -162,12 +162,7 @@
 							
 						});
 					}
-					
-					
-					// set default filter
-					// + this caused an issue where when you uploaded a file, the file would not appear in the UI...?
-					//filters.$el.val('all').trigger('change');
-					
+									
 				});
 				
 				
