@@ -479,12 +479,16 @@ class acf_input
 	function input_admin_head()
 	{
 		// global
-		global $wp_version;
+		global $wp_version, $post;
 		
 				
 		// vars
 		$toolbars = apply_filters( 'acf/fields/wysiwyg/toolbars', array() );
-		$post_id = apply_filters( 'acf/get_post_id', 0 );
+		$post_id = 0;
+		if( $post )
+		{
+			$post_id = $post->ID;
+		}
 		
 		
 		// l10n

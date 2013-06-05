@@ -424,6 +424,26 @@ var acf = {
 	
 	
 	/*
+	*  Document Ready
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	$(document).ready(function(){
+		
+		// fix for older options page add-on
+		$('.acf_postbox > .inside > .options').each(function(){
+			
+			$(this).closest('.acf_postbox').addClass( $(this).attr('data-layout') );
+			
+		});
+	
+	});
+	
+	
+	/*
 	*  window load
 	*
 	*  @description: 
