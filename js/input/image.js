@@ -182,7 +182,7 @@
 					
 					
 					// set default filter
-					filters.$el.val('image').trigger('change');
+					//filters.$el.val('image').trigger('change');
 					
 				});
 				
