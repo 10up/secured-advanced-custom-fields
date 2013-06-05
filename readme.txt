@@ -101,6 +101,18 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.5 =
+* WYSIWYG Field: Fixed WYSIWYG the_content / shortcode issues - http://support.advancedcustomfields.com/discussion/5939/inconsistencies-between-standard-wysiwyg-and-acf-wysiwyg
+* Image field: Added option for library restriction - http://support.advancedcustomfields.com/discussion/6102/making-uploaded-to-this-post-default-state-for-image-upload
+* File field: Added option for library restriction
+* Checkbox field: Added horizontal option - http://support.advancedcustomfields.com/discussion/5925/horizontal-select-boxes
+* Image field: fixed UI bug when image is deleted in file system - http://support.advancedcustomfields.com/discussion/5988/provide-a-fallback-if-
+* Validation: Added support for email field - http://support.advancedcustomfields.com/discussion/6125/email-field-required-validation-on-submit
+* Validation: Added support for taxonomy field - http://support.advancedcustomfields.com/discussion/6169/validation-of-taxonomy-field
+* Language: Added Chinese Translation - https://github.com/elliotcondon/acf/pull/63
+* General: Added changelog message to update plugin screen
+* General: Lots of minor improvements
+
 = 4.1.4 =
 * [Fixed] Page Link: Fixed errors produced by recent changes to post object field - http://support.advancedcustomfields.com/discussion/6044/page-links-hierarchy-broken-and-does-not-order-correctly
 
