@@ -66,13 +66,14 @@ class Acf
 		$this->settings = array(
 			'path' => apply_filters('acf/helpers/get_path', __FILE__),
 			'dir' => apply_filters('acf/helpers/get_dir', __FILE__),
+			'hook' => basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
 			'version' => '4.1.4',
 			'upgrade_version' => '3.4.1',
 		);
 		
 		
 		// set text domain
-		load_plugin_textdomain('acf', false, basename(dirname(__FILE__)).'/lang' );
+		load_plugin_textdomain('acf', false, basename(dirname(__FILE__)) . '/lang' );
 		
 		
 		// actions

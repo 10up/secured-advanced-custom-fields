@@ -496,6 +496,34 @@ a.acf-button-big {
 }
 
 
+/*--------------------------------------------------------------------------
+*
+*	Plugin Update Info
+*	
+*-------------------------------------------------------------------------*/
+
+.plugins #advanced-custom-fields + .plugin-update-tr .update-message {
+	background: #EAF2FA;
+	border: #C7D7E2 solid 1px;
+	padding: 10px;
+}
+
+.acf-plugin-update-info {
+	font-weight: normal;
+}
+
+.acf-plugin-update-info h3 {
+	font-size: 12px;
+	line-height: 1em;
+	margin: 15px 0 10px;	
+}
+
+.acf-plugin-update-info ul {
+	list-style: disc outside;
+	padding-left: 14px;
+	margin: 0;
+}
+
 
 /*--------------------------------------------------------------------------
 *
