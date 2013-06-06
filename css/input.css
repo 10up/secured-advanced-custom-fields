@@ -643,9 +643,8 @@ table.acf-input-table > tbody > tr > td:last-child {
 	border-right: 0 none;
 }
 
-
 td.acf_input-wrap {
-	padding: 0 !important;;
+	padding: 0 !important;
 }
 
 .sub-field-instructions {
