@@ -101,6 +101,12 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.5.1 =
+* Image field: Fixed JS error causing uploader to not work correctly
+* File field: Fixed JS error causing uploader to not work correctly
+* Gallery field: Fixed JS error causing uploader to not work correctly
+* General: Fixed JS error causing field groups to not appear when dynamically loaded
+
 = 4.1.5 =
 * WYSIWYG Field: Fixed WYSIWYG the_content / shortcode issues - http://support.advancedcustomfields.com/discussion/5939/inconsistencies-between-standard-wysiwyg-and-acf-wysiwyg
 * Image field: Added option for library restriction - http://support.advancedcustomfields.com/discussion/6102/making-uploaded-to-this-post-default-state-for-image-upload
