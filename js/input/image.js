@@ -138,12 +138,27 @@
 					]
 				});
 				
+				/*
+				acf.media.frame.on('all', function(e){
+					
+					console.log( e );
+					
+				});
+				*/
 				
 				// customize model / view
-				acf.media.frame.on('content:activate', function(){
+				acf.media.frame.on('open', function(){
 					
 					var content = acf.media.frame.content.get(),
 						filters = content.toolbar._views.filters;
+					
+					
+					// filter only images
+					$.each( filters.filters, function( k, v ){
+					
+						v.props.type = 'image';
+						
+					});
 					
 					
 					// no need for 'uploaded' filter
@@ -182,7 +197,7 @@
 					
 					
 					// set default filter
-					//filters.$el.val('image').trigger('change');
+					filters.$el.val('image').trigger('change');
 					
 				});
 				

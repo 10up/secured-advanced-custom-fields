@@ -144,7 +144,7 @@
 				
 				
 				// customize model / view
-				acf.media.frame.on('content:activate', function(){
+				acf.media.frame.on('open', function(){
 					
 					var content = acf.media.frame.content.get(),
 						filters = content.toolbar._views.filters;
