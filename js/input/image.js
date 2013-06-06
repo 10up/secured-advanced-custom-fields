@@ -275,6 +275,12 @@
 			}
 			
 			return false;
+		},
+		
+		// temporary gallery fix		
+		text : {
+			title_add : "Select Image",
+			title_edit : "Edit Image"
 		}
 		
 	};
