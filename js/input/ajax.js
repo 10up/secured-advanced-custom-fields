@@ -105,8 +105,9 @@
 					
 					
 					// classes
-					$el.removeClass('acf-hidden');
+					$el.removeClass('acf-hidden hide-if-js');
 					$toggle.removeClass('acf-hidden');
+					$toggle.find('input[type="checkbox"]').attr('checked', 'checked');
 					
 					
 					// load fields if needed
