@@ -487,7 +487,7 @@ class acf_input
 		$post_id = 0;
 		if( $post )
 		{
-			$post_id = $post->ID;
+			$post_id = intval( $post->ID );
 		}
 		
 		
