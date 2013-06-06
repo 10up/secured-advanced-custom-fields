@@ -66,7 +66,7 @@
 			}
 					
 		},
-		update : function( image ){
+		add : function( image ){
 			
 			// this function must reference a global div variable due to the pre WP 3.5 uploader
 			// vars
@@ -108,7 +108,7 @@
 			this.$el.removeClass('active');
 			
 		},
-		add : function()
+		popup : function()
 		{
 			// reference
 			var t = this;
@@ -133,7 +133,7 @@
 							multiple	:	t.o.multiple,
 							title		:	acf.l10n.image.select,
 							priority	:	20,
-							filterable	:	'all',
+							filterable	:	'all'
 						})
 					]
 				});
@@ -238,7 +238,7 @@
 					    	}
 					    	
 					    	// add image to field
-					        acf.fields.image.update( image );
+					        acf.fields.image.add( image );
 					        
 							
 					    });
@@ -318,7 +318,7 @@
 	
 	$('.acf-image-uploader .add-image').live('click', function(){
 				
-		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).add();
+		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).popup();
 		
 		return false;
 		

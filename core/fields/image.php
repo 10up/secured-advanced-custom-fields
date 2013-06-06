@@ -516,7 +516,7 @@ class acf_field_image extends acf_field
 				
 				
 				// add file
-				self.parent.acf.fields.image.update( json[0] );
+				self.parent.acf.fields.image.add( json[0] );
 				
 	 			self.parent.tb_remove();
 	 	
@@ -597,7 +597,7 @@ class acf_field_image extends acf_field
 			    	
 			    	
 			    	// add image to field
-			        self.parent.acf.fields.image.update( image );
+			        self.parent.acf.fields.image.add( image );
 			        
 			        
 			        // select / add another file field?
