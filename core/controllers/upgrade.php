@@ -107,7 +107,7 @@ class acf_upgrade
 		// vars
 		$version = apply_filters('acf/get_info', 'version');
 		$readme = file_get_contents( 'http://plugins.svn.wordpress.org/advanced-custom-fields/trunk/readme.txt' );
-		$regex = '~==\s*Changelog\s*==\s*=\s*[0-9.]+\s*=(.*)(=\s*' . $version . '\s*=|$)~Uis';
+		$regexp = '/== Changelog ==(.*)= 4.1.5 =/sm';
 		$o = '';
 		
 		
@@ -118,18 +118,27 @@ class acf_upgrade
 		}
 		
 		
-		$changelog = stristr( $readme, '== Changelog ==' );
-		$changelog  = stristr( $changelog, '= ' . $version . ' =', true );
+		// regexp
+		preg_match( $regexp, $readme, $matches );
 		
 		
-		$changelog = explode('*', $changelog);
+		if( ! isset($matches[1]) )
+		{
+			return;
+		}
+
+		
+		// render changelog
+		$changelog = explode('*', $matches[1]);
 		array_shift( $changelog );
+		
 		
 		if( !empty($changelog) )
 		{
 			$o .= '<div class="acf-plugin-update-info">';
 			$o .= '<h3>' . __("What's new", 'acf') . '</h3>';
 			$o .= '<ul>';
+			
 			foreach( $changelog as $item )
 			{
 				$item = explode('http', $item);
@@ -145,6 +154,7 @@ class acf_upgrade
 				
 				
 			}
+			
 			$o .= '</ul></div>';
 		}
 		
