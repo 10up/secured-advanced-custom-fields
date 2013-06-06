@@ -244,7 +244,7 @@ class acf_input
 <script type="text/javascript">
 (function($) {
 	
-	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>');
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
 	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
 	
 })(jQuery);	

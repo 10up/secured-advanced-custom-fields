@@ -8,6 +8,10 @@
 	display: none !important;
 }
 
+.acf_postbox {
+	display: block;	
+}
+
 .acf_postbox .inside {
 	margin: 0;
 	padding: 0;
