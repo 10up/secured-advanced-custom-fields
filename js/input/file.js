@@ -64,7 +64,7 @@
 			}
 					
 		},
-		update : function( file ){
+		add : function( file ){
 			
 			// this function must reference a global div variable due to the pre WP 3.5 uploader
 			// vars
@@ -112,7 +112,7 @@
 			this.$el.removeClass('active');
 			
 		},
-		add : function()
+		popup : function()
 		{
 			// reference
 			var t = this;
@@ -137,7 +137,7 @@
 							multiple	:	t.o.multiple,
 							title		:	acf.l10n.file.select,
 							priority	:	20,
-							filterable	:	'all',
+							filterable	:	'all'
 						})
 					]
 				});
@@ -216,7 +216,7 @@
 					    	
 					    	
 					    	// add file to field
-					        acf.fields.file.update( file );
+					        acf.fields.file.add( file );
 					        
 							
 					    });
@@ -297,7 +297,7 @@
 	
 	$('.acf-file-uploader .add-file').live('click', function(){
 				
-		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).add();
+		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).popup();
 		
 		return false;
 		
