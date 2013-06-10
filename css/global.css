@@ -291,7 +291,8 @@ table.acf_input tbody tr td.label p {
 	color: #666;
 }
 
-table.acf_input input[type=text],
+table.acf_input input[type="text"],
+table.acf_input input[type="number"],
 table.acf_input textarea,
 table.acf_input select{
 	width: 99.95%;
@@ -307,7 +308,7 @@ table.acf_input select option {
 	padding: 3px;
 }
 
-table.acf_input input[type=text]:focus,
+table.acf_input input[type="text"]:focus,
 table.acf_input textarea:focus,
 table.acf_input select:focus {
 	border-color:#98B6CB;
