@@ -47,31 +47,40 @@ class acf_field_radio extends acf_field
 		// vars
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
 		
+
 		$i = 0;
 		if( $field['choices'] )
 		{
-			foreach($field['choices'] as $key => $value)
+			foreach( $field['choices'] as $key => $value )
 			{
+				// vars
 				$i++;
-				
-				// if there is no value and this is the first of the choices, select this on by default
-				// also make sure we dont match if the value is 0. Sometimes the value is 0!
-				if( $field['value'] !== 0 && !$field['value'] && $i == 1 )
-				{
-					$field['value'] = $key;
-				}
-				
 				$selected = '';
 				
-				if($key == $field['value'])
+				
+				// if there is no value and this is the first of the choices, select this on by default
+				if( $field['value'] === false )
 				{
-					$selected = 'checked="checked" data-checked="checked"';
+					if( $i === 1 )
+					{
+						$selected = 'checked="checked" data-checked="checked"';
+					}
+				}
+				else
+				{
+					if( strval($key) === strval($field['value']) )
+					{
+						$selected = 'checked="checked" data-checked="checked"';
+					}
 				}
 				
+				
+				// HTML
 				echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="radio" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
 			}
 		}
-		
+
+
 		echo '</ul>';
 	}
 	
