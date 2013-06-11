@@ -1069,7 +1069,7 @@ function acf_form_wp_head()
 *  @return	N/A
 */
 
-function acf_form( $options = false )
+function acf_form( $options = array() )
 {
 	global $post;
 	
@@ -1094,13 +1094,16 @@ function acf_form( $options = false )
 	
 	
 	// merge defaults with options
-	if( $options && is_array($options) )
+	$options = array_merge($defaults, $options);
+	
+	
+	// merge sub arrays
+	foreach( $options as $k => $v )
 	{
-		$options = array_merge($defaults, $options);
-	}
-	else
-	{
-		$options = $defaults;
+		if( is_array($v) )
+		{
+			$options[ $k ] = array_merge($defaults[ $k ], $options[ $k ]);
+		}
 	}
 	
 	
@@ -1109,10 +1112,8 @@ function acf_form( $options = false )
 	
 	
 	// attributes
-	if( empty($options['form_attributes']['class']) )
-	{
-		$options['form_attributes']['class'] = 'acf-form acf-form-' . $options['post_id'];
-	}
+	$options['form_attributes']['class'] .= 'acf-form';
+	
 	
 	
 	// register post box
