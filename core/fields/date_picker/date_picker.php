@@ -92,6 +92,10 @@ class acf_field_date_picker extends acf_field
 	
 	function create_options( $field )
 	{
+		// global
+		global $wp_locale;
+		
+		
 		// vars
 		$key = $field['name'];
 	    
