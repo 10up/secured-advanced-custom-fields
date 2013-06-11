@@ -131,6 +131,18 @@ body.custom-fields_page_acf-settings .wp-pointer-arrow {
 	margin-bottom: 20px;
 }
 
+#add-ons .add-on-group {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: #F5F5F5 solid 1px;	
+}
+
+#add-ons .add-on-group:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0 none;	
+}
+
 #add-ons .add-on {
 	float: left;
 	width: 220px;

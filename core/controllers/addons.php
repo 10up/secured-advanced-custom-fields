@@ -204,6 +204,7 @@ class acf_addons
 	
 	<div id="add-ons" class="clearfix">
 		
+		<div class="add-on-group clearfix">
 		<?php foreach( $premium as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
 			<a target="_blank" href="<?php echo $addon['url']; ?>">
@@ -221,10 +222,10 @@ class acf_addons
 				<?php endif; ?>
 			</div>
 		</div>
-		<?php endforeach; ?>	
+		<?php endforeach; ?>
+		</div>
 		
-		<div class="add-on-title"></div>
-		
+		<div class="add-on-group clearfix">
 		<?php foreach( $free as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
 			<a target="_blank" href="<?php echo $addon['url']; ?>">
@@ -243,11 +244,33 @@ class acf_addons
 			</div>
 		</div>
 		<?php endforeach; ?>	
-			
+		</div>
+		
 				
 	</div>
 	
 </div>
+<script type="text/javascript">
+(function($) {
+	
+	$('#add-ons .add-on-group').each(function(){
+		
+		var $el = $(this),
+			h = 0;
+		
+		
+		$el.find('.add-on').each(function(){
+			
+			h = Math.max( $(this).height(), h );
+			
+		});
+		
+		$el.find('.add-on').height( h );
+		
+	});
+	
+})(jQuery);	
+</script>
 		<?php
 		
 		return;
