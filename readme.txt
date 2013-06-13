@@ -101,6 +101,16 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.6 =
+* General: Improved load_value function to better handle false and default values
+* Number field: Added new options for min, max and step - http://support.advancedcustomfields.com/discussion/6263/fork-on-numbers-field
+* Radio field: Improved logic for selecting the value. Now works with 0, false, null and any other 'empty' value - http://support.advancedcustomfields.com/discussion/6305/radio-button-issue-with-0-values-fix-included-
+* Date picker field: Fixed PHP error - http://support.advancedcustomfields.com/discussion/6312/date-picker-php-error-date_picker-php-line-138-screenshot-attached
+* Language: Added Portuguese translation - https://github.com/elliotcondon/acf/pull/64
+* Taxonomy: Updated JS to clear image / file and checkbox elements when a new category is added via AJAX - http://support.advancedcustomfields.com/discussion/6326/image-field-added-to-categories-field-remains-set-after-category-created
+* Validation: Added logic to allow a field to bypass validation if it is part of a tab group which is hidden via conditional logic
+* API: Improved the acf_form function to better handle form attributes
+
 = 4.1.5.1 =
 * Image field: Fixed JS error causing uploader to not work correctly
 * File field: Fixed JS error causing uploader to not work correctly
