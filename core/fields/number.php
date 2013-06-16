@@ -44,6 +44,14 @@ class acf_field_number extends acf_field
 	
 	function create_field( $field )
 	{
+		// step
+		if( !$field['step'] )
+		{
+			$field['step'] = 'any';
+		}
+		
+		
+		// vars
 		$o = array( 'id', 'class', 'min', 'max', 'step', 'name', 'value' );
 		
 		$e = '<input type="number"';
@@ -55,6 +63,8 @@ class acf_field_number extends acf_field
 		
 		$e .= ' />';
 		
+		
+		// return
 		echo $e;
 		
 	}
