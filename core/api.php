@@ -338,8 +338,9 @@ function get_field_object( $field_key, $post_id = false, $options = array() )
 		$field = array(
 			'type' => 'text',
 			'name' => $orig_field_key,
-			'key' => 'temp_key_for_' . $orig_field_key,
+			'key' => 'field_' . $orig_field_key,
 		);
+		$field = apply_filters('acf/load_field', $field, $field['key'] );
 	}
 
 
@@ -1252,16 +1253,7 @@ function update_field( $field_key, $value, $post_id = false )
 	);
 	
 	$field = get_field_object( $field_key, $post_id, $options);
-	
-	
-	if( !is_array($field) )
-	{
-		$field = array(
-			'type' => 'none',
-			'name' => $field_key
-		);
-	}
-	
+
 	
 	// sub fields? They need formatted data
 	if( $field['type'] == 'repeater' )
