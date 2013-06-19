@@ -455,11 +455,24 @@ class acf_input
 		{
 			return $post_id;
 		}
-
+		
+		
+		// verify post ID
+		// + this will prevent the acf/save_post action from firing on a manually inserted post
+		$target = wp_is_post_revision( $post_id );
+		if( !$target )
+		{
+			$target = $post_id;
+		}
+		
+		if( !isset($_POST['post_ID']) || $_POST['post_ID'] != $target )
+		{
+			return $post_id;
+		}
+		
 		
 		// update the post (may even be a revision / autosave preview)
 		do_action('acf/save_post', $post_id);
-        
         
 	}
 	
