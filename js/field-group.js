@@ -1,14 +1,8 @@
 var acf = {
 	post_id : 0,
 	nonce : '',
-	text : {
-		'move_to_trash' : "Move to trash. Are you sure?",
-		'checked' : 'checked',
-		'conditional_no_fields' : 'No "toggle" fields available',
-		'title' : 'Field group title is required',
-		'copy' : 'copy',
-		'or' : "or"
-	},
+	text : {},
+	l10n : {},
 	helpers : {
 		uniqid : function(){},
 		sortable : function(){},
@@ -134,7 +128,7 @@ var acf = {
 		
 		if( !title.val() )
 		{
-			alert( acf.text.title );
+			alert( acf.l10n.title );
 			
 			title.focus();
 		
@@ -154,7 +148,7 @@ var acf = {
 	
 	$('#submit-delete').live('click', function(){
 			
-		var response = confirm( acf.text.move_to_trash );
+		var response = confirm( acf.l10n.move_to_trash );
 		if( !response )
 		{
 			return false;
@@ -446,7 +440,7 @@ var acf = {
 		
 		
 		name.val('');
-		label.val( label.val() + ' (' + acf.text.copy + ')' );
+		label.val( label.val() + ' (' + acf.l10n.copy + ')' );
 		label.trigger('blur').trigger('keyup');
 		
 		
@@ -799,7 +793,7 @@ var acf = {
 			
 			
 			// update h4
-			$group2.find('h4').text( acf.text.or );
+			$group2.find('h4').text( acf.l10n.or );
 			
 			
 			// remove all tr's except the first one
@@ -940,7 +934,7 @@ var acf = {
 			{
 				choices.push({
 					'value' : 'null',
-					'label' : acf.text.conditional_no_fields
+					'label' : acf.l10n.conditional_no_fields
 				})
 			}
 	
@@ -1010,7 +1004,7 @@ var acf = {
 		if( type == "true_false" )
 		{
 			choices = [
-				{ value : 1, label : acf.text.checked }
+				{ value : 1, label : acf.l10n.checked }
 			];
 						
 		}

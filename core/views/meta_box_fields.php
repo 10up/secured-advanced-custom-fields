@@ -1,11 +1,12 @@
 <?php
 
 /*
-*  Html: Fields
+*  Meta box - fields
 *
-*  @description: 
-*  @since: 3.6
-*  @created: 26/01/13
+*  This template file is used when editing a field group and creates the interface for editing fields.
+*
+*  @type	template
+*  @date	26/01/13
 */
 
  
@@ -21,7 +22,7 @@ $fields = apply_filters('acf/field_group/get_fields', array(), $post->ID);
 $fields[] = apply_filters('acf/load_field_defaults',  array(
 	'key' => 'field_clone',
 	'label' => __("New Field",'acf'),
-	'name' => __("new_field",'acf'),
+	'name' => 'new_field',
 	'type' => 'text',
 ));
 
@@ -56,15 +57,23 @@ $conditional_logic_rule = array(
 
 $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does not exist', 'acf');
 
+
+// l10n
+$l10n = array(
+	'move_to_trash'			=>	__("Move to trash. Are you sure?",'acf'),
+	'checked'				=>	__("checked",'acf'),
+	'conditional_no_fields'	=>	__("No toggle fields available",'acf'),
+	'title'					=>	__("Field group title is required",'acf'),
+	'copy'					=>	__("copy",'acf'),
+	'or'					=>	__("or",'acf')
+);
+		
 ?>
 
 <!-- Hidden Fields -->
 <div style="display:none;">
 	<script type="text/javascript">
-	acf.text.move_to_trash = "<?php _e("Move to trash. Are you sure?",'acf'); ?>";
-	acf.text.checked = "<?php _e("checked",'acf'); ?>";
-	acf.text.conditional_no_fields = "<?php _e('No toggle fields available','acf'); ?>";
-	acf.text.copy = "<?php _e('copy','acf'); ?>";
+	acf.l10n = <?php echo json_encode( $l10n ); ?>;
 	</script>
 	<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'field_group' ); ?>" />
 </div>
