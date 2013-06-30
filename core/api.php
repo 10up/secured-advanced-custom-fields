@@ -84,8 +84,9 @@ function acf_filter_post_id( $post_id )
 function get_field_reference( $field_name, $post_id )
 {
 	// cache
-	$cache = wp_cache_get( 'field_reference-' . $post_id . '-' . $field_name, 'acf' );
-	if( $cache )
+	$cache = wp_cache_get( 'field_reference/post_id=' .  $post_id . '/name=' .  $field_name, 'acf', false, $found );
+
+	if( $found )
 	{
 		return $cache;
 	}
@@ -112,7 +113,7 @@ function get_field_reference( $field_name, $post_id )
 	
 	
 	// set cache
-	wp_cache_set( 'field_reference-' . $post_id . '-' . $field_name, $return, 'acf' );
+	wp_cache_set( 'field_reference/post_id=' .  $post_id . '/name=' .  $field_name, $return, 'acf' );
 		
 	
 	// return	

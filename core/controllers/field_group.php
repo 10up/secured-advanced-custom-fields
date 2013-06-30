@@ -59,8 +59,9 @@ class acf_field_group
 	function get_field_groups( $array )
 	{
 		// cache
-		$cache = wp_cache_get( 'field_groups', 'acf' );
-		if( $cache )
+		$cache = wp_cache_get( 'field_groups', 'acf', false, $found );
+		
+		if( $found )
 		{
 			return $cache;
 		}
