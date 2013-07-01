@@ -1169,7 +1169,33 @@ var acf = {
 	});
 	
 	
+	/*
+	*  Field: Radio
+	*
+	*  Simple toggle for the radio 'other_choice' option
+	*
+	*  @type	function
+	*  @date	1/07/13
+	*/
 	
+	$('.radio-option-other_choice input').live('change', function(){
+		
+		// vars
+		var $el = $(this);
+			$td = $el.closest('td');
+		
+		
+		if( $el.is(':checked') )
+		{
+			$td.find('.radio-option-save_other_choice').show();
+		}
+		else
+		{
+			$td.find('.radio-option-save_other_choice').hide();
+			$td.find('.radio-option-save_other_choice input').removeAttr('checked');
+		}
+		
+	});
 
 	
 
