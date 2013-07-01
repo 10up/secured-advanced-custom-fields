@@ -110,7 +110,7 @@ var acf = {
 		
 		  return retId;
 
-    }
+    };
         
     
     /*
@@ -285,7 +285,7 @@ var acf = {
 			$(this).attr('name', $(this).attr('name').replace(old_id, new_id) );
 		});
 		
-	}
+	};
 	
 	
 	/*
@@ -811,7 +811,7 @@ var acf = {
 			$group.remove();
 			
 		}
-	}
+	};
 	
 	
 
