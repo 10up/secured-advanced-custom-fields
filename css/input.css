@@ -53,6 +53,7 @@
 	position: relative;
 	padding: 15px 10px;
 	border-bottom: #e8e8e8 solid 1px;
+	color: #333333;
 }
 
 .acf_postbox .field:last-child {
