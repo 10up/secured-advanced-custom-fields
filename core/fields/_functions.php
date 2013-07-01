@@ -91,7 +91,7 @@ class acf_field_functions
 		}
 		else
 		{
-			$v = get_option( $post_id . '_' . $field['name'], null );
+			$v = get_option( $post_id . '_' . $field['name'], false );
 			
 			if( !is_null($value) )
 			{
