@@ -221,13 +221,14 @@
 					    	// select / add another image field?
 					    	if( i > 1 )
 							{
-								var tr = _media.div.closest('tr'),
+								var key = _media.div.closest('td').attr('data-field_key'),
+									tr = _media.div.closest('tr'),
 									repeater = tr.closest('.repeater');
 								
 								
 								if( tr.next('.row').exists() )
 								{
-									_media.div = tr.next('.row').find('.acf-image-uploader');
+									_media.div = tr.next('.row').find('td[data-field_key="' + key + '"] .acf-image-uploader');
 								}
 								else
 								{
@@ -235,7 +236,7 @@
 					 				repeater.find('.add-row-end').trigger('click'); 
 					 			 
 					 				// set acf_div to new row image 
-					 				_media.div = repeater.find('> table > tbody > tr.row:last .acf-image-uploader');
+					 				_media.div = repeater.find('> table > tbody > tr.row:last td[data-field_key="' + key + '"] .acf-image-uploader');
 								}
 							}
 							
