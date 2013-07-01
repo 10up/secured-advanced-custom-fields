@@ -344,6 +344,11 @@ class acf_field_functions
 					$field = maybe_unserialize( $field );
 					$field = maybe_unserialize( $field ); // run again for WPML
 				}
+				
+				
+				// add field_group ID
+				$field['field_group'] = $row['post_id'];
+				
 			}
 		}
 		
