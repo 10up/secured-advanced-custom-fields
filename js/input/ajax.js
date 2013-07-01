@@ -20,8 +20,7 @@
 		post_format		:	0,
 		taxonomy		:	0,
 		lang			:	0,
-		nonce			:	0,
-		return			:	'json'
+		nonce			:	0
 	};
 	
 	
