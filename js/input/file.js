@@ -144,10 +144,31 @@
 				
 				
 				// customize model / view
-				acf.media.frame.on('open', function(){
+				acf.media.frame.on('content:activate', function(){
 					
-					var content = acf.media.frame.content.get(),
-						filters = content.toolbar._views.filters;
+					// vars
+					var toolbar = null,
+						filters = null;
+						
+					
+					// populate above vars making sure to allow for failure
+					try
+					{
+						toolbar = acf.media.frame.content.get().toolbar;
+						filters = toolbar.get('filters');
+					} 
+					catch(e)
+					{
+						// one of the objects was 'undefined'... perhaps the frame open is Upload Files
+						//console.log( e );
+					}
+					
+					
+					// validate
+					if( !filters )
+					{
+						return false;
+					}
 					
 					
 					// no need for 'uploaded' filter
