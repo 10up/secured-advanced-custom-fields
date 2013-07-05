@@ -68,6 +68,7 @@
 	
 	$(document).live('acf/update_field_groups', function(){
 		
+		
 		$.ajax({
 			url: ajaxurl,
 			data: acf.screen,
@@ -75,6 +76,7 @@
 			dataType: 'json',
 			success: function(result){
 				
+				console.log('s');
 				// validate
 				if( !result )
 				{
@@ -219,21 +221,26 @@
 	// taxonomy / category
 	$('.categorychecklist input[type="checkbox"]').live('change', function(){
 		
+		// set timeout to fix issue with chrome which does not register the change has yet happened
+		setTimeout(function(){
+			
+			// vars
+			var values = [];
+			
+			
+			$('.categorychecklist input[type="checkbox"]:checked').each(function(){
+				values.push( $(this).val() );
+			});
+	
+			console.log( values );
+			acf.screen.post_category = values;
+			acf.screen.taxonomy = values;
+	
+	
+			$(document).trigger('acf/update_field_groups');
 		
-		// vars
-		var values = [];
+		}, 1);
 		
-		
-		$('.categorychecklist input[type="checkbox"]:checked').each(function(){
-			values.push( $(this).val() );
-		});
-
-		
-		acf.screen.post_category = values;
-		acf.screen.taxonomy = values;
-
-
-		$(document).trigger('acf/update_field_groups');
 		
 	});
 	
