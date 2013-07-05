@@ -106,7 +106,7 @@ class acf_upgrade
 	{
 		// vars
 		$version = apply_filters('acf/get_info', 'version');
-		$readme = file_get_contents( 'http://plugins.svn.wordpress.org/advanced-custom-fields/trunk/readme.txt' );
+		$readme = wp_remote_fopen( 'http://plugins.svn.wordpress.org/advanced-custom-fields/trunk/readme.txt' );
 		$regexp = '/== Changelog ==(.*)= ' . $version . ' =/sm';
 		$o = '';
 
