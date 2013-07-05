@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress. Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker, repeater, flexible content, gallery and more!
-Version: 4.1.6
+Version: 4.1.7
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -67,7 +67,7 @@ class Acf
 			'path' => apply_filters('acf/helpers/get_path', __FILE__),
 			'dir' => apply_filters('acf/helpers/get_dir', __FILE__),
 			'hook' => basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
-			'version' => '4.1.6',
+			'version' => '4.1.7',
 			'upgrade_version' => '3.4.1',
 		);
 		
@@ -703,10 +703,10 @@ class Acf
 		
 
 		// loop through and save
-		if( isset($GLOBALS['acf_temp']) )
+		if( isset($GLOBALS['acf_update_values']) )
 		{
 			// loop through and save temp cache data
-			foreach( $GLOBALS['acf_temp'] as $f )
+			foreach( $GLOBALS['acf_update_values'] as $f )
 			{
 				// load $v
 				$v = wp_cache_get( 'load_value/post_id=' .  $f['post_id'] . '/name=' .  $f['name'], 'acf' );
@@ -721,7 +721,7 @@ class Acf
 		elseif( !empty($_POST['fields']) )
 		{
 			// instantiate temp cache
-			$GLOBALS['acf_temp'] = array();
+			$GLOBALS['acf_update_values'] = array();
 			
 			
 			// loop through and save $_POST data

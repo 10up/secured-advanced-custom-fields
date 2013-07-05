@@ -76,7 +76,6 @@
 			dataType: 'json',
 			success: function(result){
 				
-				console.log('s');
 				// validate
 				if( !result )
 				{
@@ -232,7 +231,7 @@
 				values.push( $(this).val() );
 			});
 	
-			console.log( values );
+			
 			acf.screen.post_category = values;
 			acf.screen.taxonomy = values;
 	

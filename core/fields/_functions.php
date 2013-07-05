@@ -229,9 +229,9 @@ class acf_field_functions
 		
 		
 		// update temp cache
-		if( isset($GLOBALS['acf_temp']) )
+		if( isset($GLOBALS['acf_update_values']) )
 		{
-			$GLOBALS['acf_temp'][ $field['name'] ] = array(
+			$GLOBALS['acf_update_values'][ $field['name'] ] = array(
 				'post_id' => $post_id,
 				'name' => $field['name'],
 				'key' => $field['key']

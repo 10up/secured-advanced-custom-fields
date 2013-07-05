@@ -101,8 +101,18 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
-= 4.1.7 +
-* Fixed JS error that was occurring on the Edit Field Group screen when using Internet Explorer 8
+= 4.1.7 =
+* Language: Added Russian translation - Thanks to Alex Torscho
+* Core: Improved the save_post function to compare post_id and only run once.
+* Core: Improved cache handling
+* Number field: Fixed step size decimal bug
+* Radio button field: Add option for 'other' and to also update field choices
+* Image / File field: Updated JS to add multiple items to the correct sub field - http://support.advancedcustomfields.com/discussion/6391/repeater-with-images-bug
+* JS: Remove redundant return ajax value - http://support.advancedcustomfields.com/discussion/6375/js-syntax-error-in-ie
+* Add-ons page: fix JS issue - http://support.advancedcustomfields.com/discussion/6405/add-ons-page-div-height-problem
+* Options Page: Fixed issue with load_value preventing the options page using default values - http://support.advancedcustomfields.com/discussion/4612/true-false-field-allow-default-value
+* AJAX: Fix chrome bug - untick category - http://support.advancedcustomfields.com/discussion/6419/disabling-a-category-still-shows-fields
+* JS: Fixed multiple Internet Explorer issues
 
 = 4.1.6 =
 * General: Improved load_value function to better handle false and default values
