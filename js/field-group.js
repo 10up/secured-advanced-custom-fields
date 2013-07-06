@@ -1,14 +1,8 @@
 var acf = {
 	post_id : 0,
 	nonce : '',
-	text : {
-		'move_to_trash' : "Move to trash. Are you sure?",
-		'checked' : 'checked',
-		'conditional_no_fields' : 'No "toggle" fields available',
-		'title' : 'Field group title is required',
-		'copy' : 'copy',
-		'or' : "or"
-	},
+	text : {},
+	l10n : {},
 	helpers : {
 		uniqid : function(){},
 		sortable : function(){},
@@ -116,7 +110,7 @@ var acf = {
 		
 		  return retId;
 
-    }
+    };
         
     
     /*
@@ -134,7 +128,7 @@ var acf = {
 		
 		if( !title.val() )
 		{
-			alert( acf.text.title );
+			alert( acf.l10n.title );
 			
 			title.focus();
 		
@@ -154,7 +148,7 @@ var acf = {
 	
 	$('#submit-delete').live('click', function(){
 			
-		var response = confirm( acf.text.move_to_trash );
+		var response = confirm( acf.l10n.move_to_trash );
 		if( !response )
 		{
 			return false;
@@ -291,7 +285,7 @@ var acf = {
 			$(this).attr('name', $(this).attr('name').replace(old_id, new_id) );
 		});
 		
-	}
+	};
 	
 	
 	/*
@@ -446,7 +440,7 @@ var acf = {
 		
 		
 		name.val('');
-		label.val( label.val() + ' (' + acf.text.copy + ')' );
+		label.val( label.val() + ' (' + acf.l10n.copy + ')' );
 		label.trigger('blur').trigger('keyup');
 		
 		
@@ -799,7 +793,7 @@ var acf = {
 			
 			
 			// update h4
-			$group2.find('h4').text( acf.text.or );
+			$group2.find('h4').text( acf.l10n.or );
 			
 			
 			// remove all tr's except the first one
@@ -817,7 +811,7 @@ var acf = {
 			$group.remove();
 			
 		}
-	}
+	};
 	
 	
 
@@ -871,7 +865,7 @@ var acf = {
 		// dafaults
 		var defaults = {
 			'type' : 'text',
-			'class' : '',
+			'classname' : '',
 			'name' : '',
 			'value' : ''
 		};
@@ -883,11 +877,11 @@ var acf = {
 		
 		if( options.type == "text" )
 		{
-			html += '<input class="text ' + options.class + '" type="text" id="' + options.name + '" name="' + options.name + '" value="' + options.value + '" />';
+			html += '<input class="text ' + options.classname + '" type="text" id="' + options.name + '" name="' + options.name + '" value="' + options.value + '" />';
 		}
 		else if( options.type == "select" )
 		{
-			html += '<select class="select ' + options.class + '" id="' + options.name + '" name="' + options.name + '">';
+			html += '<select class="select ' + options.classname + '" id="' + options.name + '" name="' + options.name + '">';
 			if( options.choices )
 			{
 				for( i = 0; i < options.choices.length; i++ )
@@ -940,7 +934,7 @@ var acf = {
 			{
 				choices.push({
 					'value' : 'null',
-					'label' : acf.text.conditional_no_fields
+					'label' : acf.l10n.conditional_no_fields
 				})
 			}
 	
@@ -948,7 +942,7 @@ var acf = {
 			// create select
 			select = acf.helpers.create_field({
 				'type' : 'select',
-				'class' : 'conditional-logic-field',
+				'classname' : 'conditional-logic-field',
 				'name' : name,
 				'value' : val,
 				'choices' : choices
@@ -1010,7 +1004,7 @@ var acf = {
 		if( type == "true_false" )
 		{
 			choices = [
-				{ value : 1, label : acf.text.checked }
+				{ value : 1, label : acf.l10n.checked }
 			];
 						
 		}
@@ -1045,7 +1039,7 @@ var acf = {
 		// create select
 		select = acf.helpers.create_field({
 			'type' : 'select',
-			'class' : 'conditional-logic-value',
+			'classname' : 'conditional-logic-value',
 			'name' : conditional_function.attr('name'),
 			'value' : conditional_function.val(),
 			'choices' : choices
@@ -1175,7 +1169,33 @@ var acf = {
 	});
 	
 	
+	/*
+	*  Field: Radio
+	*
+	*  Simple toggle for the radio 'other_choice' option
+	*
+	*  @type	function
+	*  @date	1/07/13
+	*/
 	
+	$('.radio-option-other_choice input').live('change', function(){
+		
+		// vars
+		var $el = $(this);
+			$td = $el.closest('td');
+		
+		
+		if( $el.is(':checked') )
+		{
+			$td.find('.radio-option-save_other_choice').show();
+		}
+		else
+		{
+			$td.find('.radio-option-save_other_choice').hide();
+			$td.find('.radio-option-save_other_choice input').removeAttr('checked');
+		}
+		
+	});
 
 	
 

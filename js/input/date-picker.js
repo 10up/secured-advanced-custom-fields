@@ -1,87 +1,135 @@
-/*
-*  Date Picker
-*
-*  @description: 
-*  @since: 3.5.8
-*  @created: 17/01/13
-*/
-
 (function($){
-
-	var _date_picker = acf.fields.date_picker;
-	
 	
 	/*
-	*  acf/setup_fields
+	*  Date Picker
 	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
+	*  static model for this field
+	*
+	*  @type	event
+	*  @date	1/06/13
+	*
 	*/
 	
-	$(document).live('acf/setup_fields', function(e, postbox){
+	acf.fields.date_picker = {
 		
-		$(postbox).find('input.acf_datepicker').each(function(){
+		$el : null,
+		$input : null,
+		$hidden : null,
+		
+		o : {},
+		
+		set : function( o ){
 			
-			// vars
-			var input = $(this),
-				alt_field = input.siblings('.acf-hidden-datepicker'),
-				save_format = input.attr('data-save_format'),
-				display_format = input.attr('data-display_format'),
-				first_day = input.attr('data-first_day');
+			// merge in new option
+			$.extend( this, o );
 			
 			
+			// find input
+			this.$input = this.$el.find('input[type="text"]');
+			this.$hidden = this.$el.find('input[type="hidden"]');
+			
+			
+			// get options
+			this.o = acf.helpers.get_atts( this.$el );
+			
+			
+			// return this for chaining
+			return this;
+			
+		},
+		init : function(){
+
 			// is clone field?
-			if( acf.helpers.is_clone_field(alt_field) )
+			if( acf.helpers.is_clone_field(this.$hidden) )
 			{
 				return;
 			}
 			
 			
 			// get and set value from alt field
-			input.val( alt_field.val() );
+			this.$input.val( this.$hidden.val() );
 			
 			
 			// create options
-			var options = $.extend( {}, _date_picker.text, { 
-				dateFormat : save_format,
-				altField : alt_field,
-				altFormat :  save_format,
-				changeYear: true,
-				yearRange: "-100:+100",
-				changeMonth: true,
-				showButtonPanel : true,
-				firstDay: first_day
+			var options = $.extend( {}, acf.l10n.date_picker, { 
+				dateFormat		:	this.o.save_format,
+				altField		:	this.$hidden,
+				altFormat		:	this.o.save_format,
+				changeYear		:	true,
+				yearRange		:	"-100:+100",
+				changeMonth		:	true,
+				showButtonPanel	:	true,
+				firstDay		:	this.o.first_day
 			});
 			
 			
-			// add date picker and refocus
-			input.addClass('active').datepicker(options);
+			// add date picker
+			this.$input.addClass('active').datepicker( options );
 			
 			
 			// now change the format back to how it should be.
-			input.datepicker( "option", "dateFormat", display_format );
+			this.$input.datepicker( "option", "dateFormat", this.o.display_format );
 			
 			
 			// wrap the datepicker (only if it hasn't already been wrapped)
-			if($('body > #ui-datepicker-div').length > 0)
+			if( $('body > #ui-datepicker-div').length > 0 )
 			{
 				$('#ui-datepicker-div').wrap('<div class="ui-acf" />');
 			}
 			
+		},
+		focus : function(){
+
 			
-			// allow null
-			input.blur(function(){
-				
-				if( !input.val() )
-				{
-					alt_field.val('');
-				}
-				
-			});
+			
+		},
+		blur : function(){
+			
+			if( !this.$input.val() )
+			{
+				this.$hidden.val('');
+			}
+			
+		}
+		
+	};
+	
+	
+	/*
+	*  acf/setup_fields
+	*
+	*  run init function for this field
+	*
+	*  @type	event
+	*  @date	1/06/13
+	*
+	*/
+		
+	$(document).live('acf/setup_fields', function(e, postbox){
+		
+		$(postbox).find('.acf-date_picker').each(function(){
+			
+			acf.fields.date_picker.set({ $el : $(this) }).init();
 			
 		});
 		
+	});
+	
+	
+	/*
+	*  Events
+	*
+	*  live events for this field
+	*
+	*  @type	event
+	*  @date	1/06/13
+	*
+	*/
+	
+	$('.acf-date_picker input[type="text"]').live('blur', function(){
+		
+		acf.fields.date_picker.set({ $el : $(this).parent() }).blur();
+					
 	});
 	
 

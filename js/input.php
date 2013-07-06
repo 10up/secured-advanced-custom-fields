@@ -13,7 +13,8 @@ $files = array(
 	'relationship.js',
 	'tab.js',
 	'validation.js',
-	'wysiwyg.js'
+	'wysiwyg.js',
+	'radio.js'
 );
 
 

@@ -23,7 +23,7 @@ class acf_field_functions
 	{
 		//value
 		add_filter('acf/load_value', array($this, 'load_value'), 5, 3);
-		add_action('acf/update_value', array($this, 'update_value'), 5, 3);
+		add_action('acf/update_value', array($this, 'update_value'), 5, 4);
 		add_action('acf/delete_value', array($this, 'delete_value'), 5, 2);
 		add_action('acf/format_value', array($this, 'format_value'), 5, 3);
 		add_action('acf/format_value_for_api', array($this, 'format_value_for_api'), 5, 3);
@@ -52,33 +52,27 @@ class acf_field_functions
 	
 	function load_value($value, $post_id, $field)
 	{
-		$cache = wp_cache_get( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], 'acf' );
-		if( $cache )
+		$cache = wp_cache_get( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], 'acf', false, $found );
+		
+		if( $found )
 		{
 			return $cache;
 		}
 		
 		
+		// set default value
+		$value = false;
+		
+		
 		// if $post_id is a string, then it is used in the everything fields and can be found in the options table
 		if( is_numeric($post_id) )
 		{
-			$value = get_post_meta( $post_id, $field['name'], false );
+			$v = get_post_meta( $post_id, $field['name'], false );
 			
-			// value is an array, check and assign the real value / default value
-			if( !isset($value[0]) )
+			// value is an array
+			if( isset($v[0]) )
 			{
-				if( isset($field['default_value']) )
-				{
-					$value = $field['default_value'];
-				}
-				else
-				{
-					$value = false;
-				}
-		 	}
-		 	else
-		 	{
-			 	$value = $value[0];
+			 	$value = $v[0];
 		 	}
 
 		}
@@ -86,41 +80,33 @@ class acf_field_functions
 		{
 			$post_id = str_replace('user_', '', $post_id);
 			
-			$value = get_user_meta( $post_id, $field['name'], false );
+			$v = get_user_meta( $post_id, $field['name'], false );
 			
-			// value is an array, check and assign the real value / default value
-			if( !isset($value[0]) )
+			// value is an array
+			if( isset($v[0]) )
 			{
-				if( isset($field['default_value']) )
-				{
-					$value = $field['default_value'];
-				}
-				else
-				{
-					$value = false;
-				}
+			 	$value = $v[0];
 		 	}
-		 	else
-		 	{
-			 	$value = $value[0];
-		 	}
+		 	
 		}
 		else
 		{
-			$value = get_option( $post_id . '_' . $field['name'], null );
+			$v = get_option( $post_id . '_' . $field['name'], false );
 			
-			if( is_null($value) )
+			if( !is_null($value) )
 			{
-				if( isset($field['default_value']) )
-				{
-					$value = $field['default_value'];
-				}
-				else
-				{
-					$value = false;
-				}
+				$value = $v;
 		 	}
-
+		}
+		
+		
+		// no value?
+		if( $value === false )
+		{
+			if( isset($field['default_value']) && $field['default_value'] !== "" )
+			{
+				$value = $field['default_value'];
+			}
 		}
 		
 		
@@ -179,13 +165,21 @@ class acf_field_functions
 	/*
 	*  update_value
 	*
-	*  @description: updates a value into the db
-	*  @since: 3.6
-	*  @created: 23/01/13
+	*  updates a value into the db
+	*
+	*  @type	action
+	*  @date	23/01/13
+	*
+	*  @param	{mixed}		$value		the value to be saved
+	*  @param	{int}		$post_id 	the post ID to save the value to
+	*  @param	{array}		$field		the field array
+	*  @param	{boolean}	$exact		allows the update_value filter to be skipped
+	*  @return	N/A
 	*/
 	
-	function update_value( $value, $post_id, $field )
+	function update_value( $value, $post_id, $field, $exact = false )
 	{
+	
 		// strip slashes
 		// - not needed? http://support.advancedcustomfields.com/discussion/3168/backslashes-stripped-in-wysiwyg-filed
 		//if( get_magic_quotes_gpc() )
@@ -195,12 +189,15 @@ class acf_field_functions
 		
 		
 		// apply filters
-		foreach( array('type', 'name', 'key') as $key )
+		if( !$exact )
 		{
-			// run filters
-			$value = apply_filters('acf/update_value/' . $key . '=' . $field[ $key ], $value, $post_id, $field); // new filter
+			foreach( array('key', 'name', 'type') as $key )
+			{
+				// run filters
+				$value = apply_filters('acf/update_value/' . $key . '=' . $field[ $key ], $value, $post_id, $field); // new filter
+			}
 		}
-
+		
 		
 		// if $post_id is a string, then it is used in the everything fields and can be found in the options table
 		if( is_numeric($post_id) )
@@ -229,6 +226,17 @@ class acf_field_functions
 		
 		// update the cache
 		wp_cache_set( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], $value, 'acf' );
+		
+		
+		// update temp cache
+		if( isset($GLOBALS['acf_update_values']) )
+		{
+			$GLOBALS['acf_update_values'][ $field['name'] ] = array(
+				'post_id' => $post_id,
+				'name' => $field['name'],
+				'key' => $field['key']
+			);
+		}
 	}
 	
 	
@@ -336,6 +344,11 @@ class acf_field_functions
 					$field = maybe_unserialize( $field );
 					$field = maybe_unserialize( $field ); // run again for WPML
 				}
+				
+				
+				// add field_group ID
+				$field['field_group'] = $row['post_id'];
+				
 			}
 		}
 		

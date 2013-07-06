@@ -101,6 +101,48 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.7 =
+* Language: Added Russian translation - Thanks to Alex Torscho
+* Core: Improved the save_post function to compare post_id and only run once.
+* Core: Improved cache handling
+* Number field: Fixed step size decimal bug
+* Radio button field: Add option for 'other' and to also update field choices
+* Image / File field: Updated JS to add multiple items to the correct sub field - http://support.advancedcustomfields.com/discussion/6391/repeater-with-images-bug
+* JS: Remove redundant return ajax value - http://support.advancedcustomfields.com/discussion/6375/js-syntax-error-in-ie
+* Add-ons page: fix JS issue - http://support.advancedcustomfields.com/discussion/6405/add-ons-page-div-height-problem
+* Options Page: Fixed issue with load_value preventing the options page using default values - http://support.advancedcustomfields.com/discussion/4612/true-false-field-allow-default-value
+* AJAX: Fix chrome bug - untick category - http://support.advancedcustomfields.com/discussion/6419/disabling-a-category-still-shows-fields
+* JS: Fixed multiple Internet Explorer issues
+
+= 4.1.6 =
+* General: Improved load_value function to better handle false and default values
+* Number field: Added new options for min, max and step - http://support.advancedcustomfields.com/discussion/6263/fork-on-numbers-field
+* Radio field: Improved logic for selecting the value. Now works with 0, false, null and any other 'empty' value - http://support.advancedcustomfields.com/discussion/6305/radio-button-issue-with-0-values-fix-included-
+* Date picker field: Fixed PHP error - http://support.advancedcustomfields.com/discussion/6312/date-picker-php-error-date_picker-php-line-138-screenshot-attached
+* Language: Added Portuguese translation - https://github.com/elliotcondon/acf/pull/64
+* Taxonomy: Updated JS to clear image / file and checkbox elements when a new category is added via AJAX - http://support.advancedcustomfields.com/discussion/6326/image-field-added-to-categories-field-remains-set-after-category-created
+* Validation: Added logic to allow a field to bypass validation if it is part of a tab group which is hidden via conditional logic
+* API: Improved the acf_form function to better handle form attributes
+
+= 4.1.5.1 =
+* Image field: Fixed JS error causing uploader to not work correctly
+* File field: Fixed JS error causing uploader to not work correctly
+* Gallery field: Fixed JS error causing uploader to not work correctly
+* General: Fixed JS error causing field groups to not appear when dynamically loaded
+
+= 4.1.5 =
+* WYSIWYG Field: Fixed WYSIWYG the_content / shortcode issues - http://support.advancedcustomfields.com/discussion/5939/inconsistencies-between-standard-wysiwyg-and-acf-wysiwyg
+* Image field: Added option for library restriction - http://support.advancedcustomfields.com/discussion/6102/making-uploaded-to-this-post-default-state-for-image-upload
+* File field: Added option for library restriction
+* File field: Field UI refresh
+* Checkbox field: Added horizontal option - http://support.advancedcustomfields.com/discussion/5925/horizontal-select-boxes
+* Image field: fixed UI bug when image is deleted in file system - http://support.advancedcustomfields.com/discussion/5988/provide-a-fallback-if-
+* Validation: Added support for email field - http://support.advancedcustomfields.com/discussion/6125/email-field-required-validation-on-submit
+* Validation: Added support for taxonomy field - http://support.advancedcustomfields.com/discussion/6169/validation-of-taxonomy-field
+* Language: Added Chinese Translation - https://github.com/elliotcondon/acf/pull/63
+* General: Added changelog message to update plugin screen
+* General: Lots of minor improvements
+
 = 4.1.4 =
 * [Fixed] Page Link: Fixed errors produced by recent changes to post object field - http://support.advancedcustomfields.com/discussion/6044/page-links-hierarchy-broken-and-does-not-order-correctly
 

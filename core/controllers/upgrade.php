@@ -8,7 +8,6 @@
 *  @created: 23/06/12
 */
 
- 
 class acf_upgrade 
 {
 
@@ -24,8 +23,10 @@ class acf_upgrade
 	{
 		// actions
 		add_action('admin_menu', array($this,'admin_menu'), 11);
+		
+		
+		// ajax
 		add_action('wp_ajax_acf_upgrade', array($this, 'upgrade_ajax'));
-		//add_action('admin_footer', array($this, 'admin_footer'), 99);
 	}
 	
 	
@@ -68,31 +69,98 @@ class acf_upgrade
 			}
 		}
 		
-
+		
+		// update info
+		global $pagenow;
+		
+		if( $pagenow == 'plugins.php' )
+		{
+			$hook = apply_filters('acf/get_info', 'hook');
+			
+			wp_enqueue_style( 'acf-global' );
+			add_action( 'in_plugin_update_message-' . $hook, array($this, 'in_plugin_update_message'), 10, 2 );
+		}
+		
+		
+		// update admin page
 		add_submenu_page('edit.php?post_type=acf', __('Upgrade','acf'), __('Upgrade','acf'), 'manage_options','acf-upgrade', array($this,'html') );
 	}
 	
+
+	
 	
 	/*
-	*  admin_footer
+	*  in_plugin_update_message
 	*
-	*  @description: 
-	*  @since: 3.6
-	*  @created: 3/04/13
+	*  Displays an update message for plugin list screens.
+	*  Shows only the version updates from the current until the newest version
+	*
+	*  @type	function
+	*  @date	5/06/13
+	*
+	*  @param	{array}		$plugin_data
+	*  @param	{object}	$r
 	*/
 	
-	function admin_footer()
+	function in_plugin_update_message( $plugin_data, $r )
 	{
-		// Mesages
-		$dismissed = get_option('acf_dismissed', array());
+		// vars
+		$version = apply_filters('acf/get_info', 'version');
+		$readme = file_get_contents( 'http://plugins.svn.wordpress.org/advanced-custom-fields/trunk/readme.txt' );
+		$regexp = '/== Changelog ==(.*)= ' . $version . ' =/sm';
+		$o = '';
 		
-		if( !in_array('download_addons', $dismissed) )
+		
+		// validate
+		if( !$readme )
 		{
-			// update db
-			//$dismissed[] = 'download_addons';
-			//update_option('acf_dismissed', $dismissed );
-			
+			return;
 		}
+		
+		
+		// regexp
+		preg_match( $regexp, $readme, $matches );
+		
+		
+		if( ! isset($matches[1]) )
+		{
+			return;
+		}
+
+		
+		// render changelog
+		$changelog = explode('*', $matches[1]);
+		array_shift( $changelog );
+		
+		
+		if( !empty($changelog) )
+		{
+			$o .= '<div class="acf-plugin-update-info">';
+			$o .= '<h3>' . __("What's new", 'acf') . '</h3>';
+			$o .= '<ul>';
+			
+			foreach( $changelog as $item )
+			{
+				$item = explode('http', $item);
+				
+				$o .= '<li>' . $item[0];
+				
+				if( isset($item[1]) )
+				{
+					$o .= '<a href="http' . $item[1] . '" target="_blank">' . __("credits",'acf') . '</a>';
+				}
+				
+				$o .= '</li>';
+				
+				
+			}
+			
+			$o .= '</ul></div>';
+		}
+		
+		echo $o;
+		
+		
 	}
 	
 	
@@ -559,7 +627,7 @@ class acf_upgrade
 				{
 					foreach($rows as $row)
 					{
-						// origional name
+						// original name
 						$field_name = $row['meta_key'];
 						
 						

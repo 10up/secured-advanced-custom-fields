@@ -18,9 +18,11 @@ class acf_field_radio extends acf_field
 		$this->label = __("Radio Button",'acf');
 		$this->category = __("Choice",'acf');
 		$this->defaults = array(
-			'layout'		=>	'vertical',
-			'choices'		=>	array(),
-			'default_value'	=>	'',
+			'layout'			=>	'vertical',
+			'choices'			=>	array(),
+			'default_value'		=>	'',
+			'other_choice'		=>	0,
+			'save_other_choice'	=>	0,
 		);
 		
 		
@@ -45,34 +47,66 @@ class acf_field_radio extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
-		
 		$i = 0;
-		if( $field['choices'] )
+		$e = '<ul class="acf-radio-list ' . esc_attr($field['class']) . ' ' . esc_attr($field['layout']) . '">';
+
+		
+		// add choices
+		if( is_array($field['choices']) )
 		{
-			foreach($field['choices'] as $key => $value)
+			foreach( $field['choices'] as $key => $value )
 			{
+				// vars
 				$i++;
+				$atts = '';
+				
 				
 				// if there is no value and this is the first of the choices, select this on by default
-				// also make sure we dont match if the value is 0. Sometimes the value is 0!
-				if( $field['value'] !== 0 && !$field['value'] && $i == 1 )
+				if( $field['value'] === false )
 				{
-					$field['value'] = $key;
+					if( $i === 1 )
+					{
+						$atts = 'checked="checked" data-checked="checked"';
+					}
+				}
+				else
+				{
+					if( strval($key) === strval($field['value']) )
+					{
+						$atts = 'checked="checked" data-checked="checked"';
+					}
 				}
 				
-				$selected = '';
 				
-				if($key == $field['value'])
-				{
-					$selected = 'checked="checked" data-checked="checked"';
-				}
-				
-				echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="radio" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
+				// HTML
+				$e .= '<li><label><input id="' . esc_attr($field['id']) . '-' . esc_attr($key) . '" type="radio" name="' . esc_attr($field['name']) . '" value="' . esc_attr($key) . '" ' . esc_attr( $atts ) . ' />' . $value . '</label></li>';
 			}
 		}
 		
-		echo '</ul>';
+		
+		// other choice
+		if( $field['other_choice'] )
+		{
+			// vars
+			$atts = '';
+			$atts2 = 'name="" value="" style="display:none"';
+			
+			
+			if( !isset($field['choices'][ $field['value'] ]) )
+			{
+				$atts = 'checked="checked" data-checked="checked"';
+				$atts2 = 'name="' . esc_attr($field['name']) . '" value="' . esc_attr($field['value']) . '"' ;
+			}
+			
+			
+			$e .= '<li><label><input id="' . esc_attr($field['id']) . '-other" type="radio" name="' . esc_attr($field['name']) . '" value="other" ' . $atts . ' />' . __("Other", 'acf') . '</label> <input type="text" ' . $atts2 . ' /></li>';
+		}
+
+
+		$e .= '</ul>';
+		
+		echo $e;
+		
 	}
 	
 	
@@ -128,6 +162,30 @@ class acf_field_radio extends acf_field
 				));
 				
 				?>
+				<div class="radio-option-other_choice">
+				<?php
+				
+				do_action('acf/create_field', array(
+					'type'		=>	'true_false',
+					'name'		=>	'fields['.$key.'][other_choice]',
+					'value'		=>	$field['other_choice'],
+					'message'	=>	__("Add 'other' choice to allow for custom values", 'acf')
+				));
+				
+				?>
+				</div>
+				<div class="radio-option-save_other_choice" <?php if( !$field['other_choice'] ): ?>style="display:none"<?php endif; ?>>
+				<?php
+				
+				do_action('acf/create_field', array(
+					'type'		=>	'true_false',
+					'name'		=>	'fields['.$key.'][save_other_choice]',
+					'value'		=>	$field['save_other_choice'],
+					'message'	=>	__("Save 'other' values to the field's choices", 'acf')
+				));
+				
+				?>
+				</div>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
@@ -169,6 +227,47 @@ class acf_field_radio extends acf_field
 		</tr>
 		<?php
 		
+	}
+	
+	
+	/*
+	*  update_value()
+	*
+	*  This filter is appied to the $value before it is updated in the db
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$value - the value which will be saved in the database
+	*  @param	$post_id - the $post_id of which the value will be saved
+	*  @param	$field - the field array holding all the field options
+	*
+	*  @return	$value - the modified value
+	*/
+	
+	function update_value( $value, $post_id, $field )
+	{
+		// validate
+		if( $field['save_other_choice'] )
+		{
+			// value isn't in choices yet
+			if( !isset($field['choices'][ $value ]) )
+			{
+				// update $field
+				$field['choices'][ $value ] = $value;
+				
+				
+				// can save
+				if( isset($field['field_group']) )
+				{
+					do_action('acf/update_field', $field, $field['field_group']);
+				}
+				
+			}
+		}		
+		
+		return $value;
 	}
 	
 }

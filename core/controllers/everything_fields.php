@@ -346,8 +346,12 @@ $(document).ready(function(){
 		}
 		
 
+		// vars
+		var $el = $('#addtag');
+		
+		
 		// clear WYSIWYG field
-		$('#addtag').find('.acf_wysiwyg textarea').each(function(){
+		$el.find('.acf_wysiwyg textarea').each(function(){
 
 			
 			// vars
@@ -355,11 +359,21 @@ $(document).ready(function(){
 				id = textarea.attr('id'),
 				editor = tinyMCE.get( id );
 			
-			editor.setContent('');
-			editor.save();
-			
+			if( editor )
+			{
+				editor.setContent('');
+				editor.save();
+			}
 			
 		});
+		
+		
+		// clear image / file fields
+		$el.find('.field .active').removeClass('active');
+		
+		
+		// clear checkbox
+		$el.find('input[type="checkbox"]').removeAttr('checked');
 
 	});
 	

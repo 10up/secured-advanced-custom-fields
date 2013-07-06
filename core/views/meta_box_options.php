@@ -1,19 +1,21 @@
 <?php
 
 /*
-*  Meta Box: Options
+*  Meta box - options
 *
-*  @description: 
-*  @created: 23/06/12
+*  This template file is used when editing a field group and creates the interface for editing options.
+*
+*  @type	template
+*  @date	23/06/12
 */
-	
+
 
 // global
 global $post;
 
 	
 // vars
-$options =  apply_filters('acf/field_group/get_options', array(), $post->ID);
+$options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	
 
 ?>

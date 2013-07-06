@@ -170,7 +170,6 @@ class acf_input
 		
 		// Style
 		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
-		echo '<style type="text/css">.acf_postbox, .postbox[id*="acf_"] { display: none; }</style>';
 		
 		
 		// add user js + css
@@ -213,6 +212,61 @@ class acf_input
 			// foreach($acfs as $acf)
 		}
 		// if($acfs)
+	}
+	
+	
+	/*
+	*  meta_box_input
+	*
+	*  @description: 
+	*  @since 1.0.0
+	*  @created: 23/06/12
+	*/
+	
+	function meta_box_input( $post, $args )
+	{
+		// extract $args
+		extract( $args );
+		
+		
+		// classes
+		$class = 'acf_postbox ' . $args['field_group']['options']['layout'];
+		$toggle_class = 'acf_postbox-toggle';
+		
+		
+		if( ! $args['show'] )
+		{
+			$class .= ' acf-hidden';
+			$toggle_class .= ' acf-hidden';
+		}
+
+		?>
+<script type="text/javascript">
+(function($) {
+	
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	
+})(jQuery);	
+</script>
+		<?php
+		
+		
+		// nonce
+		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+		
+		
+		// HTML
+		if( $args['show'] )
+		{
+			$fields = apply_filters('acf/field_group/get_fields', array(), $args['field_group']['id']);
+	
+			do_action('acf/create_fields', $fields, $args['post_id']);
+		}
+		else
+		{
+			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
+		}
 	}
 	
 	
@@ -327,35 +381,6 @@ class acf_input
 	
 	
 	/*
-	*  meta_box_input
-	*
-	*  @description: 
-	*  @since 1.0.0
-	*  @created: 23/06/12
-	*/
-	
-	function meta_box_input( $post, $args )
-	{
-		// vars
-		$options = $args['args'];
-		
-		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
-		echo '<div class="options" data-layout="' . $options['field_group']['options']['layout'] . '" data-show="' . $options['show'] . '" style="display:none"></div>';
-		
-		if( $options['show'] )
-		{
-			$fields = apply_filters('acf/field_group/get_fields', array(), $options['field_group']['id']);
-	
-			do_action('acf/create_fields', $fields, $options['post_id']);
-		}
-		else
-		{
-			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
-		}
-	}
-	
-	
-	/*
 	*  ajax_render_fields
 	*
 	*  @description: 
@@ -430,26 +455,39 @@ class acf_input
 		{
 			return $post_id;
 		}
-
+		
+		
+		// verify post ID
+		// + this will prevent the acf/save_post action from firing on a manually inserted post
+		$target = wp_is_post_revision( $post_id );
+		if( !$target )
+		{
+			$target = $post_id;
+		}
+		
+		if( !isset($_POST['post_ID']) || $_POST['post_ID'] != $target )
+		{
+			return $post_id;
+		}
+		
 		
 		// update the post (may even be a revision / autosave preview)
 		do_action('acf/save_post', $post_id);
         
-        
 	}
 	
 		
-	
-	/*--------------------------------------------------------------------------------------
+	/*
+	*  input_admin_head
 	*
-	*	input_admin_head
+	*  action called when rendering the head of an admin screen. Used primarily for passing PHP to JS
 	*
-	*	This is fired from an action: acf/input/admin_head
+	*  @type	action
+	*  @date	27/05/13
 	*
-	*	@author Elliot Condon
-	*	@since 3.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
+	*  @param	N/A
+	*  @return	N/A
+	*/
 	
 	function input_admin_head()
 	{
@@ -462,55 +500,66 @@ class acf_input
 		$post_id = 0;
 		if( $post )
 		{
-			$post_id = $post->ID;
+			$post_id = intval( $post->ID );
 		}
 		
+		
+		// l10n
+		$l10n = apply_filters( 'acf/input/admin_l10n', array(
+			'validation' => array(
+				'error' => __("Validation Failed. One or more fields below are required.",'acf')
+			)
+		));
+		
+		
+		// options
+		$o = array(
+			'post_id'		=>	$post_id,
+			'nonce'			=>	wp_create_nonce( 'acf_nonce' ),
+			'admin_url'		=>	admin_url(),
+			'ajaxurl'		=>	admin_url( 'admin-ajax.php' ),
+			'wp_version'	=>	$wp_version
+		);
+		
+		
+		// toolbars
+		$t = array();
+		
+		if( is_array($toolbars) ){ foreach( $toolbars as $label => $rows ){
+			
+			$label = sanitize_title( $label );
+			$label = str_replace('-', '_', $label);
+			
+			$t[ $label ] = array();
+			
+			if( is_array($rows) ){ foreach( $rows as $k => $v ){
+				
+				$t[ $label ][ 'theme_advanced_buttons' . $k ] = implode(',', $v);
+				
+			}}
+		}}
+		
+			
 		?>
 <script type="text/javascript">
 
 // vars
-acf.post_id = <?php echo $post_id; ?>;
+acf.post_id = <?php echo is_numeric($post_id) ? $post_id : '"' . $post_id . '"'; ?>;
 acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
 acf.admin_url = "<?php echo admin_url(); ?>";
 acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
 acf.wp_version = "<?php echo $wp_version; ?>";
-	
-	
-// text
-acf.validation.text.error = "<?php _e("Validation Failed. One or more fields below are required.",'acf'); ?>";
-
-acf.fields.relationship.max = "<?php _e("Maximum values reached ( {max} values )",'acf'); ?>";
-
-acf.fields.image.text.title_add = "Select Image";
-acf.fields.image.text.title_edit = "Edit Image";
-acf.fields.image.text.button_add = "Select Image";
-
-acf.fields.file.text.title_add = "Select File";
-acf.fields.file.text.title_edit = "Edit File";
-acf.fields.file.text.button_add = "Select File";
 
 
-// WYSIWYG
-<?php 
+// new vars
+acf.o = <?php echo json_encode( $o ); ?>;
+acf.l10n = <?php echo json_encode( $l10n ); ?>;
+acf.fields.wysiwyg.toolbars = <?php echo json_encode( $t ); ?>;
 
-if( is_array($toolbars) ):
-	foreach( $toolbars as $label => $rows ):
-		$name = sanitize_title( $label );
-		$name = str_replace('-', '_', $name);
-	?>
-acf.fields.wysiwyg.toolbars.<?php echo $name; ?> = {};
-		<?php if( is_array($rows) ): 
-			foreach( $rows as $k => $v ): ?>
-acf.fields.wysiwyg.toolbars.<?php echo $name; ?>.theme_advanced_buttons<?php echo $k; ?> = '<?php echo implode(',', $v); ?>';
-			<?php endforeach; 
-		endif;
-	endforeach;
-endif;
-
-?>
 </script>
 		<?php
 	}
+	
 	
 	
 	/*

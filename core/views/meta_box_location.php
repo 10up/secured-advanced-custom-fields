@@ -1,11 +1,14 @@
 <?php
 
 /*
-*  Meta Box: Location
+*  Meta box - locations
 *
-*  @description: 
-*  @created: 23/06/12
+*  This template file is used when editing a field group and creates the interface for editing location rules.
+*
+*  @type	template
+*  @date	23/06/12
 */
+
 
 // global
 global $post;
@@ -163,11 +166,3 @@ if( empty($groups) )
 	</tr>
 	</tbody>
 </table>
-<script type="text/html" id="acf_location_options_deactivated">
-	<optgroup label="<?php _e("Options",'acf'); ?>" disabled="true">
-		<option value="" disabled="true"><?php _e("Unlock options add-on with an activation code",'acf'); ?></option>
-	</optgroup>
-</script>
-<script type="text/javascript">
-acf.text.or = "<?php _e('or','acf'); ?>";
-</script>
