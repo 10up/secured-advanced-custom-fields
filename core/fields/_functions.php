@@ -23,7 +23,7 @@ class acf_field_functions
 	{
 		//value
 		add_filter('acf/load_value', array($this, 'load_value'), 5, 3);
-		add_action('acf/update_value', array($this, 'update_value'), 5, 4);
+		add_action('acf/update_value', array($this, 'update_value'), 5, 3);
 		add_action('acf/delete_value', array($this, 'delete_value'), 5, 2);
 		add_action('acf/format_value', array($this, 'format_value'), 5, 3);
 		add_action('acf/format_value_for_api', array($this, 'format_value_for_api'), 5, 3);
@@ -177,7 +177,7 @@ class acf_field_functions
 	*  @return	N/A
 	*/
 	
-	function update_value( $value, $post_id, $field, $exact = false )
+	function update_value( $value, $post_id, $field )
 	{
 	
 		// strip slashes
@@ -188,14 +188,11 @@ class acf_field_functions
 		//}
 		
 		
-		// apply filters
-		if( !$exact )
+		// apply filters		
+		foreach( array('key', 'name', 'type') as $key )
 		{
-			foreach( array('key', 'name', 'type') as $key )
-			{
-				// run filters
-				$value = apply_filters('acf/update_value/' . $key . '=' . $field[ $key ], $value, $post_id, $field); // new filter
-			}
+			// run filters
+			$value = apply_filters('acf/update_value/' . $key . '=' . $field[ $key ], $value, $post_id, $field); // new filter
 		}
 		
 		
@@ -227,16 +224,6 @@ class acf_field_functions
 		// update the cache
 		wp_cache_set( 'load_value/post_id=' . $post_id . '/name=' . $field['name'], $value, 'acf' );
 		
-		
-		// update temp cache
-		if( isset($GLOBALS['acf_update_values']) )
-		{
-			$GLOBALS['acf_update_values'][ $field['name'] ] = array(
-				'post_id' => $post_id,
-				'name' => $field['name'],
-				'key' => $field['key']
-			);
-		}
 	}
 	
 	

@@ -703,27 +703,8 @@ class Acf
 		
 
 		// loop through and save
-		if( isset($GLOBALS['acf_update_values']) )
+		if( !empty($_POST['fields']) )
 		{
-			// loop through and save temp cache data
-			foreach( $GLOBALS['acf_update_values'] as $f )
-			{
-				// load $v
-				$v = wp_cache_get( 'load_value/post_id=' .  $f['post_id'] . '/name=' .  $f['name'], 'acf' );
-				
-				
-				// update field
-				do_action('acf/update_value', $v, $post_id, $f, true );
-				
-			}
-
-		}
-		elseif( !empty($_POST['fields']) )
-		{
-			// instantiate temp cache
-			$GLOBALS['acf_update_values'] = array();
-			
-			
 			// loop through and save $_POST data
 			foreach( $_POST['fields'] as $k => $v )
 			{
