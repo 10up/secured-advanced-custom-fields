@@ -330,14 +330,14 @@ class acf_field_select extends acf_field
 			// key => value
 			foreach($field['choices'] as $choice)
 			{
-				if(strpos($choice, ' : ') !== false)
+				if(strpos($choice, ':') !== false)
 				{
-					$choice = explode(' : ', $choice);
-					$new_choices[trim($choice[0])] = trim($choice[1]);
+					$choice = explode(':', $choice);
+					$new_choices[ trim($choice[0]) ] = trim($choice[1]);
 				}
 				else
 				{
-					$new_choices[trim($choice)] = trim($choice);
+					$new_choices[ trim($choice) ] = trim($choice);
 				}
 			}
 		}

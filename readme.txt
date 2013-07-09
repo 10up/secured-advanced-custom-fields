@@ -101,6 +101,12 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.1.8 =
+* Core: Fix issue with cache $found variable preventing values from being loaded
+* Select field: Improve choices textarea detection - http://old.support.advancedcustomfields.com/discussion/6598/select-on-repeater-field
+* Language: Added Swedish translation - https://github.com/elliotcondon/acf/pull/93
+* Language: Updated Russian translation - https://github.com/elliotcondon/acf/pull/94
+
 = 4.1.7 =
 * Language: Added Russian translation - Thanks to Alex Torscho
 * Core: Improved the save_post function to compare post_id and only run once.
