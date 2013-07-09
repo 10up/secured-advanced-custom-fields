@@ -84,7 +84,7 @@ function acf_filter_post_id( $post_id )
 function get_field_reference( $field_name, $post_id )
 {
 	// cache
-	$cache = wp_cache_get( 'field_reference/post_id=' .  $post_id . '/name=' .  $field_name, 'acf', false, $found );
+	$cache = wp_cache_get( 'field_reference/post_id=' .  $post_id . '/name=' .  $field_name, 'acf', false, $found = false );
 
 	if( $found )
 	{
