@@ -10,10 +10,7 @@
 
 class acf_input
 {
-	
-	var $action;
-	
-	
+
 	/*
 	*  __construct
 	*
@@ -24,6 +21,10 @@ class acf_input
 	
 	function __construct()
 	{
+		// vars
+		$this->save_lock = false;
+		
+		
 		// actions
 		add_action('admin_enqueue_scripts', array($this,'admin_enqueue_scripts'));
 		
@@ -451,28 +452,31 @@ class acf_input
 		
 		
 		// verify nonce
-		if( !isset($_POST['acf_nonce']) || !wp_verify_nonce($_POST['acf_nonce'], 'input') )
+		if( !isset($_POST['acf_nonce'], $_POST['fields']) || !wp_verify_nonce($_POST['acf_nonce'], 'input') )
 		{
 			return $post_id;
 		}
 		
 		
-		// verify post ID
-		// + this will prevent the acf/save_post action from firing on a manually inserted post
-		$target = wp_is_post_revision( $post_id );
-		if( !$target )
-		{
-			$target = $post_id;
-		}
-		
-		if( !isset($_POST['post_ID']) || $_POST['post_ID'] != $target )
+		// if save lock contains a value, the save_post action is already running for another post.
+		// this would imply that the user is hooking into an ACF update_value or save_post action and inserting a new post
+		// if this is the case, we do not want to save all the $POST data to this post.
+		if( isset($GLOBALS['acf_save_lock']) && $GLOBALS['acf_save_lock'] )
 		{
 			return $post_id;
 		}
 		
+		
+		// set post_lock
+		$GLOBALS['acf_save_lock'] = $post_id;
+				
 		
 		// update the post (may even be a revision / autosave preview)
 		do_action('acf/save_post', $post_id);
+		
+		
+		// set post_lock and allow saves
+		$GLOBALS['acf_save_lock'] = false;
         
 	}
 	

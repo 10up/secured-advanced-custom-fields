@@ -414,7 +414,18 @@ $(document).ready(function(){
 		// $post_id to save against
 		$post_id = $_POST['taxonomy'] . '_' . $term_id;
 		
+		
+		// set post_lock
+		$GLOBALS['acf_save_lock'] = $post_id;
+				
+		
+		// update the post
 		do_action('acf/save_post', $post_id);
+		
+		
+		// set post_lock and allow saves
+		$GLOBALS['acf_save_lock'] = false;
+		
 	}
 		
 		
@@ -440,7 +451,16 @@ $(document).ready(function(){
 		$post_id = 'user_' . $user_id;
 		
 		
-		do_action('acf/save_post', $post_id);		
+		// set post_lock
+		$GLOBALS['acf_save_lock'] = $post_id;
+				
+		
+		// update the post
+		do_action('acf/save_post', $post_id);
+		
+		
+		// set post_lock and allow saves
+		$GLOBALS['acf_save_lock'] = false;		
 	}
 	
 	
@@ -466,7 +486,16 @@ $(document).ready(function(){
 		$post_id = $post['ID'];
 		
 		
+		// set post_lock
+		$GLOBALS['acf_save_lock'] = $post_id;
+				
+		
+		// update the post
 		do_action('acf/save_post', $post_id);
+		
+		
+		// set post_lock and allow saves
+		$GLOBALS['acf_save_lock'] = false;
 		
 		
 		return $post;
@@ -494,7 +523,16 @@ $(document).ready(function(){
 		$post_id = 'shopp_category_' . $category->id;
 		
 		
+		// set post_lock
+		$GLOBALS['acf_save_lock'] = $post_id;
+				
+		
+		// update the post
 		do_action('acf/save_post', $post_id);
+		
+		
+		// set post_lock and allow saves
+		$GLOBALS['acf_save_lock'] = false;
 	}
 	
 	
