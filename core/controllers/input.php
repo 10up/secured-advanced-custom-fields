@@ -21,9 +21,6 @@ class acf_input
 	
 	function __construct()
 	{
-		// vars
-		$this->save_lock = false;
-		
 		
 		// actions
 		add_action('admin_enqueue_scripts', array($this,'admin_enqueue_scripts'));
