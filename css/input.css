@@ -10,12 +10,6 @@
 
 .acf_postbox {
 	display: block;
-	margin-bottom: 0;
-	margin-top: 20px;
-}
-
-.acf_postbox:first-child {
-	margin-top: 0;
 }
 
 .acf_postbox .inside,
@@ -39,9 +33,6 @@
 	overflow: visible;
 }
 
-.acf_postbox.no_box + .acf_postbox.no_box {
-	margin-top: 0;	
-}
 
 /*---------------------------------------------------------------------------------------------
 *
