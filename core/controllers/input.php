@@ -464,16 +464,8 @@ class acf_input
 		}
 		
 		
-		// set post_lock
-		$GLOBALS['acf_save_lock'] = $post_id;
-				
-		
 		// update the post (may even be a revision / autosave preview)
 		do_action('acf/save_post', $post_id);
-		
-		
-		// set post_lock and allow saves
-		$GLOBALS['acf_save_lock'] = false;
         
 	}
 	

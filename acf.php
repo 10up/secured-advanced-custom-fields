@@ -80,6 +80,11 @@ class Acf
 		add_action('init', array($this, 'init'), 1);
 		add_action('acf/save_post', array($this, 'save_post'), 10);
 		
+		add_action('acf/pre_save_post', array($this, 'save_post_lock'), 0);
+		add_action('acf/pre_save_post', array($this, 'save_post_unlock'), 999);
+		add_action('acf/save_post', array($this, 'save_post_lock'), 0);
+		add_action('acf/save_post', array($this, 'save_post_unlock'), 999);
+		
 		
 		// filters
 		add_filter('acf/get_info', array($this, 'get_info'), 1, 1);
@@ -681,6 +686,44 @@ class Acf
 			
 		}}
 				
+	}
+	
+	
+	/*
+	*  save_post_lock
+	*
+	*  This action sets a global variable which locks the ACF save functions to this ID.
+	*  This prevents an inifinite loop if a user was to hook into the save and create a new post
+	*
+	*  @type	function
+	*  @date	16/07/13
+	*
+	*  @param	{int}	$post_id
+	*  @return	{int}	$post_id
+	*/
+	
+	function save_post_lock( $post_id )
+	{
+		$GLOBALS['acf_save_lock'] = $post_id;
+	}
+	
+	
+	/*
+	*  save_post_unlock
+	*
+	*  This action sets a global variable which unlocks the ACF save functions to this ID.
+	*  This prevents an inifinite loop if a user was to hook into the save and create a new post
+	*
+	*  @type	function
+	*  @date	16/07/13
+	*
+	*  @param	{int}	$post_id
+	*  @return	{int}	$post_id
+	*/
+	
+	function save_post_unlock( $post_id )
+	{
+		$GLOBALS['acf_save_lock'] = false;
 	}
 	
 	
