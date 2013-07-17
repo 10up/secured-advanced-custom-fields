@@ -103,6 +103,7 @@ http://support.advancedcustomfields.com/
 
 = 4.2.0 =
 * Full integration between attachments and custom fields!
+* Compatibility: Fixed WYSIWYG JS bug with Visual Composer plugin
 
 = 4.1.8.1 =
 * Select field: Revert choices logic - http://support.advancedcustomfields.com/forums/topic/select-field-label-cut-off-at/#post-529
