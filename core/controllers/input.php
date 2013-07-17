@@ -499,6 +499,10 @@ class acf_input
 		
 		// l10n
 		$l10n = apply_filters( 'acf/input/admin_l10n', array(
+			'core' => array(
+				'expand_details' => __("Expand Details",'acf'),
+				'collapse_details' => __("Collapse Details",'acf')
+			),
 			'validation' => array(
 				'error' => __("Validation Failed. One or more fields below are required.",'acf')
 			)
