@@ -29,12 +29,7 @@ var acf = {
 		url_to_object : function(){}
 	},
 	conditional_logic : {},
-	media : {
-		div : null,
-		frame : null,
-		clear_frame : function(){},
-		type : function(){}
-	},
+	media : {},
 	fields : {
 		date_picker : {},
 		color_picker : {},
@@ -205,34 +200,190 @@ var acf = {
 	*  @created: 16/01/13
 	*/
 	
-	acf.media.clear_frame = function()
-	{
-		// validate
-		if( !acf.media.frame )
-		{
-			return;
+	acf.media = {
+	
+		div : null,
+		frame : null,
+		
+		clear_frame : function(){
+			
+			// validate
+			if( !this.frame )
+			{
+				return;
+			}
+			
+			
+			// detach
+			this.frame.detach();
+			this.frame.dispose();
+			
+			
+			// reset var
+			this.frame = null;
+			
+		},
+		type : function(){
+			
+			// default
+			var type = 'thickbox';
+			
+			
+			// if wp exists
+			if( typeof(wp) == "object" )
+			{
+				type = 'backbone';
+			}
+			
+			
+			// return
+			return type;
+			
+		},
+		init : function(){
+			
+			// vars
+			var _prototype = wp.media.view.AttachmentCompat.prototype;
+			
+			
+			// orig
+			_prototype.orig_render = _prototype.render;
+			
+			
+			// update class
+			_prototype.className = 'compat-item acf_postbox no_box';
+			
+			
+			// modify render
+			_prototype.render = function() {
+				
+				// vars
+				var _this = this;
+				
+				
+				if( _this.ignore_render )
+				{
+					return this;	
+				}
+				
+				
+				// run the old render function
+				this.orig_render();
+				
+				
+				// add button
+				setTimeout(function(){
+					
+					// vars
+					var $media_model = _this.$el.closest('.media-modal');
+					
+					
+					// is this an edit only modal?
+					if( $media_model.hasClass('acf-media-modal') )
+					{
+						return;	
+					}
+					
+					
+					// does button already exist?
+					if( $media_model.find('.media-frame-router .acf-expand-details').exists() )
+					{
+						return;	
+					}
+					
+					
+					// create button
+					var button = $([
+						'<a href="#" class="acf-expand-details">',
+							'<span class="icon"></span>',
+							'<span class="is-closed">' + acf.l10n.core.expand_details +  '</span>',
+							'<span class="is-open">' + acf.l10n.core.collapse_details +  '</span>',
+						'</a>'
+					].join('')); 
+					
+					
+					// add events
+					button.on('click', function( e ){
+						
+						e.preventDefault();
+						
+						if( $media_model.hasClass('acf-expanded') )
+						{
+							$media_model.removeClass('acf-expanded');
+						}
+						else
+						{
+							$media_model.addClass('acf-expanded');
+						}
+						
+					});
+					
+					
+					// append
+					$media_model.find('.media-frame-router').append( button );
+						
+				
+				}, 0);
+ 
+				// add in ACF render!
+				// + WP must be caching the HTML to be rendered. When you select an image, select a different image, then seelct the origional image again, the same ID is found on the WYSIWYG and it doesn't render...
+				// + Failed: Edit the wysiwyg.js file and use mceAddControl before adding it... perhaps some sort of destroy instead?
+				setTimeout(function(){
+					$(document).trigger( 'acf/setup_fields', _this.$el );
+				}, 50);
+				
+				
+				
+				// return based on the origional render function
+				return this;
+			};
+			
+			
+			// override save
+			_prototype.save = function( event ) {
+			
+				var data = {},
+					names = {};
+				
+				if ( event )
+					event.preventDefault();
+					
+					
+				_.each( this.$el.serializeArray(), function( pair ) {
+				
+					// initiate name
+					if( pair.name.slice(-2) === '[]' )
+					{
+						// remove []
+						pair.name = pair.name.replace('[]', '');
+						
+						
+						// initiate counter
+						if( typeof names[ pair.name ] === 'undefined'){
+							
+							names[ pair.name ] = -1;
+							//console.log( names[ pair.name ] );
+							
+						}
+						
+						
+						names[ pair.name ]++
+						
+						pair.name += '[' + names[ pair.name ] +']';
+						
+						
+					}
+ 
+					data[ pair.name ] = pair.value;
+				});
+ 
+				this.ignore_render = true;
+				this.model.saveCompat( data );
+				
+			};
 		}
-		
-		
-		acf.media.frame.detach();
-		acf.media.frame.dispose();
-		acf.media.frame = null;
-		
 	};
 	
-	acf.media.type = function(){
-		
-		var type = 'thickbox';
-		
-		if( typeof(wp) == "object" )
-		{
-			type = 'backbone';
-		}
-		
-		return type;
-		
-	};
-
 	
 	/*
 	*  Save Draft
@@ -452,6 +603,10 @@ var acf = {
 	*/
 	
 	$(window).load(function(){
+		
+		// init
+		acf.media.init();
+		
 		
 		setTimeout(function(){
 			

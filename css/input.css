@@ -282,13 +282,155 @@
 }
 
 
+/*---------------------------------------------------------------------------------------------
+*
+*  Media Model
+*
+*---------------------------------------------------------------------------------------------*/
+
+.media-modal { 
+	
+}
+
+.media-modal .field {
+	padding: 0;
+}
+
+
+/* WP sets tables to act as divs. ACF uses tables, so these muct be reset */
+.media-modal .compat-attachment-fields td.field table {
+	display: table;
+}
+.media-modal .compat-attachment-fields td.field table tbody {
+	display: table-row-group;
+}
+.media-modal .compat-attachment-fields td.field table tr {
+	display: table-row;
+}
+.media-modal .compat-attachment-fields td.field table td,
+.media-modal .compat-attachment-fields td.field table th {
+	display: table-cell;
+}
+
+.compat-item table.widefat {
+	border: #DFDFDF solid 1px;
+}
+
+
+/* Expand / Collapse button */
+.media-modal .acf-expand-details {
+	float: right;
+	padding: 1px 10px;
+	margin-right: 6px;
+	height: 18px;
+	line-height: 18px;
+	color: #AAAAAA;
+	font-size: 12px;
+}
+
+.media-modal .acf-expand-details:hover {
+	color: #999;
+}
+
+.media-modal .acf-expand-details:focus,
+.media-modal .acf-expand-details:active {
+	outline: 0 none;
+}
+
+.media-modal .acf-expand-details span {
+	display: block;
+	float: left;
+}
+
+.media-modal .acf-expand-details .icon {
+	height: 15px;
+	width: 15px;
+	float: left;
+	
+	background: url(../images/arrows.png) 0 -72px no-repeat;
+	border: #C7C7C7 solid 1px;
+	
+	border-radius: 10px;
+	margin: 0 4px 0 0;
+}
+
+.media-modal .acf-expand-details:hover .icon {
+	border-color: #AAAAAA;
+}
+
+.media-modal.acf-expanded .acf-expand-details .icon {
+	background-position: 0 -108px;
+}
+
+.media-modal .acf-expand-details .is-open { display: none; }
+.media-modal .acf-expand-details .is-closed { display: block; }
+
+.media-modal.acf-expanded .acf-expand-details .is-open { display: block; }
+.media-modal.acf-expanded .acf-expand-details .is-closed { display: none; }
+
+
+/* Expand / Collapse views */
+.media-modal .media-toolbar,
+.media-modal .attachments,
+.media-modal .media-sidebar {
+	-webkit-transition: all 0.25s ease-out;  /* Safari 3.2+, Chrome */
+       -moz-transition: all 0.25s ease-out;  /* Firefox 4-15 */
+         -o-transition: all 0.25s ease-out;  /* Opera 10.5–12.00 */
+            transition: all 0.25s ease-out;  /* Firefox 16+, Opera 12.50+ */
+}
+
+.media-modal.acf-expanded .media-toolbar { right: 700px; }
+.media-modal.acf-expanded .attachments { right: 700px; }
+.media-modal.acf-expanded .media-sidebar { width: 667px; }
+
+
+/* Sidebar: Collapse */
+.media-modal .compat-item .label {
+	margin: 0;	
+}
+
+.media-modal .media-sidebar .setting span, 
+.media-modal .compat-item label span,
+.media-modal .media-sidebar .setting input, 
+.media-modal .media-sidebar .setting textarea,
+.media-modal .compat-item .field {
+	min-height: 0;
+	margin: 5px 0 0;
+}
+
+
+/* Sidebar: Expand */
+.media-modal.acf-expanded .attachment-info .thumbnail {
+	width: 20%;
+	max-width: none;
+	max-height: 150px;
+	margin-right: 3%;	
+}
+
+.media-modal.acf-expanded .media-sidebar .setting span,
+.media-modal.acf-expanded .compat-item .label {
+	min-width: 20%;	
+}
+
+.media-modal.acf-expanded .media-sidebar .setting input, 
+.media-modal.acf-expanded .media-sidebar .setting textarea,
+.media-modal.acf-expanded .compat-item .field {
+	width: 77%;
+}
+
+
+/*---------------------------------------------------------------------------------------------
+*
+*  Media Model (Edit Mode)
+*
+*---------------------------------------------------------------------------------------------*/
+
 .media-modal.acf-media-modal {
 	left: 20%;
 	right: 20%;
 	top: 100px;
 	bottom: 100px;
 }
-
 
 .media-modal.acf-media-modal .media-frame-router,
 .media-modal.acf-media-modal .attachments,
@@ -310,145 +452,8 @@
     left: 0px;
 }
 
-
-.media-modal.acf-media-modal .media-sidebar {
-	padding: 0 30px 24px;
-}
-
-.media-modal.acf-media-modal .media-sidebar .attachment-info .thumbnail {
-	width: 120px;
-	background: #EAEAEA;
-}
-
-.media-modal .acf_postbox .field {
-    padding: 0;
-}
-
-.media-modal.acf-media-modal .media-sidebar .setting,
-.media-modal.acf-media-modal .compat-attachment-fields tr {
-    margin: 0;
-    padding: 2px 0;
-    clear: both;
-    float: none;
-    width: auto;
-    padding: 5px 0 5px 130px;
-}
-
-.media-modal.acf-media-modal .media-sidebar .setting span,
-.media-modal.acf-media-modal .compat-attachment-fields tr th.label {
-	position: absolute;
-	left: 0;
-	width: 120px;
-	min-width: 0;
-	text-align: left;
-	margin: 0;
-	padding: 0;
-	
-	color: #999999;
-    text-shadow: 0 1px 0 #FFFFFF;
-    font-weight: normal;
-}
-
-.media-modal.acf-media-modal .compat-attachment-fields tr th.label span {
-	text-align: left;
-	padding: 0;
-}
-
-.media-modal.acf-media-modal .media-sidebar input, 
-.media-modal.acf-media-modal .media-sidebar select,
-.media-modal.acf-media-modal .media-sidebar textarea {
-    width: 100%;
-    margin: 0;
-    float: none;
-}
-
-/*
-.media-modal.acf-media-modal .compat-item th.label {
-    float: none;
-    margin-right: 0;
-    width: 130px;
-    text-align: left;
-    min-width: 0;
-    display: table-cell;
-}
-
-.media-modal.acf-media-modal .compat-item th.label span {
-	text-align: left;
-	
-}
-
-.media-modal.acf-media-modal .compat-item td.field {
-	width: auto;
-	float: none;
-	display: table-cell;
-}
-*/
-
-
-/*
-*  .media-modal 
-*/
-
-.media-modal.acf-media-modal .compat-item {
-    float: left;
-    overflow: none;
-    width: 100%;
-}
-
-.media-modal.acf-media-modal .compat-attachment-fields,
-.media-modal.acf-media-modal .compat-attachment-fields tbody,
-.media-modal.acf-media-modal .compat-attachment-fields tr,
-.media-modal.acf-media-modal .compat-attachment-fields th,
-.media-modal.acf-media-modal .compat-attachment-fields td {
-	display: block;
-	position: relative;
-}
-
-.media-modal.acf-media-modal .compat-attachment-fields td.field {
-	width: 100%;
-	float: none;
-	padding: 0;
-}
-
-.media-modal .compat-attachment-fields td.field table {
-	display: table;
-}
-.media-modal .compat-attachment-fields td.field table tbody {
-	display: table-row-group;
-}
-.media-modal .compat-attachment-fields td.field table tr {
-	display: table-row;
-}
-.media-modal .compat-attachment-fields td.field table td,
-.media-modal .compat-attachment-fields td.field table th {
-	display: table-cell;
-}
-
-.media-modal .acf_postbox {
-	display: block !important;
-}
-
-.media-modal .acf-attachment-large-toggle {
-	position: absolute;
-	left: 0;
-	top: 50%;
-	height: 30px;
-	width: 30px;
-	background: #f00;
-}
-
-.media-modal .acf-attachment-large {
-	
-}
-
-.media-modal .acf-attachment-large .media-toolbar {
-	right: 700px;
-}
-.media-modal .acf-attachment-large .attachments {
-	right: 700px;
-}
-.media-modal .acf-attachment-large .media-sidebar {
-	width: 667px;
+.media-modal.acf-media-modal .media-toolbar {
+    right: 0;
 }
 
 
@@ -465,8 +470,6 @@
 .acf-message-wrapper .message {
 	margin: 0 !important;
 }
-
-
 
 
 /*---------------------------------------------------------------------------------------------
