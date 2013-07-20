@@ -106,8 +106,14 @@ http://support.advancedcustomfields.com/
 == Changelog ==
 
 = 4.2.0 =
+* IMPORTANT: ACF now requires a minimum WordPress version of 3.5.0
 * Full integration between attachments and custom fields!
 * Compatibility: Fixed WYSIWYG JS bug with Visual Composer plugin
+* Text field: Added new options for prepend, append, placeholder and character limit
+* Number field: Added new options for prepend, append and placeholder
+* Image field: fixed safari bug causing all images to appear small
+* Language: Added Swedish translation
+* Core: Improved save_lock functionality to prevent inifinite loops when creating a post on the fly
 
 = 4.1.8.1 =
 * Select field: Revert choices logic - http://support.advancedcustomfields.com/forums/topic/select-field-label-cut-off-at/#post-529
