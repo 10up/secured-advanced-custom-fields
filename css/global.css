@@ -106,6 +106,53 @@ input.ir { border: 0 none; background: none; }
 }
 
 
+/* Input append / prepend */
+
+.acf-input-prepend,
+.acf-input-append {
+	font-size: 12px;
+	line-height: 15px;
+	height: 15px;
+	
+	padding: 5px 7px;
+	
+	background: #F4F4F4;
+	border: #DFDFDF solid 1px;
+}
+
+.acf-input-prepend {
+	float: left;
+	border-right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.acf-input-append {
+	float: right;
+	border-left: 0;
+	border-radius: 0 3px 3px 0;
+}
+
+.acf-input-wrap {
+	position: relative;
+	overflow: hidden;
+}
+
+.acf-input-wrap input {
+	height: 27px;
+}
+
+input.acf-is-prepended {
+	border-radius: 0 3px 3px 0;
+}
+
+input.acf-is-appended {
+	border-radius: 3px 0 0 3px;
+}
+
+input.acf-is-prepended.acf-is-appended {
+	border-radius: 0;
+}
+
 
 /*--------------------------------------------------------------------------------------------
 *
