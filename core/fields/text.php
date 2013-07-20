@@ -53,14 +53,14 @@ class acf_field_text extends acf_field
 		
 		
 		// maxlength
-		if( $field['maxlength'] )
+		if( $field['maxlength'] !== "" )
 		{
 			$o[] = 'maxlength';
 		}
 		
 		
 		// prepend
-		if( $field['prepend'] )
+		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
 			$e .= '<div class="acf-input-prepend">' . $field['prepend'] . '</div>';
@@ -68,7 +68,7 @@ class acf_field_text extends acf_field
 		
 		
 		// append
-		if( $field['append'] )
+		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
 			$e .= '<div class="acf-input-append">' . $field['append'] . '</div>';
