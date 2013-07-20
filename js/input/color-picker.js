@@ -10,7 +10,7 @@
 	*
 	*/
 	
-	_cp = acf.fields.color_picker = {
+	var _cp = acf.fields.color_picker = {
 		
 		$el : null,
 		$input : null,
