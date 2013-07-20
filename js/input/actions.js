@@ -66,6 +66,40 @@ var acf = {
 	
 	
 	/*
+	*  acf.helpers.isset
+	*
+	*  http://phpjs.org/functions/isset
+	*
+	*  @type	function
+	*  @date	20/07/13
+	*
+	*  @param	{mixed}		arguments
+	*  @return	{boolean}	
+	*/
+	
+	acf.helpers.isset = function(){
+		
+		var a = arguments,
+	        l = a.length,
+	        i = 0,
+	        undef;
+	
+	    if (l === 0) {
+	        throw new Error('Empty isset');
+	    }
+	
+	    while (i !== l) {
+	        if (a[i] === undef || a[i] === null) {
+	            return false;
+	        }
+	        i++;
+	    }
+	    return true;
+			
+	};
+	
+	
+	/*
 	*  acf.helpers.get_atts
 	*
 	*  description
