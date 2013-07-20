@@ -48,7 +48,7 @@ class acf_field_number extends acf_field
 	function create_field( $field )
 	{
 		// vars
-		$o = array( 'id', 'class', 'min', 'max', 'step', 'name', 'value' );
+		$o = array( 'id', 'class', 'min', 'max', 'step', 'name', 'value', 'placeholder' );
 		$e = '';
 		
 		
