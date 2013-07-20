@@ -139,6 +139,7 @@ input.ir { border: 0 none; background: none; }
 
 .acf-input-wrap input {
 	height: 27px;
+	margin: 0;
 }
 
 input.acf-is-prepended {
