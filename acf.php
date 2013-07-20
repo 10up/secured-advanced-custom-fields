@@ -299,7 +299,8 @@ class Acf
 				// float / int
 				if( strpos($value,'.') !== false )
 				{
-					$value = floatval( $value );
+					// leave decimal places alone
+					//$value = floatval( $value );
 				}
 				else
 				{
