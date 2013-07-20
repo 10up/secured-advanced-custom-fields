@@ -22,7 +22,8 @@ class acf_field_text extends acf_field
 			'formatting' 	=>	'html',
 			'maxlength'		=>	'',
 			'placeholder'	=>	'',
-			'prepend'		=>	''
+			'prepend'		=>	'',
+			'append'		=>	''
 		);
 		
 		
