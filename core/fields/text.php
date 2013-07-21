@@ -86,6 +86,7 @@ class acf_field_text extends acf_field
 		$e .= ' />';
 		$e .= '</div>';
 		
+		
 		// return
 		echo $e;
 	}
