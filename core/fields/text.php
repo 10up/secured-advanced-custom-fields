@@ -114,6 +114,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -128,6 +129,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Formatting",'acf'); ?></label>
+		<p><?php _e("Effects value on front end",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -146,6 +148,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Character Limit",'acf'); ?></label>
+		<p><?php _e("Leave blank for no limit",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -160,6 +163,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -174,6 +178,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Prepend",'acf'); ?></label>
+		<p><?php _e("Appears before the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -188,6 +193,7 @@ class acf_field_text extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Append",'acf'); ?></label>
+		<p><?php _e("Appears after the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
