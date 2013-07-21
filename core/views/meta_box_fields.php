@@ -138,7 +138,7 @@ $l10n = array(
 					<tbody>
 						<tr class="field_label">
 							<td class="label">
-								<label><span class="required">*</span><?php _e("Field Label",'acf'); ?></label>
+								<label><?php _e("Field Label",'acf'); ?><span class="required">*</span></label>
 								<p class="description"><?php _e("This is the name which will appear on the EDIT page",'acf'); ?></p>
 							</td>
 							<td>
@@ -154,7 +154,7 @@ $l10n = array(
 						</tr>
 						<tr class="field_name">
 							<td class="label">
-								<label><span class="required">*</span><?php _e("Field Name",'acf'); ?></label>
+								<label><?php _e("Field Name",'acf'); ?><span class="required">*</span></label>
 								<p class="description"><?php _e("Single word, no spaces. Underscores and dashes allowed",'acf'); ?></p>
 							</td>
 							<td>
@@ -169,7 +169,9 @@ $l10n = array(
 							</td>
 						</tr>
 						<tr class="field_type">
-							<td class="label"><label><span class="required">*</span><?php _e("Field Type",'acf'); ?></label></td>
+							<td class="label">
+								<label><?php _e("Field Type",'acf'); ?><span class="required">*</span></label>
+							</td>
 							<td>
 								<?php
 								do_action('acf/create_field', array(
