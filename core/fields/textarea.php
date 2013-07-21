@@ -20,6 +20,8 @@ class acf_field_textarea extends acf_field
 		$this->defaults = array(
 			'default_value'	=>	'',
 			'formatting' 	=>	'br',
+			'maxlength'		=>	'',
+			'placeholder'	=>	'',
 		);
 		
 		
@@ -42,9 +44,32 @@ class acf_field_textarea extends acf_field
 	
 	function create_field( $field )
 	{
-		$field['value'] = esc_textarea($field['value']);
+		// vars
+		$o = array( 'id', 'class', 'name', 'placeholder' );
+		$e = '';
 		
-		echo '<textarea id="' . $field['id'] . '" rows="4" class="' . $field['class'] . '" name="' . $field['name'] . '" >' . $field['value'] . '</textarea>';
+		
+		// maxlength
+		if( $field['maxlength'] !== "" )
+		{
+			$o[] = 'maxlength';
+		}
+		
+
+		$e .= '<textarea rows="4"';
+		
+		foreach( $o as $k )
+		{
+			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';	
+		}
+		
+		$e .= '>';
+		$e .= esc_textarea($field['value']);
+		$e .= '</textarea>';
+		
+		// return
+		echo $e;
+		
 	}
 	
 	/*
@@ -92,10 +117,38 @@ class acf_field_textarea extends acf_field
 			'name'	=>	'fields['.$key.'][formatting]',
 			'value'	=>	$field['formatting'],
 			'choices' => array(
-				'none'	=>	__("None",'acf'),
-				'br'	=>	__("auto &lt;br /&gt;",'acf'),
-				'html'	=>	__("HTML",'acf'),
+				'none'	=>	__("No formatting",'acf'),
+				'br'	=>	__("Convert new lines into &lt;br /&gt; tags",'acf'),
+				'html'	=>	__("Convert HTML into tags",'acf')
 			)
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Character Limit",'acf'); ?></label>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'number',
+			'name'	=>	'fields[' .$key.'][maxlength]',
+			'value'	=>	$field['maxlength'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Placeholder Text",'acf'); ?></label>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][placeholder]',
+			'value'	=>	$field['placeholder'],
 		));
 		?>
 	</td>
