@@ -169,6 +169,7 @@ class acf_field_wysiwyg extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
