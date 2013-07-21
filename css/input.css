@@ -1018,19 +1018,27 @@ tr.acf-conditional_logic-show {
 *	
 *-------------------------------------------------------------------------*/
 
-#acf-farbtastic {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: none;
+.acf-color_picker {
 	
-	background: #FFFFFF;
-    border: 1px solid #E1E1E1;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-	
-	border-radius: 3px;
-	margin: -2px 0 0;
 }
+
+.acf-color_picker input[type="text"] {
+	display: inline;
+	width: 80px !important;
+}
+
+.acf-color_picker .ui-slider-vertical {
+	width: auto;
+	height: auto;
+	background: transparent;
+	border: 0 none;
+}
+
+.acf-color_picker .ui-slider-vertical .ui-slider-handle {
+	margin-bottom: 0;
+}
+
+
 
 
 /*--------------------------------------------------------------------------

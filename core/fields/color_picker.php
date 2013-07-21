@@ -43,9 +43,25 @@ class acf_field_color_picker extends acf_field
 	
 	function create_field( $field )
 	{
-		echo '<div class="acf-color_picker">';
-			echo '<input type="text" value="' . $field['value'] . '" id="' . $field['id'] . '" class="input" name="' . $field['name'] . '"  />';
-		echo '</div>';
+		// vars
+		$o = array( 'id', 'class', 'name', 'value' );
+		$e = '';
+		
+		
+		$e .= '<div class="acf-color_picker">';
+		$e .= '<input type="text"';
+		
+		foreach( $o as $k )
+		{
+			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';	
+		}
+		
+		$e .= ' />';
+		$e .= '</div>';
+		
+		
+		// return
+		echo $e;
 	}
 	
 	
@@ -71,14 +87,14 @@ class acf_field_color_picker extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
-		<p class="description"><?php _e("eg: #ffffff",'acf'); ?></p>
 	</td>
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
-			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][default_value]',
-			'value'	=>	$field['default_value'],
+			'type'			=>	'text',
+			'name'			=>	'fields[' .$key.'][default_value]',
+			'value'			=>	$field['default_value'],
+			'placeholder'	=>	'#ffffff'
 		));
 		?>
 	</td>

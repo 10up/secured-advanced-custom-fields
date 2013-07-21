@@ -573,7 +573,7 @@ class acf_input
 			'jquery-ui-core',
 			'jquery-ui-tabs',
 			'jquery-ui-sortable',
-			'farbtastic',
+			'wp-color-picker',
 			'thickbox',
 			'media-upload',
 			'acf-input',
@@ -591,7 +591,7 @@ class acf_input
 		// styles
 		wp_enqueue_style(array(
 			'thickbox',
-			'farbtastic',
+			'wp-color-picker',
 			'acf-global',
 			'acf-input',
 			'acf-datepicker',	
