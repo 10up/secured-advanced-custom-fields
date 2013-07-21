@@ -116,6 +116,7 @@ class acf_field_image extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Return Value",'acf'); ?></label>
+		<p><?php _e("Specify the returned value on front end",'acf') ?></p>
 	</td>
 	<td>
 		<?php
@@ -136,6 +137,7 @@ class acf_field_image extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Preview Size",'acf'); ?></label>
+		<p><?php _e("Shown when entering data",'acf') ?></p>
 	</td>
 	<td>
 		<?php
@@ -154,6 +156,7 @@ class acf_field_image extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Library",'acf'); ?></label>
+		<p><?php _e("Limit the media library choice",'acf') ?></p>
 	</td>
 	<td>
 		<?php
