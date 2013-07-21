@@ -94,6 +94,7 @@ class acf_field_textarea extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -108,7 +109,7 @@ class acf_field_textarea extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Formatting",'acf'); ?></label>
-		<p class="description"><?php _e("Define how to render html tags / new lines",'acf'); ?></p>
+		<p><?php _e("Effects value on front end",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -128,6 +129,7 @@ class acf_field_textarea extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Character Limit",'acf'); ?></label>
+		<p><?php _e("Leave blank for no limit",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
@@ -142,6 +144,7 @@ class acf_field_textarea extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
