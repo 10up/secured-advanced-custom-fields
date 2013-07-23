@@ -947,6 +947,18 @@ td.acf_input-wrap {
 }
 
 
+
+/*---------------------------------------------------------------------------------------------
+*
+*	Field: Date Picker
+*
+*---------------------------------------------------------------------------------------------*/
+
+.ui-acf .ui-datepicker {
+	z-index: 999999999 !important;
+}
+
+
 /*---------------------------------------------------------------------------------------------
 *
 *	Other
@@ -1038,8 +1050,20 @@ tr.acf-conditional_logic-show {
 	margin-bottom: 0;
 }
 
+/* Hack for color picker in media popup */
+.media-frame .acf-color_picker .wp-color-result {
+	border-bottom: #BBBBBB solid 1px;
+}
 
+.compat-item .field .acf-color_picker input {
+	width: auto;
+	margin: 0 0 0 6px;
+}
 
+.compat-item .field .acf-color_picker .button {
+	height: 24px;
+	padding: 0 10px 1px;
+}
 
 /*--------------------------------------------------------------------------
 *
