@@ -364,61 +364,39 @@
 	
 	
 	/*
-	*  acf/setup_fields
-	*
-	*  run init function for this field
-	*
-	*  @type	event
-	*  @date	1/06/13
-	*
-	*  @note	Currenlty no need for init
-	
-	$(document).live('acf/setup_fields', function(e, postbox){
-		
-		$(postbox).find('.acf-image-uploader').each(function(){
-			
-			acf.fields.image.set({ $el : $(this) }).init();
-			
-		});
-		
-	});
-	
-	*/
-	
-	
-	/*
 	*  Events
 	*
 	*  live events for this field
 	*
-	*  @type	event
-	*  @date	1/06/13
+	*  @type	function
+	*  @date	1/03/2011
 	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	
-	$('.acf-image-uploader .acf-button-edit').live('click', function(){
+	$(document).on('click', '.acf-image-uploader .acf-button-edit', function( e ){
+		
+		e.preventDefault();
 		
 		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).edit();
-		
-		return false;
 			
 	});
 	
-	$('.acf-image-uploader .acf-button-delete').live('click', function(){
+	$(document).on('click', '.acf-image-uploader .acf-button-delete', function( e ){
+		
+		e.preventDefault();
 		
 		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).remove();
-		
-		return false;
 			
 	});
 	
 	
-	$('.acf-image-uploader .add-image').live('click', function(){
-				
-		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).popup();
+	$(document).on('click', '.acf-image-uploader .add-image', function( e ){
 		
-		return false;
+		e.preventDefault();
+		
+		acf.fields.image.set({ $el : $(this).closest('.acf-image-uploader') }).popup();
 		
 	});
 	
