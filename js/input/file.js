@@ -321,62 +321,39 @@
 	
 	
 	/*
-	*  acf/setup_fields
-	*
-	*  run init function for this field
-	*
-	*  @type	event
-	*  @date	1/06/13
-	*
-	*  @note	Currenlty no need for init
-	
-		
-	$(document).live('acf/setup_fields', function(e, postbox){
-		
-		$(postbox).find('.acf-file-uploader').each(function(){
-			
-			acf.fields.file.set({ $el : $(this) }).init();
-			
-		});
-		
-	});
-	
-	*/
-	
-	
-	/*
 	*  Events
 	*
 	*  live events for this field
 	*
-	*  @type	event
-	*  @date	1/06/13
+	*  @type	function
+	*  @date	1/03/2011
 	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	
-	$('.acf-file-uploader .acf-button-edit').live('click', function(){
+	$(document).on('click', '.acf-file-uploader .acf-button-edit', function( e ){
+		
+		e.preventDefault();
 		
 		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).edit();
-		
-		return false;
 			
 	});
 	
-	$('.acf-file-uploader .acf-button-delete').live('click', function(){
+	$(document).on('click', '.acf-file-uploader .acf-button-delete', function( e ){
+		
+		e.preventDefault();
 		
 		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).remove();
-		
-		return false;
 			
 	});
 	
 	
-	$('.acf-file-uploader .add-file').live('click', function(){
-				
-		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).popup();
+	$(document).on('click', '.acf-file-uploader .add-file', function( e ){
 		
-		return false;
+		e.preventDefault();
+		
+		acf.fields.file.set({ $el : $(this).closest('.acf-file-uploader') }).popup();
 		
 	});
 	
