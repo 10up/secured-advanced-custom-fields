@@ -4,10 +4,13 @@
 	/*
 	*  acf.screen
 	*
-	*  description
+	*  Data used by AJAX to hide / show field groups
 	*
 	*  @type	object
-	*  @date	3/09/12
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
 	acf.screen = {
@@ -60,13 +63,18 @@
 	
 	
 	/*
-	*  update_field_groups
+	*  acf/update_field_groups
 	*
-	*  @description: finds the new id's for metaboxes and show's hides metaboxes
-	*  @created: 1/03/2011
+	*  finds the new id's for metaboxes and show's hides metaboxes
+	*
+	*  @type	event
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	$(document).live('acf/update_field_groups', function(){
+	$(document).on('acf/update_field_groups', function(){
 		
 		
 		$.ajax({
@@ -163,13 +171,18 @@
 
 	
 	/*
-	*  $(document).trigger('acf/update_field_groups'); (Live change events)
+	*  Events
 	*
-	*  @description: call the $(document).trigger('acf/update_field_groups'); event on live events
-	*  @created: 1/03/2011
+	*  Updates acf.screen with more data and triggers the update event
+	*
+	*  @type	function
+	*  @date	1/03/2011
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
-		
-	$('#page_template').live('change', function(){
+	
+	$(document).on('change', '#page_template', function(){
 		
 		acf.screen.page_template = $(this).val();
 		
@@ -178,7 +191,7 @@
 	});
 	
 	
-	$('#parent_id').live('change', function(){
+	$(document).on('change', '#parent_id', function(){
 		
 		var val = $(this).val();
 		
@@ -201,7 +214,7 @@
 	});
 
 	
-	$('#post-formats-select input[type="radio"]').live('change', function(){
+	$(document).on('change', '#post-formats-select input[type="radio"]', function(){
 		
 		var val = $(this).val();
 		
@@ -217,8 +230,7 @@
 	});	
 	
 	
-	// taxonomy / category
-	$('.categorychecklist input[type="checkbox"]').live('change', function(){
+	$(document).on('change', '.categorychecklist input[type="checkbox"]', function(){
 		
 		// set timeout to fix issue with chrome which does not register the change has yet happened
 		setTimeout(function(){
