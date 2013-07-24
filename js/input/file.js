@@ -257,25 +257,34 @@
 				    	// select / add another file field?
 				    	if( i > 1 )
 						{
-							var key = _media.div.closest('td').attr('data-field_key'),
-								tr = _media.div.closest('tr'),
-								repeater = tr.closest('.repeater');
+							// vars
+							var $td			=	_media.div.closest('td'),
+								$tr 		=	$td.closest('.row'),
+								$repeater 	=	$tr.closest('.repeater'),
+								key 		=	$td.attr('data-field_key'),
+								selector	=	'td .acf-file-uploader:first';
+								
+							
+							// key only exists for repeater v1.0.1 +
+							if( key )
+							{
+								selector = 'td[data-field_key="' + key + '"] .acf-file-uploader';
+							}
 							
 							
-							if( tr.next('.row').exists() )
+							// add row?
+							if( ! $tr.next('.row').exists() )
 							{
-								_media.div = tr.next('.row').find('td[data-field_key="' + key + '"] .acf-file-uploader');
+								$repeater.find('.add-row-end').trigger('click');
+								
 							}
-							else
-							{
-								// add row 
-				 				repeater.find('.add-row-end').trigger('click'); 
-				 			 
-				 				// set acf_div to new row file 
-				 				_media.div = repeater.find('> table > tbody > tr.row:last td[data-field_key="' + key + '"] .acf-file-uploader');
-							}
+							
+							
+							// update current div
+							_media.div = $tr.next('.row').find( selector );
+							
 						}
-						
+												
 						
 				    	// vars
 				    	var file = {
