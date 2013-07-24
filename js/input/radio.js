@@ -51,14 +51,16 @@
 	/*
 	*  Events
 	*
-	*  live events for the color picker field
+	*  live events for this field
 	*
-	*  @type	event
-	*  @date	1/06/13
+	*  @type	function
+	*  @date	1/03/2011
 	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
-	$('.acf-radio-list input[type="radio"]').live('change', function(){
+	$(document).on('change', '.acf-radio-list input[type="radio"]', function( e ){
 		
 		_radio.set({ $el : $(this).closest('.acf-radio-list') }).change();
 		
