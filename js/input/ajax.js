@@ -228,6 +228,12 @@
 			
 			
 			$('.categorychecklist input[type="checkbox"]:checked').each(function(){
+				
+				if( $(this).is(':hidden') || $(this).is(':disabled') )
+				{
+					return;
+				}
+			
 				values.push( $(this).val() );
 			});
 	
