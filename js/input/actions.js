@@ -35,13 +35,7 @@ var acf = {
 		color_picker : {},
 		image : {},
 		file : {},
-		wysiwyg : {
-			toolbars : {},
-			has_tinymce : function(){},
-			add_tinymce : function(){},
-			add_events : function(){},
-			remove_tinymce : function(){}
-		},
+		wysiwyg : {},
 		gallery : {
 			add : function(){},
 			edit : function(){},
@@ -550,64 +544,173 @@ var acf = {
 	*  @created: 15/10/12
 	*/
 	
-	acf.conditional_logic.calculate = function( options )
-	{
-		// vars
-		var field = $('.field_key-' + options.field),
-			toggle = $('.field_key-' + options.toggle),
-			r = false;
+	acf.conditional_logic = {
 		
+		items : [],
 		
-		// compare values
-		if( toggle.hasClass('field_type-true_false') || toggle.hasClass('field_type-checkbox') || toggle.hasClass('field_type-radio') )
-		{
-			if( options.operator == "==" )
-			{
-				if( toggle.find('input[value="' + options.value + '"]:checked').exists() )
+		init : function(){
+			
+			// reference
+			var _this = this;
+			
+			
+			// events
+			$(document).on('change', '.field input, .field textarea, .field select', function(){
+				
+				_this.change();
+				
+			});
+			
+			
+			_this.change();
+			
+		},
+		change : function(){
+			
+			// reference
+			var _this = this;
+			
+			
+			// vars
+			//var $el		=	$( e.target ),
+			//	$field	=	$el.closest('.field');
+			
+			
+			// loop through items
+			$.each(this.items, function( k, item ){
+				
+				// vars
+				var show	=	true,
+					$field	=	$('.field_key-' + item.field);
+				
+				
+				// if 'any' was selected, start of as false and any match will result in show = true
+				if( item.allorany == 'any' )
 				{
-					r = true;
+					show = false;
 				}
+				
+				
+				// loop through rules
+				$.each(item.rules, function( k2, rule ){
+					
+					var calculate = _this.calculate( rule );
+					
+					if( item.allorany == 'all' )
+					{
+						if( calculate == false )
+						{
+							show = false;
+							
+							// end loop
+							return false;
+						}
+					}
+					else
+					{
+						if( calculate == true )
+						{
+							show = true;
+							
+							// end loop
+							return false;
+						}
+					}
+					
+				});
+				
+				
+				// hide / show field
+				if( show )
+				{
+					// remove "disabled"
+					$field.find('input, textarea, select').removeAttr('disabled');
+					
+					
+					$field.removeClass('acf-conditional_logic-hide').addClass('acf-conditional_logic-show');
+				}
+				else
+				{
+					// add "disabled"
+					$field.find('input, textarea, select').attr('disabled', 'disabled');
+					
+					
+					$field.removeClass('acf-conditional_logic-show').addClass('acf-conditional_logic-hide');
+				}
+				
+				
+			});
+			
+		},
+		calculate : function( rule ){
+			
+			// vars
+			var $field	=	$('.field_key-' + rule.field),
+				r		=	false;
+			
+			
+			// compare values
+			if( $field.hasClass('field_type-true_false') || $field.hasClass('field_type-checkbox') || $field.hasClass('field_type-radio') )
+			{
+				var exists = toggle.find('input[value="' + rule.value + '"]:checked').exists();
+				
+				
+				if( rule.operator == "==" )
+				{
+					if( exists )
+					{
+						r = true;
+					}
+				}
+				else
+				{
+					if( ! exists )
+					{
+						r = true;
+					}
+				}
+				
 			}
 			else
 			{
-				if( !toggle.find('input[value="' + options.value + '"]:checked').exists() )
+				// get val and make sure it is an array
+				var val = $field.find('input, textarea, select').last().val();
+				
+				if( ! $.isArray(val) )
 				{
-					r = true;
+					val = [ val ];
 				}
+				
+				
+				if( rule.operator == "==" )
+				{
+					if( $.inArray(rule.value, val) > -1 )
+					{
+						r = true;
+					}
+				}
+				else
+				{
+					if( $.inArray(rule.value, val) < 0 )
+					{
+						r = true;
+					}
+				}
+				
 			}
 			
-		}
-		else
-		{
-			// get val and make sure it is an array
-			var val = toggle.find('*[name]:last').val();
-			if( !$.isArray(val) )
-			{
-				val = [ val ];
-			}
 			
-			
-			if( options.operator == "==" )
-			{
-				if( $.inArray(options.value, val) > -1 )
-				{
-					r = true;
-				}
-			}
-			else
-			{
-				if( $.inArray(options.value, val) < 0 )
-				{
-					r = true;
-				}
-			}
+			// return
+			return r;
 			
 		}
 		
-		return r;
-	}
+	};
 	
 	
+	
+	
+		
 	/*
 	*  Document Ready
 	*
@@ -618,12 +721,18 @@ var acf = {
 	
 	$(document).ready(function(){
 		
+		
+		// conditional logic
+		acf.conditional_logic.init();
+		
+		
 		// fix for older options page add-on
 		$('.acf_postbox > .inside > .options').each(function(){
 			
 			$(this).closest('.acf_postbox').addClass( $(this).attr('data-layout') );
 			
 		});
+		
 	
 	});
 	
@@ -654,7 +763,6 @@ var acf = {
 				// one of the objects was 'undefined'...
 			}
 			
-
 			
 			// setup fields
 			$(document).trigger('acf/setup_fields', $('#poststuff'));
