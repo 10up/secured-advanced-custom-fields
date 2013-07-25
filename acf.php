@@ -73,7 +73,7 @@ class Acf
 		
 		
 		// set text domain
-		load_plugin_textdomain('acf', false, basename(dirname(__FILE__)) . '/lang' );
+		load_textdomain('acf', $this->settings['path'] . 'lang/acf-' . get_locale() . '.mo');
 		
 		
 		// actions
