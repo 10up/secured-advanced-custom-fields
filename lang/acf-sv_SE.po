@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
 "POT-Creation-Date: 2013-07-29 11:10+0100\n"
-"PO-Revision-Date: 2013-07-29 11:25+0100\n"
+"PO-Revision-Date: 2013-07-29 12:26+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -1082,7 +1082,7 @@ msgstr "Ingen bild vald"
 
 #: core/fields/image.php:90
 msgid "Add Image"
-msgstr "Läge till bild"
+msgstr "Lägg till bild"
 
 #: core/fields/image.php:119
 msgid "Specify the returned value on front end"
