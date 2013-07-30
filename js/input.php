@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Disable error reporting
+ *
+ * Set this to error_reporting( E_ALL ) or error_reporting( E_ALL | E_STRICT ) for debugging
+ */
+error_reporting(0);
+
+
 // vars
 $expires_offset = 31536000; // 1 year
 $out = '';
@@ -45,5 +53,3 @@ header("Cache-Control: public, max-age=$expires_offset");
 
 echo $out;
 exit;
-
-?>
