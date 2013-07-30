@@ -402,7 +402,8 @@
 	width: 20%;
 	max-width: none;
 	max-height: 150px;
-	margin-right: 3%;	
+	margin-right: 3%;
+	overflow: hidden;
 }
 
 .media-modal.acf-expanded .media-sidebar .setting span,
@@ -424,8 +425,8 @@
 *---------------------------------------------------------------------------------------------*/
 
 .media-modal.acf-media-modal {
-	left: 20%;
-	right: 20%;
+	left: 15%;
+	right: 15%;
 	top: 100px;
 	bottom: 100px;
 }
@@ -452,6 +453,38 @@
 
 .media-modal.acf-media-modal .media-toolbar {
     right: 0;
+}
+
+
+@media (max-width: 960px) {
+	
+	.media-modal.acf-media-modal {
+		left: 10%;
+		right: 10%;
+	}
+	
+}
+
+@media (max-width: 760px) {
+	
+	.media-modal.acf-expanded .media-sidebar .setting span,
+	.media-modal.acf-expanded .compat-item .label {
+		min-width: 100%;
+		text-align: left;
+		min-height: 0;
+		padding: 0;
+	}
+	
+	.media-modal.acf-expanded .compat-item .label br {
+		display: none;
+	}
+	
+	.media-modal.acf-expanded .media-sidebar .setting input, 
+	.media-modal.acf-expanded .media-sidebar .setting textarea,
+	.media-modal.acf-expanded .compat-item .field {
+		width: 100%;
+	}
+	
 }
 
 
