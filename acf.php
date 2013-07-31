@@ -269,18 +269,28 @@ class Acf
 	
 	function parse_types( $value )
 	{
+		// vars
+		$restricted = array(
+			'label',
+			'name',
+			'value',
+			'instructions'
+		);
+		
 		
 		// is value another array?
 		if( is_array($value) )
 		{
 			foreach( $value as $k => $v )
 			{
-				// if $field was passed, never modify the value! NEVER!
-				if( $k === 'value' )
+				// bail early for restricted pieces
+				if( in_array($k, $restricted) )
 				{
 					continue;
 				}
 				
+				
+				// filter piece
 				$value[ $k ] = apply_filters( 'acf/parse_types', $v );
 			}	
 		}
