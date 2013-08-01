@@ -18,7 +18,8 @@ var acf = {
 	wp_version			:	'',
 	post_id				:	0,
 	nonce				:	'',
-	
+	l10n				:	null,
+	o					:	null,
 	
 	// helper functions
 	helpers				:	{
