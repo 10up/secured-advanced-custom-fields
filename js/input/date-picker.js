@@ -78,11 +78,6 @@
 			}
 			
 		},
-		focus : function(){
-
-			
-			
-		},
 		blur : function(){
 			
 			if( !this.$input.val() )
@@ -119,14 +114,14 @@
 	/*
 	*  Events
 	*
-	*  live events for this field
+	*  jQuery events for this field
 	*
 	*  @type	event
 	*  @date	1/06/13
 	*
 	*/
 	
-	$('.acf-date_picker input[type="text"]').live('blur', function(){
+	$(document).on('blur', '.acf-date_picker input[type="text"]', function( e ){
 		
 		acf.fields.date_picker.set({ $el : $(this).parent() }).blur();
 					
