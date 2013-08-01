@@ -107,14 +107,11 @@ class acf_input
 		if( ! $this->validate_page() ){ return; }
 
 		
-		// only "edit post" input pages need the ajax
-		wp_enqueue_script(array(
-			'acf-input-ajax',	
-		));
-		
-		
-		// actions
+		// scripts
 		do_action('acf/input/admin_enqueue_scripts');
+		
+		
+		// head
 		add_action('admin_head', array($this,'admin_head'));
 	}
 	
