@@ -143,15 +143,15 @@ input.ir { border: 0 none; background: none; }
 }
 
 input.acf-is-prepended {
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 3px 3px 0 !important;
 }
 
 input.acf-is-appended {
-	border-radius: 3px 0 0 3px;
+	border-radius: 3px 0 0 3px !important;
 }
 
 input.acf-is-prepended.acf-is-appended {
-	border-radius: 0;
+	border-radius: 0 !important;
 }
 
 
