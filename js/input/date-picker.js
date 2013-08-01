@@ -104,10 +104,10 @@
 	*  @date	1/06/13
 	*
 	*/
+	
+	$(document).on('acf/setup_fields', function(e, el){
 		
-	$(document).live('acf/setup_fields', function(e, postbox){
-		
-		$(postbox).find('.acf-date_picker').each(function(){
+		$(el).find('.acf-date_picker').each(function(){
 			
 			acf.fields.date_picker.set({ $el : $(this) }).init();
 			
