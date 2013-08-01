@@ -1,50 +1,51 @@
 /*
-*  Input Actions
+*  input.js
 *
-*  @description: javascript for fields functionality		
-*  @author: Elliot Condon
-*  @since: 3.1.4
+*  All javascript needed for ACF to work
+*
+*  @type	awesome
+*  @date	1/08/13
+*
+*  @param	N/A
+*  @return	N/A
 */
 
 var acf = {
-	ajaxurl : '',
-	admin_url : '',
-	wp_version : '0',
-	post_id : 0,
-	nonce : '',
-	validation : {
-		status : true,
-		run : function(){},
-		text : {
-			error : "Validation Failed. One or more fields below are required."
-		}
+	
+	// vars
+	ajaxurl				:	'',
+	admin_url			:	'',
+	wp_version			:	'',
+	post_id				:	0,
+	nonce				:	'',
+	
+	
+	// helper functions
+	helpers				:	{
+		get_atts		: 	null,
+		version_compare	:	null,
+		uniqid			:	null,
+		sortable		:	null,
+		add_message		:	null,
+		is_clone_field	:	null,
+		url_to_object	:	null
 	},
-	helpers : {
-		get_atts : function(){},
-		version_compare : function(){},
-		uniqid : function(){},
-		sortable : function(){},
-		add_message : function(){},
-		is_clone_field : function(){},
-		url_to_object : function(){}
-	},
-	conditional_logic : {},
-	media : {},
-	fields : {
-		date_picker : {},
-		color_picker : {},
-		image : {},
-		file : {},
-		wysiwyg : {},
-		gallery : {
-			add : function(){},
-			edit : function(){},
-			update_count : function(){},
-			hide_selected_items : function(){},
-			text : {
-				title_add : "Select Images"
-			}
-		},
+	
+	
+	// modules
+	validation			:	null,
+	conditional_logic	:	null,
+	media				:	null,
+	
+	
+	// fields
+	fields				:	{
+		date_picker		:	null,
+		color_picker	:	null,
+		Image			:	null,
+		file			:	null,
+		wysiwyg			:	null,
+		gallery			:	null,
 		relationship : {
 			timeout : null,
 			update_results : function(){},
@@ -206,6 +207,69 @@ var acf = {
 	    
     };
     
+	
+	/*
+	*  Sortable Helper
+	*
+	*  @description: keeps widths of td's inside a tr
+	*  @since 3.5.1
+	*  @created: 10/11/12
+	*/
+	
+	acf.helpers.sortable = function(e, ui)
+	{
+		ui.children().each(function(){
+			$(this).width($(this).width());
+		});
+		return ui;
+	};
+	
+	
+	/*
+	*  is_clone_field
+	*
+	*  @description: 
+	*  @since: 3.5.8
+	*  @created: 17/01/13
+	*/
+	
+	acf.helpers.is_clone_field = function( input )
+	{
+		if( input.attr('name') && input.attr('name').indexOf('[acfcloneindex]') != -1 )
+		{
+			return true;
+		}
+		
+		return false;
+	};
+	
+	
+	/*
+	*  acf.helpers.add_message
+	*
+	*  @description: 
+	*  @since: 3.2.7
+	*  @created: 10/07/2012
+	*/
+	
+	acf.helpers.add_message = function( message, div ){
+		
+		var message = $('<div class="acf-message-wrapper"><div class="message updated"><p>' + message + '</p></div></div>');
+		
+		div.prepend( message );
+		
+		setTimeout(function(){
+			
+			message.animate({
+				opacity : 0
+			}, 250, function(){
+				message.remove();
+			});
+			
+		}, 1500);
+			
+	};
+	
 	
 	/*
 	*  Exists
@@ -411,129 +475,6 @@ var acf = {
 			};
 		}
 	};
-	
-	
-	/*
-	*  Save Draft
-	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	var save_post = false;
-	$('#save-post').live('click', function(){
-		
-		save_post = true;
-		
-	});
-	
-	
-	/*
-	*  Submit form
-	*
-	*  @description: does validation, deletes all hidden metaboxes (otherwise, post data will be overriden by hidden inputs)
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	$('form#post').live('submit', function(){
-			
-		if( ! save_post )
-		{
-			// do validation
-			acf.validation.run();
-			
-			
-			if( ! acf.validation.status )
-			{
-				// show message
-				$(this).siblings('#message').remove();
-				$(this).before('<div id="message" class="error"><p>' + acf.validation.text.error + '</p></div>');
-				
-				
-				// hide ajax stuff on submit button
-				$('#publish').removeClass('button-primary-disabled');
-				$('#ajax-loading').attr('style','');
-				$('#publishing-action .spinner').hide();
-				
-				return false;
-			}
-		}
-
-		
-		// remove hidden postboxes
-		$('.acf_postbox.acf-hidden').remove();
-		
-
-		// submit the form
-		return true;
-		
-	});
-	
-
-	/*
-	*  Sortable Helper
-	*
-	*  @description: keeps widths of td's inside a tr
-	*  @since 3.5.1
-	*  @created: 10/11/12
-	*/
-	
-	acf.helpers.sortable = function(e, ui)
-	{
-		ui.children().each(function(){
-			$(this).width($(this).width());
-		});
-		return ui;
-	};
-	
-	
-	/*
-	*  is_clone_field
-	*
-	*  @description: 
-	*  @since: 3.5.8
-	*  @created: 17/01/13
-	*/
-	
-	acf.helpers.is_clone_field = function( input )
-	{
-		if( input.attr('name') && input.attr('name').indexOf('[acfcloneindex]') != -1 )
-		{
-			return true;
-		}
-		
-		return false;
-	};
-	
-	
-	/*
-	*  acf.helpers.add_message
-	*
-	*  @description: 
-	*  @since: 3.2.7
-	*  @created: 10/07/2012
-	*/
-	
-	acf.helpers.add_message = function( message, div ){
-		
-		var message = $('<div class="acf-message-wrapper"><div class="message updated"><p>' + message + '</p></div></div>');
-		
-		div.prepend( message );
-		
-		setTimeout(function(){
-			
-			message.animate({
-				opacity : 0
-			}, 250, function(){
-				message.remove();
-			});
-			
-		}, 1500);
-			
-	};
-	
 	
 	
 	/*
@@ -770,6 +711,29 @@ var acf = {
 		}, 10);
 		
 	});
+	
+	
+	/*
+	*  Fix
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	1/08/13
+	*
+	*  @param	{int}	$post_id
+	*  @return	{int}	$post_id
+	*/
+	
+	acf.fields.gallery = {
+		add : function(){},
+		edit : function(){},
+		update_count : function(){},
+		hide_selected_items : function(){},
+		text : {
+			title_add : "Select Images"
+		}
+	};
 	
 	
 })(jQuery);
