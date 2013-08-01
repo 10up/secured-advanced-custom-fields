@@ -93,11 +93,14 @@
 	/*
 	*  acf/setup_fields
 	*
-	*  run init function for this field
+	*  run init function on all elements for this field
 	*
 	*  @type	event
-	*  @date	1/06/13
+	*  @date	20/07/13
 	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	el		DOM object which may contain new ACF elements
+	*  @return	N/A
 	*/
 	
 	$(document).on('acf/setup_fields', function(e, el){
