@@ -10,7 +10,7 @@
 	*
 	*/
 	
-	_radio = acf.fields.radio = {
+	acf.fields.radio = {
 		
 		$el : null,
 		$input : null,
@@ -51,7 +51,7 @@
 	/*
 	*  Events
 	*
-	*  live events for this field
+	*  jQuery events for this field
 	*
 	*  @type	function
 	*  @date	1/03/2011
@@ -62,7 +62,7 @@
 	
 	$(document).on('change', '.acf-radio-list input[type="radio"]', function( e ){
 		
-		_radio.set({ $el : $(this).closest('.acf-radio-list') }).change();
+		acf.fields.radio.set({ $el : $(this).closest('.acf-radio-list') }).change();
 		
 	});
 	
