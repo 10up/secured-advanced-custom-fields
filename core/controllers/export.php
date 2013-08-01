@@ -444,7 +444,7 @@ if(function_exists("register_field_group"))
 	
 	var i = 0;
 	
-	$('textarea.pre').live( 'mousedown', function (){
+	$(document).on('click', 'textarea.pre', function(){
 		
 		if( i == 0 )
 		{
@@ -457,13 +457,13 @@ if(function_exists("register_field_group"))
 				
 	});
 	
+	$(document).on('keyup', 'textarea.pre', function(){
 	
-	$('textarea.pre').live( 'keyup', function (){
 	    $(this).height( 0 );
 	    $(this).height( this.scrollHeight );
+	
 	});
 
-	
 	$(document).ready(function(){
 		
 		$('textarea.pre').trigger('keyup');
