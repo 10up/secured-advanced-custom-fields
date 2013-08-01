@@ -714,15 +714,16 @@ var acf = {
 	
 	
 	/*
-	*  Fix
+	*  Gallery field Add-on Fix
 	*
-	*  description
+	*  Gallery field v1.0.0 required some data in the acf object.
+	*  Now not required, but older versions of gallery field need this.
 	*
-	*  @type	function
+	*  @type	object
 	*  @date	1/08/13
 	*
-	*  @param	{int}	$post_id
-	*  @return	{int}	$post_id
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
 	acf.fields.gallery = {

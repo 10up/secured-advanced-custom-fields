@@ -229,7 +229,7 @@
 	*  @return	N/A
 	*/
 	
-	$('#post').live('submit', function(){
+	$(document).on('submit', '#post', function(){
 		
 		// If disabled, bail early on the validation check
 		if( acf.validation.disabled )
