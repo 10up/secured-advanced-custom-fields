@@ -323,7 +323,7 @@
 	/*
 	*  Events
 	*
-	*  live events for this field
+	*  jQuery events for this field
 	*
 	*  @type	function
 	*  @date	1/03/2011
