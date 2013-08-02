@@ -660,7 +660,7 @@ class acf_field_relationship extends acf_field
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
-			'type'	=>	'text',
+			'type'	=>	'number',
 			'name'	=>	'fields['.$key.'][max]',
 			'value'	=>	$field['max'],
 		));
