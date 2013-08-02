@@ -114,6 +114,7 @@ http://support.advancedcustomfields.com/
 * Image field: fixed safari bug causing all images to appear small
 * Language: Added Swedish translation
 * Core: Improved save_lock functionality to prevent inifinite loops when creating a post on the fly
+* Language: Added Persian Translation - Thanks to Ghaem Omidi
 
 = 4.1.8.1 =
 * Select field: Revert choices logic - http://support.advancedcustomfields.com/forums/topic/select-field-label-cut-off-at/#post-529
