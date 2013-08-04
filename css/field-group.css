@@ -250,7 +250,7 @@ table.widefat.acf td {
 .fields .field {
 	position: relative;
 	overflow: hidden;
-	background: #F9F9F9;
+	background: #FCFCFC;
 }
 
 #acf_fields .ui-sortable-helper {
@@ -269,7 +269,7 @@ table.widefat.acf td {
 }
 
 .fields .field:nth-child(even) {
-	background: #FCFCFC;
+	background: #fff;
 }
 
 .fields .field_key-field_clone {
