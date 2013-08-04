@@ -29,7 +29,7 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 			<?php 
 			
 			do_action('acf/create_field', array(
-				'type'	=>	'text',
+				'type'	=>	'number',
 				'name'	=>	'menu_order',
 				'value'	=>	$post->menu_order,
 			));
