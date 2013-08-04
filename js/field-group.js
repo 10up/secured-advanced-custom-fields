@@ -336,7 +336,7 @@ var acf = {
 			$(document).trigger('acf/field_form-open', field);
 		}
 		
-		field.children('.field_form_mask').animate({'height':'toggle'}, 500);
+		field.children('.field_form_mask').animate({'height':'toggle'}, 250);
 		
 	});
 	
