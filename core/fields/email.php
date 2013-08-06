@@ -19,6 +19,9 @@ class acf_field_email extends acf_field
 		$this->label = __("Email",'acf');
 		$this->defaults = array(
 			'default_value'	=>	'',
+			'placeholder'	=>	'',
+			'prepend'		=>	'',
+			'append'		=>	''
 		);
 		
 		
@@ -41,7 +44,41 @@ class acf_field_email extends acf_field
 	
 	function create_field( $field )
 	{
-		echo '<input type="email" value="' . esc_attr( $field['value'] ) . '" id="' . esc_attr( $field['id'] ) . '" class="' . esc_attr( $field['class'] ) . '" name="' . esc_attr( $field['name'] ) . '" />';
+		// vars
+		$o = array( 'id', 'class', 'name', 'value', 'placeholder' );
+		$e = '';
+		
+		
+		// prepend
+		if( $field['prepend'] !== "" )
+		{
+			$field['class'] .= ' acf-is-prepended';
+			$e .= '<div class="acf-input-prepend">' . $field['prepend'] . '</div>';
+		}
+		
+		
+		// append
+		if( $field['append'] !== "" )
+		{
+			$field['class'] .= ' acf-is-appended';
+			$e .= '<div class="acf-input-append">' . $field['append'] . '</div>';
+		}
+		
+		
+		$e .= '<div class="acf-input-wrap">';
+		$e .= '<input type="email"';
+		
+		foreach( $o as $k )
+		{
+			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';	
+		}
+		
+		$e .= ' />';
+		$e .= '</div>';
+		
+		
+		// return
+		echo $e;
 	}
 	
 	
@@ -64,22 +101,68 @@ class acf_field_email extends acf_field
 		$key = $field['name'];
 		
 		?>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
-			<td class="label">
-				<label><?php _e("Default Value",'acf'); ?></label>
-			</td>
-			<td>
-				<?php
-				
-				do_action('acf/create_field', array(
-					'type'	=>	'text',
-					'name'	=>	'fields['.$key.'][default_value]',
-					'value'	=>	$field['default_value'],
-				));
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
+	</td>
+	<td>
+		<?php
+		
+		do_action('acf/create_field', array(
+			'type'	=>	'number',
+			'name'	=>	'fields['.$key.'][default_value]',
+			'value'	=>	$field['default_value'],
+		));
 
-				?>
-			</td>
-		</tr>
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][placeholder]',
+			'value'	=>	$field['placeholder'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Prepend",'acf'); ?></label>
+		<p><?php _e("Appears before the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][prepend]',
+			'value'	=>	$field['prepend'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Append",'acf'); ?></label>
+		<p><?php _e("Appears after the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][append]',
+			'value'	=>	$field['append'],
+		));
+		?>
+	</td>
+</tr>
 		<?php
 	}	
 	
