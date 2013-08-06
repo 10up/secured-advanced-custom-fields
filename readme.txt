@@ -115,6 +115,7 @@ http://support.advancedcustomfields.com/
 * Language: Added Swedish translation
 * Core: Improved save_lock functionality to prevent inifinite loops when creating a post on the fly
 * Language: Added Persian Translation - Thanks to Ghaem Omidi
+* Language: Updated German translation - thanks to Thomas Meyer
 
 = 4.1.8.1 =
 * Select field: Revert choices logic - http://support.advancedcustomfields.com/forums/topic/select-field-label-cut-off-at/#post-529
