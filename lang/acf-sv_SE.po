@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-07-29 11:10+0100\n"
-"PO-Revision-Date: 2013-07-29 12:26+0100\n"
+"POT-Creation-Date: 2013-08-06 16:53+0100\n"
+"PO-Revision-Date: 2013-08-06 16:56+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -19,100 +19,100 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: acf.php:331
+#: acf.php:341
 msgid "Field&nbsp;Groups"
 msgstr "Fältgrupper"
 
-#: acf.php:332 core/controllers/field_groups.php:214
+#: acf.php:342 core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
-#: acf.php:333
+#: acf.php:343
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: acf.php:334
+#: acf.php:344
 msgid "Add New Field Group"
 msgstr "Lägg till ny fältgrupp"
 
-#: acf.php:335
+#: acf.php:345
 msgid "Edit Field Group"
 msgstr "Redigera fältgrupp"
 
-#: acf.php:336
+#: acf.php:346
 msgid "New Field Group"
 msgstr "Ny fältgrupp"
 
-#: acf.php:337
+#: acf.php:347
 msgid "View Field Group"
 msgstr "Visa fältgrupp"
 
-#: acf.php:338
+#: acf.php:348
 msgid "Search Field Groups"
 msgstr "Sök fältgrupp"
 
-#: acf.php:339
+#: acf.php:349
 msgid "No Field Groups found"
 msgstr "Inga fältgrupper hittades"
 
-#: acf.php:340
+#: acf.php:350
 msgid "No Field Groups found in Trash"
 msgstr "Inga fältgrupper finns i papperskorgen"
 
-#: acf.php:453 core/views/meta_box_options.php:96
+#: acf.php:458 core/views/meta_box_options.php:96
 msgid "Custom Fields"
 msgstr "Egna fält"
 
-#: acf.php:471 acf.php:474
+#: acf.php:476 acf.php:479
 msgid "Field group updated."
 msgstr "Fältgruppen uppdaterades."
 
-#: acf.php:472
+#: acf.php:477
 msgid "Custom field updated."
 msgstr "Eget fält uppdaterades."
 
-#: acf.php:473
+#: acf.php:478
 msgid "Custom field deleted."
 msgstr "Eget fält raderades."
 
-#: acf.php:476
+#: acf.php:481
 #, php-format
 msgid "Field group restored to revision from %s"
 msgstr "Fältgruppen återställdes till revision %s"
 
-#: acf.php:477
+#: acf.php:482
 msgid "Field group published."
 msgstr "Fältgruppen publicerades."
 
-#: acf.php:478
+#: acf.php:483
 msgid "Field group saved."
 msgstr "Fältgruppen sparades."
 
-#: acf.php:479
+#: acf.php:484
 msgid "Field group submitted."
 msgstr "Fältgruppen skickades."
 
-#: acf.php:480
+#: acf.php:485
 msgid "Field group scheduled for."
 msgstr "Fältgruppen schemalades."
 
-#: acf.php:481
+#: acf.php:486
 msgid "Field group draft updated."
 msgstr "Utkastet till fältgrupp uppdaterades."
 
-#: acf.php:616
+#: acf.php:621
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: acf.php:617
+#: acf.php:622
 msgid "Medium"
 msgstr "Medium"
 
-#: acf.php:618
+#: acf.php:623
 msgid "Large"
 msgstr "Stor"
 
-#: acf.php:619
+#: acf.php:624
 msgid "Full"
 msgstr "Full"
 
@@ -132,7 +132,8 @@ msgstr "Fel"
 msgid "No ACF groups selected"
 msgstr "Inga ACF-grupper har valts"
 
-#: core/controllers/addons.php:42 core/controllers/field_groups.php:311
+#: core/controllers/addons.php:42 core/controllers/export.php:368
+#: core/controllers/field_groups.php:311
 msgid "Add-ons"
 msgstr "Tillägg"
 
@@ -154,8 +155,7 @@ msgstr "Gallerifält"
 msgid "Create image galleries in a simple and intuitive interface!"
 msgstr "Skapa bildgallerier i ett enkelt och intuitivt gränssnitt!"
 
-#: core/controllers/addons.php:144 core/controllers/export.php:380
-#: core/controllers/field_groups.php:448
+#: core/controllers/addons.php:144 core/controllers/field_groups.php:448
 msgid "Options Page"
 msgstr "Inställningssida"
 
@@ -394,19 +394,16 @@ msgid ""
 " *  Please do not attempt to include a file which does not exist. This will "
 "produce an error.\n"
 " *  \n"
-" *  All fields must be included during the 'acf/register_fields' action.\n"
-" *  Other types of Add-ons (like the options page) can be included outside "
-"of this action.\n"
-" *  \n"
 " *  The following code assumes you have a folder 'add-ons' inside your "
 "theme.\n"
 " *\n"
 " *  IMPORTANT\n"
-" *  Add-ons may be included in a premium theme as outlined in the terms and "
-"conditions.\n"
-" *  However, they are NOT to be included in a premium / free plugin.\n"
-" *  For more information, please read http://www.advancedcustomfields.com/"
-"terms-conditions/\n"
+" *  Add-ons may be included in a premium theme/plugin as outlined in the "
+"terms and conditions.\n"
+" *  For more information, please read:\n"
+" *  - http://www.advancedcustomfields.com/terms-conditions/\n"
+" *  - http://www.advancedcustomfields.com/resources/getting-started/"
+"including-lite-mode-in-a-plugin-theme/\n"
 " */"
 msgstr ""
 "/**\n"
@@ -417,26 +414,19 @@ msgstr ""
 " *  Vänligen inkludera inte filer som inte existerar. Detta kommer att "
 "resultera i ett felmeddelande.\n"
 " *  \n"
-" *  Alla fält måste inkluderas under 'acf/register_fields' funktionen.\n"
-" *  Andra fälttyper, som inställningssidan, kan läggas till utanför denna "
-"funktion.\n"
-" *  \n"
 " *  Koden antar att du har mappen 'add-ons' i ditt tema.\n"
 " *\n"
 " *  VIKTIGT\n"
-" *  Tillägg kan inkluderas i premiumteman enligt villkoren.\n"
-" *  De får dock INTE inkluderas med andra tillägg, varken premium eller "
-"gratis.\n"
+" *  Tillägg kan inkluderas i premiumteman och plugins enligt villkoren.\n"
+" *  För mer information, läs följande:\n"
 " *  Läs följande sida för mer information: http://www.advancedcustomfields."
 "com/terms-conditions/\n"
+" *  - http://www.advancedcustomfields.com/terms-conditions/\n"
+" *  - http://www.advancedcustomfields.com/resources/getting-started/"
+"including-lite-mode-in-a-plugin-theme/\n"
 " */"
 
-#: core/controllers/export.php:370 core/controllers/field_group.php:367
-#: core/controllers/field_group.php:429 core/controllers/field_groups.php:148
-msgid "Fields"
-msgstr "Fält"
-
-#: core/controllers/export.php:384
+#: core/controllers/export.php:375
 msgid ""
 "/**\n"
 " *  Register Field Groups\n"
@@ -456,23 +446,28 @@ msgstr ""
 "ändringarna inte är kompatibla med ACF.\n"
 " */"
 
-#: core/controllers/export.php:435
+#: core/controllers/export.php:426
 msgid "No field groups were selected"
 msgstr "Inga fältgrupper var valda"
 
-#: core/controllers/field_group.php:368
+#: core/controllers/field_group.php:375 core/controllers/field_group.php:437
+#: core/controllers/field_groups.php:148
+msgid "Fields"
+msgstr "Fält"
+
+#: core/controllers/field_group.php:376
 msgid "Location"
 msgstr "Plats"
 
-#: core/controllers/field_group.php:369
+#: core/controllers/field_group.php:377
 msgid "Options"
 msgstr "Inställningar"
 
-#: core/controllers/field_group.php:431
+#: core/controllers/field_group.php:439
 msgid "Show Field Key:"
 msgstr "Visa fältnyckel:"
 
-#: core/controllers/field_group.php:432 core/fields/page_link.php:138
+#: core/controllers/field_group.php:440 core/fields/page_link.php:138
 #: core/fields/page_link.php:159 core/fields/post_object.php:328
 #: core/fields/post_object.php:349 core/fields/select.php:224
 #: core/fields/select.php:243 core/fields/taxonomy.php:341
@@ -481,7 +476,7 @@ msgstr "Visa fältnyckel:"
 msgid "No"
 msgstr "Nej"
 
-#: core/controllers/field_group.php:433 core/fields/page_link.php:137
+#: core/controllers/field_group.php:441 core/fields/page_link.php:137
 #: core/fields/page_link.php:158 core/fields/post_object.php:327
 #: core/fields/post_object.php:348 core/fields/select.php:223
 #: core/fields/select.php:242 core/fields/taxonomy.php:340
@@ -490,35 +485,35 @@ msgstr "Nej"
 msgid "Yes"
 msgstr "Ja"
 
-#: core/controllers/field_group.php:610
+#: core/controllers/field_group.php:618
 msgid "Front Page"
 msgstr "Förstasida"
 
-#: core/controllers/field_group.php:611
+#: core/controllers/field_group.php:619
 msgid "Posts Page"
 msgstr "Inläggssida"
 
-#: core/controllers/field_group.php:612
+#: core/controllers/field_group.php:620
 msgid "Top Level Page (parent of 0)"
 msgstr "Toppsida (förälder satt till 0)"
 
-#: core/controllers/field_group.php:613
+#: core/controllers/field_group.php:621
 msgid "Parent Page (has children)"
 msgstr "Föräldersida (har undersidor)"
 
-#: core/controllers/field_group.php:614
+#: core/controllers/field_group.php:622
 msgid "Child Page (has parent)"
 msgstr "Undersida (har föräldersida)"
 
-#: core/controllers/field_group.php:622
+#: core/controllers/field_group.php:630
 msgid "Default Template"
 msgstr "Standardmall"
 
-#: core/controllers/field_group.php:714 core/controllers/field_group.php:735
-#: core/controllers/field_group.php:742 core/fields/file.php:184
+#: core/controllers/field_group.php:722 core/controllers/field_group.php:743
+#: core/controllers/field_group.php:750 core/fields/file.php:184
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
-#: core/fields/relationship.php:553 core/fields/relationship.php:577
+#: core/fields/relationship.php:574 core/fields/relationship.php:598
 #: core/fields/user.php:229
 msgid "All"
 msgstr "Alla"
@@ -559,7 +554,7 @@ msgstr "Funktioner"
 msgid "Actions"
 msgstr "Actions"
 
-#: core/controllers/field_groups.php:225 core/fields/relationship.php:596
+#: core/controllers/field_groups.php:225 core/fields/relationship.php:617
 msgid "Filters"
 msgstr "Filter"
 
@@ -882,15 +877,15 @@ msgstr "Tillägget har nu installerats och aktiverats!"
 msgid "Awesome. Let's get to work"
 msgstr "Grymt! Dags att återgå till arbetet."
 
-#: core/controllers/input.php:498
+#: core/controllers/input.php:495
 msgid "Expand Details"
 msgstr "Visa detaljer"
 
-#: core/controllers/input.php:499
+#: core/controllers/input.php:496
 msgid "Collapse Details"
 msgstr "Dölj detaljer"
 
-#: core/controllers/input.php:502
+#: core/controllers/input.php:499
 msgid "Validation Failed. One or more fields below are required."
 msgstr "Valideringen misslyckades. Ett eller flera fält nedan måste fyllas i."
 
@@ -955,7 +950,7 @@ msgid "blue : Blue"
 msgstr "blå : Blå"
 
 #: core/fields/checkbox.php:157 core/fields/color_picker.php:89
-#: core/fields/email.php:69 core/fields/number.php:116
+#: core/fields/email.php:106 core/fields/number.php:116
 #: core/fields/radio.php:193 core/fields/select.php:197
 #: core/fields/text.php:116 core/fields/textarea.php:96
 #: core/fields/true_false.php:94 core/fields/wysiwyg.php:171
@@ -994,6 +989,44 @@ msgstr "Dummy"
 #: core/fields/email.php:19
 msgid "Email"
 msgstr "E-post"
+
+#: core/fields/email.php:107 core/fields/number.php:117
+#: core/fields/text.php:117 core/fields/textarea.php:97
+#: core/fields/wysiwyg.php:172
+msgid "Appears when creating a new post"
+msgstr "Visas när ett nytt inlägg skapas"
+
+#: core/fields/email.php:123 core/fields/number.php:133
+#: core/fields/password.php:105 core/fields/text.php:131
+#: core/fields/textarea.php:111
+msgid "Placeholder Text"
+msgstr "Platshållartext"
+
+#: core/fields/email.php:124 core/fields/number.php:134
+#: core/fields/password.php:106 core/fields/text.php:132
+#: core/fields/textarea.php:112
+msgid "Appears within the input"
+msgstr "Visas inuti fältet"
+
+#: core/fields/email.php:138 core/fields/number.php:148
+#: core/fields/password.php:120 core/fields/text.php:146
+msgid "Prepend"
+msgstr "Lägg till före"
+
+#: core/fields/email.php:139 core/fields/number.php:149
+#: core/fields/password.php:121 core/fields/text.php:147
+msgid "Appears before the input"
+msgstr "Visas före fältet"
+
+#: core/fields/email.php:153 core/fields/number.php:163
+#: core/fields/password.php:135 core/fields/text.php:161
+msgid "Append"
+msgstr "Lägg till efter"
+
+#: core/fields/email.php:154 core/fields/number.php:164
+#: core/fields/password.php:136 core/fields/text.php:162
+msgid "Appears after the input"
+msgstr "Visas efter fältet"
 
 #: core/fields/file.php:19
 msgid "File"
@@ -1129,42 +1162,17 @@ msgstr "Notera att all text först kommer att passera genom funktionen"
 msgid "Number"
 msgstr "Nummer"
 
-#: core/fields/number.php:132
-msgid "Min"
-msgstr "Min"
+#: core/fields/number.php:178
+msgid "Minimum Value"
+msgstr "Minsta värde"
 
-#: core/fields/number.php:133
-msgid "Specifies the minimum value allowed"
-msgstr "Bestämmer det minsta tillåtna värdet"
+#: core/fields/number.php:194
+msgid "Maximum Value"
+msgstr "Högsta värde"
 
-#: core/fields/number.php:149
-msgid "Max"
-msgstr "Max"
-
-#: core/fields/number.php:150
-msgid "Specifies the maximim value allowed"
-msgstr "Bestämmer det högsta tillåtna värdet"
-
-#: core/fields/number.php:166
-msgid "Step"
-msgstr "Steg"
-
-#: core/fields/number.php:167
-msgid "Specifies the legal number intervals"
-msgstr "Bestämmer intervaller mellan tillåtna värden"
-
-#: core/fields/number.php:183 core/fields/text.php:165
-#: core/fields/textarea.php:146
-msgid "Placeholder Text"
-msgstr "Platshållartext"
-
-#: core/fields/number.php:197 core/fields/text.php:180
-msgid "Prepend"
-msgstr "Lägg till före"
-
-#: core/fields/number.php:211 core/fields/text.php:195
-msgid "Append"
-msgstr "Lägg till efter"
+#: core/fields/number.php:210
+msgid "Step Size"
+msgstr "Stegvärde"
 
 #: core/fields/page_link.php:18
 msgid "Page Link"
@@ -1177,7 +1185,7 @@ msgid "Relational"
 msgstr "Relation"
 
 #: core/fields/page_link.php:103 core/fields/post_object.php:268
-#: core/fields/relationship.php:547 core/fields/relationship.php:626
+#: core/fields/relationship.php:568 core/fields/relationship.php:647
 #: core/views/meta_box_location.php:75
 msgid "Post Type"
 msgstr "Inläggstyp"
@@ -1201,7 +1209,7 @@ msgstr "Lösenord"
 msgid "Post Object"
 msgstr "Inläggsobjekt"
 
-#: core/fields/post_object.php:292 core/fields/relationship.php:571
+#: core/fields/post_object.php:292 core/fields/relationship.php:592
 msgid "Filter from Taxonomy"
 msgstr "Filtera från taxonomi"
 
@@ -1241,44 +1249,44 @@ msgstr "Relation"
 msgid "Maximum values reached ( {max} values )"
 msgstr "Maximalt antal värden nåddes ( maximalt {max} värden )"
 
-#: core/fields/relationship.php:401
+#: core/fields/relationship.php:424
 msgid "Search..."
 msgstr "Sök..."
 
-#: core/fields/relationship.php:414
+#: core/fields/relationship.php:435
 msgid "Filter by post type"
 msgstr "Filtrera inläggstyp"
 
-#: core/fields/relationship.php:605
+#: core/fields/relationship.php:626
 msgid "Search"
 msgstr "Sök"
 
-#: core/fields/relationship.php:606
+#: core/fields/relationship.php:627
 msgid "Post Type Select"
 msgstr "Välj inläggstyp"
 
-#: core/fields/relationship.php:614
+#: core/fields/relationship.php:635
 msgid "Elements"
 msgstr "Element"
 
-#: core/fields/relationship.php:615
+#: core/fields/relationship.php:636
 msgid "Selected elements will be displayed in each result"
 msgstr "Valda element visas i varje resultat"
 
-#: core/fields/relationship.php:624 core/views/meta_box_options.php:103
+#: core/fields/relationship.php:645 core/views/meta_box_options.php:103
 msgid "Featured Image"
 msgstr "Utvald bild"
 
-#: core/fields/relationship.php:625
+#: core/fields/relationship.php:646
 msgid "Post Title"
 msgstr "Inläggstitel"
 
-#: core/fields/relationship.php:637
+#: core/fields/relationship.php:658
 msgid "Maximum posts"
 msgstr "Maximalt antal inlägg"
 
-#: core/fields/select.php:18 core/fields/taxonomy.php:322
-#: core/fields/user.php:266
+#: core/fields/select.php:18 core/fields/select.php:109
+#: core/fields/taxonomy.php:322 core/fields/user.php:266
 msgid "Select"
 msgstr "Välj"
 
@@ -1351,52 +1359,35 @@ msgstr "Term-ID"
 msgid "Text"
 msgstr "Text"
 
-#: core/fields/text.php:117 core/fields/textarea.php:97
-#: core/fields/wysiwyg.php:172
-msgid "Appears when creating a new post"
-msgstr "Visas när ett nytt inlägg skapas"
-
-#: core/fields/text.php:131 core/fields/textarea.php:111
+#: core/fields/text.php:176 core/fields/textarea.php:141
 msgid "Formatting"
 msgstr "Formatering"
 
-#: core/fields/text.php:132 core/fields/textarea.php:112
+#: core/fields/text.php:177 core/fields/textarea.php:142
 msgid "Effects value on front end"
 msgstr "Påverkar hur värdet skrivs ut"
 
-#: core/fields/text.php:141 core/fields/textarea.php:121
+#: core/fields/text.php:186 core/fields/textarea.php:151
 msgid "No formatting"
 msgstr "Ingen formatering"
 
-#: core/fields/text.php:142 core/fields/textarea.php:123
+#: core/fields/text.php:187 core/fields/textarea.php:153
 msgid "Convert HTML into tags"
 msgstr "Konvertera HTML till taggar"
 
-#: core/fields/text.php:150 core/fields/textarea.php:131
+#: core/fields/text.php:195 core/fields/textarea.php:126
 msgid "Character Limit"
 msgstr "Maximalt antal tecken"
 
-#: core/fields/text.php:151 core/fields/textarea.php:132
+#: core/fields/text.php:196 core/fields/textarea.php:127
 msgid "Leave blank for no limit"
 msgstr "Lämna tomt för att inte begränsa"
-
-#: core/fields/text.php:166 core/fields/textarea.php:147
-msgid "Appears within the input"
-msgstr "Visas inuti fältet"
-
-#: core/fields/text.php:181
-msgid "Appears before the input"
-msgstr "Visas före fältet"
-
-#: core/fields/text.php:196
-msgid "Appears after the input"
-msgstr "Visas efter fältet"
 
 #: core/fields/textarea.php:19
 msgid "Text Area"
 msgstr "Textfält"
 
-#: core/fields/textarea.php:122
+#: core/fields/textarea.php:152
 msgid "Convert new lines into &lt;br /&gt; tags"
 msgstr "Konvertera radbrytnignar till &lt;br /&gt;-taggar"
 
@@ -1789,6 +1780,21 @@ msgstr "Etiketter"
 #: core/views/meta_box_options.php:106
 msgid "Send Trackbacks"
 msgstr "Skicka trackbacks"
+
+#~ msgid "Min"
+#~ msgstr "Min"
+
+#~ msgid "Specifies the minimum value allowed"
+#~ msgstr "Bestämmer det minsta tillåtna värdet"
+
+#~ msgid "Max"
+#~ msgstr "Max"
+
+#~ msgid "Specifies the maximim value allowed"
+#~ msgstr "Bestämmer det högsta tillåtna värdet"
+
+#~ msgid "Specifies the legal number intervals"
+#~ msgstr "Bestämmer intervaller mellan tillåtna värden"
 
 #~ msgid "eg: #ffffff"
 #~ msgstr "exempel: #ffffff"
