@@ -82,8 +82,8 @@
 				
 			// add functionality back in
 			tinyMCE.execCommand("mceAddControl", false, this.o.id);
-				
-				
+			
+			
 			// events - load
 			$(document).trigger('acf/wysiwyg/load', this.o.id);
 				
@@ -188,9 +188,54 @@
 		}
 		
 		
+		// Destory all WYSIWYG fields
+		// This hack will fix a problem when the WP popup is created and hidden, then the ACF popup (image/file field) is opened
 		$(el).find('.acf_wysiwyg').each(function(){
 			
-			_wysiwyg.set({ $el : $(this) }).init();
+			_wysiwyg.set({ $el : $(this) }).destroy();
+			
+		});
+		
+		
+		// Add WYSIWYG fields
+		setTimeout(function(){
+			
+			$(el).find('.acf_wysiwyg').each(function(){
+			
+				_wysiwyg.set({ $el : $(this) }).init();
+				
+			});
+			
+		}, 0);
+		
+	});
+	
+	
+	/*
+	*  acf/remove_fields
+	*
+	*  This action is called when the $el is being removed from the DOM
+	*
+	*  @type	event
+	*  @date	20/07/13
+	*
+	*  @param	{object}	e		event object
+	*  @param	{object}	$el		jQuery element being removed
+	*  @return	N/A
+	*/
+	
+	$(document).on('acf/remove_fields', function(e, $el){
+		
+		// validate
+		if( ! _wysiwyg.has_tinymce() )
+		{
+			return;
+		}
+		
+		
+		$el.find('.acf_wysiwyg').each(function(){
+			
+			_wysiwyg.set({ $el : $(this) }).destroy();
 			
 		});
 		

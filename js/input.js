@@ -341,6 +341,7 @@ var acf = {
 			
 			// orig
 			_prototype.orig_render = _prototype.render;
+			_prototype.orig_dispose = _prototype.dispose;
 			
 			
 			// update class
@@ -429,6 +430,19 @@ var acf = {
 				
 				// return based on the origional render function
 				return this;
+			};
+			
+			
+			// modify dispose
+			_prototype.dispose = function() {
+				
+				// remove
+				$(document).trigger('acf/remove_fields', [ this.$el ]);
+				
+				
+				// run the old render function
+				this.orig_dispose();
+				
 			};
 			
 			
@@ -707,7 +721,7 @@ var acf = {
 			
 			
 			// setup fields
-			$(document).trigger('acf/setup_fields', $('#poststuff'));
+			$(document).trigger('acf/setup_fields', [ $('#poststuff') ]);
 			
 		}, 10);
 		
