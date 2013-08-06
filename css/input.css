@@ -431,6 +431,16 @@
 	bottom: 100px;
 }
 
+/* Expand / Collapse views */
+.media-modal.acf-media-modal .media-toolbar,
+.media-modal.acf-media-modal .attachments,
+.media-modal.acf-media-modal .media-sidebar {
+	-webkit-transition: none;  /* Safari 3.2+, Chrome */
+       -moz-transition: none;  /* Firefox 4-15 */
+         -o-transition: none;  /* Opera 10.5–12.00 */
+            transition: none;  /* Firefox 16+, Opera 12.50+ */
+}
+
 .media-modal.acf-media-modal .media-frame-router,
 .media-modal.acf-media-modal .attachments,
 .media-modal.acf-media-modal .media-frame-content .media-toolbar {
