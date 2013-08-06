@@ -114,6 +114,7 @@ class acf_field_number extends acf_field
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
 		<?php
@@ -129,8 +130,52 @@ class acf_field_number extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Min",'acf'); ?></label>
-		<p><?php _e("Specifies the minimum value allowed",'acf'); ?></p>
+		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][placeholder]',
+			'value'	=>	$field['placeholder'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Prepend",'acf'); ?></label>
+		<p><?php _e("Appears before the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][prepend]',
+			'value'	=>	$field['prepend'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Append",'acf'); ?></label>
+		<p><?php _e("Appears after the input",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][append]',
+			'value'	=>	$field['append'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Minimum Value",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -146,8 +191,7 @@ class acf_field_number extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Max",'acf'); ?></label>
-		<p><?php _e("Specifies the maximim value allowed",'acf'); ?></p>
+		<label><?php _e("Maximum Value",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -163,8 +207,7 @@ class acf_field_number extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Step",'acf'); ?></label>
-		<p><?php _e("Specifies the legal number intervals",'acf'); ?></p>
+		<label><?php _e("Step Size",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -175,48 +218,6 @@ class acf_field_number extends acf_field
 			'value'	=>	$field['step'],
 		));
 
-		?>
-	</td>
-</tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
-	<td class="label">
-		<label><?php _e("Placeholder Text",'acf'); ?></label>
-	</td>
-	<td>
-		<?php 
-		do_action('acf/create_field', array(
-			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
-			'value'	=>	$field['placeholder'],
-		));
-		?>
-	</td>
-</tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
-	<td class="label">
-		<label><?php _e("Prepend",'acf'); ?></label>
-	</td>
-	<td>
-		<?php 
-		do_action('acf/create_field', array(
-			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][prepend]',
-			'value'	=>	$field['prepend'],
-		));
-		?>
-	</td>
-</tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
-	<td class="label">
-		<label><?php _e("Append",'acf'); ?></label>
-	</td>
-	<td>
-		<?php 
-		do_action('acf/create_field', array(
-			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][append]',
-			'value'	=>	$field['append'],
-		));
 		?>
 	</td>
 </tr>

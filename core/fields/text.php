@@ -128,40 +128,6 @@ class acf_field_text extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Formatting",'acf'); ?></label>
-		<p><?php _e("Effects value on front end",'acf') ?></p>
-	</td>
-	<td>
-		<?php 
-		do_action('acf/create_field', array(
-			'type'	=>	'select',
-			'name'	=>	'fields['.$key.'][formatting]',
-			'value'	=>	$field['formatting'],
-			'choices' => array(
-				'none'	=>	__("No formatting",'acf'),
-				'html'	=>	__("Convert HTML into tags",'acf')
-			)
-		));
-		?>
-	</td>
-</tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
-	<td class="label">
-		<label><?php _e("Character Limit",'acf'); ?></label>
-		<p><?php _e("Leave blank for no limit",'acf') ?></p>
-	</td>
-	<td>
-		<?php 
-		do_action('acf/create_field', array(
-			'type'	=>	'number',
-			'name'	=>	'fields[' .$key.'][maxlength]',
-			'value'	=>	$field['maxlength'],
-		));
-		?>
-	</td>
-</tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
-	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
 		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
@@ -201,6 +167,40 @@ class acf_field_text extends acf_field
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][append]',
 			'value'	=>	$field['append'],
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Formatting",'acf'); ?></label>
+		<p><?php _e("Effects value on front end",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'select',
+			'name'	=>	'fields['.$key.'][formatting]',
+			'value'	=>	$field['formatting'],
+			'choices' => array(
+				'none'	=>	__("No formatting",'acf'),
+				'html'	=>	__("Convert HTML into tags",'acf')
+			)
+		));
+		?>
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Character Limit",'acf'); ?></label>
+		<p><?php _e("Leave blank for no limit",'acf') ?></p>
+	</td>
+	<td>
+		<?php 
+		do_action('acf/create_field', array(
+			'type'	=>	'number',
+			'name'	=>	'fields[' .$key.'][maxlength]',
+			'value'	=>	$field['maxlength'],
 		));
 		?>
 	</td>

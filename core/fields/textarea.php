@@ -108,20 +108,15 @@ class acf_field_textarea extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Formatting",'acf'); ?></label>
-		<p><?php _e("Effects value on front end",'acf') ?></p>
+		<label><?php _e("Placeholder Text",'acf'); ?></label>
+		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
-			'type'	=>	'select',
-			'name'	=>	'fields['.$key.'][formatting]',
-			'value'	=>	$field['formatting'],
-			'choices' => array(
-				'none'	=>	__("No formatting",'acf'),
-				'br'	=>	__("Convert new lines into &lt;br /&gt; tags",'acf'),
-				'html'	=>	__("Convert HTML into tags",'acf')
-			)
+			'type'	=>	'text',
+			'name'	=>	'fields[' .$key.'][placeholder]',
+			'value'	=>	$field['placeholder'],
 		));
 		?>
 	</td>
@@ -143,15 +138,20 @@ class acf_field_textarea extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Placeholder Text",'acf'); ?></label>
-		<p><?php _e("Appears within the input",'acf') ?></p>
+		<label><?php _e("Formatting",'acf'); ?></label>
+		<p><?php _e("Effects value on front end",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
-			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
-			'value'	=>	$field['placeholder'],
+			'type'	=>	'select',
+			'name'	=>	'fields['.$key.'][formatting]',
+			'value'	=>	$field['formatting'],
+			'choices' => array(
+				'none'	=>	__("No formatting",'acf'),
+				'br'	=>	__("Convert new lines into &lt;br /&gt; tags",'acf'),
+				'html'	=>	__("Convert HTML into tags",'acf')
+			)
 		));
 		?>
 	</td>
