@@ -355,30 +355,21 @@ define( 'ACF_LITE', true );
  *  The following code will include all 4 premium Add-Ons in your theme.
  *  Please do not attempt to include a file which does not exist. This will produce an error.
  *  
- *  All fields must be included during the 'acf/register_fields' action.
- *  Other types of Add-ons (like the options page) can be included outside of this action.
- *  
  *  The following code assumes you have a folder 'add-ons' inside your theme.
  *
  *  IMPORTANT
- *  Add-ons may be included in a premium theme as outlined in the terms and conditions.
- *  However, they are NOT to be included in a premium / free plugin.
- *  For more information, please read http://www.advancedcustomfields.com/terms-conditions/
+ *  Add-ons may be included in a premium theme/plugin as outlined in the terms and conditions.
+ *  For more information, please read:
+ *  - http://www.advancedcustomfields.com/terms-conditions/
+ *  - http://www.advancedcustomfields.com/resources/getting-started/including-lite-mode-in-a-plugin-theme/
  */",'acf'); ?>
  
 
-// <?php _e("Fields",'acf'); ?> 
-add_action('acf/register_fields', 'my_register_fields');
-
-function my_register_fields()
-{
-	//include_once('add-ons/acf-repeater/repeater.php');
-	//include_once('add-ons/acf-gallery/gallery.php');
-	//include_once('add-ons/acf-flexible-content/flexible-content.php');
-}
-
-// <?php _e("Options Page",'acf'); ?> 
-//include_once( 'add-ons/acf-options-page/acf-options-page.php' );
+// <?php _e("Add-ons",'acf'); ?> 
+// include_once('add-ons/acf-repeater/acf-repeater.php');
+// include_once('add-ons/acf-gallery/acf-gallery.php');
+// include_once('add-ons/acf-flexible-content/acf-flexible-content.php');
+// include_once( 'add-ons/acf-options-page/acf-options-page.php' );
 
 
 <?php _e("/**
