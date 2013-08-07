@@ -198,13 +198,6 @@ class acf_field_image extends acf_field
 	
 	function format_value_for_api( $value, $post_id, $field )
 	{
-		// vars
-		$defaults = array(
-			'save_format'	=>	'url',
-		);
-		
-		$field = array_merge($defaults, $field);
-		
 		
 		// validate
 		if( !$value )
