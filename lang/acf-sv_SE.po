@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-06 16:53+0100\n"
-"PO-Revision-Date: 2013-08-06 16:56+0100\n"
+"POT-Creation-Date: 2013-08-07 16:01+0100\n"
+"PO-Revision-Date: 2013-08-07 16:01+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -513,7 +513,7 @@ msgstr "Standardmall"
 #: core/controllers/field_group.php:750 core/fields/file.php:184
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
-#: core/fields/relationship.php:574 core/fields/relationship.php:598
+#: core/fields/relationship.php:595 core/fields/relationship.php:619
 #: core/fields/user.php:229
 msgid "All"
 msgstr "Alla"
@@ -554,7 +554,7 @@ msgstr "Funktioner"
 msgid "Actions"
 msgstr "Actions"
 
-#: core/controllers/field_groups.php:225 core/fields/relationship.php:617
+#: core/controllers/field_groups.php:225 core/fields/relationship.php:638
 msgid "Filters"
 msgstr "Filter"
 
@@ -1117,7 +1117,7 @@ msgstr "Ingen bild vald"
 msgid "Add Image"
 msgstr "Lägg till bild"
 
-#: core/fields/image.php:119
+#: core/fields/image.php:119 core/fields/relationship.php:570
 msgid "Specify the returned value on front end"
 msgstr "Välj vilken typ av värde som ska returneras"
 
@@ -1185,7 +1185,7 @@ msgid "Relational"
 msgstr "Relation"
 
 #: core/fields/page_link.php:103 core/fields/post_object.php:268
-#: core/fields/relationship.php:568 core/fields/relationship.php:647
+#: core/fields/relationship.php:589 core/fields/relationship.php:668
 #: core/views/meta_box_location.php:75
 msgid "Post Type"
 msgstr "Inläggstyp"
@@ -1209,7 +1209,7 @@ msgstr "Lösenord"
 msgid "Post Object"
 msgstr "Inläggsobjekt"
 
-#: core/fields/post_object.php:292 core/fields/relationship.php:592
+#: core/fields/post_object.php:292 core/fields/relationship.php:613
 msgid "Filter from Taxonomy"
 msgstr "Filtera från taxonomi"
 
@@ -1245,43 +1245,55 @@ msgstr "Spara \"other\"-värden till fältets alternativ"
 msgid "Relationship"
 msgstr "Relation"
 
-#: core/fields/relationship.php:28
+#: core/fields/relationship.php:29
 msgid "Maximum values reached ( {max} values )"
 msgstr "Maximalt antal värden nåddes ( maximalt {max} värden )"
 
-#: core/fields/relationship.php:424
+#: core/fields/relationship.php:425
 msgid "Search..."
 msgstr "Sök..."
 
-#: core/fields/relationship.php:435
+#: core/fields/relationship.php:436
 msgid "Filter by post type"
 msgstr "Filtrera inläggstyp"
 
-#: core/fields/relationship.php:626
+#: core/fields/relationship.php:569
+msgid "Return Format"
+msgstr "Returvärde"
+
+#: core/fields/relationship.php:580
+msgid "Post Objects"
+msgstr "Inläggsobjekt"
+
+#: core/fields/relationship.php:581
+msgid "Post IDs"
+msgstr "Inläggets ID"
+
+#: core/fields/relationship.php:647
 msgid "Search"
 msgstr "Sök"
 
-#: core/fields/relationship.php:627
+#: core/fields/relationship.php:648
 msgid "Post Type Select"
 msgstr "Välj inläggstyp"
 
-#: core/fields/relationship.php:635
+#: core/fields/relationship.php:656
 msgid "Elements"
 msgstr "Element"
 
-#: core/fields/relationship.php:636
+#: core/fields/relationship.php:657
 msgid "Selected elements will be displayed in each result"
 msgstr "Valda element visas i varje resultat"
 
-#: core/fields/relationship.php:645 core/views/meta_box_options.php:103
+#: core/fields/relationship.php:666 core/views/meta_box_options.php:103
 msgid "Featured Image"
 msgstr "Utvald bild"
 
-#: core/fields/relationship.php:646
+#: core/fields/relationship.php:667
 msgid "Post Title"
 msgstr "Inläggstitel"
 
-#: core/fields/relationship.php:658
+#: core/fields/relationship.php:679
 msgid "Maximum posts"
 msgstr "Maximalt antal inlägg"
 
