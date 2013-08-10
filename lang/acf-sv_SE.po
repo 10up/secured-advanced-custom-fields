@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-07 16:01+0100\n"
-"PO-Revision-Date: 2013-08-07 16:01+0100\n"
+"POT-Creation-Date: 2013-08-10 14:49+0100\n"
+"PO-Revision-Date: 2013-08-10 15:02+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -509,8 +509,36 @@ msgstr "Undersida (har föräldersida)"
 msgid "Default Template"
 msgstr "Standardmall"
 
-#: core/controllers/field_group.php:722 core/controllers/field_group.php:743
-#: core/controllers/field_group.php:750 core/fields/file.php:184
+#: core/controllers/field_group.php:707
+msgid "Publish"
+msgstr "Publicerat"
+
+#: core/controllers/field_group.php:708
+msgid "Pending Review"
+msgstr "Väntar på granskning"
+
+#: core/controllers/field_group.php:709
+msgid "Draft"
+msgstr "Utkast"
+
+#: core/controllers/field_group.php:710
+msgid "Future"
+msgstr "Tidsbestämt"
+
+#: core/controllers/field_group.php:711
+msgid "Private"
+msgstr "Privat"
+
+#: core/controllers/field_group.php:712
+msgid "Revision"
+msgstr "Revision"
+
+#: core/controllers/field_group.php:713
+msgid "Trash"
+msgstr "I papperskorgen"
+
+#: core/controllers/field_group.php:736 core/controllers/field_group.php:757
+#: core/controllers/field_group.php:764 core/fields/file.php:184
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
 #: core/fields/relationship.php:595 core/fields/relationship.php:619
@@ -1217,7 +1245,7 @@ msgstr "Filtera från taxonomi"
 msgid "Radio Button"
 msgstr "Alternativknapp"
 
-#: core/fields/radio.php:102 core/views/meta_box_location.php:90
+#: core/fields/radio.php:102 core/views/meta_box_location.php:91
 msgid "Other"
 msgstr "Annat"
 
@@ -1515,7 +1543,7 @@ msgid "copy"
 msgstr "kopiera"
 
 #: core/views/meta_box_fields.php:68 core/views/meta_box_location.php:62
-#: core/views/meta_box_location.php:158
+#: core/views/meta_box_location.php:159
 msgid "or"
 msgstr "eller"
 
@@ -1595,11 +1623,11 @@ msgstr "Obligatorisk?"
 msgid "Conditional Logic"
 msgstr "Visningsvillkor"
 
-#: core/views/meta_box_fields.php:274 core/views/meta_box_location.php:116
+#: core/views/meta_box_fields.php:274 core/views/meta_box_location.php:117
 msgid "is equal to"
 msgstr "är lika med"
 
-#: core/views/meta_box_fields.php:275 core/views/meta_box_location.php:117
+#: core/views/meta_box_fields.php:275 core/views/meta_box_location.php:118
 msgid "is not equal to"
 msgstr "inte är lika med"
 
@@ -1678,26 +1706,30 @@ msgid "Post Format"
 msgstr "Inläggsformat"
 
 #: core/views/meta_box_location.php:88
+msgid "Post Status"
+msgstr "Status"
+
+#: core/views/meta_box_location.php:89
 msgid "Post Taxonomy"
 msgstr "Inläggstaxonomi"
 
-#: core/views/meta_box_location.php:91
+#: core/views/meta_box_location.php:92
 msgid "Taxonomy Term (Add / Edit)"
 msgstr "Taxonomiterm (Lägg till / Redigera)"
 
-#: core/views/meta_box_location.php:92
+#: core/views/meta_box_location.php:93
 msgid "User (Add / Edit)"
 msgstr "Användare (Lägg till / Redigera)"
 
-#: core/views/meta_box_location.php:93
+#: core/views/meta_box_location.php:94
 msgid "Media Attachment (Add / Edit)"
 msgstr "Mediabilaga (Lägg till / Redigera)"
 
-#: core/views/meta_box_location.php:145
+#: core/views/meta_box_location.php:146
 msgid "and"
 msgstr "och"
 
-#: core/views/meta_box_location.php:160
+#: core/views/meta_box_location.php:161
 msgid "Add rule group"
 msgstr "Lägg till regelgrupp"
 
