@@ -47,14 +47,7 @@ var acf = {
 		file			:	null,
 		wysiwyg			:	null,
 		gallery			:	null,
-		relationship : {
-			timeout : null,
-			update_results : function(){},
-			hide_results : function(){},
-			text : {
-				max : "Maximum values reached ( {max} values )"
-			}
-		}
+		relationship	:	null
 	}
 };
 

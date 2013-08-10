@@ -701,6 +701,20 @@ class acf_field_group
 								
 				break;
 			
+			case "post_status" :
+				
+				$choices = array(
+					'publish'	=> __( 'Publish' ),
+					'pending'	=> __( 'Pending Review' ),
+					'draft'		=> __( 'Draft' ),
+					'future'	=> __( 'Future' ),
+					'private'	=> __( 'Private' ),
+					'inherit'	=> __( 'Revision' ),
+					'trash'		=> __( 'Trash' )
+				);
+								
+				break;
+			
 			case "user_type" :
 				
 				global $wp_roles;

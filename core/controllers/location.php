@@ -43,6 +43,7 @@ class acf_location
 		add_filter('acf/location/rule_match/post', array($this, 'rule_match_post'), 10, 3);
 		add_filter('acf/location/rule_match/post_category', array($this, 'rule_match_post_category'), 10, 3);
 		add_filter('acf/location/rule_match/post_format', array($this, 'rule_match_post_format'), 10, 3);
+		add_filter('acf/location/rule_match/post_status', array($this, 'rule_match_post_status'), 10, 3);
 		add_filter('acf/location/rule_match/taxonomy', array($this, 'rule_match_taxonomy'), 10, 3);
 		
 		// Other
@@ -708,6 +709,52 @@ class acf_location
         
         
         return $match;
+        
+    }
+    
+    
+    /*
+	*  rule_match_post_status
+	*
+	*  @description: 
+	*  @since: 3.5.7
+	*  @created: 3/01/13
+	*/
+	
+	function rule_match_post_status( $match, $rule, $options )
+	{
+		// validate
+		if( !$options['post_id'] )
+		{
+			return false;
+		}
+		
+					
+		// vars
+		$post_status = get_post_status( $options['post_id'] );
+	    
+	    
+	    // auto-draft = draft
+	    if( $post_status == 'auto-draft' )
+	    {
+		    $post_status = 'draft';
+	    }
+	    
+	    
+	    // match
+	    if($rule['operator'] == "==")
+        {
+        	$match = ( $post_status === $rule['value'] );
+        	 
+        }
+        elseif($rule['operator'] == "!=")
+        {
+        	$match = ( $post_status !== $rule['value'] );
+        }
+        
+        
+        // return
+	    return $match;
         
     }
     

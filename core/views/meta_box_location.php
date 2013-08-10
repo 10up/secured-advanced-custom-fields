@@ -85,6 +85,7 @@ if( empty($groups) )
 								'post'			=>	__("Post",'acf'),
 								'post_category'	=>	__("Post Category",'acf'),
 								'post_format'	=>	__("Post Format",'acf'),
+								'post_status'	=>	__("Post Status",'acf'),
 								'taxonomy'		=>	__("Post Taxonomy",'acf'),
 							),
 							__("Other",'acf') => array(
