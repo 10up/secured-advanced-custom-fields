@@ -711,6 +711,8 @@ class Acf
 	function save_post_lock( $post_id )
 	{
 		$GLOBALS['acf_save_lock'] = $post_id;
+		
+		return $post_id;
 	}
 	
 	
@@ -730,6 +732,8 @@ class Acf
 	function save_post_unlock( $post_id )
 	{
 		$GLOBALS['acf_save_lock'] = false;
+		
+		return $post_id;
 	}
 	
 	
@@ -747,7 +751,7 @@ class Acf
 		// load from post
 		if( !isset($_POST['fields']) )
 		{
-			return false;
+			return $post_id;
 		}
 		
 
@@ -769,7 +773,7 @@ class Acf
 		// if($fields)
 		
 		
-		return true;
+		return $post_id;
 	}
 
 	
