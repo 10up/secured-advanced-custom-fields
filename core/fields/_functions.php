@@ -331,11 +331,11 @@ class acf_field_functions
 					$field = $row['meta_value'];
 					$field = maybe_unserialize( $field );
 					$field = maybe_unserialize( $field ); // run again for WPML
+					
+					
+					// add field_group ID
+					$field['field_group'] = $row['post_id'];
 				}
-				
-				
-				// add field_group ID
-				$field['field_group'] = $row['post_id'];
 				
 			}
 		}
