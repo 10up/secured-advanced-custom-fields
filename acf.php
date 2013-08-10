@@ -284,7 +284,7 @@ class Acf
 			foreach( $value as $k => $v )
 			{
 				// bail early for restricted pieces
-				if( in_array($k, $restricted) )
+				if( in_array($k, $restricted, true) )
 				{
 					continue;
 				}
