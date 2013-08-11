@@ -405,6 +405,16 @@
 	margin: 5px 0 0;
 }
 
+.media-modal .media-sidebar .setting span, 
+.media-modal .compat-item label span {
+	padding-top: 7px;	
+}
+
+.media-modal .attachment-display-settings .setting span {
+	margin-top: 0;
+	margin-right: 3%;
+}
+
 
 /* Sidebar: Expand */
 .media-modal.acf-expanded .attachment-info .thumbnail {
