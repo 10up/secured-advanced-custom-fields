@@ -114,7 +114,7 @@ http://support.advancedcustomfields.com/
 * Core: Fixed pre_save_post $post_id issue - http://support.advancedcustomfields.com/forums/topic/frontend-form-issues-pre_save_post-save_post/
 * Core: Fix minor CSS but in media modal - http://support.advancedcustomfields.com/forums/topic/minor-css-issue-in-media-upload-lightbox/#post-2138
 * File field: Fix minor 'strict standards' warning - http://support.advancedcustomfields.com/forums/topic/strict-standards-error-on-file-upload/
-*Image field: Fix minor CSS issue - http://support.advancedcustomfields.com/forums/topic/firefox-repeaterimage-css/
+* Image field: Fix minor CSS issue - http://support.advancedcustomfields.com/forums/topic/firefox-repeaterimage-css/
 
 = 4.2.0 =
 * IMPORTANT: ACF now requires a minimum WordPress version of 3.5.0
