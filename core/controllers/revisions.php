@@ -52,7 +52,32 @@ class acf_revisions
 	function wp_post_revision_fields( $return ) {
 		
 		//globals
-		global $post;
+		global $post, $pagenow;
+		
+
+		// validate
+		$allowed = false;
+		
+		
+		// Normal revisions page
+		if( $pagenow == 'revision.php' )
+		{
+			$allowed = true;
+		}
+		
+		
+		// WP 3.6 AJAX revision
+		if( $pagenow == 'admin-ajax.php' && isset($_POST['action']) && $_POST['action'] == 'get-revision-diffs' )
+		{
+			$allowed = true;
+		}
+		
+		
+		// bail
+		if( !$allowed ) 
+		{
+			return $return;
+		}
 		
 		
 		// vars
