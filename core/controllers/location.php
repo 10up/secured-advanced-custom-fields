@@ -594,13 +594,28 @@ class acf_location
 		$user = wp_get_current_user();
  
         if( $rule['operator'] == "==" )
-        {
-            $match = in_array( $rule['value'], $user->roles );
-        }
-        elseif( $rule['operator'] == "!=" )
-        {
-            $match = ( ! in_array( $rule['value'], $user->roles ) );
-        }
+		{
+			if( $rule['value'] == 'super_admin' )
+			{
+				$match = is_super_admin( $user->ID );
+			}
+			else 
+			{
+				$match = in_array( $rule['value'], $user->roles );
+			}
+			
+		}
+		elseif( $rule['operator'] == "!=" )
+		{
+			if( $rule['value'] == 'super_admin' )
+			{
+				$match = !is_super_admin( $user->ID );
+			}
+			else 
+			{
+				$match = ( ! in_array( $rule['value'], $user->roles ) );
+			}
+		}
         
         return $match;
         

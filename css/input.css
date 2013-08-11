@@ -222,7 +222,7 @@
 
 .acf-image-uploader img {
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
-	max-width: 100%;
+	width: 100%;
 	height: auto;
 	display: block;
 	min-width: 30px;
@@ -238,6 +238,15 @@
 
 .acf-image-uploader input.button {
 	width: auto;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	
+	.acf-image-uploader img {
+		width: auto;
+		max-width: 100%;
+	}
+	
 }
 
 
@@ -394,6 +403,16 @@
 .media-modal .compat-item .field {
 	min-height: 0;
 	margin: 5px 0 0;
+}
+
+.media-modal .media-sidebar .setting span, 
+.media-modal .compat-item label span {
+	padding-top: 7px;	
+}
+
+.media-modal .attachment-display-settings .setting span {
+	margin-top: 0;
+	margin-right: 3%;
 }
 
 
