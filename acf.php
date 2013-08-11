@@ -38,6 +38,7 @@ if( is_admin() )
 		include_once('core/controllers/upgrade.php');
 	}
 	
+	include_once('core/controllers/revisions.php');
 	include_once('core/controllers/everything_fields.php');	
 }
 
