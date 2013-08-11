@@ -595,9 +595,9 @@ class acf_location
  
         if( $rule['operator'] == "==" )
 		{
-			if (is_multisite() && $rule['value'] == "super_admin")
+			if( $rule['value'] == 'super_admin' )
 			{
-				$match = is_super_admin($user->ID);
+				$match = is_super_admin( $user->ID );
 			}
 			else 
 			{
@@ -607,9 +607,9 @@ class acf_location
 		}
 		elseif( $rule['operator'] == "!=" )
 		{
-			if (is_multisite() && $rule['value'] == "super_admin")
+			if( $rule['value'] == 'super_admin' )
 			{
-				$match = !is_super_admin($user->ID);
+				$match = !is_super_admin( $user->ID );
 			}
 			else 
 			{

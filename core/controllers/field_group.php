@@ -721,9 +721,9 @@ class acf_field_group
 				
 				$choices = $wp_roles->get_names();
 
-				if (is_multisite())
+				if( is_multisite() )
 				{
-					$choices = array_merge($choices, array('super_admin' => __('Super Admin')));
+					$choices['super_admin'] = __('Super Admin');
 				}
 								
 				break;
