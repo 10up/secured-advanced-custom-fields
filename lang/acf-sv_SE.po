@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Custom Fields 4.2.0\n"
+"Project-Id-Version: Advanced Custom Fields 4.2.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-10 14:49+0100\n"
-"PO-Revision-Date: 2013-08-10 15:02+0100\n"
+"POT-Creation-Date: 2013-08-11 10:28+0100\n"
+"PO-Revision-Date: 2013-08-11 10:32+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -19,100 +19,100 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: acf.php:341
+#: acf.php:342
 msgid "Field&nbsp;Groups"
 msgstr "Fältgrupper"
 
-#: acf.php:342 core/controllers/field_groups.php:214
+#: acf.php:343 core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
-#: acf.php:343
+#: acf.php:344
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: acf.php:344
+#: acf.php:345
 msgid "Add New Field Group"
 msgstr "Lägg till ny fältgrupp"
 
-#: acf.php:345
+#: acf.php:346
 msgid "Edit Field Group"
 msgstr "Redigera fältgrupp"
 
-#: acf.php:346
+#: acf.php:347
 msgid "New Field Group"
 msgstr "Ny fältgrupp"
 
-#: acf.php:347
+#: acf.php:348
 msgid "View Field Group"
 msgstr "Visa fältgrupp"
 
-#: acf.php:348
+#: acf.php:349
 msgid "Search Field Groups"
 msgstr "Sök fältgrupp"
 
-#: acf.php:349
+#: acf.php:350
 msgid "No Field Groups found"
 msgstr "Inga fältgrupper hittades"
 
-#: acf.php:350
+#: acf.php:351
 msgid "No Field Groups found in Trash"
 msgstr "Inga fältgrupper finns i papperskorgen"
 
-#: acf.php:458 core/views/meta_box_options.php:96
+#: acf.php:459 core/views/meta_box_options.php:96
 msgid "Custom Fields"
 msgstr "Egna fält"
 
-#: acf.php:476 acf.php:479
+#: acf.php:477 acf.php:480
 msgid "Field group updated."
 msgstr "Fältgruppen uppdaterades."
 
-#: acf.php:477
+#: acf.php:478
 msgid "Custom field updated."
 msgstr "Eget fält uppdaterades."
 
-#: acf.php:478
+#: acf.php:479
 msgid "Custom field deleted."
 msgstr "Eget fält raderades."
 
-#: acf.php:481
+#: acf.php:482
 #, php-format
 msgid "Field group restored to revision from %s"
 msgstr "Fältgruppen återställdes till revision %s"
 
-#: acf.php:482
+#: acf.php:483
 msgid "Field group published."
 msgstr "Fältgruppen publicerades."
 
-#: acf.php:483
+#: acf.php:484
 msgid "Field group saved."
 msgstr "Fältgruppen sparades."
 
-#: acf.php:484
+#: acf.php:485
 msgid "Field group submitted."
 msgstr "Fältgruppen skickades."
 
-#: acf.php:485
+#: acf.php:486
 msgid "Field group scheduled for."
 msgstr "Fältgruppen schemalades."
 
-#: acf.php:486
+#: acf.php:487
 msgid "Field group draft updated."
 msgstr "Utkastet till fältgrupp uppdaterades."
 
-#: acf.php:621
+#: acf.php:622
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: acf.php:622
+#: acf.php:623
 msgid "Medium"
 msgstr "Medium"
 
-#: acf.php:623
+#: acf.php:624
 msgid "Large"
 msgstr "Stor"
 
-#: acf.php:624
+#: acf.php:625
 msgid "Full"
 msgstr "Full"
 
@@ -537,8 +537,12 @@ msgstr "Revision"
 msgid "Trash"
 msgstr "I papperskorgen"
 
-#: core/controllers/field_group.php:736 core/controllers/field_group.php:757
-#: core/controllers/field_group.php:764 core/fields/file.php:184
+#: core/controllers/field_group.php:726
+msgid "Super Admin"
+msgstr "Superadministratör"
+
+#: core/controllers/field_group.php:741 core/controllers/field_group.php:762
+#: core/controllers/field_group.php:769 core/fields/file.php:186
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
 #: core/fields/relationship.php:595 core/fields/relationship.php:619
@@ -905,15 +909,15 @@ msgstr "Tillägget har nu installerats och aktiverats!"
 msgid "Awesome. Let's get to work"
 msgstr "Grymt! Dags att återgå till arbetet."
 
-#: core/controllers/input.php:495
+#: core/controllers/input.php:488
 msgid "Expand Details"
 msgstr "Visa detaljer"
 
-#: core/controllers/input.php:496
+#: core/controllers/input.php:489
 msgid "Collapse Details"
 msgstr "Dölj detaljer"
 
-#: core/controllers/input.php:499
+#: core/controllers/input.php:492
 msgid "Validation Failed. One or more fields below are required."
 msgstr "Valideringen misslyckades. Ett eller flera fält nedan måste fyllas i."
 
@@ -1080,36 +1084,36 @@ msgstr "Uppdatera fil"
 msgid "uploaded to this post"
 msgstr "uppladdade till detta inlägg"
 
-#: core/fields/file.php:121
+#: core/fields/file.php:123
 msgid "No File Selected"
 msgstr "Ingen fil vald"
 
-#: core/fields/file.php:121
+#: core/fields/file.php:123
 msgid "Add File"
 msgstr "Lägg till fil"
 
-#: core/fields/file.php:151 core/fields/image.php:118
+#: core/fields/file.php:153 core/fields/image.php:118
 #: core/fields/taxonomy.php:365
 msgid "Return Value"
 msgstr "Returvärde"
 
-#: core/fields/file.php:162
+#: core/fields/file.php:164
 msgid "File Object"
 msgstr "Filobjekt"
 
-#: core/fields/file.php:163
+#: core/fields/file.php:165
 msgid "File URL"
 msgstr "Filadress"
 
-#: core/fields/file.php:164
+#: core/fields/file.php:166
 msgid "File ID"
 msgstr "Filens ID"
 
-#: core/fields/file.php:173 core/fields/image.php:158
+#: core/fields/file.php:175 core/fields/image.php:158
 msgid "Library"
 msgstr "Bibliotek"
 
-#: core/fields/file.php:185 core/fields/image.php:171
+#: core/fields/file.php:187 core/fields/image.php:171
 msgid "Uploaded to post"
 msgstr "Uppladdade till detta inlägg"
 
@@ -1439,7 +1443,7 @@ msgstr "Sant / Falskt"
 msgid "eg. Show extra content"
 msgstr "exempel: Visa extra innehåll"
 
-#: core/fields/user.php:18
+#: core/fields/user.php:18 core/views/meta_box_location.php:94
 msgid "User"
 msgstr "Användare"
 
@@ -1714,16 +1718,12 @@ msgid "Post Taxonomy"
 msgstr "Inläggstaxonomi"
 
 #: core/views/meta_box_location.php:92
-msgid "Taxonomy Term (Add / Edit)"
-msgstr "Taxonomiterm (Lägg till / Redigera)"
+msgid "Attachment"
+msgstr "Bilaga"
 
 #: core/views/meta_box_location.php:93
-msgid "User (Add / Edit)"
-msgstr "Användare (Lägg till / Redigera)"
-
-#: core/views/meta_box_location.php:94
-msgid "Media Attachment (Add / Edit)"
-msgstr "Mediabilaga (Lägg till / Redigera)"
+msgid "Term"
+msgstr "Term"
 
 #: core/views/meta_box_location.php:146
 msgid "and"
@@ -1824,6 +1824,15 @@ msgstr "Etiketter"
 #: core/views/meta_box_options.php:106
 msgid "Send Trackbacks"
 msgstr "Skicka trackbacks"
+
+#~ msgid "Taxonomy Term (Add / Edit)"
+#~ msgstr "Taxonomiterm (Lägg till / Redigera)"
+
+#~ msgid "User (Add / Edit)"
+#~ msgstr "Användare (Lägg till / Redigera)"
+
+#~ msgid "Media Attachment (Add / Edit)"
+#~ msgstr "Mediabilaga (Lägg till / Redigera)"
 
 #~ msgid "Min"
 #~ msgstr "Min"
