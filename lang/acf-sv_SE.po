@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Custom Fields 4.2.1\n"
+"Project-Id-Version: Advanced Custom Fields 4.2.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-11 10:28+0100\n"
-"PO-Revision-Date: 2013-08-11 10:32+0100\n"
+"POT-Creation-Date: 2013-08-14 19:51+0100\n"
+"PO-Revision-Date: 2013-08-14 21:03+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -157,7 +157,7 @@ msgstr "Skapa bildgallerier i ett enkelt och intuitivt gränssnitt!"
 
 #: core/controllers/addons.php:144 core/controllers/field_groups.php:448
 msgid "Options Page"
-msgstr "Inställningssida"
+msgstr "Alternativsida"
 
 #: core/controllers/addons.php:145
 msgid "Create global data to use throughout your website!"
@@ -461,7 +461,7 @@ msgstr "Plats"
 
 #: core/controllers/field_group.php:377
 msgid "Options"
-msgstr "Inställningar"
+msgstr "Alternativ"
 
 #: core/controllers/field_group.php:439
 msgid "Show Field Key:"
@@ -1340,16 +1340,23 @@ msgstr "Flik"
 
 #: core/fields/tab.php:68
 msgid ""
-"All fields proceeding this \"tab field\" (or until another \"tab field\"  is "
-"defined) will appear grouped on the edit screen."
+"Use \"Tab Fields\" to better organize your edit screen by grouping your "
+"fields together under separate tab headings."
 msgstr ""
-"Alla fält efter detta \"flikfält\" (eller fram till nästa flikfält) kommer "
-"att grupperas tillsammans i redigeringsvyn."
+"Använd \"flikfält\" för att bättre organisera redigeringsvyn genom att "
+"gruppera dina fält under separata flikar."
 
 #: core/fields/tab.php:69
-msgid "You can use multiple tabs to break up your fields into sections."
+msgid ""
+"All the fields following this \"tab field\" (or until another \"tab field\" "
+"is defined) will be grouped together."
 msgstr ""
-"Du kan använda flera flikar för att dela upp fält i sektioner eller grupper."
+"Alla fält efter detta \"flikfält\" (eller fram till nästa \"flikfält\") "
+"kommer att grupperas tillsammans."
+
+#: core/fields/tab.php:70
+msgid "Use multiple tabs to divide your fields into sections."
+msgstr "Använd flera flikar för att dela upp dina fält i sektioner."
 
 #: core/fields/taxonomy.php:18 core/fields/taxonomy.php:276
 msgid "Taxonomy"
