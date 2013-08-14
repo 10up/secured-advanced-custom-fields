@@ -830,7 +830,7 @@ class acf_field_relationship extends acf_field
 		$posts = get_posts(array(
 			'numberposts'	=>	-1,
 			'post__in'		=>	$post_ids,
-			'post_type'		=>	'any',
+			'post_type'		=>	apply_filters('acf/get_post_types', array()),
 			'post_status'	=>	'any',
 		));
 
