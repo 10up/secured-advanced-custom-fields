@@ -65,8 +65,9 @@ class acf_field_tab extends acf_field
 				<label><?php _e("Instructions",'acf'); ?></label>
 			</td>
 			<td>
-				<p><?php _e("All fields proceeding this \"tab field\" (or until another \"tab field\"  is defined) will appear grouped on the edit screen.",'acf'); ?></p>
-				<p><?php _e("You can use multiple tabs to break up your fields into sections.",'acf'); ?></p>
+				<p><?php _e("Use \"Tab Fields\" to better organize your edit screen by grouping your fields together under separate tab headings.",'acf'); ?></p>
+				<p><?php _e("All the fields following this \"tab field\" (or until another \"tab field\" is defined) will be grouped together.",'acf'); ?></p>
+				<p><?php _e("Use multiple tabs to divide your fields into sections.",'acf'); ?></p>
 			</td>
 		</tr>
 		<?php
