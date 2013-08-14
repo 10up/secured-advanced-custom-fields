@@ -105,6 +105,10 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.2.2 =
+* Relatinoship Field: Fixed bug with 'exclude_from_search' post types
+* Language: Updated Persian Translation - thanks to Ghaem Omidi
+
 = 4.2.1 =
 * Taxonomy field: Fixed issue causing selected terms to appear as numbers - http://support.advancedcustomfields.com/forums/topic/latest-update-4-2-0-taxonomy-field-not-working-correctly/
 * Revisions: Fixed WP 3.6 revisions - http://support.advancedcustomfields.com/forums/topic/wordpress-3-6-revisions-custom-fields-no-longer-tracked/
