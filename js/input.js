@@ -296,6 +296,7 @@ var acf = {
 	
 		div : null,
 		frame : null,
+		render_timout : null,
 		
 		clear_frame : function(){
 			
@@ -350,10 +351,11 @@ var acf = {
 			// modify render
 			_prototype.render = function() {
 				
-				// vars
+				// reference
 				var _this = this;
 				
 				
+				// validate
 				if( _this.ignore_render )
 				{
 					return this;	
@@ -417,15 +419,17 @@ var acf = {
 						
 				
 				}, 0);
- 
-				// add in ACF render!
-				// + WP must be caching the HTML to be rendered. When you select an image, select a different image, then seelct the origional image again, the same ID is found on the WYSIWYG and it doesn't render...
-				// + Failed: Edit the wysiwyg.js file and use mceAddControl before adding it... perhaps some sort of destroy instead?
-				setTimeout(function(){
+				
+				
+				// setup fields
+				// The clearTimout is needed to prevent many setup functions from running at the same time
+				clearTimeout( acf.media.render_timout );
+				acf.media.render_timout = setTimeout(function(){
+
 					$(document).trigger( 'acf/setup_fields', _this.$el );
+					
 				}, 50);
-				
-				
+
 				
 				// return based on the origional render function
 				return this;
@@ -1379,19 +1383,31 @@ var acf = {
 			// open
 			_media.frame.on('open',function() {
 				
+				// set to browse
+				if( _media.frame.content._mode != 'browse' )
+				{
+					_media.frame.content.mode('browse');
+				}
+				
+				
 				// add class
 				_media.frame.$el.closest('.media-modal').addClass('acf-media-modal acf-expanded');
+					
 				
-				//console.log( _media.frame.state() );
-			
 				// set selection
 				var selection	=	_media.frame.state().get('selection'),
 					attachment	=	wp.media.attachment( id );
 				
 				
-				attachment.fetch();
+				// to fetch or not to fetch
+				if( $.isEmptyObject(attachment.changed) )
+				{
+					attachment.fetch();
+				}
+				
+
 				selection.add( attachment );
-							
+						
 			});
 			
 			
@@ -1745,29 +1761,30 @@ var acf = {
 			_media.frame.on('open',function() {
 				
 				// set to browse
-				//_media.frame.content.mode('browse');
-
+				if( _media.frame.content._mode != 'browse' )
+				{
+					_media.frame.content.mode('browse');
+				}
+				
 				
 				// add class
 				_media.frame.$el.closest('.media-modal').addClass('acf-media-modal acf-expanded');
 					
 				
-				// hack
-				//setTimeout(function(){
-					
-					// set selection
-					var selection	=	_media.frame.state().get('selection'),
-						attachment	=	wp.media.attachment( id );
-					
-					
+				// set selection
+				var selection	=	_media.frame.state().get('selection'),
+					attachment	=	wp.media.attachment( id );
+				
+				
+				// to fetch or not to fetch
+				if( $.isEmptyObject(attachment.changed) )
+				{
 					attachment.fetch();
-					selection.add( attachment );
+				}
 				
-				
-				//}, 1);
-				
-				
-							
+
+				selection.add( attachment );
+						
 			});
 			
 			
@@ -2943,7 +2960,7 @@ var acf = {
 			
 		},
 		init : function(){
-
+			
 			// is clone field?
 			if( acf.helpers.is_clone_field( this.$textarea ) )
 			{
@@ -3036,14 +3053,16 @@ var acf = {
 				editor = tinyMCE.get( id );
 			
 			
-			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
-			if( editor )
+			// Remove tinymcy functionality.
+			// Due to the media popup destroying and creating the field within such a short amount of time,
+			// a JS error will be thrown when launching the edit window twice in a row.
+			try
 			{
-				var val = editor.getContent();
-				
 				tinyMCE.execCommand("mceRemoveControl", false, id);
-			
-				this.$textarea.val( val );
+			} 
+			catch(e)
+			{
+				console.log( e );
 			}
 			
 			
