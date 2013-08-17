@@ -290,6 +290,7 @@ var acf = {
 	
 		div : null,
 		frame : null,
+		render_timout : null,
 		
 		clear_frame : function(){
 			
@@ -344,10 +345,11 @@ var acf = {
 			// modify render
 			_prototype.render = function() {
 				
-				// vars
+				// reference
 				var _this = this;
 				
 				
+				// validate
 				if( _this.ignore_render )
 				{
 					return this;	
@@ -411,15 +413,17 @@ var acf = {
 						
 				
 				}, 0);
- 
-				// add in ACF render!
-				// + WP must be caching the HTML to be rendered. When you select an image, select a different image, then seelct the origional image again, the same ID is found on the WYSIWYG and it doesn't render...
-				// + Failed: Edit the wysiwyg.js file and use mceAddControl before adding it... perhaps some sort of destroy instead?
-				setTimeout(function(){
+				
+				
+				// setup fields
+				// The clearTimout is needed to prevent many setup functions from running at the same time
+				clearTimeout( acf.media.render_timout );
+				acf.media.render_timout = setTimeout(function(){
+
 					$(document).trigger( 'acf/setup_fields', _this.$el );
+					
 				}, 50);
-				
-				
+
 				
 				// return based on the origional render function
 				return this;
