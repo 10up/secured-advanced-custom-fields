@@ -195,6 +195,37 @@ class acf_input
 			// foreach($acfs as $acf)
 		}
 		// if($acfs)
+		
+		
+		// Allow 'acf_after_title' metabox position
+		add_action('edit_form_after_title', array($this, 'edit_form_after_title'));
+	}
+	
+	
+	/*
+	*  edit_form_after_title
+	*
+	*  This action will allow ACF to render metaboxes after the title
+	*
+	*  @type	action
+	*  @date	17/08/13
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+	
+	function edit_form_after_title()
+	{
+		// globals
+		global $post, $wp_meta_boxes;
+		
+		
+		// render
+		do_meta_boxes( get_current_screen(), 'acf_after_title', $post);
+		
+		
+		// clean up
+		unset( $wp_meta_boxes['post']['acf_after_title'] );
 	}
 	
 	

@@ -49,9 +49,11 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 				'name'	=>	'options[position]',
 				'value'	=>	$options['position'],
 				'choices' => array(
-					'normal'	=>	__("Normal",'acf'),
-					'side'		=>	__("Side",'acf'),
-				)
+					'acf_after_title'	=>	__("High (after title)",'acf'),
+					'normal'			=>	__("Normal (after content)",'acf'),
+					'side'				=>	__("Side",'acf'),
+				),
+				'default_value' => 'normal'
 			));
 
 			?>
