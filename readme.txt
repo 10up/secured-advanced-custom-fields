@@ -106,7 +106,11 @@ http://support.advancedcustomfields.com/
 == Changelog ==
 
 = 4.2.2 =
-* Relatinoship Field: Fixed bug with 'exclude_from_search' post types
+* Field group: Added 'High (after title)' position for a metabox - http://support.advancedcustomfields.com/forums/topic/position-after-title-solution-inside/
+* Relatinoship field: Fixed bug with 'exclude_from_search' post types
+* Image / File field: Improved edit popup efficiency and fixed bug when 'upload' is last active mode - http://support.advancedcustomfields.com/forums/topic/edit-image-only-shows-add-new-screen/
+* JS: Added un compressed input.js file
+* JS: Fixed but with options page / taxonomy field - http://support.advancedcustomfields.com/forums/topic/checkbox-issues/
 * Language: Updated Persian Translation - thanks to Ghaem Omidi
 
 = 4.2.1 =
