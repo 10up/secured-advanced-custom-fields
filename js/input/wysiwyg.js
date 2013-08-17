@@ -54,7 +54,7 @@
 			
 		},
 		init : function(){
-
+			
 			// is clone field?
 			if( acf.helpers.is_clone_field( this.$textarea ) )
 			{
@@ -147,14 +147,16 @@
 				editor = tinyMCE.get( id );
 			
 			
-			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
-			if( editor )
+			// Remove tinymcy functionality.
+			// Due to the media popup destroying and creating the field within such a short amount of time,
+			// a JS error will be thrown when launching the edit window twice in a row.
+			try
 			{
-				var val = editor.getContent();
-				
 				tinyMCE.execCommand("mceRemoveControl", false, id);
-			
-				this.$textarea.val( val );
+			} 
+			catch(e)
+			{
+				console.log( e );
 			}
 			
 			
