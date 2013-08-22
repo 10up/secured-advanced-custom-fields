@@ -42,18 +42,20 @@
 
 .acf_postbox .field {
 	position: relative;
-	padding: 15px 10px;
-	border-bottom: #e8e8e8 solid 1px;
 	color: #333333;
 }
 
-.acf_postbox .field:last-child {
-	border-bottom: none;
+.acf_postbox > .inside > .field {
+	padding: 15px 10px;
+	border-top: #e8e8e8 solid 1px;
 }
 
-.acf_postbox.no_box .field { 
+.acf_postbox > .inside > .field:first-child {
+	border-top: none;
+}
+
+.acf_postbox.no_box > .inside > .field { 
     border-top: 0 none;
-    border-bottom: 0 none;
     padding-left: 0;
     padding-right: 0;
 }
@@ -61,28 +63,24 @@
 
 /* Field Error */
 .acf_postbox .field.error {
-	margin: 0;
 	border: #CC0000 solid 1px !important;
-	border-radius: 0;
-}
-
-.acf_postbox.no_box .field.error { 
-	padding-left: 10px;
-	padding-right: 10px;
-} 
-
-
-.acf_postbox .field.error + .error {
-	border-top: 0 none !important;
-}
-
-.acf_postbox .field.error:last-child {
-    border-bottom: #CC0000 solid 1px;
+	background: #FFEBE8 !important;
 }
 
 .acf_postbox .field.error label.field_label {
 	color: #CC0000;
 }
+
+.acf_postbox.no_box > .inside > .field.error { 
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.acf_postbox > .inside > .field.error + .field.error {
+	border-top: 0 none !important;
+}
+
+
 
 
 /* Field Label */
