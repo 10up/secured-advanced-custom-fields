@@ -253,21 +253,6 @@ class acf_input
 			$class .= ' acf-hidden';
 			$toggle_class .= ' acf-hidden';
 		}
-
-		?>
-<script type="text/javascript">
-(function($) {
-	
-	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
-	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
-	
-})(jQuery);	
-</script>
-		<?php
-		
-		
-		// nonce
-		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
 		
 		
 		// HTML
@@ -281,6 +266,22 @@ class acf_input
 		{
 			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
 		}
+		
+		
+		// nonce
+		echo '<div style="display:none">';
+			echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+			?>
+<script type="text/javascript">
+(function($) {
+	
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	
+})(jQuery);	
+</script>
+			<?php
+		echo '</div>';
 	}
 	
 	
