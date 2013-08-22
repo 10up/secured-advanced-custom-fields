@@ -27,153 +27,161 @@
 			
 			
 			// loop through all fields
-			$('.postbox:not(.acf-hidden) .field.required, .form-field.required').each(function(){
+			$('.field.required, .form-field.required').each(function(){
 				
-				// vars
-				var div = $(this);
-				
-				
-				// set validation data
-				div.data('validation', true);
-				
-	
-				// if is hidden by conditional logic, ignore
-				if( div.hasClass('acf-conditional_logic-hide') )
-				{
-					return;
-				}
-				
-				
-				// if is hidden by conditional logic on a parent tab, ignore
-				if( div.hasClass('acf-tab_group-hide') )
-				{
-					if( div.prevAll('.field_type-tab:first').hasClass('acf-conditional_logic-hide') )
-					{
-						return;
-					}
-				}
-				
-				
-				// text / textarea
-				if( div.find('input[type="text"], input[type="email"], input[type="number"], input[type="hidden"], textarea').val() == "" )
-				{
-					div.data('validation', false);
-				}
-				
-				
-				// wysiwyg
-				if( div.find('.acf_wysiwyg').exists() && typeof(tinyMCE) == "object")
-				{
-					div.data('validation', true);
-					
-					var id = div.find('.wp-editor-area').attr('id'),
-						editor = tinyMCE.get( id );
-	
-	
-					if( editor && !editor.getContent() )
-					{
-						div.data('validation', false);
-					}
-				}
-				
-				
-				// select
-				if( div.find('select').exists() )
-				{
-					div.data('validation', true);
-	
-					if( div.find('select').val() == "null" || ! div.find('select').val() )
-					{
-						div.data('validation', false);
-					}
-				}
-	
-				
-				// radio
-				if( div.find('input[type="radio"]').exists() )
-				{
-					div.data('validation', false);
-	
-					if( div.find('input[type="radio"]:checked').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// checkbox
-				if( div.find('input[type="checkbox"]').exists() )
-				{
-					div.data('validation', false);
-	
-					if( div.find('input[type="checkbox"]:checked').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-	
-				
-				// relationship
-				if( div.find('.acf_relationship').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.acf_relationship .relationship_right input').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// repeater
-				if( div.find('.repeater').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.repeater tr.row').exists() )
-					{
-						div.data('validation', true);
-					}			
-				}
-				
-				
-				// flexible content
-				if( div.find('.acf_flexible_content').exists() )
-				{
-					div.data('validation', false);
-					if( div.find('.acf_flexible_content .values table').exists() )
-					{
-						div.data('validation', true);
-					}	
-				}
-				
-				
-				// gallery
-				if( div.find('.acf-gallery').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.acf-gallery .thumbnail').exists())
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// hook for custom validation
-				$(document).trigger('acf/validate_field', div );
-				
-				
-				// set validation
-				if( ! div.data('validation') )
-				{
-					_this.status = false;
-					div.closest('.field').addClass('error');
-				}
+				// run validation
+				_this.validate( $(this) );
 				
 	
 			});
 			// end loop through all fields
+		},
+		
+		validate : function( div ){
+			
+			// set validation data
+			div.data('validation', true);
+			
+			
+			// not visible
+			if( div.is(':hidden') )
+			{
+				return;
+			}
+			
+			// if is hidden by conditional logic, ignore
+			if( div.hasClass('acf-conditional_logic-hide') )
+			{
+				return;
+			}
+			
+			
+			// if is hidden by conditional logic on a parent tab, ignore
+			if( div.hasClass('acf-tab_group-hide') )
+			{
+				if( div.prevAll('.field_type-tab:first').hasClass('acf-conditional_logic-hide') )
+				{
+					return;
+				}
+			}
+			
+			
+			// text / textarea
+			if( div.find('input[type="text"], input[type="email"], input[type="number"], input[type="hidden"], textarea').val() == "" )
+			{
+				div.data('validation', false);
+			}
+			
+			
+			// wysiwyg
+			if( div.find('.acf_wysiwyg').exists() && typeof(tinyMCE) == "object")
+			{
+				div.data('validation', true);
+				
+				var id = div.find('.wp-editor-area').attr('id'),
+					editor = tinyMCE.get( id );
+
+
+				if( editor && !editor.getContent() )
+				{
+					div.data('validation', false);
+				}
+			}
+			
+			
+			// select
+			if( div.find('select').exists() )
+			{
+				div.data('validation', true);
+
+				if( div.find('select').val() == "null" || ! div.find('select').val() )
+				{
+					div.data('validation', false);
+				}
+			}
+
+			
+			// radio
+			if( div.find('input[type="radio"]').exists() )
+			{
+				div.data('validation', false);
+
+				if( div.find('input[type="radio"]:checked').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// checkbox
+			if( div.find('input[type="checkbox"]').exists() )
+			{
+				div.data('validation', false);
+
+				if( div.find('input[type="checkbox"]:checked').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+
+			
+			// relationship
+			if( div.find('.acf_relationship').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.acf_relationship .relationship_right input').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// repeater
+			if( div.find('.repeater').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.repeater tr.row').exists() )
+				{
+					div.data('validation', true);
+				}			
+			}
+			
+			
+			// flexible content
+			if( div.find('.acf_flexible_content').exists() )
+			{
+				div.data('validation', false);
+				if( div.find('.acf_flexible_content .values table').exists() )
+				{
+					div.data('validation', true);
+				}	
+			}
+			
+			
+			// gallery
+			if( div.find('.acf-gallery').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.acf-gallery .thumbnail').exists())
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// hook for custom validation
+			$(document).trigger('acf/validate_field', div );
+			
+			
+			// set validation
+			if( ! div.data('validation') )
+			{
+				this.status = false;
+				div.closest('.field').addClass('error');
+			}
 		}
 		
 	};
@@ -194,6 +202,13 @@
 	$(document).on('focus click', '.field.required input, .field.required textarea, .field.required select', function( e ){
 	
 		$(this).closest('.field').removeClass('error');
+		
+	});
+	
+	
+	$(document).on('blur change', '.field.required input, .field.required textarea, .field.required select', function( e ){
+	
+		acf.validation.validate( $(this).closest('.field') );
 		
 	});
 	
