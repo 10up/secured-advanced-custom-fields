@@ -1080,7 +1080,7 @@ var acf = {
 					
 					choices.push({
 						value : v.id,
-						label : v.label
+						label : acf.l10n.this_row + ': ' + v.label
 					});
 					
 				});
