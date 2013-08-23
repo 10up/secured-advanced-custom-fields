@@ -1,28 +1,35 @@
+/*
+*  field-group.js
+*
+*  All javascript needed to create a field group
+*
+*  @type	JS
+*  @date	1/08/13
+*/ 
+
 var acf = {
-	post_id : 0,
-	nonce : '',
-	admin_url : '',
-	ajaxurl : '',
-	text : {},
-	l10n : {},
-	helpers : {
-		uniqid : function(){},
-		sortable : function(){},
-		create_field : function(){}
+	
+	// vars
+	ajaxurl				:	'',
+	admin_url			:	'',
+	post_id				:	0,
+	nonce				:	'',
+	l10n				:	{},
+	text				:	{},
+	
+	// helper functions
+	helpers				:	{
+		uniqid			: 	null,
+		sortable		:	null,
+		create_field	:	null
 	},
-	conditional_logic : {
-		fields : [],
-		setup : function(){}
-	},
-	location : {
-		$el : null,
-		init : function(){},
-		add_rule : function(){},
-		remove_rule : function(){},
-		add_group : function(){},
-		remove_group : function(){}
-	}
+	
+	
+	// modules
+	conditional_logic	:	null,
+	location			:	null
 };
+
 
 (function($){
 
