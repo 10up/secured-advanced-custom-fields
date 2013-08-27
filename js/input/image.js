@@ -122,29 +122,30 @@
 			_media.frame.on('open',function() {
 				
 				// set to browse
-				//_media.frame.content.mode('browse');
-
+				if( _media.frame.content._mode != 'browse' )
+				{
+					_media.frame.content.mode('browse');
+				}
+				
 				
 				// add class
 				_media.frame.$el.closest('.media-modal').addClass('acf-media-modal acf-expanded');
 					
 				
-				// hack
-				//setTimeout(function(){
-					
-					// set selection
-					var selection	=	_media.frame.state().get('selection'),
-						attachment	=	wp.media.attachment( id );
-					
-					
+				// set selection
+				var selection	=	_media.frame.state().get('selection'),
+					attachment	=	wp.media.attachment( id );
+				
+				
+				// to fetch or not to fetch
+				if( $.isEmptyObject(attachment.changed) )
+				{
 					attachment.fetch();
-					selection.add( attachment );
+				}
 				
-				
-				//}, 1);
-				
-				
-							
+
+				selection.add( attachment );
+						
 			});
 			
 			

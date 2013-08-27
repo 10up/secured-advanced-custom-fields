@@ -290,6 +290,7 @@ var acf = {
 	
 		div : null,
 		frame : null,
+		render_timout : null,
 		
 		clear_frame : function(){
 			
@@ -344,10 +345,11 @@ var acf = {
 			// modify render
 			_prototype.render = function() {
 				
-				// vars
+				// reference
 				var _this = this;
 				
 				
+				// validate
 				if( _this.ignore_render )
 				{
 					return this;	
@@ -411,15 +413,17 @@ var acf = {
 						
 				
 				}, 0);
- 
-				// add in ACF render!
-				// + WP must be caching the HTML to be rendered. When you select an image, select a different image, then seelct the origional image again, the same ID is found on the WYSIWYG and it doesn't render...
-				// + Failed: Edit the wysiwyg.js file and use mceAddControl before adding it... perhaps some sort of destroy instead?
-				setTimeout(function(){
+				
+				
+				// setup fields
+				// The clearTimout is needed to prevent many setup functions from running at the same time
+				clearTimeout( acf.media.render_timout );
+				acf.media.render_timout = setTimeout(function(){
+
 					$(document).trigger( 'acf/setup_fields', _this.$el );
+					
 				}, 50);
-				
-				
+
 				
 				// return based on the origional render function
 				return this;
@@ -529,79 +533,115 @@ var acf = {
 			$.each(this.items, function( k, item ){
 				
 				// vars
-				var show	=	true,
-					$field	=	$('.field_key-' + item.field);
+				var $targets	=	$('.field_key-' + item.field);
+
 				
-				
-				// if 'any' was selected, start of as false and any match will result in show = true
-				if( item.allorany == 'any' )
-				{
-					show = false;
-				}
-				
-				
-				// loop through rules
-				$.each(item.rules, function( k2, rule ){
+				// may be multiple targets (sub fields)
+				$targets.each(function(){
 					
-					var calculate = _this.calculate( rule );
+					// vars
+					var show = true;
 					
-					if( item.allorany == 'all' )
+					
+					// if 'any' was selected, start of as false and any match will result in show = true
+					if( item.allorany == 'any' )
 					{
-						if( calculate == false )
+						show = false;
+					}
+					
+					
+					// vars
+					var $target		=	$(this),
+						hide_all	=	true;
+					
+					
+					// loop through rules
+					$.each(item.rules, function( k2, rule ){
+						
+						// vars
+						var $toggle = $('.field_key-' + rule.field);
+						
+						
+						
+						// sub field?
+						if( $toggle.hasClass('sub_field') )
 						{
-							show = false;
-							
-							// end loop
-							return false;
+							$toggle = $target.siblings('.field_key-' + rule.field);
+							hide_all = false;
 						}
+						
+						
+						var calculate = _this.calculate( rule, $toggle, $target );
+						
+						if( item.allorany == 'all' )
+						{
+							if( calculate == false )
+							{
+								show = false;
+								
+								// end loop
+								return false;
+							}
+						}
+						else
+						{
+							if( calculate == true )
+							{
+								show = true;
+								
+								// end loop
+								return false;
+							}
+						}
+						
+					});
+					// $.each(item.rules, function( k2, rule ){
+					
+					
+					// clear classes
+					$target.removeClass('acf-conditional_logic-hide acf-conditional_logic-show acf-show-blank');
+					
+					// hide / show field
+					if( show )
+					{
+						// remove "disabled"
+						$target.find('input, textarea, select').removeAttr('disabled');
+						
+						$target.addClass('acf-conditional_logic-show');
+						
 					}
 					else
 					{
-						if( calculate == true )
+						// add "disabled"
+						$target.find('input, textarea, select').attr('disabled', 'disabled');
+						
+						$target.addClass('acf-conditional_logic-hide');
+						
+						if( !hide_all )
 						{
-							show = true;
-							
-							// end loop
-							return false;
+							$target.addClass('acf-show-blank');
 						}
 					}
+					
 					
 				});
 				
 				
-				// hide / show field
-				if( show )
-				{
-					// remove "disabled"
-					$field.find('input, textarea, select').removeAttr('disabled');
-					
-					
-					$field.removeClass('acf-conditional_logic-hide').addClass('acf-conditional_logic-show');
-				}
-				else
-				{
-					// add "disabled"
-					$field.find('input, textarea, select').attr('disabled', 'disabled');
-					
-					
-					$field.removeClass('acf-conditional_logic-show').addClass('acf-conditional_logic-hide');
-				}
 				
 				
 			});
 			
 		},
-		calculate : function( rule ){
+		calculate : function( rule, $toggle, $target ){
 			
 			// vars
-			var $field	=	$('.field_key-' + rule.field),
-				r		=	false;
+			var r = false;
 			
-			
+
 			// compare values
-			if( $field.hasClass('field_type-true_false') || $field.hasClass('field_type-checkbox') || $field.hasClass('field_type-radio') )
+			if( $toggle.hasClass('field_type-true_false') || $toggle.hasClass('field_type-checkbox') || $toggle.hasClass('field_type-radio') )
 			{
-				var exists = $field.find('input[value="' + rule.value + '"]:checked').exists();
+				var exists = $toggle.find('input[value="' + rule.value + '"]:checked').exists();
 				
 				
 				if( rule.operator == "==" )
@@ -623,7 +663,7 @@ var acf = {
 			else
 			{
 				// get val and make sure it is an array
-				var val = $field.find('input, textarea, select').last().val();
+				var val = $toggle.find('input, textarea, select').last().val();
 				
 				if( ! $.isArray(val) )
 				{

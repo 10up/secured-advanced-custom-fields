@@ -296,6 +296,7 @@ var acf = {
 	
 		div : null,
 		frame : null,
+		render_timout : null,
 		
 		clear_frame : function(){
 			
@@ -350,10 +351,11 @@ var acf = {
 			// modify render
 			_prototype.render = function() {
 				
-				// vars
+				// reference
 				var _this = this;
 				
 				
+				// validate
 				if( _this.ignore_render )
 				{
 					return this;	
@@ -417,15 +419,17 @@ var acf = {
 						
 				
 				}, 0);
- 
-				// add in ACF render!
-				// + WP must be caching the HTML to be rendered. When you select an image, select a different image, then seelct the origional image again, the same ID is found on the WYSIWYG and it doesn't render...
-				// + Failed: Edit the wysiwyg.js file and use mceAddControl before adding it... perhaps some sort of destroy instead?
-				setTimeout(function(){
+				
+				
+				// setup fields
+				// The clearTimout is needed to prevent many setup functions from running at the same time
+				clearTimeout( acf.media.render_timout );
+				acf.media.render_timout = setTimeout(function(){
+
 					$(document).trigger( 'acf/setup_fields', _this.$el );
+					
 				}, 50);
-				
-				
+
 				
 				// return based on the origional render function
 				return this;
@@ -535,79 +539,115 @@ var acf = {
 			$.each(this.items, function( k, item ){
 				
 				// vars
-				var show	=	true,
-					$field	=	$('.field_key-' + item.field);
+				var $targets	=	$('.field_key-' + item.field);
+
 				
-				
-				// if 'any' was selected, start of as false and any match will result in show = true
-				if( item.allorany == 'any' )
-				{
-					show = false;
-				}
-				
-				
-				// loop through rules
-				$.each(item.rules, function( k2, rule ){
+				// may be multiple targets (sub fields)
+				$targets.each(function(){
 					
-					var calculate = _this.calculate( rule );
+					// vars
+					var show = true;
 					
-					if( item.allorany == 'all' )
+					
+					// if 'any' was selected, start of as false and any match will result in show = true
+					if( item.allorany == 'any' )
 					{
-						if( calculate == false )
+						show = false;
+					}
+					
+					
+					// vars
+					var $target		=	$(this),
+						hide_all	=	true;
+					
+					
+					// loop through rules
+					$.each(item.rules, function( k2, rule ){
+						
+						// vars
+						var $toggle = $('.field_key-' + rule.field);
+						
+						
+						
+						// sub field?
+						if( $toggle.hasClass('sub_field') )
 						{
-							show = false;
-							
-							// end loop
-							return false;
+							$toggle = $target.siblings('.field_key-' + rule.field);
+							hide_all = false;
 						}
+						
+						
+						var calculate = _this.calculate( rule, $toggle, $target );
+						
+						if( item.allorany == 'all' )
+						{
+							if( calculate == false )
+							{
+								show = false;
+								
+								// end loop
+								return false;
+							}
+						}
+						else
+						{
+							if( calculate == true )
+							{
+								show = true;
+								
+								// end loop
+								return false;
+							}
+						}
+						
+					});
+					// $.each(item.rules, function( k2, rule ){
+					
+					
+					// clear classes
+					$target.removeClass('acf-conditional_logic-hide acf-conditional_logic-show acf-show-blank');
+					
+					// hide / show field
+					if( show )
+					{
+						// remove "disabled"
+						$target.find('input, textarea, select').removeAttr('disabled');
+						
+						$target.addClass('acf-conditional_logic-show');
+						
 					}
 					else
 					{
-						if( calculate == true )
+						// add "disabled"
+						$target.find('input, textarea, select').attr('disabled', 'disabled');
+						
+						$target.addClass('acf-conditional_logic-hide');
+						
+						if( !hide_all )
 						{
-							show = true;
-							
-							// end loop
-							return false;
+							$target.addClass('acf-show-blank');
 						}
 					}
+					
 					
 				});
 				
 				
-				// hide / show field
-				if( show )
-				{
-					// remove "disabled"
-					$field.find('input, textarea, select').removeAttr('disabled');
-					
-					
-					$field.removeClass('acf-conditional_logic-hide').addClass('acf-conditional_logic-show');
-				}
-				else
-				{
-					// add "disabled"
-					$field.find('input, textarea, select').attr('disabled', 'disabled');
-					
-					
-					$field.removeClass('acf-conditional_logic-show').addClass('acf-conditional_logic-hide');
-				}
 				
 				
 			});
 			
 		},
-		calculate : function( rule ){
+		calculate : function( rule, $toggle, $target ){
 			
 			// vars
-			var $field	=	$('.field_key-' + rule.field),
-				r		=	false;
+			var r = false;
 			
-			
+
 			// compare values
-			if( $field.hasClass('field_type-true_false') || $field.hasClass('field_type-checkbox') || $field.hasClass('field_type-radio') )
+			if( $toggle.hasClass('field_type-true_false') || $toggle.hasClass('field_type-checkbox') || $toggle.hasClass('field_type-radio') )
 			{
-				var exists = $field.find('input[value="' + rule.value + '"]:checked').exists();
+				var exists = $toggle.find('input[value="' + rule.value + '"]:checked').exists();
 				
 				
 				if( rule.operator == "==" )
@@ -629,7 +669,7 @@ var acf = {
 			else
 			{
 				// get val and make sure it is an array
-				var val = $field.find('input, textarea, select').last().val();
+				var val = $toggle.find('input, textarea, select').last().val();
 				
 				if( ! $.isArray(val) )
 				{
@@ -1379,19 +1419,31 @@ var acf = {
 			// open
 			_media.frame.on('open',function() {
 				
+				// set to browse
+				if( _media.frame.content._mode != 'browse' )
+				{
+					_media.frame.content.mode('browse');
+				}
+				
+				
 				// add class
 				_media.frame.$el.closest('.media-modal').addClass('acf-media-modal acf-expanded');
+					
 				
-				//console.log( _media.frame.state() );
-			
 				// set selection
 				var selection	=	_media.frame.state().get('selection'),
 					attachment	=	wp.media.attachment( id );
 				
 				
-				attachment.fetch();
+				// to fetch or not to fetch
+				if( $.isEmptyObject(attachment.changed) )
+				{
+					attachment.fetch();
+				}
+				
+
 				selection.add( attachment );
-							
+						
 			});
 			
 			
@@ -1745,29 +1797,30 @@ var acf = {
 			_media.frame.on('open',function() {
 				
 				// set to browse
-				//_media.frame.content.mode('browse');
-
+				if( _media.frame.content._mode != 'browse' )
+				{
+					_media.frame.content.mode('browse');
+				}
+				
 				
 				// add class
 				_media.frame.$el.closest('.media-modal').addClass('acf-media-modal acf-expanded');
 					
 				
-				// hack
-				//setTimeout(function(){
-					
-					// set selection
-					var selection	=	_media.frame.state().get('selection'),
-						attachment	=	wp.media.attachment( id );
-					
-					
+				// set selection
+				var selection	=	_media.frame.state().get('selection'),
+					attachment	=	wp.media.attachment( id );
+				
+				
+				// to fetch or not to fetch
+				if( $.isEmptyObject(attachment.changed) )
+				{
 					attachment.fetch();
-					selection.add( attachment );
+				}
 				
-				
-				//}, 1);
-				
-				
-							
+
+				selection.add( attachment );
+						
 			});
 			
 			
@@ -2635,153 +2688,161 @@ var acf = {
 			
 			
 			// loop through all fields
-			$('.postbox:not(.acf-hidden) .field.required, .form-field.required').each(function(){
+			$('.field.required, .form-field.required').each(function(){
 				
-				// vars
-				var div = $(this);
-				
-				
-				// set validation data
-				div.data('validation', true);
-				
-	
-				// if is hidden by conditional logic, ignore
-				if( div.hasClass('acf-conditional_logic-hide') )
-				{
-					return;
-				}
-				
-				
-				// if is hidden by conditional logic on a parent tab, ignore
-				if( div.hasClass('acf-tab_group-hide') )
-				{
-					if( div.prevAll('.field_type-tab:first').hasClass('acf-conditional_logic-hide') )
-					{
-						return;
-					}
-				}
-				
-				
-				// text / textarea
-				if( div.find('input[type="text"], input[type="email"], input[type="number"], input[type="hidden"], textarea').val() == "" )
-				{
-					div.data('validation', false);
-				}
-				
-				
-				// wysiwyg
-				if( div.find('.acf_wysiwyg').exists() && typeof(tinyMCE) == "object")
-				{
-					div.data('validation', true);
-					
-					var id = div.find('.wp-editor-area').attr('id'),
-						editor = tinyMCE.get( id );
-	
-	
-					if( editor && !editor.getContent() )
-					{
-						div.data('validation', false);
-					}
-				}
-				
-				
-				// select
-				if( div.find('select').exists() )
-				{
-					div.data('validation', true);
-	
-					if( div.find('select').val() == "null" || ! div.find('select').val() )
-					{
-						div.data('validation', false);
-					}
-				}
-	
-				
-				// radio
-				if( div.find('input[type="radio"]').exists() )
-				{
-					div.data('validation', false);
-	
-					if( div.find('input[type="radio"]:checked').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// checkbox
-				if( div.find('input[type="checkbox"]').exists() )
-				{
-					div.data('validation', false);
-	
-					if( div.find('input[type="checkbox"]:checked').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-	
-				
-				// relationship
-				if( div.find('.acf_relationship').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.acf_relationship .relationship_right input').exists() )
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// repeater
-				if( div.find('.repeater').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.repeater tr.row').exists() )
-					{
-						div.data('validation', true);
-					}			
-				}
-				
-				
-				// flexible content
-				if( div.find('.acf_flexible_content').exists() )
-				{
-					div.data('validation', false);
-					if( div.find('.acf_flexible_content .values table').exists() )
-					{
-						div.data('validation', true);
-					}	
-				}
-				
-				
-				// gallery
-				if( div.find('.acf-gallery').exists() )
-				{
-					div.data('validation', false);
-					
-					if( div.find('.acf-gallery .thumbnail').exists())
-					{
-						div.data('validation', true);
-					}
-				}
-				
-				
-				// hook for custom validation
-				$(document).trigger('acf/validate_field', div );
-				
-				
-				// set validation
-				if( ! div.data('validation') )
-				{
-					_this.status = false;
-					div.closest('.field').addClass('error');
-				}
+				// run validation
+				_this.validate( $(this) );
 				
 	
 			});
 			// end loop through all fields
+		},
+		
+		validate : function( div ){
+			
+			// set validation data
+			div.data('validation', true);
+			
+			
+			// not visible
+			if( div.is(':hidden') )
+			{
+				return;
+			}
+			
+			// if is hidden by conditional logic, ignore
+			if( div.hasClass('acf-conditional_logic-hide') )
+			{
+				return;
+			}
+			
+			
+			// if is hidden by conditional logic on a parent tab, ignore
+			if( div.hasClass('acf-tab_group-hide') )
+			{
+				if( div.prevAll('.field_type-tab:first').hasClass('acf-conditional_logic-hide') )
+				{
+					return;
+				}
+			}
+			
+			
+			// text / textarea
+			if( div.find('input[type="text"], input[type="email"], input[type="number"], input[type="hidden"], textarea').val() == "" )
+			{
+				div.data('validation', false);
+			}
+			
+			
+			// wysiwyg
+			if( div.find('.acf_wysiwyg').exists() && typeof(tinyMCE) == "object")
+			{
+				div.data('validation', true);
+				
+				var id = div.find('.wp-editor-area').attr('id'),
+					editor = tinyMCE.get( id );
+
+
+				if( editor && !editor.getContent() )
+				{
+					div.data('validation', false);
+				}
+			}
+			
+			
+			// select
+			if( div.find('select').exists() )
+			{
+				div.data('validation', true);
+
+				if( div.find('select').val() == "null" || ! div.find('select').val() )
+				{
+					div.data('validation', false);
+				}
+			}
+
+			
+			// radio
+			if( div.find('input[type="radio"]').exists() )
+			{
+				div.data('validation', false);
+
+				if( div.find('input[type="radio"]:checked').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// checkbox
+			if( div.find('input[type="checkbox"]').exists() )
+			{
+				div.data('validation', false);
+
+				if( div.find('input[type="checkbox"]:checked').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+
+			
+			// relationship
+			if( div.find('.acf_relationship').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.acf_relationship .relationship_right input').exists() )
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// repeater
+			if( div.find('.repeater').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.repeater tr.row').exists() )
+				{
+					div.data('validation', true);
+				}			
+			}
+			
+			
+			// flexible content
+			if( div.find('.acf_flexible_content').exists() )
+			{
+				div.data('validation', false);
+				if( div.find('.acf_flexible_content .values table').exists() )
+				{
+					div.data('validation', true);
+				}	
+			}
+			
+			
+			// gallery
+			if( div.find('.acf-gallery').exists() )
+			{
+				div.data('validation', false);
+				
+				if( div.find('.acf-gallery .thumbnail').exists())
+				{
+					div.data('validation', true);
+				}
+			}
+			
+			
+			// hook for custom validation
+			$(document).trigger('acf/validate_field', div );
+			
+			
+			// set validation
+			if( ! div.data('validation') )
+			{
+				this.status = false;
+				div.closest('.field').addClass('error');
+			}
 		}
 		
 	};
@@ -2802,6 +2863,13 @@ var acf = {
 	$(document).on('focus click', '.field.required input, .field.required textarea, .field.required select', function( e ){
 	
 		$(this).closest('.field').removeClass('error');
+		
+	});
+	
+	
+	$(document).on('blur change', '.field.required input, .field.required textarea, .field.required select', function( e ){
+	
+		acf.validation.validate( $(this).closest('.field') );
 		
 	});
 	
@@ -2943,7 +3011,7 @@ var acf = {
 			
 		},
 		init : function(){
-
+			
 			// is clone field?
 			if( acf.helpers.is_clone_field( this.$textarea ) )
 			{
@@ -3036,14 +3104,16 @@ var acf = {
 				editor = tinyMCE.get( id );
 			
 			
-			// if wysiwyg was found (should be always...), remove its functionality and set the value (to keep line breaks)
-			if( editor )
+			// Remove tinymcy functionality.
+			// Due to the media popup destroying and creating the field within such a short amount of time,
+			// a JS error will be thrown when launching the edit window twice in a row.
+			try
 			{
-				var val = editor.getContent();
-				
 				tinyMCE.execCommand("mceRemoveControl", false, id);
-			
-				this.$textarea.val( val );
+			} 
+			catch(e)
+			{
+				console.log( e );
 			}
 			
 			

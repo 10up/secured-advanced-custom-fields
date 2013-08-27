@@ -195,6 +195,37 @@ class acf_input
 			// foreach($acfs as $acf)
 		}
 		// if($acfs)
+		
+		
+		// Allow 'acf_after_title' metabox position
+		add_action('edit_form_after_title', array($this, 'edit_form_after_title'));
+	}
+	
+	
+	/*
+	*  edit_form_after_title
+	*
+	*  This action will allow ACF to render metaboxes after the title
+	*
+	*  @type	action
+	*  @date	17/08/13
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+	
+	function edit_form_after_title()
+	{
+		// globals
+		global $post, $wp_meta_boxes;
+		
+		
+		// render
+		do_meta_boxes( get_current_screen(), 'acf_after_title', $post);
+		
+		
+		// clean up
+		unset( $wp_meta_boxes['post']['acf_after_title'] );
 	}
 	
 	
@@ -222,21 +253,6 @@ class acf_input
 			$class .= ' acf-hidden';
 			$toggle_class .= ' acf-hidden';
 		}
-
-		?>
-<script type="text/javascript">
-(function($) {
-	
-	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
-	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
-	
-})(jQuery);	
-</script>
-		<?php
-		
-		
-		// nonce
-		echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
 		
 		
 		// HTML
@@ -250,6 +266,22 @@ class acf_input
 		{
 			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
 		}
+		
+		
+		// nonce
+		echo '<div style="display:none">';
+			echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+			?>
+<script type="text/javascript">
+(function($) {
+	
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	
+})(jQuery);	
+</script>
+			<?php
+		echo '</div>';
 	}
 	
 	

@@ -56,25 +56,11 @@ $conditional_logic_rule = array(
 );
 
 $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does not exist', 'acf');
-
-
-// l10n
-$l10n = array(
-	'move_to_trash'			=>	__("Move to trash. Are you sure?",'acf'),
-	'checked'				=>	__("checked",'acf'),
-	'conditional_no_fields'	=>	__("No toggle fields available",'acf'),
-	'title'					=>	__("Field group title is required",'acf'),
-	'copy'					=>	__("copy",'acf'),
-	'or'					=>	__("or",'acf')
-);
 		
 ?>
 
 <!-- Hidden Fields -->
 <div style="display:none;">
-	<script type="text/javascript">
-	acf.l10n = <?php echo json_encode( $l10n ); ?>;
-	</script>
 	<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'field_group' ); ?>" />
 </div>
 <!-- / Hidden Fields -->
