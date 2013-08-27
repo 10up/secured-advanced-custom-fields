@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-14 19:51+0100\n"
-"PO-Revision-Date: 2013-08-14 21:03+0100\n"
+"POT-Creation-Date: 2013-08-27 20:12+0100\n"
+"PO-Revision-Date: 2013-08-27 20:13+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -59,7 +59,7 @@ msgstr "Inga fältgrupper hittades"
 msgid "No Field Groups found in Trash"
 msgstr "Inga fältgrupper finns i papperskorgen"
 
-#: acf.php:459 core/views/meta_box_options.php:96
+#: acf.php:459 core/views/meta_box_options.php:98
 msgid "Custom Fields"
 msgstr "Egna fält"
 
@@ -450,99 +450,128 @@ msgstr ""
 msgid "No field groups were selected"
 msgstr "Inga fältgrupper var valda"
 
-#: core/controllers/field_group.php:375 core/controllers/field_group.php:437
+#: core/controllers/field_group.php:358
+msgid "Move to trash. Are you sure?"
+msgstr "Flytta till papperskorgen. Är du säker?"
+
+#: core/controllers/field_group.php:359
+msgid "checked"
+msgstr "vald"
+
+#: core/controllers/field_group.php:360
+msgid "No toggle fields available"
+msgstr "Det finns inga aktiveringsbara fält"
+
+#: core/controllers/field_group.php:361
+msgid "Field group title is required"
+msgstr "Fältgruppen måste ha en titel"
+
+#: core/controllers/field_group.php:362
+msgid "copy"
+msgstr "kopiera"
+
+#: core/controllers/field_group.php:363 core/views/meta_box_location.php:62
+#: core/views/meta_box_location.php:159
+msgid "or"
+msgstr "eller"
+
+#: core/controllers/field_group.php:364
+msgid "This row"
+msgstr "Denna rad"
+
+#: core/controllers/field_group.php:392 core/controllers/field_group.php:454
 #: core/controllers/field_groups.php:148
 msgid "Fields"
 msgstr "Fält"
 
-#: core/controllers/field_group.php:376
+#: core/controllers/field_group.php:393
 msgid "Location"
 msgstr "Plats"
 
-#: core/controllers/field_group.php:377
+#: core/controllers/field_group.php:394
 msgid "Options"
 msgstr "Alternativ"
 
-#: core/controllers/field_group.php:439
+#: core/controllers/field_group.php:456
 msgid "Show Field Key:"
 msgstr "Visa fältnyckel:"
 
-#: core/controllers/field_group.php:440 core/fields/page_link.php:138
+#: core/controllers/field_group.php:457 core/fields/page_link.php:138
 #: core/fields/page_link.php:159 core/fields/post_object.php:328
 #: core/fields/post_object.php:349 core/fields/select.php:224
 #: core/fields/select.php:243 core/fields/taxonomy.php:341
 #: core/fields/user.php:285 core/fields/wysiwyg.php:229
-#: core/views/meta_box_fields.php:209 core/views/meta_box_fields.php:232
+#: core/views/meta_box_fields.php:195 core/views/meta_box_fields.php:218
 msgid "No"
 msgstr "Nej"
 
-#: core/controllers/field_group.php:441 core/fields/page_link.php:137
+#: core/controllers/field_group.php:458 core/fields/page_link.php:137
 #: core/fields/page_link.php:158 core/fields/post_object.php:327
 #: core/fields/post_object.php:348 core/fields/select.php:223
 #: core/fields/select.php:242 core/fields/taxonomy.php:340
 #: core/fields/user.php:284 core/fields/wysiwyg.php:228
-#: core/views/meta_box_fields.php:208 core/views/meta_box_fields.php:231
+#: core/views/meta_box_fields.php:194 core/views/meta_box_fields.php:217
 msgid "Yes"
 msgstr "Ja"
 
-#: core/controllers/field_group.php:618
+#: core/controllers/field_group.php:635
 msgid "Front Page"
 msgstr "Förstasida"
 
-#: core/controllers/field_group.php:619
+#: core/controllers/field_group.php:636
 msgid "Posts Page"
 msgstr "Inläggssida"
 
-#: core/controllers/field_group.php:620
+#: core/controllers/field_group.php:637
 msgid "Top Level Page (parent of 0)"
 msgstr "Toppsida (förälder satt till 0)"
 
-#: core/controllers/field_group.php:621
+#: core/controllers/field_group.php:638
 msgid "Parent Page (has children)"
 msgstr "Föräldersida (har undersidor)"
 
-#: core/controllers/field_group.php:622
+#: core/controllers/field_group.php:639
 msgid "Child Page (has parent)"
 msgstr "Undersida (har föräldersida)"
 
-#: core/controllers/field_group.php:630
+#: core/controllers/field_group.php:647
 msgid "Default Template"
 msgstr "Standardmall"
 
-#: core/controllers/field_group.php:707
+#: core/controllers/field_group.php:724
 msgid "Publish"
 msgstr "Publicerat"
 
-#: core/controllers/field_group.php:708
+#: core/controllers/field_group.php:725
 msgid "Pending Review"
 msgstr "Väntar på granskning"
 
-#: core/controllers/field_group.php:709
+#: core/controllers/field_group.php:726
 msgid "Draft"
 msgstr "Utkast"
 
-#: core/controllers/field_group.php:710
+#: core/controllers/field_group.php:727
 msgid "Future"
 msgstr "Tidsbestämt"
 
-#: core/controllers/field_group.php:711
+#: core/controllers/field_group.php:728
 msgid "Private"
 msgstr "Privat"
 
-#: core/controllers/field_group.php:712
+#: core/controllers/field_group.php:729
 msgid "Revision"
 msgstr "Revision"
 
-#: core/controllers/field_group.php:713
+#: core/controllers/field_group.php:730
 msgid "Trash"
 msgstr "I papperskorgen"
 
-#: core/controllers/field_group.php:726
+#: core/controllers/field_group.php:743
 msgid "Super Admin"
 msgstr "Superadministratör"
 
-#: core/controllers/field_group.php:741 core/controllers/field_group.php:762
-#: core/controllers/field_group.php:769 core/fields/file.php:186
+#: core/controllers/field_group.php:758 core/controllers/field_group.php:779
+#: core/controllers/field_group.php:786 core/fields/file.php:186
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
 #: core/fields/relationship.php:595 core/fields/relationship.php:619
@@ -909,15 +938,15 @@ msgstr "Tillägget har nu installerats och aktiverats!"
 msgid "Awesome. Let's get to work"
 msgstr "Grymt! Dags att återgå till arbetet."
 
-#: core/controllers/input.php:488
+#: core/controllers/input.php:520
 msgid "Expand Details"
 msgstr "Visa detaljer"
 
-#: core/controllers/input.php:489
+#: core/controllers/input.php:521
 msgid "Collapse Details"
 msgstr "Dölj detaljer"
 
-#: core/controllers/input.php:492
+#: core/controllers/input.php:524
 msgid "Validation Failed. One or more fields below are required."
 msgstr "Valideringen misslyckades. Ett eller flera fält nedan måste fyllas i."
 
@@ -1137,7 +1166,7 @@ msgstr "Uppdatera bild"
 msgid "Remove"
 msgstr "Radera"
 
-#: core/fields/image.php:84 core/views/meta_box_fields.php:122
+#: core/fields/image.php:84 core/views/meta_box_fields.php:108
 msgid "Edit"
 msgstr "Redigera"
 
@@ -1317,7 +1346,7 @@ msgstr "Element"
 msgid "Selected elements will be displayed in each result"
 msgstr "Valda element visas i varje resultat"
 
-#: core/fields/relationship.php:666 core/views/meta_box_options.php:103
+#: core/fields/relationship.php:666 core/views/meta_box_options.php:105
 msgid "Featured Image"
 msgstr "Utvald bild"
 
@@ -1367,7 +1396,7 @@ msgid "None"
 msgstr "Ingen"
 
 #: core/fields/taxonomy.php:306 core/fields/user.php:251
-#: core/views/meta_box_fields.php:91 core/views/meta_box_fields.php:173
+#: core/views/meta_box_fields.php:77 core/views/meta_box_fields.php:159
 msgid "Field Type"
 msgstr "Fälttyp"
 
@@ -1533,48 +1562,23 @@ msgstr "Nytt fält"
 msgid "Field type does not exist"
 msgstr "Fälttypen finns inte"
 
-#: core/views/meta_box_fields.php:63
-msgid "Move to trash. Are you sure?"
-msgstr "Flytta till papperskorgen. Är du säker?"
-
-#: core/views/meta_box_fields.php:64
-msgid "checked"
-msgstr "vald"
-
-#: core/views/meta_box_fields.php:65
-msgid "No toggle fields available"
-msgstr "Det finns inga aktiveringsbara fält"
-
-#: core/views/meta_box_fields.php:66
-msgid "Field group title is required"
-msgstr "Fältgruppen måste ha en titel"
-
-#: core/views/meta_box_fields.php:67
-msgid "copy"
-msgstr "kopiera"
-
-#: core/views/meta_box_fields.php:68 core/views/meta_box_location.php:62
-#: core/views/meta_box_location.php:159
-msgid "or"
-msgstr "eller"
-
-#: core/views/meta_box_fields.php:88
+#: core/views/meta_box_fields.php:74
 msgid "Field Order"
 msgstr "Ordning på fält"
 
-#: core/views/meta_box_fields.php:89 core/views/meta_box_fields.php:141
+#: core/views/meta_box_fields.php:75 core/views/meta_box_fields.php:127
 msgid "Field Label"
 msgstr "Fältetikett"
 
-#: core/views/meta_box_fields.php:90 core/views/meta_box_fields.php:157
+#: core/views/meta_box_fields.php:76 core/views/meta_box_fields.php:143
 msgid "Field Name"
 msgstr "Fältnamn"
 
-#: core/views/meta_box_fields.php:92
+#: core/views/meta_box_fields.php:78
 msgid "Field Key"
 msgstr "Fältnyckel"
 
-#: core/views/meta_box_fields.php:104
+#: core/views/meta_box_fields.php:90
 msgid ""
 "No fields. Click the <strong>+ Add Field</strong> button to create your "
 "first field."
@@ -1582,91 +1586,91 @@ msgstr ""
 "Inga fält. Klicka på knappen <strong>+ Lägg till fält</strong> för att skapa "
 "ditt första fält."
 
-#: core/views/meta_box_fields.php:119 core/views/meta_box_fields.php:122
+#: core/views/meta_box_fields.php:105 core/views/meta_box_fields.php:108
 msgid "Edit this Field"
 msgstr "Redigera detta fält"
 
-#: core/views/meta_box_fields.php:123
+#: core/views/meta_box_fields.php:109
 msgid "Read documentation for this field"
 msgstr "Läs dokumentationen för detta fält"
 
-#: core/views/meta_box_fields.php:123
+#: core/views/meta_box_fields.php:109
 msgid "Docs"
 msgstr "Dokumentation"
 
-#: core/views/meta_box_fields.php:124
+#: core/views/meta_box_fields.php:110
 msgid "Duplicate this Field"
 msgstr "Duplicera detta fält"
 
-#: core/views/meta_box_fields.php:124
+#: core/views/meta_box_fields.php:110
 msgid "Duplicate"
 msgstr "Duplicera"
 
-#: core/views/meta_box_fields.php:125
+#: core/views/meta_box_fields.php:111
 msgid "Delete this Field"
 msgstr "Radera detta fält"
 
-#: core/views/meta_box_fields.php:125
+#: core/views/meta_box_fields.php:111
 msgid "Delete"
 msgstr "Radera"
 
-#: core/views/meta_box_fields.php:142
+#: core/views/meta_box_fields.php:128
 msgid "This is the name which will appear on the EDIT page"
 msgstr "Detta namn kommer att visas i redigeringsvyn"
 
-#: core/views/meta_box_fields.php:158
+#: core/views/meta_box_fields.php:144
 msgid "Single word, no spaces. Underscores and dashes allowed"
 msgstr "Ett ord utan mellanslag. Understreck och bindestreck är tillåtna"
 
-#: core/views/meta_box_fields.php:187
+#: core/views/meta_box_fields.php:173
 msgid "Field Instructions"
 msgstr "Instruktioner för fält"
 
-#: core/views/meta_box_fields.php:188
+#: core/views/meta_box_fields.php:174
 msgid "Instructions for authors. Shown when submitting data"
 msgstr "Instruktioner till författare. Visas när data anges"
 
-#: core/views/meta_box_fields.php:200
+#: core/views/meta_box_fields.php:186
 msgid "Required?"
 msgstr "Obligatorisk?"
 
-#: core/views/meta_box_fields.php:223
+#: core/views/meta_box_fields.php:209
 msgid "Conditional Logic"
 msgstr "Visningsvillkor"
 
-#: core/views/meta_box_fields.php:274 core/views/meta_box_location.php:117
+#: core/views/meta_box_fields.php:260 core/views/meta_box_location.php:117
 msgid "is equal to"
 msgstr "är lika med"
 
-#: core/views/meta_box_fields.php:275 core/views/meta_box_location.php:118
+#: core/views/meta_box_fields.php:261 core/views/meta_box_location.php:118
 msgid "is not equal to"
 msgstr "inte är lika med"
 
-#: core/views/meta_box_fields.php:293
+#: core/views/meta_box_fields.php:279
 msgid "Show this field when"
 msgstr "Visa detta fält när"
 
-#: core/views/meta_box_fields.php:299
+#: core/views/meta_box_fields.php:285
 msgid "all"
 msgstr "alla"
 
-#: core/views/meta_box_fields.php:300
+#: core/views/meta_box_fields.php:286
 msgid "any"
 msgstr "någon"
 
-#: core/views/meta_box_fields.php:303
+#: core/views/meta_box_fields.php:289
 msgid "these rules are met"
 msgstr "av dessa villkor uppfylls"
 
-#: core/views/meta_box_fields.php:317
+#: core/views/meta_box_fields.php:303
 msgid "Close Field"
 msgstr "Stäng fält"
 
-#: core/views/meta_box_fields.php:330
+#: core/views/meta_box_fields.php:316
 msgid "Drag and drop to reorder"
 msgstr "Dra och släpp för att ändra ordning"
 
-#: core/views/meta_box_fields.php:331
+#: core/views/meta_box_fields.php:317
 msgid "+ Add Field"
 msgstr "+ Lägg till fält"
 
@@ -1753,34 +1757,38 @@ msgid "Position"
 msgstr "Plats"
 
 #: core/views/meta_box_options.php:52
-msgid "Normal"
-msgstr "Normal"
+msgid "High (after title)"
+msgstr "Hög (efter titeln)"
 
 #: core/views/meta_box_options.php:53
+msgid "Normal (after content)"
+msgstr "Normal (efter innehållet)"
+
+#: core/views/meta_box_options.php:54
 msgid "Side"
 msgstr "Sidopanel"
 
-#: core/views/meta_box_options.php:62
+#: core/views/meta_box_options.php:64
 msgid "Style"
 msgstr "Stil"
 
-#: core/views/meta_box_options.php:72
+#: core/views/meta_box_options.php:74
 msgid "No Metabox"
 msgstr "Ingen metabox"
 
-#: core/views/meta_box_options.php:73
+#: core/views/meta_box_options.php:75
 msgid "Standard Metabox"
 msgstr "Vanlig metabox"
 
-#: core/views/meta_box_options.php:82
+#: core/views/meta_box_options.php:84
 msgid "Hide on screen"
 msgstr "Dölj på sida"
 
-#: core/views/meta_box_options.php:83
+#: core/views/meta_box_options.php:85
 msgid "<b>Select</b> items to <b>hide</b> them from the edit screen"
 msgstr "<b>Välj</b> objekt för att <b>dölja</b> dem från redigeringsvyn"
 
-#: core/views/meta_box_options.php:84
+#: core/views/meta_box_options.php:86
 msgid ""
 "If multiple field groups appear on an edit screen, the first field group's "
 "options will be used. (the one with the lowest order number)"
@@ -1788,49 +1796,52 @@ msgstr ""
 "Om flera fältgrupper visas i redigeringsvyn kommer första gruppens "
 "inställningar att användas (den med lägst ordningsnummer)"
 
-#: core/views/meta_box_options.php:94
+#: core/views/meta_box_options.php:96
 msgid "Content Editor"
 msgstr "Innehållseditor"
 
-#: core/views/meta_box_options.php:95
+#: core/views/meta_box_options.php:97
 msgid "Excerpt"
 msgstr "Utdrag"
 
-#: core/views/meta_box_options.php:97
+#: core/views/meta_box_options.php:99
 msgid "Discussion"
 msgstr "Diskussion"
 
-#: core/views/meta_box_options.php:98
+#: core/views/meta_box_options.php:100
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: core/views/meta_box_options.php:99
+#: core/views/meta_box_options.php:101
 msgid "Revisions"
 msgstr "Revisioner"
 
-#: core/views/meta_box_options.php:100
+#: core/views/meta_box_options.php:102
 msgid "Slug"
 msgstr "Permalänk"
 
-#: core/views/meta_box_options.php:101
+#: core/views/meta_box_options.php:103
 msgid "Author"
 msgstr "Författare"
 
-#: core/views/meta_box_options.php:102
+#: core/views/meta_box_options.php:104
 msgid "Format"
 msgstr "Format"
 
-#: core/views/meta_box_options.php:104
+#: core/views/meta_box_options.php:106
 msgid "Categories"
 msgstr "Kategorier"
 
-#: core/views/meta_box_options.php:105
+#: core/views/meta_box_options.php:107
 msgid "Tags"
 msgstr "Etiketter"
 
-#: core/views/meta_box_options.php:106
+#: core/views/meta_box_options.php:108
 msgid "Send Trackbacks"
 msgstr "Skicka trackbacks"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
 
 #~ msgid "Taxonomy Term (Add / Edit)"
 #~ msgstr "Taxonomiterm (Lägg till / Redigera)"
