@@ -216,7 +216,7 @@ class acf_addons
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="tick"></span><?php _e("Installed",'acf'); ?></a>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
 					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
 				<?php endif; ?>
@@ -237,7 +237,7 @@ class acf_addons
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="tick"></span><?php _e("Installed",'acf'); ?></a>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
 					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Download",'acf'); ?></a>
 				<?php endif; ?>
