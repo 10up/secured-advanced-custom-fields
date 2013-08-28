@@ -370,25 +370,37 @@ class Acf
 		// register acf scripts
 		$scripts = array();
 		$scripts[] = array(
-			'handle' => 'acf-field-group',
-			'src' => $this->settings['dir'] . 'js/field-group.min.js',
-			'deps' => array('jquery')
+			'handle'	=> 'acf-field-group',
+			'src'		=> $this->settings['dir'] . 'js/field-group.js',
+			'deps'		=> array('jquery')
 		);
 		$scripts[] = array(
-			'handle' => 'acf-input',
-			'src' => $this->settings['dir'] . 'js/input.min.js',
-			'deps' => array('jquery')
+			'handle'	=> 'acf-input',
+			'src'		=> $this->settings['dir'] . 'js/input.js',
+			'deps'		=> array('jquery')
 		);
 		$scripts[] = array(
-			'handle' => 'acf-datepicker',
-			'src' => $this->settings['dir'] . 'core/fields/date_picker/jquery.ui.datepicker.js',
-			'deps' => array('jquery', 'acf-input')
+			'handle'	=> 'acf-datepicker',
+			'src'		=> $this->settings['dir'] . 'core/fields/date_picker/jquery.ui.datepicker.js',
+			'deps'		=> array('jquery', 'acf-input')
+		);
+		$scripts[] = array(
+			'handle'	=> 'acf-googlemaps',
+			'src'		=> 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places',
+			'deps'		=> array('jquery'),
+			'in_footer'	=> true
 		);
 		
 		
 		foreach( $scripts as $script )
 		{
-			wp_register_script( $script['handle'], $script['src'], $script['deps'], $this->settings['version'] );
+			// in footer?
+			if( !isset($script['in_footer']) )
+			{
+				$script['in_footer'] = false;
+			}
+			
+			wp_register_script( $script['handle'], $script['src'], $script['deps'], $this->settings['version'], $script['in_footer'] );
 		}
 		
 		
@@ -432,6 +444,7 @@ class Acf
 		include_once('core/fields/taxonomy.php');
 		include_once('core/fields/user.php');
 		
+		include_once('core/fields/location.php');
 		include_once('core/fields/date_picker/date_picker.php');
 		include_once('core/fields/color_picker.php');
 		

@@ -1125,6 +1125,95 @@ tr.acf-conditional_logic-show {
 	padding: 0 10px 1px;
 }
 
+
+/*--------------------------------------------------------------------------
+*
+*	Field: Location
+*	
+*-------------------------------------------------------------------------*/
+
+.acf-location {
+	position: relative;
+	border: #DFDFDF solid 1px;
+}
+
+.acf-location .title {
+	position: relative;
+	border-bottom: #DFDFDF solid 1px;
+}
+
+.acf-location .has-value { display: none; }
+.acf-location .no-value { display: block; }
+
+.acf-location.active .has-value { display: block; }
+.acf-location.active .no-value { display: none; }
+
+.acf-location .title h4,
+.acf-location .title input[type="text"] {
+	margin: 0;
+	font-size: 12px;
+	line-height: 16px;
+	padding: 10px;
+	border: 0 none;
+	box-shadow: none;
+	border-radius: 0;
+	font-family: inherit;
+	cursor: text;
+}
+
+.acf-location .title input[type="text"] {
+	height: 36px;
+	line-height: normal;
+}
+
+.acf-location .title .search {
+	height: auto;
+	border: 0 none;
+}
+
+.acf-location .acf-sprite-remove,
+.acf-location .acf-sprite-locate {
+	right: 7px;
+	top: 7px;
+	position: absolute;
+}
+
+.acf-location .acf-sprite-remove {
+	background-position: -71px -221px;
+	height: 9px;
+	width: 9px;
+	border: 6px solid transparent;
+}
+.acf-location .acf-sprite-remove:hover { background-position: -71px -271px; }
+
+.acf-location .acf-sprite-locate {
+	background-position: -50px -300px;
+	width: 13px;
+	height: 13px;
+	border: 5px solid transparent;
+}
+.acf-location .acf-sprite-locate:hover { background-position: -50px -350px; }
+
+.acf-location .canvas {
+	height: 400px;
+}
+
+.pac-container {
+	margin-left: -1px;
+	margin-top: -1px;
+	padding: 5px 0;
+	border-color: #DFDFDF;
+}
+
+.pac-container:after {
+	display: none;
+}
+
+.pac-container .pac-item {
+	padding: 5px;
+	margin: 0 5px;
+}
+
 /*--------------------------------------------------------------------------
 *
 *	Retina
