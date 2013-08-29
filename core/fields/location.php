@@ -1,6 +1,6 @@
 <?php
 
-class acf_field_location extends acf_field
+class acf_field_google_map extends acf_field
 {
 	/*
 	*  __construct
@@ -14,8 +14,8 @@ class acf_field_location extends acf_field
 	function __construct()
 	{
 		// vars
-		$this->name = 'location';
-		$this->label = __("Location",'acf');
+		$this->name = 'google_map';
+		$this->label = __("Google Map",'acf');
 		$this->category = __("jQuery",'acf');
 		$this->defaults = array(
 			'multiple' 		=>	0,
@@ -218,6 +218,6 @@ class acf_field_location extends acf_field
 	}	
 }
 
-new acf_field_location();
+new acf_field_google_map();
 
 ?>
