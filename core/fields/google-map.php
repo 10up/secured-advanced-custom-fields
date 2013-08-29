@@ -18,7 +18,14 @@ class acf_field_google_map extends acf_field
 		$this->label = __("Google Map",'acf');
 		$this->category = __("jQuery",'acf');
 		$this->defaults = array(
-			'multiple' 		=>	0,
+			'height'		=> '',
+			'center_lat'	=> '',
+			'center_lng'	=> ''
+		);
+		$this->default_values = array(
+			'height'		=> '400',
+			'center_lat'	=> '-37.81411',
+			'center_lng'	=> '144.96328'
 		);
 		
 		
@@ -68,17 +75,6 @@ class acf_field_google_map extends acf_field
 		wp_enqueue_script('acf-googlemaps');
 		
 		
-		// vars
-		$o = array(
-			'class'		=>	'',
-		);
-		
-		if( $field['value'] )
-		{
-			$o['class'] = 'active';
-		}
-		
-		
 		// default value
 		if( !is_array($field['value']) )
 		{
@@ -92,8 +88,41 @@ class acf_field_google_map extends acf_field
 		));
 		
 		
+		// default options
+		foreach( $this->default_values as $k => $v )
+		{
+			if( ! $field[ $k ] )
+			{
+				$field[ $k ] = $v;
+			}	
+		}
+		
+		
+		// vars
+		$o = array(
+			'class'		=>	'',
+		);
+		
+		if( $field['value']['address'] )
+		{
+			$o['class'] = 'active';
+		}
+		
+		
+		$atts = '';
+		$keys = array( 
+			'data-id'	=> 'id', 
+			'data-lat'	=> 'center_lat',
+			'data-lng'	=> 'center_lng'
+		);
+		
+		foreach( $keys as $k => $v )
+		{
+			$atts .= ' ' . $k . '="' . esc_attr( $field[ $v ] ) . '"';	
+		}
+		
 		?>
-		<div class="acf-location <?php echo $o['class']; ?>" data-id="<?php echo $field['id']; ?>">
+		<div class="acf-location <?php echo $o['class']; ?>" <?php echo $atts; ?>>
 			
 			<div style="display:none;">
 				<?php foreach( $field['value'] as $k => $v ): ?>
@@ -115,7 +144,7 @@ class acf_field_google_map extends acf_field
 				
 			</div>
 			
-			<div class="canvas">
+			<div class="canvas" style="height: <?php echo $field['height']; ?>px">
 				
 			</div>
 			
@@ -146,20 +175,57 @@ class acf_field_google_map extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php _e("Select multiple values?",'acf'); ?></label>
+		<label><?php _e("Center",'acf'); ?></label>
+		<p class="description"><?php _e('Center the initial map','acf'); ?></p>
+	</td>
+	<td>
+		<ul class="hl clearfix">
+			<li style="width:48%;">
+				<?php 
+			
+				do_action('acf/create_field', array(
+					'type'			=> 'text',
+					'name'			=> 'fields['.$key.'][center_lat]',
+					'value'			=> $field['center_lat'],
+					'prepend'		=> 'lat',
+					'placeholder'	=> $this->default_values['center_lat']
+				));
+				
+				?>
+			</li>
+			<li style="width:48%; margin-left:4%;">
+				<?php 
+			
+				do_action('acf/create_field', array(
+					'type'			=> 'text',
+					'name'			=> 'fields['.$key.'][center_lng]',
+					'value'			=> $field['center_lng'],
+					'prepend'		=> 'lng',
+					'placeholder'	=> $this->default_values['center_lng']
+				));
+				
+				?>
+			</li>
+		</ul>
+		
+	</td>
+</tr>
+<tr class="field_option field_option_<?php echo $this->name; ?>">
+	<td class="label">
+		<label><?php _e("Height",'acf'); ?></label>
+		<p class="description"><?php _e('Customise the map height','acf'); ?></p>
 	</td>
 	<td>
 		<?php 
+		
 		do_action('acf/create_field', array(
-			'type'	=>	'radio',
-			'name'	=>	'fields['.$key.'][multiple]',
-			'value'	=>	$field['multiple'],
-			'choices'	=>	array(
-				1	=>	__("Yes",'acf'),
-				0	=>	__("No",'acf'),
-			),
-			'layout'	=>	'horizontal',
+			'type'			=> 'number',
+			'name'			=> 'fields['.$key.'][height]',
+			'value'			=> $field['height'],
+			'append'		=> 'px',
+			'placeholder'	=> $this->default_values['height']
 		));
+		
 		?>
 	</td>
 </tr>
