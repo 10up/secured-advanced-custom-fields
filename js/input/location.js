@@ -410,9 +410,13 @@
 			
 	});
 	
-	$(document).on('keyup', '.acf-location .search', function( e ){
+	$(document).on('keydown', '.acf-location .search', function( e ){
 		
-		e.preventDefault();
+		// prevent form from submitting
+		if( e.which == 13 )
+		{
+		    return false;
+		}
 			
 	});
 	
