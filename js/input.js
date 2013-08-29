@@ -2298,7 +2298,7 @@ var acf = {
 		    
 		    // update inputs
 			this.$el.find('.input-lat').val( lat );
-			this.$el.find('.input-lng').val( lng );
+			this.$el.find('.input-lng').val( lng ).trigger('change');
 			
 			
 		    // update marker
@@ -2313,6 +2313,10 @@ var acf = {
 	        this.$el.addClass('active');
 	        
 	        
+	        // validation
+			this.$el.closest('.field').removeClass('error');
+			
+			
 	        // return for chaining
 	        return this;
 		},
