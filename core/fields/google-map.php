@@ -27,6 +27,10 @@ class acf_field_google_map extends acf_field
 			'center_lat'	=> '-37.81411',
 			'center_lng'	=> '144.96328'
 		);
+		$this->l10n = array(
+			'locating'			=>	__("Locating",'acf'),
+			'browser_support'	=>	__("Sorry, this browser does not support geolocation",'acf'),
+		);
 		
 		
 		// do not delete!
@@ -122,7 +126,7 @@ class acf_field_google_map extends acf_field
 		}
 		
 		?>
-		<div class="acf-location <?php echo $o['class']; ?>" <?php echo $atts; ?>>
+		<div class="acf-google-map <?php echo $o['class']; ?>" <?php echo $atts; ?>>
 			
 			<div style="display:none;">
 				<?php foreach( $field['value'] as $k => $v ): ?>
@@ -133,12 +137,12 @@ class acf_field_google_map extends acf_field
 			<div class="title">
 				
 				<div class="has-value">
-					<a href="#" class="acf-sprite-remove ir">Remove</a>
+					<a href="#" class="acf-sprite-remove ir" title="Clear location">Remove</a>
 					<h4><?php echo $field['value']['address']; ?></h4>
 				</div>
 				
 				<div class="no-value">
-					<a href="#" class="acf-sprite-locate ir">Locate</a>
+					<a href="#" class="acf-sprite-locate ir" title="Find current location">Locate</a>
 					<input type="text" placeholder="Search for address..." class="search" />
 				</div>
 				

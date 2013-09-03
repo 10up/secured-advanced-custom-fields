@@ -182,7 +182,7 @@
 					lng = e.latLng.lng();
 				
 				
-				_this.set({ $el : _$el }).update( lat, lng );
+				_this.set({ $el : _$el }).update( lat, lng ).sync();
 			
 			});
 
@@ -272,7 +272,7 @@
 
 				
 				// update input
-				_this.$el.find('.input-address').val( location.formatted_address );
+				_this.$el.find('.input-address').val( location.formatted_address ).trigger('change');
 				
 			});
 			
@@ -290,14 +290,14 @@
 			// Try HTML5 geolocation
 			if( ! navigator.geolocation )
 			{
-				alert('Sorry, browser doesnt support geolocation');
+				alert( acf.l10n.google_map.browser_support );
 				return this;
 			}
 			
 			
 			// show loading text
-			_this.$el.find('.title h4').text('Loading...');
-			
+			_this.$el.find('.title h4').text(acf.l10n.google_map.locating + '...');
+			_this.$el.addClass('active');
 			
 		    navigator.geolocation.getCurrentPosition(function(position){
 		    	
@@ -364,7 +364,7 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		$(el).find('.acf-location').each(function(){
+		$(el).find('.acf-google-map').each(function(){
 			
 			acf.fields.location.set({ $el : $(this) }).init();
 			
@@ -385,36 +385,36 @@
 	*  @return	N/A
 	*/
 	
-	$(document).on('click', '.acf-location .acf-sprite-remove', function( e ){
+	$(document).on('click', '.acf-google-map .acf-sprite-remove', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).clear();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).clear();
 		
 		$(this).blur();
 		
 	});
 	
 	
-	$(document).on('click', '.acf-location .acf-sprite-locate', function( e ){
+	$(document).on('click', '.acf-google-map .acf-sprite-locate', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).locate();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).locate();
 		
 		$(this).blur();
 		
 	});
 	
-	$(document).on('click', '.acf-location .title h4', function( e ){
+	$(document).on('click', '.acf-google-map .title h4', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).edit();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).edit();
 			
 	});
 	
-	$(document).on('keydown', '.acf-location .search', function( e ){
+	$(document).on('keydown', '.acf-google-map .search', function( e ){
 		
 		// prevent form from submitting
 		if( e.which == 13 )
@@ -424,10 +424,10 @@
 			
 	});
 	
-	$(document).on('blur', '.acf-location .search', function( e ){
+	$(document).on('blur', '.acf-google-map .search', function( e ){
 		
 		// vars
-		var $el = $(this).closest('.acf-location');
+		var $el = $(this).closest('.acf-google-map');
 		
 		
 		// has a value?
