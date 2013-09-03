@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields 4.2.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-08-27 20:12+0100\n"
-"PO-Revision-Date: 2013-08-27 20:13+0100\n"
+"POT-Creation-Date: 2013-09-03 20:37+0100\n"
+"PO-Revision-Date: 2013-09-03 20:39+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -19,108 +19,108 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: acf.php:342
+#: acf.php:432
 msgid "Field&nbsp;Groups"
 msgstr "Fältgrupper"
 
-#: acf.php:343 core/controllers/field_groups.php:214
+#: acf.php:433 core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
-#: acf.php:344
+#: acf.php:434
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: acf.php:345
+#: acf.php:435
 msgid "Add New Field Group"
 msgstr "Lägg till ny fältgrupp"
 
-#: acf.php:346
+#: acf.php:436
 msgid "Edit Field Group"
 msgstr "Redigera fältgrupp"
 
-#: acf.php:347
+#: acf.php:437
 msgid "New Field Group"
 msgstr "Ny fältgrupp"
 
-#: acf.php:348
+#: acf.php:438
 msgid "View Field Group"
 msgstr "Visa fältgrupp"
 
-#: acf.php:349
+#: acf.php:439
 msgid "Search Field Groups"
 msgstr "Sök fältgrupp"
 
-#: acf.php:350
+#: acf.php:440
 msgid "No Field Groups found"
 msgstr "Inga fältgrupper hittades"
 
-#: acf.php:351
+#: acf.php:441
 msgid "No Field Groups found in Trash"
 msgstr "Inga fältgrupper finns i papperskorgen"
 
-#: acf.php:459 core/views/meta_box_options.php:98
+#: acf.php:539 core/views/meta_box_options.php:98
 msgid "Custom Fields"
 msgstr "Egna fält"
 
-#: acf.php:477 acf.php:480
+#: acf.php:557 acf.php:560
 msgid "Field group updated."
 msgstr "Fältgruppen uppdaterades."
 
-#: acf.php:478
+#: acf.php:558
 msgid "Custom field updated."
 msgstr "Eget fält uppdaterades."
 
-#: acf.php:479
+#: acf.php:559
 msgid "Custom field deleted."
 msgstr "Eget fält raderades."
 
-#: acf.php:482
+#: acf.php:562
 #, php-format
 msgid "Field group restored to revision from %s"
 msgstr "Fältgruppen återställdes till revision %s"
 
-#: acf.php:483
+#: acf.php:563
 msgid "Field group published."
 msgstr "Fältgruppen publicerades."
 
-#: acf.php:484
+#: acf.php:564
 msgid "Field group saved."
 msgstr "Fältgruppen sparades."
 
-#: acf.php:485
+#: acf.php:565
 msgid "Field group submitted."
 msgstr "Fältgruppen skickades."
 
-#: acf.php:486
+#: acf.php:566
 msgid "Field group scheduled for."
 msgstr "Fältgruppen schemalades."
 
-#: acf.php:487
+#: acf.php:567
 msgid "Field group draft updated."
 msgstr "Utkastet till fältgrupp uppdaterades."
 
-#: acf.php:622
+#: acf.php:702
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: acf.php:623
+#: acf.php:703
 msgid "Medium"
 msgstr "Medium"
 
-#: acf.php:624
+#: acf.php:704
 msgid "Large"
 msgstr "Stor"
 
-#: acf.php:625
+#: acf.php:705
 msgid "Full"
 msgstr "Full"
 
-#: core/api.php:1094
+#: core/api.php:1097
 msgid "Update"
 msgstr "Uppdatera"
 
-#: core/api.php:1095
+#: core/api.php:1098
 msgid "Post updated"
 msgstr "Inlägget uppdaterades"
 
@@ -132,8 +132,7 @@ msgstr "Fel"
 msgid "No ACF groups selected"
 msgstr "Inga ACF-grupper har valts"
 
-#: core/controllers/addons.php:42 core/controllers/export.php:368
-#: core/controllers/field_groups.php:311
+#: core/controllers/addons.php:42 core/controllers/field_groups.php:311
 msgid "Add-ons"
 msgstr "Tillägg"
 
@@ -385,68 +384,7 @@ msgstr ""
 msgid "Back to export"
 msgstr "Tillbaka till export"
 
-#: core/controllers/export.php:352
-msgid ""
-"/**\n"
-" *  Install Add-ons\n"
-" *  \n"
-" *  The following code will include all 4 premium Add-Ons in your theme.\n"
-" *  Please do not attempt to include a file which does not exist. This will "
-"produce an error.\n"
-" *  \n"
-" *  The following code assumes you have a folder 'add-ons' inside your "
-"theme.\n"
-" *\n"
-" *  IMPORTANT\n"
-" *  Add-ons may be included in a premium theme/plugin as outlined in the "
-"terms and conditions.\n"
-" *  For more information, please read:\n"
-" *  - http://www.advancedcustomfields.com/terms-conditions/\n"
-" *  - http://www.advancedcustomfields.com/resources/getting-started/"
-"including-lite-mode-in-a-plugin-theme/\n"
-" */"
-msgstr ""
-"/**\n"
-" *  Installera tillägg\n"
-" *  \n"
-" *  Följande kod kommer att inkludera samtliga fyra premiumtillägg i ditt "
-"tema.\n"
-" *  Vänligen inkludera inte filer som inte existerar. Detta kommer att "
-"resultera i ett felmeddelande.\n"
-" *  \n"
-" *  Koden antar att du har mappen 'add-ons' i ditt tema.\n"
-" *\n"
-" *  VIKTIGT\n"
-" *  Tillägg kan inkluderas i premiumteman och plugins enligt villkoren.\n"
-" *  För mer information, läs följande:\n"
-" *  Läs följande sida för mer information: http://www.advancedcustomfields."
-"com/terms-conditions/\n"
-" *  - http://www.advancedcustomfields.com/terms-conditions/\n"
-" *  - http://www.advancedcustomfields.com/resources/getting-started/"
-"including-lite-mode-in-a-plugin-theme/\n"
-" */"
-
-#: core/controllers/export.php:375
-msgid ""
-"/**\n"
-" *  Register Field Groups\n"
-" *\n"
-" *  The register_field_group function accepts 1 array which holds the "
-"relevant data to register a field group\n"
-" *  You may edit the array as you see fit. However, this may result in "
-"errors if the array is not compatible with ACF\n"
-" */"
-msgstr ""
-"/**\n"
-" *  Registrera fältgrupper\n"
-" *\n"
-" *  Funktionen register_field_group tar emot en array som innehåller "
-"inställningarna för samtliga fältgrupper.\n"
-" *  Du kan redigera denna array fritt. Detta kan dock leda till fel om "
-"ändringarna inte är kompatibla med ACF.\n"
-" */"
-
-#: core/controllers/export.php:426
+#: core/controllers/export.php:400
 msgid "No field groups were selected"
 msgstr "Inga fältgrupper var valda"
 
@@ -1039,7 +977,8 @@ msgstr "Horisontellt"
 msgid "Color Picker"
 msgstr "Färgväljare"
 
-#: core/fields/color_picker.php:20 core/fields/date_picker/date_picker.php:23
+#: core/fields/color_picker.php:20 core/fields/google-map.php:19
+#: core/fields/date_picker/date_picker.php:20
 msgid "jQuery"
 msgstr "jQuery"
 
@@ -1145,6 +1084,34 @@ msgstr "Bibliotek"
 #: core/fields/file.php:187 core/fields/image.php:171
 msgid "Uploaded to post"
 msgstr "Uppladdade till detta inlägg"
+
+#: core/fields/google-map.php:18
+msgid "Google Map"
+msgstr "Google Map"
+
+#: core/fields/google-map.php:31
+msgid "Locating"
+msgstr "Söker plats"
+
+#: core/fields/google-map.php:32
+msgid "Sorry, this browser does not support geolocation"
+msgstr "Tyvärr saknar denna webbläsare stöd för platsinformation"
+
+#: core/fields/google-map.php:182
+msgid "Center"
+msgstr "Centrum"
+
+#: core/fields/google-map.php:183
+msgid "Center the initial map"
+msgstr "Kartans initiala centrum"
+
+#: core/fields/google-map.php:219
+msgid "Height"
+msgstr "Höjd"
+
+#: core/fields/google-map.php:220
+msgid "Customise the map height"
+msgstr "Skräddarsy kartans höjd"
 
 #: core/fields/image.php:19
 msgid "Image"
@@ -1499,27 +1466,27 @@ msgstr "Verktygsfält"
 msgid "Show Media Upload Buttons?"
 msgstr "Visa knappar för mediauppladdning"
 
-#: core/fields/date_picker/date_picker.php:22
+#: core/fields/date_picker/date_picker.php:19
 msgid "Date Picker"
 msgstr "Datumväljare"
 
-#: core/fields/date_picker/date_picker.php:30
+#: core/fields/date_picker/date_picker.php:55
 msgid "Done"
 msgstr "Klar"
 
-#: core/fields/date_picker/date_picker.php:31
+#: core/fields/date_picker/date_picker.php:56
 msgid "Today"
 msgstr "Idag"
 
-#: core/fields/date_picker/date_picker.php:34
+#: core/fields/date_picker/date_picker.php:59
 msgid "Show a different month"
 msgstr "Visa en annan månad"
 
-#: core/fields/date_picker/date_picker.php:105
+#: core/fields/date_picker/date_picker.php:126
 msgid "Save format"
 msgstr "Lagringsformat"
 
-#: core/fields/date_picker/date_picker.php:106
+#: core/fields/date_picker/date_picker.php:127
 msgid ""
 "This format will determin the value saved to the database and returned via "
 "the API"
@@ -1527,30 +1494,30 @@ msgstr ""
 "Detta format avgör hur värdet sparas i databasen och returneras via "
 "tilläggets API"
 
-#: core/fields/date_picker/date_picker.php:107
+#: core/fields/date_picker/date_picker.php:128
 msgid "\"yymmdd\" is the most versatile save format. Read more about"
 msgstr "\"yymmdd\" är det mest flexibla formatet. Läs mer om"
 
-#: core/fields/date_picker/date_picker.php:107
-#: core/fields/date_picker/date_picker.php:123
+#: core/fields/date_picker/date_picker.php:128
+#: core/fields/date_picker/date_picker.php:144
 msgid "jQuery date formats"
 msgstr "jQuery datumformat"
 
-#: core/fields/date_picker/date_picker.php:121
+#: core/fields/date_picker/date_picker.php:142
 msgid "Display format"
 msgstr "Visningsformat"
 
-#: core/fields/date_picker/date_picker.php:122
+#: core/fields/date_picker/date_picker.php:143
 msgid "This format will be seen by the user when entering a value"
 msgstr "Detta format är det som visas när användaren anger ett värde"
 
-#: core/fields/date_picker/date_picker.php:123
+#: core/fields/date_picker/date_picker.php:144
 msgid ""
 "\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more "
 "about"
 msgstr "\"yy-mm-dd\" är set vanligaste visningsformatet. Läs mer om"
 
-#: core/fields/date_picker/date_picker.php:137
+#: core/fields/date_picker/date_picker.php:158
 msgid "Week Starts On"
 msgstr "Veckor börjar på"
 
@@ -1839,6 +1806,65 @@ msgstr "Etiketter"
 #: core/views/meta_box_options.php:108
 msgid "Send Trackbacks"
 msgstr "Skicka trackbacks"
+
+#~ msgid ""
+#~ "/**\n"
+#~ " *  Install Add-ons\n"
+#~ " *  \n"
+#~ " *  The following code will include all 4 premium Add-Ons in your theme.\n"
+#~ " *  Please do not attempt to include a file which does not exist. This "
+#~ "will produce an error.\n"
+#~ " *  \n"
+#~ " *  The following code assumes you have a folder 'add-ons' inside your "
+#~ "theme.\n"
+#~ " *\n"
+#~ " *  IMPORTANT\n"
+#~ " *  Add-ons may be included in a premium theme/plugin as outlined in the "
+#~ "terms and conditions.\n"
+#~ " *  For more information, please read:\n"
+#~ " *  - http://www.advancedcustomfields.com/terms-conditions/\n"
+#~ " *  - http://www.advancedcustomfields.com/resources/getting-started/"
+#~ "including-lite-mode-in-a-plugin-theme/\n"
+#~ " */"
+#~ msgstr ""
+#~ "/**\n"
+#~ " *  Installera tillägg\n"
+#~ " *  \n"
+#~ " *  Följande kod kommer att inkludera samtliga fyra premiumtillägg i ditt "
+#~ "tema.\n"
+#~ " *  Vänligen inkludera inte filer som inte existerar. Detta kommer att "
+#~ "resultera i ett felmeddelande.\n"
+#~ " *  \n"
+#~ " *  Koden antar att du har mappen 'add-ons' i ditt tema.\n"
+#~ " *\n"
+#~ " *  VIKTIGT\n"
+#~ " *  Tillägg kan inkluderas i premiumteman och plugins enligt villkoren.\n"
+#~ " *  För mer information, läs följande:\n"
+#~ " *  Läs följande sida för mer information: http://www."
+#~ "advancedcustomfields.com/terms-conditions/\n"
+#~ " *  - http://www.advancedcustomfields.com/terms-conditions/\n"
+#~ " *  - http://www.advancedcustomfields.com/resources/getting-started/"
+#~ "including-lite-mode-in-a-plugin-theme/\n"
+#~ " */"
+
+#~ msgid ""
+#~ "/**\n"
+#~ " *  Register Field Groups\n"
+#~ " *\n"
+#~ " *  The register_field_group function accepts 1 array which holds the "
+#~ "relevant data to register a field group\n"
+#~ " *  You may edit the array as you see fit. However, this may result in "
+#~ "errors if the array is not compatible with ACF\n"
+#~ " */"
+#~ msgstr ""
+#~ "/**\n"
+#~ " *  Registrera fältgrupper\n"
+#~ " *\n"
+#~ " *  Funktionen register_field_group tar emot en array som innehåller "
+#~ "inställningarna för samtliga fältgrupper.\n"
+#~ " *  Du kan redigera denna array fritt. Detta kan dock leda till fel om "
+#~ "ändringarna inte är kompatibla med ACF.\n"
+#~ " */"
 
 #~ msgid "Normal"
 #~ msgstr "Normal"
