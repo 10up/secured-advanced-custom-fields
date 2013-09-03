@@ -14,13 +14,18 @@ class Acf
 { 
 	var $settings;
 		
-		
+	
 	/*
 	*  Constructor
 	*
-	*  @description: 
-	*  @since 1.0.0
-	*  @created: 23/06/12
+	*  This function will construct all the neccessary actions, filters and functions for the ACF plugin to work
+	*
+	*  @type	function
+	*  @date	23/06/12
+	*  @since	1.0.0
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
 	function __construct()
@@ -71,12 +76,17 @@ class Acf
 	
 	
 	/*
-    *  helpers_get_path
-    *
-    *  @description: calculates the path (works for plugin / theme folders)
-    *  @since: 3.6
-    *  @created: 30/01/13
-    */
+	*  helpers_get_path
+	*
+	*  This function will calculate the path to a file
+	*
+	*  @type	function
+	*  @date	30/01/13
+	*  @since	3.6.0
+	*
+	*  @param	$file (file) a reference to the file
+	*  @return	(string)
+	*/
     
     function helpers_get_path( $file )
     {
@@ -84,14 +94,18 @@ class Acf
     }
     
     
-    
     /*
-    *  helpers_get_dir
-    *
-    *  @description: calculates the directory (works for plugin / theme folders)
-    *  @since: 3.6
-    *  @created: 30/01/13
-    */
+	*  helpers_get_dir
+	*
+	*  This function will calculate the directory (URL) to a file
+	*
+	*  @type	function
+	*  @date	30/01/13
+	*  @since	3.6.0
+	*
+	*  @param	$file (file) a reference to the file
+	*  @return	(string)
+	*/
     
     function helpers_get_dir( $file )
     {
@@ -190,26 +204,31 @@ class Acf
 	/*
 	*  get_info
 	*
-	*  @description: helper to get variable from settings array
-	*  @since: 3.6
-	*  @created: 24/01/13
+	*  This function will return a setting from the settings array
+	*
+	*  @type	function
+	*  @date	24/01/13
+	*  @since	3.6.0
+	*
+	*  @param	$i (string) the setting to get
+	*  @return	(mixed)
 	*/
 	
-	function get_info( $info )
+	function get_info( $i )
 	{
 		// vars
 		$return = false;
 		
 		
 		// specific
-		if( isset($this->settings[ $info ]) )
+		if( isset($this->settings[ $i ]) )
 		{
-			$return = $this->settings[ $info ];
+			$return = $this->settings[ $i ];
 		}
 		
 		
 		// all
-		if( $info == 'all' )
+		if( $i == 'all' )
 		{
 			$return = $this->settings;
 		}
@@ -293,6 +312,7 @@ class Acf
 	*  
 	*  @type	action (plugins_loaded)
 	*  @date	3/09/13
+	*  @since	4.3.0
 	*
 	*  @param	N/A
 	*  @return	N/A
@@ -359,6 +379,7 @@ class Acf
 	*  
 	*  @type	action (after_setup_theme)
 	*  @date	3/09/13
+	*  @since	4.3.0
 	*
 	*  @param	N/A
 	*  @return	N/A
@@ -390,11 +411,17 @@ class Acf
 	
 	
 	/*
-	*  Init
+	*  init
 	*
-	*  @description: 
-	*  @since 1.0.0
-	*  @created: 23/06/12
+	*  This function is called during the 'init' action and will do things such as:
+	*  create post_type, register scripts, add actions / filters
+	*
+	*  @type	action (init)
+	*  @date	23/06/12
+	*  @since	1.0.0
+	*
+	*  @param	N/A
+	*  @return	N/A
 	*/
 	
 	function init()
