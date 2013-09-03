@@ -349,37 +349,6 @@ define( 'ACF_LITE', true );
 		if( $acfs )
 		{
 			?>
-<?php _e("/**
- *  Install Add-ons
- *  
- *  The following code will include all 4 premium Add-Ons in your theme.
- *  Please do not attempt to include a file which does not exist. This will produce an error.
- *  
- *  The following code assumes you have a folder 'add-ons' inside your theme.
- *
- *  IMPORTANT
- *  Add-ons may be included in a premium theme/plugin as outlined in the terms and conditions.
- *  For more information, please read:
- *  - http://www.advancedcustomfields.com/terms-conditions/
- *  - http://www.advancedcustomfields.com/resources/getting-started/including-lite-mode-in-a-plugin-theme/
- */",'acf'); ?>
- 
-
-// <?php _e("Add-ons",'acf'); ?> 
-// include_once('add-ons/acf-repeater/acf-repeater.php');
-// include_once('add-ons/acf-gallery/acf-gallery.php');
-// include_once('add-ons/acf-flexible-content/acf-flexible-content.php');
-// include_once( 'add-ons/acf-options-page/acf-options-page.php' );
-
-
-<?php _e("/**
- *  Register Field Groups
- *
- *  The register_field_group function accepts 1 array which holds the relevant data to register a field group
- *  You may edit the array as you see fit. However, this may result in errors if the array is not compatible with ACF
- */",'acf'); ?>
-
-
 if(function_exists("register_field_group"))
 {
 <?php
@@ -414,6 +383,11 @@ if(function_exists("register_field_group"))
 				// add extra tab at start of each line
 				$html = str_replace("\n", "\n\t", $html);
 				
+				// add the WP __() function to specific strings for translation in theme
+				$html = preg_replace("/'label'(.*?)('.*?')/", "'label'$1__($2)", $html);
+				$html = preg_replace("/'instructions'(.*?)('.*?')/", "'instructions'$1__($2)", $html);
+				
+								
 ?>	register_field_group(<?php echo $html ?>);
 <?php
 			}
