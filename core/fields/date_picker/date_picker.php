@@ -14,9 +14,6 @@ class acf_field_date_picker extends acf_field
 	
 	function __construct()
 	{
-		global $wp_locale;
-		
-		
 		// vars
 		$this->name = 'date_picker';
 		$this->label = __("Date Picker",'acf');
@@ -26,6 +23,34 @@ class acf_field_date_picker extends acf_field
 			'display_format' => 'dd/mm/yy',
 			'first_day' => 1, // monday
 		);
+		
+		
+		// actions
+		add_action('init', array($this, 'init'));
+		
+		
+		// do not delete!
+    	parent::__construct();
+	}
+	
+	
+	/*
+	*  init
+	*
+	*  This function is run on the 'init' action to set the field's $l10n data. Before the init action, 
+	*  access to the $wp_locale variable is not possible.
+	*
+	*  @type	action (init)
+	*  @date	3/09/13
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+	
+	function init()
+	{
+		global $wp_locale;
+		
 		$this->l10n = array(
 			'closeText'         => __( 'Done', 'acf' ),
 	        'currentText'       => __( 'Today', 'acf' ),
@@ -37,10 +62,6 @@ class acf_field_date_picker extends acf_field
 	        'dayNamesMin'       => array_values( $wp_locale->weekday_initial ),
 	        'isRTL'             => isset($wp_locale->is_rtl) ? $wp_locale->is_rtl : false,
 		);
-		
-		
-		// do not delete!
-    	parent::__construct();
 	}
 	
 	
