@@ -276,7 +276,7 @@ class acf_field_wysiwyg extends acf_field
 		
 		// follow the_content function in /wp-includes/post-template.php
 		$value = str_replace(']]>', ']]&gt;', $value);
-		
+		$value = wp_kses_post( $value );
 	
 		return $value;
 	}

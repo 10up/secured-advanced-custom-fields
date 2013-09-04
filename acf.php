@@ -1,34 +1,59 @@
 <?php
 /*
-Plugin Name: Advanced Custom Fields
+Plugin Name: Secured Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress. Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker, repeater, flexible content, gallery and more!
-Version: 4.3.0
-Author: Elliot Condon
+Version: 4.2.2
+Author: Elliot Condon, secured by 10up
 Author URI: http://www.elliotcondon.com/
 License: GPL
 Copyright: Elliot Condon
 */
 
-if( !class_exists('acf') ):
 
-class acf
+// lite mode
+if( !defined('ACF_LITE') )
 {
-	// vars
+	define( 'ACF_LITE', false );
+}
+
+
+// API
+include_once('core/api.php');
+
+
+// controllers
+include_once('core/controllers/field_groups.php');
+include_once('core/controllers/field_group.php');
+include_once('core/controllers/input.php');
+include_once('core/controllers/location.php');
+
+if( is_admin() )
+{
+	if( !ACF_LITE )
+	{
+		include_once('core/controllers/export.php');
+		include_once('core/controllers/addons.php');
+		include_once('core/controllers/third_party.php');
+		include_once('core/controllers/upgrade.php');
+	}
+	
+	include_once('core/controllers/revisions.php');
+	include_once('core/controllers/everything_fields.php');	
+}
+
+
+class Acf
+{ 
 	var $settings;
 		
-	
+		
 	/*
 	*  Constructor
 	*
-	*  This function will construct all the neccessary actions, filters and functions for the ACF plugin to work
-	*
-	*  @type	function
-	*  @date	23/06/12
-	*  @since	1.0.0
-	*
-	*  @param	N/A
-	*  @return	N/A
+	*  @description: 
+	*  @since 1.0.0
+	*  @created: 23/06/12
 	*/
 	
 	function __construct()
@@ -40,11 +65,11 @@ class acf
 		
 		// vars
 		$this->settings = array(
-			'path'				=> apply_filters('acf/helpers/get_path', __FILE__),
-			'dir'				=> apply_filters('acf/helpers/get_dir', __FILE__),
-			'hook'				=> basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
-			'version'			=> '4.3.0',
-			'upgrade_version'	=> '3.4.1',
+			'path' => apply_filters('acf/helpers/get_path', __FILE__),
+			'dir' => apply_filters('acf/helpers/get_dir', __FILE__),
+			'hook' => basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
+			'version' => '4.2.2',
+			'upgrade_version' => '3.4.1',
 		);
 		
 		
@@ -54,12 +79,12 @@ class acf
 		
 		// actions
 		add_action('init', array($this, 'init'), 1);
+		add_action('acf/save_post', array($this, 'save_post'), 10);
+		
 		add_action('acf/pre_save_post', array($this, 'save_post_lock'), 0);
 		add_action('acf/pre_save_post', array($this, 'save_post_unlock'), 999);
 		add_action('acf/save_post', array($this, 'save_post_lock'), 0);
-		add_action('acf/save_post', array($this, 'save_post'), 10);
 		add_action('acf/save_post', array($this, 'save_post_unlock'), 999);
-		add_action('acf/create_fields', array($this, 'create_fields'), 1, 2);
 		
 		
 		// filters
@@ -68,28 +93,30 @@ class acf
 		add_filter('acf/get_post_types', array($this, 'get_post_types'), 1, 3);
 		add_filter('acf/get_taxonomies_for_select', array($this, 'get_taxonomies_for_select'), 1, 2);
 		add_filter('acf/get_image_sizes', array($this, 'get_image_sizes'), 1, 1);
-		add_filter('acf/get_post_id', array($this, 'get_post_id'), 1, 1);
+		add_action('acf/create_fields', array($this, 'create_fields'), 1, 2);
+		add_action('acf/get_post_id', array($this, 'get_post_id'), 1, 1);
 		
 		
-		// includes
-		add_action('plugins_loaded', array($this, 'include_before_theme'), 1);
-		add_action('after_setup_theme', array($this, 'include_after_theme'), 1);
+		// admin only
+		if( is_admin() && !ACF_LITE )
+		{
+			add_action('admin_menu', array($this,'admin_menu'));
+			add_action('admin_head', array($this,'admin_head'));
+			add_filter('post_updated_messages', array($this, 'post_updated_messages'));
+		}
 		
+		
+		return true;
 	}
 	
 	
 	/*
-	*  helpers_get_path
-	*
-	*  This function will calculate the path to a file
-	*
-	*  @type	function
-	*  @date	30/01/13
-	*  @since	3.6.0
-	*
-	*  @param	$file (file) a reference to the file
-	*  @return	(string)
-	*/
+    *  helpers_get_path
+    *
+    *  @description: calculates the path (works for plugin / theme folders)
+    *  @since: 3.6
+    *  @created: 30/01/13
+    */
     
     function helpers_get_path( $file )
     {
@@ -97,18 +124,14 @@ class acf
     }
     
     
+    
     /*
-	*  helpers_get_dir
-	*
-	*  This function will calculate the directory (URL) to a file
-	*
-	*  @type	function
-	*  @date	30/01/13
-	*  @since	3.6.0
-	*
-	*  @param	$file (file) a reference to the file
-	*  @return	(string)
-	*/
+    *  helpers_get_dir
+    *
+    *  @description: calculates the directory (works for plugin / theme folders)
+    *  @since: 3.6
+    *  @created: 30/01/13
+    */
     
     function helpers_get_dir( $file )
     {
@@ -207,31 +230,26 @@ class acf
 	/*
 	*  get_info
 	*
-	*  This function will return a setting from the settings array
-	*
-	*  @type	function
-	*  @date	24/01/13
-	*  @since	3.6.0
-	*
-	*  @param	$i (string) the setting to get
-	*  @return	(mixed)
+	*  @description: helper to get variable from settings array
+	*  @since: 3.6
+	*  @created: 24/01/13
 	*/
 	
-	function get_info( $i )
+	function get_info( $info )
 	{
 		// vars
 		$return = false;
 		
 		
 		// specific
-		if( isset($this->settings[ $i ]) )
+		if( isset($this->settings[ $info ]) )
 		{
-			$return = $this->settings[ $i ];
+			$return = $this->settings[ $info ];
 		}
 		
 		
 		// all
-		if( $i == 'all' )
+		if( $info == 'all' )
 		{
 			$return = $this->settings;
 		}
@@ -309,123 +327,11 @@ class acf
 	
 	
 	/*
-	*  include_before_theme
+	*  Init
 	*
-	*  This function will include core files before the theme's functions.php file has been excecuted.
-	*  
-	*  @type	action (plugins_loaded)
-	*  @date	3/09/13
-	*  @since	4.3.0
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
-	
-	function include_before_theme()
-	{
-		// incudes
-		include_once('core/api.php');
-		
-		include_once('core/controllers/input.php');
-		include_once('core/controllers/location.php');
-		include_once('core/controllers/field_group.php');
-		
-		
-		// admin only includes
-		if( is_admin() )
-		{
-			include_once('core/controllers/post.php');
-			include_once('core/controllers/revisions.php');
-			include_once('core/controllers/everything_fields.php');	
-			include_once('core/controllers/field_groups.php');
-		}
-		
-		
-		// register fields
-		include_once('core/fields/_functions.php');
-		include_once('core/fields/_base.php');
-		
-		include_once('core/fields/text.php');
-		include_once('core/fields/textarea.php');
-		include_once('core/fields/number.php');
-		include_once('core/fields/email.php');
-		include_once('core/fields/password.php');
-		
-		include_once('core/fields/wysiwyg.php');
-		include_once('core/fields/image.php');
-		include_once('core/fields/file.php');
-		
-		include_once('core/fields/select.php');
-		include_once('core/fields/checkbox.php');
-		include_once('core/fields/radio.php');
-		include_once('core/fields/true_false.php');
-		
-		include_once('core/fields/page_link.php');
-		include_once('core/fields/post_object.php');
-		include_once('core/fields/relationship.php');
-		include_once('core/fields/taxonomy.php');
-		include_once('core/fields/user.php');
-		
-		include_once('core/fields/google-map.php');
-		include_once('core/fields/date_picker/date_picker.php');
-		include_once('core/fields/color_picker.php');
-		
-		include_once('core/fields/message.php');
-		include_once('core/fields/tab.php');
-
-	}
-	
-	
-	/*
-	*  include_after_theme
-	*
-	*  This function will include core files after the theme's functions.php file has been excecuted.
-	*  
-	*  @type	action (after_setup_theme)
-	*  @date	3/09/13
-	*  @since	4.3.0
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
-	
-	function include_after_theme()
-	{
-		// include 3rd party fields
-		do_action('acf/register_fields');
-		
-		
-		// bail early if user has defined LITE_MODE as true
-		if( defined('ACF_LITE') && ACF_LITE )
-		{
-			return;
-		}
-		
-		
-		// admin only includes
-		if( is_admin() )
-		{
-			include_once('core/controllers/export.php');
-			include_once('core/controllers/addons.php');
-			include_once('core/controllers/third_party.php');
-			include_once('core/controllers/upgrade.php');
-		}
-		
-	}
-	
-	
-	/*
-	*  init
-	*
-	*  This function is called during the 'init' action and will do things such as:
-	*  create post_type, register scripts, add actions / filters
-	*
-	*  @type	action (init)
-	*  @date	23/06/12
-	*  @since	1.0.0
-	*
-	*  @param	N/A
-	*  @return	N/A
+	*  @description: 
+	*  @since 1.0.0
+	*  @created: 23/06/12
 	*/
 	
 	function init()
@@ -500,11 +406,11 @@ class acf
 		
 		// register acf styles
 		$styles = array(
-			'acf'				=> $this->settings['dir'] . 'css/acf.css',
-			'acf-field-group'	=> $this->settings['dir'] . 'css/field-group.css',
-			'acf-global'		=> $this->settings['dir'] . 'css/global.css',
-			'acf-input'			=> $this->settings['dir'] . 'css/input.css',
-			'acf-datepicker'	=> $this->settings['dir'] . 'core/fields/date_picker/style.date_picker.css',
+			'acf' => $this->settings['dir'] . 'css/acf.css',
+			'acf-field-group' => $this->settings['dir'] . 'css/field-group.css',
+			'acf-global' => $this->settings['dir'] . 'css/global.css',
+			'acf-input' => $this->settings['dir'] . 'css/input.css',
+			'acf-datepicker' => $this->settings['dir'] . 'core/fields/date_picker/style.date_picker.css',
 		);
 		
 		foreach( $styles as $k => $v )
@@ -513,20 +419,43 @@ class acf
 		}
 		
 		
-		// bail early if user has defined LITE_MODE as true
-		if( defined('ACF_LITE') && ACF_LITE )
-		{
-			return;
-		}
+		// register fields
+		include_once('core/fields/_functions.php');
+		include_once('core/fields/_base.php');
+		
+		include_once('core/fields/text.php');
+		include_once('core/fields/textarea.php');
+		include_once('core/fields/number.php');
+		include_once('core/fields/email.php');
+		include_once('core/fields/password.php');
+		
+		include_once('core/fields/wysiwyg.php');
+		include_once('core/fields/image.php');
+		include_once('core/fields/file.php');
+		
+		include_once('core/fields/select.php');
+		include_once('core/fields/checkbox.php');
+		include_once('core/fields/radio.php');
+		include_once('core/fields/true_false.php');
+		
+		include_once('core/fields/page_link.php');
+		include_once('core/fields/post_object.php');
+		include_once('core/fields/relationship.php');
+		include_once('core/fields/taxonomy.php');
+		include_once('core/fields/user.php');
+		
+		include_once('core/fields/google-map.php');
+		include_once('core/fields/date_picker/date_picker.php');
+		include_once('core/fields/color_picker.php');
+		
+		include_once('core/fields/message.php');
+		include_once('core/fields/tab.php');
 		
 		
-		// admin only
-		if( is_admin() )
-		{
-			add_action('admin_menu', array($this,'admin_menu'));
-			add_action('admin_head', array($this,'admin_head'));
-			add_filter('post_updated_messages', array($this, 'post_updated_messages'));
-		}
+		// register 3rd party fields
+		do_action('acf/register_fields');
+		
+		
 	}
 	
 	
@@ -588,7 +517,7 @@ class acf
 	{
 		?>
 <style type="text/css"> 
-	#adminmenu #toplevel_page_edit-post_type-acf a[href="edit.php?post_type=acf&page=acf-upgrade"]{ display: none; }
+	#adminmenu #toplevel_page_edit-post_type-acf a[href="edit.php?post_type=acf&page=acf-upgrade"]{ display:none; }
 	#adminmenu #toplevel_page_edit-post_type-acf .wp-menu-image { background-position: 1px -33px; }
 	#adminmenu #toplevel_page_edit-post_type-acf:hover .wp-menu-image,
 	#adminmenu #toplevel_page_edit-post_type-acf.wp-menu-open .wp-menu-image { background-position: 1px -1px; }
@@ -771,7 +700,7 @@ class acf
 				echo '</p>';
 				
 				$field['name'] = 'fields[' . $field['key'] . ']';
-				do_action('acf/create_field', $field, $post_id);
+				do_action('acf/create_field', $field);
 			
 			echo '</div>';
 			
@@ -864,40 +793,6 @@ class acf
 	
 }
 
-
-/*
-*  acf
-*
-*  The main function responsible for returning the one true acf Instance to functions everywhere.
-*  Use this function like you would a global variable, except without needing to declare the global.
-*
-*  Example: <?php $acf = acf(); ?>
-*
-*  @type	function
-*  @date	4/09/13
-*  @since	4.3.0
-*
-*  @param	N/A
-*  @return	(object)
-*/
-
-function acf()
-{
-	global $acf;
-	
-	if( !isset($acf) )
-	{
-		$acf = new acf();
-	}
-	
-	return $acf;
-}
-
-
-// initialize
-acf();
-
-
-endif; // class_exists check
+$acf = new Acf();
 
 ?>

@@ -52,7 +52,7 @@ class acf_field_password extends acf_field
 		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
-			$e .= '<div class="acf-input-prepend">' . $field['prepend'] . '</div>';
+			$e .= '<div class="acf-input-prepend">' . esc_html( $field['prepend'] ) . '</div>';
 		}
 		
 		
@@ -60,7 +60,7 @@ class acf_field_password extends acf_field
 		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
-			$e .= '<div class="acf-input-append">' . $field['append'] . '</div>';
+			$e .= '<div class="acf-input-append">' . esc_html( $field['append'] ) . '</div>';
 		}
 		
 		
