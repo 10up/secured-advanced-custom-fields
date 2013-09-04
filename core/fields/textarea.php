@@ -192,8 +192,7 @@ class acf_field_textarea extends acf_field
 		}
 		elseif( $field['formatting'] == 'html' )
 		{
-			global $allowed_tags;
-			$value = wp_kses( $value, $allowed_tags );
+			$value = wp_kses_post( $value );
 		}
 		elseif( $field['formatting'] == 'br' )
 		{
