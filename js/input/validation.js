@@ -13,8 +13,8 @@
 	
 	acf.validation = {
 	
-		status : true,
-		disabled : false,
+		status		: true,
+		disabled	: false,
 		
 		run : function(){
 			
@@ -206,11 +206,13 @@
 	});
 	
 	
+	/*
 	$(document).on('blur change', '.field.required input, .field.required textarea, .field.required select', function( e ){
-	
-		acf.validation.validate( $(this).closest('.field') );
 		
-	});
+			acf.validation.validate( $(this).closest('.field') );
+			
+		});
+	*/
 	
 	
 	/*
