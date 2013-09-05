@@ -213,7 +213,7 @@ class acf_field_taxonomy extends acf_field
 	
 	<?php else: ?>
 		<div class="categorychecklist-holder">
-		<ul class="categorychecklist">
+		<ul class="categorychecklist<?php if( !$field['load_save_terms'] ){ echo ' no-ajax'; } ?>">
 			<?php if( $field['allow_null'] ): ?>
 				<li>
 					<label class="selectit">
