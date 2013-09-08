@@ -933,7 +933,7 @@ var acf = {
 						$.ajax({
 							url			:	ajaxurl,
 							data		:	{
-								action	:	'acf/input/render_fields',
+								action	:	'acf/post/render_fields',
 								acf_id	:	v,
 								post_id	:	acf.o.post_id,
 								nonce	:	acf.o.nonce
@@ -957,7 +957,7 @@ var acf = {
 				$.ajax({
 					url			:	ajaxurl,
 					data		:	{
-						action	:	'acf/input/get_style',
+						action	:	'acf/post/get_style',
 						acf_id	:	result[0],
 						nonce	:	acf.o.nonce
 					},
@@ -1038,6 +1038,14 @@ var acf = {
 	
 	
 	$(document).on('change', '.categorychecklist input[type="checkbox"]', function(){
+		
+		// a taxonomy field may trigger this change event, however, the value selected is not
+		// actually a term relatinoship, it is meta data
+		if( $(this).closest('.categorychecklist').hasClass('no-ajax') )
+		{
+			return;
+		}
+		
 		
 		// set timeout to fix issue with chrome which does not register the change has yet happened
 		setTimeout(function(){
@@ -1752,14 +1760,11 @@ var acf = {
 			
 			// create map	        	
         	this.map = new google.maps.Map( this.$el.find('.canvas')[0], args);
-	        	
-	        
-	        // add array for markers
-	        this.map.marker = null;
 	        
 	        
 	        // add search
 			var autocomplete = new google.maps.places.Autocomplete( this.$el.find('.search')[0] );
+			autocomplete.map = this.map;
 			autocomplete.bindTo('bounds', this.map);
 			
 			
@@ -1771,24 +1776,31 @@ var acf = {
 		    });
 		    
 		    
+		    // add references
+		    this.map.$el = this.$el;
+		    
+		    
 		    // value exists?
 		    var lat = this.$el.find('.input-lat').val(),
 		    	lng = this.$el.find('.input-lng').val();
-		    	
+		    
 		    if( lat && lng )
 		    {
-			    _this.update( lat, lng ).center();
+			    this.update( lat, lng ).center();
 		    }
 		    
 		    
 			// events
 			google.maps.event.addListener(autocomplete, 'place_changed', function( e ) {
 			    
+			    // reference
+			    var $el = this.map.$el;
+
+
 			    // manually update address
-			    var address = _this.$el.find('.search').val();
-			    
-			    _this.$el.find('.input-address').val( address );
-			    _this.$el.find('.title h4').text( address );
+			    var address = $el.find('.search').val();
+			    $el.find('.input-address').val( address );
+			    $el.find('.title h4').text( address );
 			    
 			    
 			    // vars
@@ -1802,7 +1814,7 @@ var acf = {
 						lng = place.geometry.location.lng();
 						
 						
-				    _this.set({ $el : _$el }).update( lat, lng ).center();
+				    _this.set({ $el : $el }).update( lat, lng ).center();
 			    }
 			    else
 			    {
@@ -1830,7 +1842,7 @@ var acf = {
 							lng = place.geometry.location.lng();
 							
 							
-					    _this.set({ $el : _$el }).update( lat, lng ).center();
+					    _this.set({ $el : $el }).update( lat, lng ).center();
 					    
 					});
 			    }
@@ -1840,24 +1852,32 @@ var acf = {
 		    
 		    google.maps.event.addListener( this.map.marker, 'dragend', function(){
 		    	
+		    	// reference
+			    var $el = this.map.$el;
+			    
+			    
 		    	// vars
 				var position = this.map.marker.getPosition(),
 					lat = position.lat(),
 			    	lng = position.lng();
 			    	
-				_this.set({ $el : _$el }).update( lat, lng ).sync();
+				_this.set({ $el : $el }).update( lat, lng ).sync();
 			    
 			});
 			
 			
 			google.maps.event.addListener( this.map, 'click', function( e ) {
 				
+				// reference
+			    var $el = this.$el;
+			    
+			    
 				// vars
 				var lat = e.latLng.lat(),
 					lng = e.latLng.lng();
 				
 				
-				_this.set({ $el : _$el }).update( lat, lng ).sync();
+				_this.set({ $el : $el }).update( lat, lng ).sync();
 			
 			});
 
@@ -1914,7 +1934,7 @@ var acf = {
 		sync : function(){
 			
 			// reference
-			var _this	= this;
+			var $el	= this.$el;
 				
 			
 			// vars
@@ -1943,11 +1963,11 @@ var acf = {
 				
 				
 				// update h4
-				_this.$el.find('.title h4').text( location.formatted_address );
+				$el.find('.title h4').text( location.formatted_address );
 
 				
 				// update input
-				_this.$el.find('.input-address').val( location.formatted_address ).trigger('change');
+				$el.find('.input-address').val( location.formatted_address ).trigger('change');
 				
 			});
 			
@@ -1959,7 +1979,8 @@ var acf = {
 		locate : function(){
 			
 			// reference
-			var _this	= this;
+			var _this	= this,
+				_$el	= this.$el;
 			
 			
 			// Try HTML5 geolocation
@@ -1971,8 +1992,8 @@ var acf = {
 			
 			
 			// show loading text
-			_this.$el.find('.title h4').text(acf.l10n.google_map.locating + '...');
-			_this.$el.addClass('active');
+			_$el.find('.title h4').text(acf.l10n.google_map.locating + '...');
+			_$el.addClass('active');
 			
 		    navigator.geolocation.getCurrentPosition(function(position){
 		    	
@@ -1980,7 +2001,7 @@ var acf = {
 				var lat = position.coords.latitude,
 			    	lng = position.coords.longitude;
 			    	
-				_this.update( lat, lng ).sync().center();
+				_this.set({ $el : _$el }).update( lat, lng ).sync().center();
 				
 			});
 
@@ -3121,8 +3142,8 @@ var acf = {
 	
 	acf.validation = {
 	
-		status : true,
-		disabled : false,
+		status		: true,
+		disabled	: false,
 		
 		run : function(){
 			
@@ -3314,11 +3335,13 @@ var acf = {
 	});
 	
 	
+	/*
 	$(document).on('blur change', '.field.required input, .field.required textarea, .field.required select', function( e ){
-	
-		acf.validation.validate( $(this).closest('.field') );
 		
-	});
+			acf.validation.validate( $(this).closest('.field') );
+			
+		});
+	*/
 	
 	
 	/*
