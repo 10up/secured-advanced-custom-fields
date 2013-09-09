@@ -1,6 +1,6 @@
 # Advanced Custom Fields
 
-Welcome to the official repository for Advanced Custom Fields WordPress plugin.
+A secured version of the Advanced Custom Fields WordPress plugin. Adds output escaping to insure malicious content doesn't make its way into the site.
 
 -----------------------
 
