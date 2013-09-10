@@ -855,7 +855,7 @@ var acf = {
 		
 		// hide on screen toggle
 		var $ul = $('#hide-on-screen ul.acf-checkbox-list'),
-			$li = $('<li><label><input type="checkbox" value="" name="" >Hide / Show All</label></li>');
+			$li = $('<li><label><input type="checkbox" value="" name="" >' + acf.l10n.hide_show_all + '</label></li>');
 		
 		
 		// start checked?
