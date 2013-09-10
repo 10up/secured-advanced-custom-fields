@@ -110,7 +110,7 @@ class acf_field_email extends acf_field
 		<?php
 		
 		do_action('acf/create_field', array(
-			'type'	=>	'number',
+			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
