@@ -852,6 +852,32 @@ var acf = {
 		$('#submitdiv #publish').attr('class', 'acf-button');
 		$('#submitdiv a.submitdelete').attr('class', 'delete-field-group').attr('id', 'submit-delete');
 		
+		
+		// hide on screen toggle
+		var $ul = $('#hide-on-screen ul.acf-checkbox-list'),
+			$li = $('<li><label><input type="checkbox" value="" name="" >Hide / Show All</label></li>');
+		
+		
+		// start checked?
+		if( $ul.find('input:not(:checked)').length == 0 )
+		{
+			$li.find('input').attr('checked', 'checked');
+		}
+		
+		
+		// event
+		$li.on('change', 'input', function(){
+			
+			var checked = $(this).is(':checked');
+			
+			$ul.find('input').attr('checked', checked);
+			
+		});
+		
+		
+		// add to ul
+		$ul.prepend( $li );
+		
 	});
 	
 	
