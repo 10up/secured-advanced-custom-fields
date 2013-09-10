@@ -90,6 +90,7 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 			
 			do_action('acf/create_field', array(
 				'type'	=>	'checkbox',
+				//'class' => 'test',
 				'name'	=>	'options[hide_on_screen]',
 				'value'	=>	$options['hide_on_screen'],
 				'choices' => array(

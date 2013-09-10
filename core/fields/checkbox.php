@@ -65,7 +65,7 @@ class acf_field_checkbox extends acf_field
 		
 		
 		echo '<input type="hidden" name="' . $field['name'] . '" value="" />';
-		echo '<ul class="checkbox_list ' . $field['class'] . ' ' . $field['layout'] . '">';
+		echo '<ul id="' . $field['id'] . '" class="acf-checkbox-list ' . $field['class'] . ' ' . $field['layout'] . '">';
 		
 		
 		// checkbox saves an array

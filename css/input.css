@@ -641,11 +641,11 @@
 	padding-left: 6px;
 }
 
-ul.checkbox_list {
+ul.acf-checkbox-list {
 	background: transparent !important;
 }
 
-#createuser ul.checkbox_list input {
+#createuser ul.acf-checkbox-list input {
     width: auto;
 }
 
