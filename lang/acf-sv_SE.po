@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Custom Fields 4.2.2\n"
+"Project-Id-Version: Advanced Custom Fields 4.3.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-09-03 20:37+0100\n"
-"PO-Revision-Date: 2013-09-03 20:39+0100\n"
+"POT-Creation-Date: 2013-09-14 20:58+0100\n"
+"PO-Revision-Date: 2013-09-14 20:59+0100\n"
 "Last-Translator: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language-Team: Mikael Jorhult <mikael@jorhult.se>\n"
 "Language: Swedish\n"
@@ -19,100 +19,100 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: acf.php:432
+#: acf.php:436
 msgid "Field&nbsp;Groups"
 msgstr "Fältgrupper"
 
-#: acf.php:433 core/controllers/field_groups.php:214
+#: acf.php:437 core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr "Advanced Custom Fields"
 
-#: acf.php:434
+#: acf.php:438
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: acf.php:435
+#: acf.php:439
 msgid "Add New Field Group"
 msgstr "Lägg till ny fältgrupp"
 
-#: acf.php:436
+#: acf.php:440
 msgid "Edit Field Group"
 msgstr "Redigera fältgrupp"
 
-#: acf.php:437
+#: acf.php:441
 msgid "New Field Group"
 msgstr "Ny fältgrupp"
 
-#: acf.php:438
+#: acf.php:442
 msgid "View Field Group"
 msgstr "Visa fältgrupp"
 
-#: acf.php:439
+#: acf.php:443
 msgid "Search Field Groups"
 msgstr "Sök fältgrupp"
 
-#: acf.php:440
+#: acf.php:444
 msgid "No Field Groups found"
 msgstr "Inga fältgrupper hittades"
 
-#: acf.php:441
+#: acf.php:445
 msgid "No Field Groups found in Trash"
 msgstr "Inga fältgrupper finns i papperskorgen"
 
-#: acf.php:539 core/views/meta_box_options.php:98
+#: acf.php:543 core/views/meta_box_options.php:98
 msgid "Custom Fields"
 msgstr "Egna fält"
 
-#: acf.php:557 acf.php:560
+#: acf.php:561 acf.php:564
 msgid "Field group updated."
 msgstr "Fältgruppen uppdaterades."
 
-#: acf.php:558
+#: acf.php:562
 msgid "Custom field updated."
 msgstr "Eget fält uppdaterades."
 
-#: acf.php:559
+#: acf.php:563
 msgid "Custom field deleted."
 msgstr "Eget fält raderades."
 
-#: acf.php:562
+#: acf.php:566
 #, php-format
 msgid "Field group restored to revision from %s"
 msgstr "Fältgruppen återställdes till revision %s"
 
-#: acf.php:563
+#: acf.php:567
 msgid "Field group published."
 msgstr "Fältgruppen publicerades."
 
-#: acf.php:564
+#: acf.php:568
 msgid "Field group saved."
 msgstr "Fältgruppen sparades."
 
-#: acf.php:565
+#: acf.php:569
 msgid "Field group submitted."
 msgstr "Fältgruppen skickades."
 
-#: acf.php:566
+#: acf.php:570
 msgid "Field group scheduled for."
 msgstr "Fältgruppen schemalades."
 
-#: acf.php:567
+#: acf.php:571
 msgid "Field group draft updated."
 msgstr "Utkastet till fältgrupp uppdaterades."
 
-#: acf.php:702
+#: acf.php:706
 msgid "Thumbnail"
 msgstr "Tumnagel"
 
-#: acf.php:703
+#: acf.php:707
 msgid "Medium"
 msgstr "Medium"
 
-#: acf.php:704
+#: acf.php:708
 msgid "Large"
 msgstr "Stor"
 
-#: acf.php:705
+#: acf.php:709
 msgid "Full"
 msgstr "Full"
 
@@ -417,24 +417,28 @@ msgstr "eller"
 msgid "This row"
 msgstr "Denna rad"
 
-#: core/controllers/field_group.php:392 core/controllers/field_group.php:454
+#: core/controllers/field_group.php:365
+msgid "Hide / Show All"
+msgstr "Dölj / Visa alla"
+
+#: core/controllers/field_group.php:393 core/controllers/field_group.php:455
 #: core/controllers/field_groups.php:148
 msgid "Fields"
 msgstr "Fält"
 
-#: core/controllers/field_group.php:393
+#: core/controllers/field_group.php:394
 msgid "Location"
 msgstr "Plats"
 
-#: core/controllers/field_group.php:394
+#: core/controllers/field_group.php:395
 msgid "Options"
 msgstr "Alternativ"
 
-#: core/controllers/field_group.php:456
+#: core/controllers/field_group.php:457
 msgid "Show Field Key:"
 msgstr "Visa fältnyckel:"
 
-#: core/controllers/field_group.php:457 core/fields/page_link.php:138
+#: core/controllers/field_group.php:458 core/fields/page_link.php:138
 #: core/fields/page_link.php:159 core/fields/post_object.php:328
 #: core/fields/post_object.php:349 core/fields/select.php:224
 #: core/fields/select.php:243 core/fields/taxonomy.php:341
@@ -443,7 +447,7 @@ msgstr "Visa fältnyckel:"
 msgid "No"
 msgstr "Nej"
 
-#: core/controllers/field_group.php:458 core/fields/page_link.php:137
+#: core/controllers/field_group.php:459 core/fields/page_link.php:137
 #: core/fields/page_link.php:158 core/fields/post_object.php:327
 #: core/fields/post_object.php:348 core/fields/select.php:223
 #: core/fields/select.php:242 core/fields/taxonomy.php:340
@@ -452,64 +456,64 @@ msgstr "Nej"
 msgid "Yes"
 msgstr "Ja"
 
-#: core/controllers/field_group.php:635
+#: core/controllers/field_group.php:636
 msgid "Front Page"
 msgstr "Förstasida"
 
-#: core/controllers/field_group.php:636
+#: core/controllers/field_group.php:637
 msgid "Posts Page"
 msgstr "Inläggssida"
 
-#: core/controllers/field_group.php:637
+#: core/controllers/field_group.php:638
 msgid "Top Level Page (parent of 0)"
 msgstr "Toppsida (förälder satt till 0)"
 
-#: core/controllers/field_group.php:638
+#: core/controllers/field_group.php:639
 msgid "Parent Page (has children)"
 msgstr "Föräldersida (har undersidor)"
 
-#: core/controllers/field_group.php:639
+#: core/controllers/field_group.php:640
 msgid "Child Page (has parent)"
 msgstr "Undersida (har föräldersida)"
 
-#: core/controllers/field_group.php:647
+#: core/controllers/field_group.php:648
 msgid "Default Template"
 msgstr "Standardmall"
 
-#: core/controllers/field_group.php:724
+#: core/controllers/field_group.php:725
 msgid "Publish"
 msgstr "Publicerat"
 
-#: core/controllers/field_group.php:725
+#: core/controllers/field_group.php:726
 msgid "Pending Review"
 msgstr "Väntar på granskning"
 
-#: core/controllers/field_group.php:726
+#: core/controllers/field_group.php:727
 msgid "Draft"
 msgstr "Utkast"
 
-#: core/controllers/field_group.php:727
+#: core/controllers/field_group.php:728
 msgid "Future"
 msgstr "Tidsbestämt"
 
-#: core/controllers/field_group.php:728
+#: core/controllers/field_group.php:729
 msgid "Private"
 msgstr "Privat"
 
-#: core/controllers/field_group.php:729
+#: core/controllers/field_group.php:730
 msgid "Revision"
 msgstr "Revision"
 
-#: core/controllers/field_group.php:730
+#: core/controllers/field_group.php:731
 msgid "Trash"
 msgstr "I papperskorgen"
 
-#: core/controllers/field_group.php:743
+#: core/controllers/field_group.php:744
 msgid "Super Admin"
 msgstr "Superadministratör"
 
-#: core/controllers/field_group.php:758 core/controllers/field_group.php:779
-#: core/controllers/field_group.php:786 core/fields/file.php:186
+#: core/controllers/field_group.php:759 core/controllers/field_group.php:780
+#: core/controllers/field_group.php:787 core/fields/file.php:186
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
 #: core/fields/relationship.php:595 core/fields/relationship.php:619
@@ -876,15 +880,15 @@ msgstr "Tillägget har nu installerats och aktiverats!"
 msgid "Awesome. Let's get to work"
 msgstr "Grymt! Dags att återgå till arbetet."
 
-#: core/controllers/input.php:520
+#: core/controllers/input.php:63
 msgid "Expand Details"
 msgstr "Visa detaljer"
 
-#: core/controllers/input.php:521
+#: core/controllers/input.php:64
 msgid "Collapse Details"
 msgstr "Dölj detaljer"
 
-#: core/controllers/input.php:524
+#: core/controllers/input.php:67
 msgid "Validation Failed. One or more fields below are required."
 msgstr "Valideringen misslyckades. Ett eller flera fält nedan måste fyllas i."
 
@@ -925,30 +929,30 @@ msgstr "Kryssruta"
 msgid "Choice"
 msgstr "Alternativ"
 
-#: core/fields/checkbox.php:137 core/fields/radio.php:144
+#: core/fields/checkbox.php:146 core/fields/radio.php:144
 #: core/fields/select.php:177
 msgid "Choices"
 msgstr "Alternativ"
 
-#: core/fields/checkbox.php:138 core/fields/select.php:178
+#: core/fields/checkbox.php:147 core/fields/select.php:178
 msgid "Enter each choice on a new line."
 msgstr "Ange ett alternativ per rad"
 
-#: core/fields/checkbox.php:139 core/fields/select.php:179
+#: core/fields/checkbox.php:148 core/fields/select.php:179
 msgid "For more control, you may specify both a value and label like this:"
 msgstr "För mer kontroll kan du specificera både värde och etikett enligt:"
 
-#: core/fields/checkbox.php:140 core/fields/radio.php:150
+#: core/fields/checkbox.php:149 core/fields/radio.php:150
 #: core/fields/select.php:180
 msgid "red : Red"
 msgstr "röd : Röd"
 
-#: core/fields/checkbox.php:140 core/fields/radio.php:151
+#: core/fields/checkbox.php:149 core/fields/radio.php:151
 #: core/fields/select.php:180
 msgid "blue : Blue"
 msgstr "blå : Blå"
 
-#: core/fields/checkbox.php:157 core/fields/color_picker.php:89
+#: core/fields/checkbox.php:166 core/fields/color_picker.php:89
 #: core/fields/email.php:106 core/fields/number.php:116
 #: core/fields/radio.php:193 core/fields/select.php:197
 #: core/fields/text.php:116 core/fields/textarea.php:96
@@ -956,20 +960,20 @@ msgstr "blå : Blå"
 msgid "Default Value"
 msgstr "Standardvärde"
 
-#: core/fields/checkbox.php:158 core/fields/select.php:198
+#: core/fields/checkbox.php:167 core/fields/select.php:198
 msgid "Enter each default value on a new line"
 msgstr "Ange varje värde på en ny rad"
 
-#: core/fields/checkbox.php:174 core/fields/message.php:20
+#: core/fields/checkbox.php:183 core/fields/message.php:20
 #: core/fields/radio.php:209 core/fields/tab.php:20
 msgid "Layout"
 msgstr "Layout"
 
-#: core/fields/checkbox.php:185 core/fields/radio.php:220
+#: core/fields/checkbox.php:194 core/fields/radio.php:220
 msgid "Vertical"
 msgstr "Vertikalt"
 
-#: core/fields/checkbox.php:186 core/fields/radio.php:221
+#: core/fields/checkbox.php:195 core/fields/radio.php:221
 msgid "Horizontal"
 msgstr "Horisontellt"
 
