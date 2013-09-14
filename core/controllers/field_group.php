@@ -361,7 +361,8 @@ class acf_field_group
 			'title'					=>	__("Field group title is required",'acf'),
 			'copy'					=>	__("copy",'acf'),
 			'or'					=>	__("or",'acf'),
-			'this_row'				=>	__("This row",'acf')
+			'this_row'				=>	__("This row",'acf'),
+			'hide_show_all'			=>	__("Hide / Show All",'acf')
 		);
 		
 

@@ -374,7 +374,7 @@ table.acf_input select:focus {
 
 
 ul.acf-radio-list,
-ul.checkbox_list {
+ul.acf-checkbox-list {
 	background: transparent !important;
 	position: relative;
 	display: block;
@@ -383,18 +383,18 @@ ul.checkbox_list {
 }
 
 ul.acf-radio-list.horizontal,
-ul.checkbox_list.horizontal {
+ul.acf-checkbox-list.horizontal {
 	overflow: hidden;
 }
 
 ul.acf-radio-list.horizontal li,
-ul.checkbox_list.horizontal li {
+ul.acf-checkbox-list.horizontal li {
 	float: left;
 	margin-right: 20px;
 }
 
 ul.acf-radio-list li input,
-ul.checkbox_list li input {
+ul.acf-checkbox-list li input {
 	margin-top: -1px;
 	margin-right: 5px !important;
 	width: auto !important;
