@@ -76,10 +76,9 @@
 	
 	$(document).on('acf/update_field_groups', function(){
 		
-		
 		// Only for a post.
 		// This is an attempt to stop the action running on the options page add-on.
-		if( ! acf.o.post_id )
+		if( ! acf.screen.post_id )
 		{
 			return false;	
 		}
