@@ -728,6 +728,10 @@ var acf = {
 			
 		});
 		
+		
+		// Remove 'field_123' from native custom field metabox
+		$('#metakeyselect option[value^="field_"]').remove(); 
+		
 	
 	});
 	
@@ -875,10 +879,9 @@ var acf = {
 	
 	$(document).on('acf/update_field_groups', function(){
 		
-		
 		// Only for a post.
 		// This is an attempt to stop the action running on the options page add-on.
-		if( ! acf.o.post_id )
+		if( ! acf.screen.post_id )
 		{
 			return false;	
 		}
