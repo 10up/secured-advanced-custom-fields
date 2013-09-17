@@ -722,6 +722,10 @@ var acf = {
 			
 		});
 		
+		
+		// Remove 'field_123' from native custom field metabox
+		$('#metakeyselect option[value^="field_"]').remove(); 
+		
 	
 	});
 	
