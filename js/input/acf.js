@@ -420,7 +420,7 @@ var acf = {
 				clearTimeout( acf.media.render_timout );
 				acf.media.render_timout = setTimeout(function(){
 
-					$(document).trigger( 'acf/setup_fields', _this.$el );
+					$(document).trigger( 'acf/setup_fields', [ _this.$el ] );
 					
 				}, 50);
 
@@ -724,7 +724,7 @@ var acf = {
 		
 		
 		// Remove 'field_123' from native custom field metabox
-		$('#metakeyselect option[value^="field_"]').remove(); 
+		$('#metakeyselect option[value^="field_"]').remove();
 		
 	
 	});
