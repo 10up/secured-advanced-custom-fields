@@ -771,7 +771,7 @@ class acf
 				echo '</p>';
 				
 				$field['name'] = 'fields[' . $field['key'] . ']';
-				do_action('acf/create_field', $field);
+				do_action('acf/create_field', $field, $post_id);
 			
 			echo '</div>';
 			
@@ -871,7 +871,7 @@ class acf
 *  The main function responsible for returning the one true acf Instance to functions everywhere.
 *  Use this function like you would a global variable, except without needing to declare the global.
 *
-*  Example: <?php $bbp = bbpress(); ?>
+*  Example: <?php $acf = acf(); ?>
 *
 *  @type	function
 *  @date	4/09/13
