@@ -3144,7 +3144,7 @@ var acf = {
 		// if the $target to be hidden is a tab button, lets toggle a sibling tab button
 		if( $target.parent().hasClass('acf-tab-group') )
 		{
-			$target.siblings().first().children('a').trigger('click');
+			$target.siblings(':visible').first().children('a').trigger('click');
 		}
 		
 	});
