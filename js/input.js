@@ -3141,11 +3141,17 @@ var acf = {
 	
 	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
+		
 		// if the $target to be hidden is a tab button, lets toggle a sibling tab button
-		if( $target.parent().hasClass('acf-tab-group') )
-		{
-			$target.siblings(':visible').first().children('a').trigger('click');
-		}
+		setTimeout(function(){
+			
+			if( $target.parent().hasClass('acf-tab-group') )
+			{
+				$target.siblings('.acf-conditional_logic-show').first().children('a').trigger('click');
+			}
+			
+		}, 0);
+		
 		
 	});
 	
