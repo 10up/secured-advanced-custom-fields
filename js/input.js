@@ -515,7 +515,7 @@ var acf = {
 			
 			// events
 			$(document).on('change', '.field input, .field textarea, .field select', function(){
-				
+			
 				_this.change();
 				
 			});
@@ -526,13 +526,9 @@ var acf = {
 		},
 		change : function(){
 			
+			
 			// reference
 			var _this = this;
-			
-			
-			// vars
-			//var $el		=	$( e.target ),
-			//	$field	=	$el.closest('.field');
 			
 			
 			// loop through items
@@ -615,6 +611,9 @@ var acf = {
 						
 						$target.addClass('acf-conditional_logic-show');
 						
+						// hook
+						$(document).trigger('acf/conditional_logic/show', [ $target, item ]);
+						
 					}
 					else
 					{
@@ -627,6 +626,9 @@ var acf = {
 						{
 							$target.addClass('acf-show-blank');
 						}
+						
+						// hook
+						$(document).trigger('acf/conditional_logic/hide', [ $target, item ]);
 					}
 					
 					
@@ -3024,6 +3026,14 @@ var acf = {
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
+		// validate
+		if( ! $(el).find('.acf-tab').exists() )
+		{
+			return;
+		}
+		
+		
+		// init
 		$(el).find('.acf-tab').each(function(){
 			
 			// vars
@@ -3057,6 +3067,11 @@ var acf = {
 			
 			
 		});
+		
+		
+		// trigger conditional logic
+		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+		acf.conditional_logic.change();
 		
 		
 		// trigger
@@ -3122,7 +3137,19 @@ var acf = {
 
 		
 	});
+	
+	
+	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
+		// if the $target to be hidden is a tab button, lets toggle a sibling tab button
+		if( $target.parent().hasClass('acf-tab-group') )
+		{
+			$target.siblings().first().children('a').trigger('click');
+		}
+		
+	});
+	
+	
 
 })(jQuery);
 

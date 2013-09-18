@@ -509,7 +509,7 @@ var acf = {
 			
 			// events
 			$(document).on('change', '.field input, .field textarea, .field select', function(){
-				
+			
 				_this.change();
 				
 			});
@@ -520,13 +520,9 @@ var acf = {
 		},
 		change : function(){
 			
+			
 			// reference
 			var _this = this;
-			
-			
-			// vars
-			//var $el		=	$( e.target ),
-			//	$field	=	$el.closest('.field');
 			
 			
 			// loop through items
@@ -609,6 +605,9 @@ var acf = {
 						
 						$target.addClass('acf-conditional_logic-show');
 						
+						// hook
+						$(document).trigger('acf/conditional_logic/show', [ $target, item ]);
+						
 					}
 					else
 					{
@@ -621,6 +620,9 @@ var acf = {
 						{
 							$target.addClass('acf-show-blank');
 						}
+						
+						// hook
+						$(document).trigger('acf/conditional_logic/hide', [ $target, item ]);
 					}
 					
 					
