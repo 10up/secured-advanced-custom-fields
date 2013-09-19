@@ -242,6 +242,16 @@ class acf_controller_post
 		
 		// clean up
 		unset( $wp_meta_boxes['post']['acf_after_title'] );
+		
+		
+		// preview hack
+		// the following code will add a hidden input which will trigger WP to create a revision apon save
+		// http://support.advancedcustomfields.com/forums/topic/preview-solution/#post-4106
+		?>
+		<div style="display:none">
+			<input type="hidden" name="acf_has_changed" id="acf-has-changed" value="0" />
+		</div>
+		<?php
 	}
 	
 	

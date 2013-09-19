@@ -515,7 +515,13 @@ var acf = {
 			
 			// events
 			$(document).on('change', '.field input, .field textarea, .field select', function(){
-			
+				
+				// preview hack
+				if( $('#acf-has-changed').exists() )
+				{
+					$('#acf-has-changed').val(1);
+				}
+				
 				_this.change();
 				
 			});

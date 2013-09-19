@@ -32,6 +32,36 @@ class acf_revisions
 		
 		// filters
 		add_filter('_wp_post_revision_fields', array($this, 'wp_post_revision_fields') );
+		add_filter('wp_save_post_revision_check_for_changes', array($this, 'force_save_revision'), 10, 3);
+	}
+	
+	
+	/*
+	*  force_save_revision
+	*
+	*  This filter will return false and force WP to save a revision. This is required due to
+	*  WP checking only post_title, post_excerpt and post_content values, not custom fields.
+	*
+	*  @type	filter
+	*  @date	19/09/13
+	*
+	*  @param	$return (boolean) defaults to true
+	*  @param	$last_revision (object) the last revision that WP will compare against
+	*  @param	$post (object) the $post that WP will compare against
+	*  @return	$return (boolean)
+	*/
+	
+	function force_save_revision( $return, $last_revision, $post )
+	{
+		// preview hack
+		if( isset($_POST['acf_has_changed']) && $_POST['acf_has_changed'] == '1' )
+		{
+			$return = false;
+		}
+		
+		
+		// return
+		return $return;
 	}
 	
 	
@@ -50,6 +80,7 @@ class acf_revisions
 	*/
 		
 	function wp_post_revision_fields( $return ) {
+		
 		
 		//globals
 		global $post, $pagenow;
@@ -134,6 +165,7 @@ class acf_revisions
 								
 			}
 		}
+		
 		
 		return $return;
 	
