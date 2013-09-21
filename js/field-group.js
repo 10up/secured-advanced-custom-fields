@@ -17,6 +17,7 @@ var acf = {
 	l10n				:	{},
 	text				:	{},
 	
+	
 	// helper functions
 	helpers				:	{
 		uniqid			: 	null,
@@ -932,19 +933,67 @@ var acf = {
 		}
 		else if( options.type == "select" )
 		{
-			html += '<select class="select ' + options.classname + '" id="' + options.name + '" name="' + options.name + '">';
-			if( options.choices )
-			{
-				for( var i = 0; i < options.choices.length; i++ )
+			// vars
+			var groups = {};
+			
+			
+			// populate groups
+			$.each(options.choices, function(k, v){
+				
+				// group may not exist
+				if( v.group === undefined )
 				{
+					v.group = 0;
+				}
+				
+				
+				// instantiate group
+				if( groups[ v.group ] === undefined )
+				{
+					groups[ v.group ] = [];
+				}
+				
+				
+				// add to group
+				groups[ v.group ].push( v );
+				
+			});
+			
+			
+			html += '<select class="select ' + options.classname + '" id="' + options.name + '" name="' + options.name + '">';
+			
+			$.each(groups, function(k, v){
+				
+				// start optgroup?
+				if( k != 0 )
+				{
+					html += '<optgroup label="' + k + '">';
+				}
+				
+				
+				// options
+				$.each(v, function(k2, v2){
+					
 					var attr = '';
-					if( options.choices[i].value == options.value )
+					if( v2 == options.value )
 					{
 						attr = 'selected="selected"';
 					}
-					html += '<option ' + attr + ' value="' + options.choices[i].value + '">' + options.choices[i].label + '</option>';
+					
+					html += '<option ' + attr + ' value="' + v2.value + '">' + v2.label + '</option>';
+					
+				});
+				
+				
+				// end optgroup?
+				if( k != 0 )
+				{
+					html += '</optgroup>';
 				}
-			}
+				
+			});
+			
+			
 			html += '</select>';
 		}
 		
@@ -1062,7 +1111,7 @@ var acf = {
 					parent = $parent.attr('data-id');
 					
 					// add placeholder
-					if( !_this.triggers[ parent ] )
+					if( _this.triggers[ parent ] === undefined )
 					{
 						_this.triggers[ parent ] = [];
 					}
@@ -1082,13 +1131,18 @@ var acf = {
 				
 			});
 			
+
 		},
 		
 		render : function( $field ){
 			
+			// reference
+			var _this = this;
+			
+			
 			// vars
 			var choices		= [],
-				$parent		= $field.parent().closest('.field'),
+				$ancestors	= $field.parent().parents('.field'),
 				$tr			= $field.find('> .field_form_mask > .field_form > table > tbody > tr.conditional-logic');
 				
 			
@@ -1103,30 +1157,43 @@ var acf = {
 			});
 			
 			
-			// find parent
-			if( $parent.exists() )
+			// add ancestors
+			if( $ancestors.exists() )
 			{
-				var parent = $parent.attr('data-id');
-				
-				// populate choices
-				$.each( this.triggers[ parent ], function(k, v){
-					
-					choices.push({
-						value : v.id,
-						label : acf.l10n.this_row + ': ' + v.label
-					});
+				// add group to current options
+				$.each( choices, function(k, v){
+						
+					choices[ k ].group = acf.l10n.fields;
 					
 				});
 				
+				
+				$ancestors.each(function( k ){
+					
+					var id = $(this).attr('data-id'),
+						group = (k == 0) ? acf.l10n.sibling_fields : acf.l10n.parent_fields;
+					
+					// populate choices
+					$.each( _this.triggers[ id ], function(k, v){
+						
+						choices.push({
+							value : v.id,
+							label : v.label,
+							group : group
+						});
+						
+					});
+					
+				});
 			}
-			
+				
 			
 			// empty?
 			if( choices.length == 0 )
 			{
 				choices.push({
 					'value' : 'null',
-					'label' : acf.l10n.conditional_no_fields
+					'label' : acf.l10n.no_fields
 				});
 			}
 			

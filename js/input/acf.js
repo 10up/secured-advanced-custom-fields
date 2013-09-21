@@ -568,8 +568,20 @@ var acf = {
 						// sub field?
 						if( $toggle.hasClass('sub_field') )
 						{
+							// toggle may be a sibling sub field.
+							// if so ,show an empty td but keep the column
 							$toggle = $target.siblings('.field_key-' + rule.field);
 							hide_all = false;
+							
+							
+							// // if no toggle was found, we need to look at parent sub fields.
+							// if so, hide the entire column
+							if( ! $toggle.exists() )
+							{
+								$toggle = $target.parents('.row').last().find('.field_key-' + rule.field);
+								hide_all = true;
+							}
+							
 						}
 						
 						
