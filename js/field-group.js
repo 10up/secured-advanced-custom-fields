@@ -916,10 +916,10 @@ var acf = {
 		
 		// dafaults
 		var defaults = {
-			'type' : 'text',
-			'classname' : '',
-			'name' : '',
-			'value' : ''
+			'type' 		: 'text',
+			'classname'	: '',
+			'name' 		: '',
+			'value' 	: ''
 		};
 		options = $.extend(true, defaults, options);
 		
@@ -975,7 +975,8 @@ var acf = {
 				$.each(v, function(k2, v2){
 					
 					var attr = '';
-					if( v2 == options.value )
+					
+					if( v2.value == options.value )
 					{
 						attr = 'selected="selected"';
 					}
