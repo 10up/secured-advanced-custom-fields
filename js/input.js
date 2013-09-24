@@ -3356,7 +3356,7 @@ var acf = {
 			
 			
 			// hook for custom validation
-			$(document).trigger('acf/validate_field', div );
+			$(document).trigger('acf/validate_field', [ div ] );
 			
 			
 			// set validation
