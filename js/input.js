@@ -580,7 +580,7 @@ var acf = {
 							hide_all = false;
 							
 							
-							// // if no toggle was found, we need to look at parent sub fields.
+							// if no toggle was found, we need to look at parent sub fields.
 							// if so, hide the entire column
 							if( ! $toggle.exists() )
 							{
