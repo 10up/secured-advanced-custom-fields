@@ -377,6 +377,13 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
+		// validate google
+		if( typeof google === 'undefined' )
+		{
+			return this;
+		}
+		
+		
 		$(el).find('.acf-google-map').each(function(){
 			
 			acf.fields.location.set({ $el : $(this) }).init();
