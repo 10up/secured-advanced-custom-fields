@@ -775,7 +775,12 @@ var acf = {
 			// Hack for CPT without a content editor
 			try
 			{
-				wp.media.view.settings.post.id = acf.post_id;	
+				// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
+				if( $.isNumeric(acf.o.post_id) )
+				{
+					wp.media.view.settings.post.id = acf.o.post_id;
+				}
+				
 			} 
 			catch(e)
 			{
@@ -2082,6 +2087,13 @@ var acf = {
 	*/
 	
 	$(document).on('acf/setup_fields', function(e, el){
+		
+		// validate google
+		if( typeof google === 'undefined' )
+		{
+			return this;
+		}
+		
 		
 		$(el).find('.acf-google-map').each(function(){
 			
