@@ -1058,13 +1058,38 @@ tr.acf-tab_group-show {
 *	
 *-------------------------------------------------------------------------*/
 
+/* Show */
 .acf-conditional_logic-show {
 	display: block;
 }
+
 tr.acf-conditional_logic-show {
 	display: table-row;
 }
-.acf-conditional_logic-hide {
+
+td.acf-conditional_logic-show,
+th.acf-conditional_logic-show {
+    display: table-cell;
+}
+
+
+/* Hide */
+.acf-conditional_logic-hide,
+tr.acf-conditional_logic-hide,
+td.acf-conditional_logic-hide,
+th.acf-conditional_logic-hide {
+    display: none;
+}
+
+
+/* Hide (show blank) */
+td.acf-conditional_logic-hide.acf-show-blank,
+th.acf-conditional_logic-hide.acf-show-blank {
+    display: table-cell;
+}
+
+td.acf-conditional_logic-hide.acf-show-blank .inner,
+th.acf-conditional_logic-hide.acf-show-blank .inner {
 	display: none;
 }
 
