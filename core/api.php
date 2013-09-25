@@ -1165,6 +1165,9 @@ function acf_form( $options = array() )
 	<?php endif; ?>
 	
 	<div style="display:none">
+		<script type="text/javascript">
+			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . $options['post_id'] . '"'; ?>;
+		</script>
 		<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'input' ); ?>" />
 		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
 		<input type="hidden" name="return" value="<?php echo $options['return']; ?>" />
