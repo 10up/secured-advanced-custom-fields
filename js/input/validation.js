@@ -13,8 +13,8 @@
 	
 	acf.validation = {
 	
-		status : true,
-		disabled : false,
+		status		: true,
+		disabled	: false,
 		
 		run : function(){
 			
@@ -173,7 +173,7 @@
 			
 			
 			// hook for custom validation
-			$(document).trigger('acf/validate_field', div );
+			$(document).trigger('acf/validate_field', [ div ] );
 			
 			
 			// set validation
@@ -206,11 +206,13 @@
 	});
 	
 	
+	/*
 	$(document).on('blur change', '.field.required input, .field.required textarea, .field.required select', function( e ){
-	
-		acf.validation.validate( $(this).closest('.field') );
 		
-	});
+			acf.validation.validate( $(this).closest('.field') );
+			
+		});
+	*/
 	
 	
 	/*

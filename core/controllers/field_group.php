@@ -355,13 +355,16 @@ class acf_field_group
 		
 		// l10n
 		$l10n = array(
-			'move_to_trash'			=>	__("Move to trash. Are you sure?",'acf'),
-			'checked'				=>	__("checked",'acf'),
-			'conditional_no_fields'	=>	__("No toggle fields available",'acf'),
-			'title'					=>	__("Field group title is required",'acf'),
-			'copy'					=>	__("copy",'acf'),
-			'or'					=>	__("or",'acf'),
-			'this_row'				=>	__("This row",'acf')
+			'move_to_trash'		=>	__("Move to trash. Are you sure?",'acf'),
+			'checked'			=>	__("checked",'acf'),
+			'no_fields'			=>	__("No toggle fields available",'acf'),
+			'title'				=>	__("Field group title is required",'acf'),
+			'copy'				=>	__("copy",'acf'),
+			'or'				=>	__("or",'acf'),
+			'fields'			=>	__("Fields",'acf'),
+			'parent_fields'		=>	__("Parent fields",'acf'),
+			'sibling_fields'	=>	__("Sibling fields",'acf'),
+			'hide_show_all'		=>	__("Hide / Show All",'acf')
 		);
 		
 

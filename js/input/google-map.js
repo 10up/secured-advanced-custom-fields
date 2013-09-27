@@ -77,14 +77,11 @@
 			
 			// create map	        	
         	this.map = new google.maps.Map( this.$el.find('.canvas')[0], args);
-	        	
-	        
-	        // add array for markers
-	        this.map.marker = null;
 	        
 	        
 	        // add search
 			var autocomplete = new google.maps.places.Autocomplete( this.$el.find('.search')[0] );
+			autocomplete.map = this.map;
 			autocomplete.bindTo('bounds', this.map);
 			
 			
@@ -96,24 +93,31 @@
 		    });
 		    
 		    
+		    // add references
+		    this.map.$el = this.$el;
+		    
+		    
 		    // value exists?
 		    var lat = this.$el.find('.input-lat').val(),
 		    	lng = this.$el.find('.input-lng').val();
-		    	
+		    
 		    if( lat && lng )
 		    {
-			    _this.update( lat, lng ).center();
+			    this.update( lat, lng ).center();
 		    }
 		    
 		    
 			// events
 			google.maps.event.addListener(autocomplete, 'place_changed', function( e ) {
 			    
+			    // reference
+			    var $el = this.map.$el;
+
+
 			    // manually update address
-			    var address = _this.$el.find('.search').val();
-			    
-			    _this.$el.find('.input-address').val( address );
-			    _this.$el.find('.title h4').text( address );
+			    var address = $el.find('.search').val();
+			    $el.find('.input-address').val( address );
+			    $el.find('.title h4').text( address );
 			    
 			    
 			    // vars
@@ -127,7 +131,7 @@
 						lng = place.geometry.location.lng();
 						
 						
-				    _this.set({ $el : _$el }).update( lat, lng ).center();
+				    _this.set({ $el : $el }).update( lat, lng ).center();
 			    }
 			    else
 			    {
@@ -155,7 +159,7 @@
 							lng = place.geometry.location.lng();
 							
 							
-					    _this.set({ $el : _$el }).update( lat, lng ).center();
+					    _this.set({ $el : $el }).update( lat, lng ).center();
 					    
 					});
 			    }
@@ -165,24 +169,32 @@
 		    
 		    google.maps.event.addListener( this.map.marker, 'dragend', function(){
 		    	
+		    	// reference
+			    var $el = this.map.$el;
+			    
+			    
 		    	// vars
 				var position = this.map.marker.getPosition(),
 					lat = position.lat(),
 			    	lng = position.lng();
 			    	
-				_this.set({ $el : _$el }).update( lat, lng ).sync();
+				_this.set({ $el : $el }).update( lat, lng ).sync();
 			    
 			});
 			
 			
 			google.maps.event.addListener( this.map, 'click', function( e ) {
 				
+				// reference
+			    var $el = this.$el;
+			    
+			    
 				// vars
 				var lat = e.latLng.lat(),
 					lng = e.latLng.lng();
 				
 				
-				_this.set({ $el : _$el }).update( lat, lng );
+				_this.set({ $el : $el }).update( lat, lng ).sync();
 			
 			});
 
@@ -239,7 +251,7 @@
 		sync : function(){
 			
 			// reference
-			var _this	= this;
+			var $el	= this.$el;
 				
 			
 			// vars
@@ -268,11 +280,11 @@
 				
 				
 				// update h4
-				_this.$el.find('.title h4').text( location.formatted_address );
+				$el.find('.title h4').text( location.formatted_address );
 
 				
 				// update input
-				_this.$el.find('.input-address').val( location.formatted_address );
+				$el.find('.input-address').val( location.formatted_address ).trigger('change');
 				
 			});
 			
@@ -284,20 +296,21 @@
 		locate : function(){
 			
 			// reference
-			var _this	= this;
+			var _this	= this,
+				_$el	= this.$el;
 			
 			
 			// Try HTML5 geolocation
 			if( ! navigator.geolocation )
 			{
-				alert('Sorry, browser doesnt support geolocation');
+				alert( acf.l10n.google_map.browser_support );
 				return this;
 			}
 			
 			
 			// show loading text
-			_this.$el.find('.title h4').text('Loading...');
-			
+			_$el.find('.title h4').text(acf.l10n.google_map.locating + '...');
+			_$el.addClass('active');
 			
 		    navigator.geolocation.getCurrentPosition(function(position){
 		    	
@@ -305,7 +318,7 @@
 				var lat = position.coords.latitude,
 			    	lng = position.coords.longitude;
 			    	
-				_this.update( lat, lng ).sync().center();
+				_this.set({ $el : _$el }).update( lat, lng ).sync().center();
 				
 			});
 
@@ -364,7 +377,14 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		$(el).find('.acf-location').each(function(){
+		// validate google
+		if( typeof google === 'undefined' )
+		{
+			return this;
+		}
+		
+		
+		$(el).find('.acf-google-map').each(function(){
 			
 			acf.fields.location.set({ $el : $(this) }).init();
 			
@@ -385,36 +405,36 @@
 	*  @return	N/A
 	*/
 	
-	$(document).on('click', '.acf-location .acf-sprite-remove', function( e ){
+	$(document).on('click', '.acf-google-map .acf-sprite-remove', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).clear();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).clear();
 		
 		$(this).blur();
 		
 	});
 	
 	
-	$(document).on('click', '.acf-location .acf-sprite-locate', function( e ){
+	$(document).on('click', '.acf-google-map .acf-sprite-locate', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).locate();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).locate();
 		
 		$(this).blur();
 		
 	});
 	
-	$(document).on('click', '.acf-location .title h4', function( e ){
+	$(document).on('click', '.acf-google-map .title h4', function( e ){
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-location') }).edit();
+		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).edit();
 			
 	});
 	
-	$(document).on('keydown', '.acf-location .search', function( e ){
+	$(document).on('keydown', '.acf-google-map .search', function( e ){
 		
 		// prevent form from submitting
 		if( e.which == 13 )
@@ -424,10 +444,10 @@
 			
 	});
 	
-	$(document).on('blur', '.acf-location .search', function( e ){
+	$(document).on('blur', '.acf-google-map .search', function( e ){
 		
 		// vars
-		var $el = $(this).closest('.acf-location');
+		var $el = $(this).closest('.acf-google-map');
 		
 		
 		// has a value?

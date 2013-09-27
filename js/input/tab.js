@@ -16,6 +16,14 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
+		// validate
+		if( ! $(el).find('.acf-tab').exists() )
+		{
+			return;
+		}
+		
+		
+		// init
 		$(el).find('.acf-tab').each(function(){
 			
 			// vars
@@ -49,6 +57,11 @@
 			
 			
 		});
+		
+		
+		// trigger conditional logic
+		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+		acf.conditional_logic.change();
 		
 		
 		// trigger
@@ -114,6 +127,24 @@
 
 		
 	});
+	
+	
+	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
+		
+		// if the $target to be hidden is a tab button, lets toggle a sibling tab button
+		setTimeout(function(){
+			
+			if( $target.parent().hasClass('acf-tab-group') )
+			{
+				$target.siblings('.acf-conditional_logic-show').first().children('a').trigger('click');
+			}
+			
+		}, 0);
+		
+		
+	});
+	
+	
 
 })(jQuery);

@@ -76,10 +76,9 @@
 	
 	$(document).on('acf/update_field_groups', function(){
 		
-		
 		// Only for a post.
 		// This is an attempt to stop the action running on the options page add-on.
-		if( ! acf.o.post_id )
+		if( ! acf.screen.post_id )
 		{
 			return false;	
 		}
@@ -134,7 +133,7 @@
 						$.ajax({
 							url			:	ajaxurl,
 							data		:	{
-								action	:	'acf/input/render_fields',
+								action	:	'acf/post/render_fields',
 								acf_id	:	v,
 								post_id	:	acf.o.post_id,
 								nonce	:	acf.o.nonce
@@ -158,7 +157,7 @@
 				$.ajax({
 					url			:	ajaxurl,
 					data		:	{
-						action	:	'acf/input/get_style',
+						action	:	'acf/post/get_style',
 						acf_id	:	result[0],
 						nonce	:	acf.o.nonce
 					},
@@ -239,6 +238,14 @@
 	
 	
 	$(document).on('change', '.categorychecklist input[type="checkbox"]', function(){
+		
+		// a taxonomy field may trigger this change event, however, the value selected is not
+		// actually a term relatinoship, it is meta data
+		if( $(this).closest('.categorychecklist').hasClass('no-ajax') )
+		{
+			return;
+		}
+		
 		
 		// set timeout to fix issue with chrome which does not register the change has yet happened
 		setTimeout(function(){

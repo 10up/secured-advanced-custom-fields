@@ -538,17 +538,17 @@ table.acf-rules tbody .acf-loading {
 	padding-left: 4px;
 }
 
-.postbox#acf_options ul.checkbox_list {
+.postbox#acf_options ul.acf-checkbox-list {
 	display: block;
 	float: left;
 	width: 300px;
 }
 
-.postbox#acf_options ul.checkbox_list li {
+.postbox#acf_options ul.acf-checkbox-list li {
 	display: block;
 }
 
-ul.checkbox_list li input {
+ul.acf-checkbox-list li input {
 	margin: 2px 5px 0 0;
 	vertical-align: top;
 } 

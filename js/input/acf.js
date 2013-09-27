@@ -420,7 +420,7 @@ var acf = {
 				clearTimeout( acf.media.render_timout );
 				acf.media.render_timout = setTimeout(function(){
 
-					$(document).trigger( 'acf/setup_fields', _this.$el );
+					$(document).trigger( 'acf/setup_fields', [ _this.$el ] );
 					
 				}, 50);
 
@@ -510,6 +510,12 @@ var acf = {
 			// events
 			$(document).on('change', '.field input, .field textarea, .field select', function(){
 				
+				// preview hack
+				if( $('#acf-has-changed').exists() )
+				{
+					$('#acf-has-changed').val(1);
+				}
+				
 				_this.change();
 				
 			});
@@ -520,13 +526,9 @@ var acf = {
 		},
 		change : function(){
 			
+			
 			// reference
 			var _this = this;
-			
-			
-			// vars
-			//var $el		=	$( e.target ),
-			//	$field	=	$el.closest('.field');
 			
 			
 			// loop through items
@@ -566,8 +568,20 @@ var acf = {
 						// sub field?
 						if( $toggle.hasClass('sub_field') )
 						{
+							// toggle may be a sibling sub field.
+							// if so ,show an empty td but keep the column
 							$toggle = $target.siblings('.field_key-' + rule.field);
 							hide_all = false;
+							
+							
+							// if no toggle was found, we need to look at parent sub fields.
+							// if so, hide the entire column
+							if( ! $toggle.exists() )
+							{
+								$toggle = $target.parents('.row').last().find('.field_key-' + rule.field);
+								hide_all = true;
+							}
+							
 						}
 						
 						
@@ -609,6 +623,9 @@ var acf = {
 						
 						$target.addClass('acf-conditional_logic-show');
 						
+						// hook
+						$(document).trigger('acf/conditional_logic/show', [ $target, item ]);
+						
 					}
 					else
 					{
@@ -621,6 +638,9 @@ var acf = {
 						{
 							$target.addClass('acf-show-blank');
 						}
+						
+						// hook
+						$(document).trigger('acf/conditional_logic/hide', [ $target, item ]);
 					}
 					
 					
@@ -722,6 +742,10 @@ var acf = {
 			
 		});
 		
+		
+		// Remove 'field_123' from native custom field metabox
+		$('#metakeyselect option[value^="field_"]').remove();
+		
 	
 	});
 	
@@ -745,7 +769,12 @@ var acf = {
 			// Hack for CPT without a content editor
 			try
 			{
-				wp.media.view.settings.post.id = acf.post_id;	
+				// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
+				if( $.isNumeric(acf.o.post_id) )
+				{
+					wp.media.view.settings.post.id = acf.o.post_id;
+				}
+				
 			} 
 			catch(e)
 			{
