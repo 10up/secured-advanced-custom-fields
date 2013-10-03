@@ -52,8 +52,8 @@ class acf_field_google_map extends acf_field
 	
 	function create_field( $field )
 	{
-		// require the googlemaps JS
-		wp_enqueue_script('acf-googlemaps');
+		// require the googlemaps JS ( this script is now lazy loaded via JS )
+		//wp_enqueue_script('acf-googlemaps');
 		
 		
 		// default value

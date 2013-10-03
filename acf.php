@@ -478,12 +478,17 @@ class acf
 			'src'		=> $this->settings['dir'] . 'core/fields/date_picker/jquery.ui.datepicker.js',
 			'deps'		=> array('jquery', 'acf-input')
 		);
+		/*
+		
+		this script is now lazy loaded via JS
+		
 		$scripts[] = array(
 			'handle'	=> 'acf-googlemaps',
 			'src'		=> 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places',
 			'deps'		=> array('jquery'),
 			'in_footer'	=> true
 		);
+		*/
 		
 		
 		foreach( $scripts as $script )

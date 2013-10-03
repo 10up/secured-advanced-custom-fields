@@ -2088,18 +2088,35 @@ var acf = {
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		// validate google
-		if( typeof google === 'undefined' )
+		if( $(el).find('.acf-google-map').exists() )
 		{
-			return this;
+			// validate google
+			if( typeof google === 'undefined' )
+			{
+				$.getScript('https://www.google.com/jsapi', function(){
+				
+				    google.load('maps', '3', { other_params: 'sensor=false&libraries=places', callback: function(){
+				    
+				        $(el).find('.acf-google-map').each(function(){
+						
+							acf.fields.location.set({ $el : $(this) }).init();
+							
+						});
+				        
+				    }});
+				});
+				
+			}
+			else
+			{
+				$(el).find('.acf-google-map').each(function(){
+					
+					acf.fields.location.set({ $el : $(this) }).init();
+					
+				});
+				
+			}
 		}
-		
-		
-		$(el).find('.acf-google-map').each(function(){
-			
-			acf.fields.location.set({ $el : $(this) }).init();
-			
-		});
 		
 	});
 	
