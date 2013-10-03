@@ -23,6 +23,7 @@ class acf_location
 	{
 		// ajax
 		add_action('wp_ajax_acf/location/match_field_groups_ajax', array($this, 'match_field_groups_ajax'));
+		add_action('wp_ajax_nopriv_acf/location/match_field_groups_ajax', array($this, 'match_field_groups_ajax'));
 		
 		
 		// filters
