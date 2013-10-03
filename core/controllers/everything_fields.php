@@ -433,7 +433,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					echo "$('#edittag > table.form-table:last > tbody').append( html );";
+					echo "$('#edittag > table.form-table:first > tbody').append( html );";
 				}
 			}
 			elseif($this->data['page_type'] == "media")
@@ -667,12 +667,26 @@ $(document).ready(function(){
 				{
 					continue;
 				}
-
+				
+				
+				// layout dictates heading
+				$title = true;
+				
+				if( $acf['options']['layout'] == 'no_box' )
+				{
+					$title = false;
+				}
+				
 
 				// title 
 				if( $options['page_action'] == "edit" && $options['page_type'] == 'user' )
 				{
-					echo '<h3>' .$acf['title'] . '</h3><table class="form-table"><tbody>';
+					if( $title )
+					{
+						echo '<h3>' .$acf['title'] . '</h3>';
+					}
+					
+					echo '<table class="form-table"><tbody>';
 				}
 				
 				
