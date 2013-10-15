@@ -3361,17 +3361,6 @@ var acf = {
 			}
 			
 			
-			// flexible content
-			if( div.find('.acf_flexible_content').exists() )
-			{
-				div.data('validation', false);
-				if( div.find('.acf_flexible_content .values table').exists() )
-				{
-					div.data('validation', true);
-				}	
-			}
-			
-			
 			// gallery
 			if( div.find('.acf-gallery').exists() )
 			{
@@ -3393,6 +3382,19 @@ var acf = {
 			{
 				this.status = false;
 				div.closest('.field').addClass('error');
+				
+				if( div.data('validation_message') )
+				{
+					var $label = div.find('p.label:first'),
+						$message = null;
+						
+					
+					// remove old message
+					$label.children('.acf-error-message').remove();
+					
+					
+					$label.append( '<span class="acf-error-message"><i class="bit"></i>' + div.data('validation_message') + '</span>' );
+				}
 			}
 		}
 		

@@ -67,6 +67,39 @@
 	background: #FFEBE8 !important;
 }
 
+.acf_postbox .field .acf-error-message {
+	display: none;
+	position: relative;
+	
+	background: #CC0000;
+	color: #fff;
+	text-shadow: none;
+	
+	border-radius: 3px;
+	padding: 5px 10px;
+	
+	font-size: 12px;
+	line-height: 14px;
+	
+	margin: 5px 0 0;
+}
+
+.acf_postbox .field .acf-error-message .bit {
+	width: 0;
+	height: 0;
+	border: transparent 5px solid;
+	border-bottom-color: #CC0000;
+	
+	display: block;
+	position: absolute;
+	top: -10px;
+	left: 10px;
+}
+
+.acf_postbox .field.error .acf-error-message {
+	display: inline-block;
+}
+
 .acf_postbox .field.error label.field_label {
 	color: #CC0000;
 }
