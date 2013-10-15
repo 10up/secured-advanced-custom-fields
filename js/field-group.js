@@ -1160,6 +1160,7 @@ var acf = {
 			
 			// vars
 			var choices		= [],
+				key			= $field.attr('data-id'),
 				$ancestors	= $field.parent().parents('.field'),
 				$tr			= $field.find('> .field_form_mask > .field_form > table > tbody > tr.conditional-logic');
 				
@@ -1204,6 +1205,20 @@ var acf = {
 					
 				});
 			}
+			
+			
+			// remove self
+			$.each( choices, function(k, v){
+				
+				if( v.value == key )
+				{
+					choices.splice(k, 1);
+					
+					// return false to end loop. Otherwise, the $.each function will become corrupt
+					return false;
+				}
+				
+			});
 				
 			
 			// empty?
