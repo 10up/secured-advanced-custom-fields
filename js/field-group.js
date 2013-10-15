@@ -1040,6 +1040,23 @@ var acf = {
 			
 			});
 			
+			$(document).on('change', '#acf_fields tr.field_label input.label', function(){
+				
+				// populate the triggers
+				_this.sync();
+				
+				
+				// re render all open fields
+				$('#acf_fields .field.form_open').each(function(){
+					
+					_this.render( $(this) );
+					
+				});
+				
+				
+			});
+			
+			
 			$(document).on('change', 'tr.conditional-logic input[type="radio"]', function( e ){
 				
 				e.preventDefault();
