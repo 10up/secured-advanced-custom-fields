@@ -152,7 +152,12 @@
 			// a JS error will be thrown when launching the edit window twice in a row.
 			try
 			{
+				// store the val, and add it back in to keep line breaks / formating
+				var val = editor.getContent();
+			
 				tinyMCE.execCommand("mceRemoveControl", false, id);
+				
+				this.$textarea.val( val );
 			} 
 			catch(e)
 			{
