@@ -501,6 +501,10 @@ a.acf-button-big {
 	padding: 13px;
 }
 
+div.error a.acf-button {
+	color: #fff;
+}
+
 /*--------------------------------------------------------------------------
 *
 *	ACF add / remove
