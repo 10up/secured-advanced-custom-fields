@@ -144,7 +144,8 @@
 			
 			// vars
 			var id = this.o.id,
-				editor = tinyMCE.get( id );
+				editor = tinyMCE.get( id ),
+				val = '';
 			
 			
 			// Remove tinymcy functionality.
@@ -153,7 +154,10 @@
 			try
 			{
 				// store the val, and add it back in to keep line breaks / formating
-				var val = editor.getContent();
+				if( editor )
+				{
+					val = editor.getContent();
+				}
 			
 				tinyMCE.execCommand("mceRemoveControl", false, id);
 				
