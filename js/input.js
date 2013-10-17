@@ -527,6 +527,13 @@ var acf = {
 			});
 			
 			
+			$(document).on('acf/setup_fields', function(e, el){
+				
+				_this.change();
+				
+			});
+			
+			
 			_this.change();
 			
 		},
@@ -819,6 +826,7 @@ var acf = {
 		}
 	};
 	
+		
 	
 })(jQuery);
 
