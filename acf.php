@@ -465,12 +465,12 @@ class acf
 		$scripts = array();
 		$scripts[] = array(
 			'handle'	=> 'acf-field-group',
-			'src'		=> $this->settings['dir'] . 'js/field-group.js',
+			'src'		=> $this->settings['dir'] . 'js/field-group.min.js',
 			'deps'		=> array('jquery')
 		);
 		$scripts[] = array(
 			'handle'	=> 'acf-input',
-			'src'		=> $this->settings['dir'] . 'js/input.js',
+			'src'		=> $this->settings['dir'] . 'js/input.min.js',
 			'deps'		=> array('jquery')
 		);
 		$scripts[] = array(
