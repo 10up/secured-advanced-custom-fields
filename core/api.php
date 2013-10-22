@@ -416,7 +416,7 @@ function has_rows( $field_name, $post_id = false )
 		if( isset($value[ $row ][ $field_name ]) )
 		{
 			// Inception: Repeater within repeater
-			// Note: Site back and enter the next level of dream
+			// Note: Sit back and enter the next level of dream
 			$GLOBALS['acf_field'][] = array(
 				'name'		=> $field_name,
 				'value'		=> $value[ $row ][ $field_name ],
@@ -489,6 +489,15 @@ function the_row()
 	
 	// increase row
 	$GLOBALS['acf_field'][ $depth ]['row']++;
+	
+	
+	// get row
+	$value	= $GLOBALS['acf_field'][ $depth ]['value'];
+	$row = $GLOBALS['acf_field'][$depth]['row'];
+	
+	
+	// return
+	return $value[ $row ];
 }
 
 
