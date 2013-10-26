@@ -330,7 +330,7 @@ function the_field( $field_name, $post_id = false )
 
 
 /*
-*  has_rows
+*  have_rows
 *
 *  This function will instantiate a global variable containing the rows of a repeater or flexible content field,
 *  afterwhich, it will determin if another row exists to loop through
@@ -343,25 +343,74 @@ function the_field( $field_name, $post_id = false )
 *  @return	$post_id (mixed) the post_id of which the value is saved against
 */
 
-function has_rows( $field_name, $post_id = false )
+function have_rows( $field_name, $post_id = false )
 {
+	
 	// vars
-	$r = false;
+	$depth = 0;
+	$row = array();
+	$new_parent_loop = false;
+	$new_child_loop = false;
+	$no_post_id = (!$post_id) ? true : false;
 	
 	
 	// filter post_id
 	$post_id = apply_filters('acf/get_post_id', $post_id );
 	
 	
-	// isset?
-	if( !isset($GLOBALS['acf_field']) )
+	// empty?
+	if( empty($GLOBALS['acf_field']) )
 	{
-		$GLOBALS['acf_field'] = array();
+		// reset
+		reset_rows( true );
+		
+		
+		// create a new loop
+		$new_parent_loop = true;
+	}
+	else
+	{
+		// vars
+		$row = end( $GLOBALS['acf_field'] );
+		$prev = prev( $GLOBALS['acf_field'] );
+		
+		
+		// detect a change in params?
+		if( $post_id != $row['post_id'] || $field_name != $row['name'] )
+		{
+			// case: previous have_rows loop was terminated early and template is now loading row data from another $post
+			// case: previous have_rows loop was terminated early and template is now loading row data from another $field_name
+			// case: nested have_rows loop
+			$new_parent_loop = true;
+			
+			if( isset($row['value'][ $row['i'] ][ $field_name ]) )
+			{
+				// Inception: Repeater within repeater
+				// Note: Sit back and enter the next level of dream
+				$new_child_loop = true;
+				
+				
+				// It is possible that the origional have_rows function used a custom $post_id param, but this sub loop did not use one. If so, remove the potential to create a new parent loop due to the $post_id change!
+				if( $no_post_id || $post_id == $row['post_id'] )
+				{
+					$new_parent_loop = false;
+				}
+				
+			}
+			elseif( $prev && $prev['name'] == $field_name )
+			{
+				// Inception: Ride kick up one level
+				// Note: This can happen if someone used break or ran out of rows
+				reset_rows();
+				$new_parent_loop = false;
+			}
+
+			
+		}
 	}
 	
 	
-	// empty?
-	if( empty($GLOBALS['acf_field']) )
+	if( $new_parent_loop )
 	{
 		// vars
 		$f = get_field_object( $field_name, $post_id );
@@ -369,101 +418,50 @@ function has_rows( $field_name, $post_id = false )
 		unset( $f['value'] );
 		
 		
-		// instantiate
+		// add row
 		$GLOBALS['acf_field'][] = array(
 			'name'		=> $field_name,
 			'value'		=> $v,
 			'field'		=> $f,
-			'row'		=> -1,
+			'i'			=> -1,
 			'post_id'	=> $post_id,
 		);
+		
 	}
-	
-	
-	// vars
-	$depth	= count( $GLOBALS['acf_field'] ) - 1;
-	$name	= $GLOBALS['acf_field'][ $depth ]['name'];
-	$value	= $GLOBALS['acf_field'][ $depth ]['value'];
-	$field	= $GLOBALS['acf_field'][ $depth ]['field'];
-	$row	= $GLOBALS['acf_field'][ $depth ]['row'];
-	$id		= $GLOBALS['acf_field'][ $depth ]['post_id'];
-	
-	
-	// if ID has changed, this is a new repeater / flexible field!
-	if( $post_id != $id )
+	elseif( $new_child_loop )
 	{
 		// vars
-		$f = get_field_object( $field_name, $post_id );
-		$v = $f['value'];
-		unset( $f['value'] );
-		
+		$f = acf_get_child_field_from_parent_field( $field_name, $row['field'] );
+		$v = $row['value'][ $row['i'] ][ $field_name ];
 		
 		$GLOBALS['acf_field'][] = array(
-			'name'  =>  $field_name,
-			'value' =>  $v,
-			'field' =>  $f,
-			'row' =>  -1,
-			'post_id' => $post_id,
+			'name'		=> $field_name,
+			'value'		=> $v,
+			'field'		=> $f,
+			'i'			=> -1,
+			'post_id'	=> $post_id,
 		);
-		
-		return has_rows($field_name, $post_id);
-	}
-	
-	
-	// does the given $field_name match the current field?
-	if( $field_name != $name )
-	{
-		if( isset($value[ $row ][ $field_name ]) )
-		{
-			// Inception: Repeater within repeater
-			// Note: Sit back and enter the next level of dream
-			$GLOBALS['acf_field'][] = array(
-				'name'		=> $field_name,
-				'value'		=> $value[ $row ][ $field_name ],
-				'field'		=> acf_get_child_field_from_parent_field( $field_name, $field ),
-				'row'		=> -1,
-				'post_id'	=> $post_id,
-			);
-		}
-		elseif( isset($GLOBALS['acf_field'][ $depth-1 ]) && $GLOBALS['acf_field'][ $depth-1 ]['name'] == $field_name )
-		{
-			// Inception: Ride kick up one level
-			// Note: This can happen if someone used break or ran out of rows
-			unset( $GLOBALS['acf_field'][$depth] );
-			$GLOBALS['acf_field'] = array_values($GLOBALS['acf_field']);
-		}
-		else
-		{
-			// Inception: Lay in front of a train
-			// Note: This was a break (probably to get the first row only)
-			$GLOBALS['acf_field'] = array();
-			return $r;
-		}
-	}
+
+	}	
 	
 	
 	// update vars
-	$depth	= count( $GLOBALS['acf_field'] ) - 1;
-	$value	= $GLOBALS['acf_field'][ $depth ]['value'];
-	$field	= $GLOBALS['acf_field'][ $depth ]['field'];
-	$row	= $GLOBALS['acf_field'][ $depth ]['row'];
+	$row = end( $GLOBALS['acf_field'] );
 	
 	
-	if( isset($value[ $row+1 ]) )
+	if( is_array($row['value']) && array_key_exists( $row['i']+1, $row['value'] ) )
 	{
 		// next row exists
-		$r = true;
+		return true;
 	}
-	else
-	{
-		// no next row! Unset this array
-		unset( $GLOBALS['acf_field'][ $depth ] );
-		$GLOBALS['acf_field'] = array_values($GLOBALS['acf_field']);
-	}
+	
+	
+	// no newxt row!
+	reset_rows();
 	
 	
 	// return
-	return $r;
+	return false;
   
 }
 
@@ -481,23 +479,66 @@ function has_rows( $field_name, $post_id = false )
 *  @return	N/A
 */
 
-function the_row()
-{
+function the_row() {
+	
 	// vars
 	$depth = count( $GLOBALS['acf_field'] ) - 1;
 	
 	
 	// increase row
-	$GLOBALS['acf_field'][ $depth ]['row']++;
+	$GLOBALS['acf_field'][ $depth ]['i']++;
 	
 	
 	// get row
-	$value	= $GLOBALS['acf_field'][ $depth ]['value'];
-	$row = $GLOBALS['acf_field'][$depth]['row'];
+	$value = $GLOBALS['acf_field'][ $depth ]['value'];
+	$i = $GLOBALS['acf_field'][ $depth ]['i'];
+
+	
+	// return
+	return $value[ $i ];
+}
+
+
+/*
+*  reset_rows
+*
+*  This function will find the current loop and unset it from the global array.
+*  To bo used when loop finishes or a break is used
+*
+*  @type	function
+*  @date	26/10/13
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function reset_rows( $hard_reset = false ) {
+	
+	// completely destroy?
+	if( $hard_reset )
+	{
+		$GLOBALS['acf_field'] = array();
+	}
+	else
+	{
+		// vars
+		$depth = count( $GLOBALS['acf_field'] ) - 1;
+		
+		
+		// remove
+		unset( $GLOBALS['acf_field'][$depth] );
+		
+		
+		// refresh index
+		$GLOBALS['acf_field'] = array_values($GLOBALS['acf_field']);
+	}
 	
 	
 	// return
-	return $value[ $row ];
+	return true;
+	
+	
 }
 
 
@@ -521,7 +562,7 @@ function the_row()
 function has_sub_field( $field_name, $post_id = false )
 {
 	// vars
-	$r = has_rows( $field_name, $post_id );
+	$r = have_rows( $field_name, $post_id );
 	
 	
 	// if has rows, progress through 1 row for the while loop to work
