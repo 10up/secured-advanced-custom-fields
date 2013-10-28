@@ -69,7 +69,14 @@ class acf_everything_fields
 	function attachment_fields_to_edit( $form_fields, $post ) 
 	{
 		// vars
+		$screen = get_current_screen();
 		$post_id = $post->ID;
+		
+		
+		if( !empty($screen) )
+		{
+			return $form_fields;
+		}
 		
 		
 		// get field groups
