@@ -1031,10 +1031,6 @@ var acf = {
 			// events
 			$(document).on('acf/field_form-open', function(e, $field){
 				
-				// populate the triggers
-				_this.sync();
-				
-				
 				// render select elements
 				_this.render( $field );
 			
@@ -1042,17 +1038,12 @@ var acf = {
 			
 			$(document).on('change', '#acf_fields tr.field_label input.label', function(){
 				
-				// populate the triggers
-				_this.sync();
-				
-				
-				// re render all open fields
+				// render all open fields
 				$('#acf_fields .field.form_open').each(function(){
 					
 					_this.render( $(this) );
 					
 				});
-				
 				
 			});
 			
@@ -1091,67 +1082,6 @@ var acf = {
 			
 		},
 		
-		sync : function(){
-			
-			// reference
-			var _this = this;
-			
-			
-			// reset
-			this.triggers = {
-				0 : []
-			};
-			
-			
-			// loop through fields
-			$('#acf_fields .field').each(function(){
-				
-				// vars
-				var $field	= $(this),
-					id		= $field.attr('data-id'),
-					type	= $field.attr('data-type'),
-					label	= $field.find('tr.field_label input').val(),
-					parent	= 0;
-				
-				
-				// validate
-				if( id == 'field_clone' )
-				{
-					return;
-				}
-				
-				
-				// parent
-				var $parent = $field.parent().closest('.field');
-				
-				if( $parent.exists() )
-				{
-					parent = $parent.attr('data-id');
-					
-					// add placeholder
-					if( _this.triggers[ parent ] === undefined )
-					{
-						_this.triggers[ parent ] = [];
-					}
-				}
-				
-				
-				// add this field to available triggers
-				if( type == 'select' || type == 'checkbox' || type == 'true_false' || type == 'radio' )
-				{
-					_this.triggers[ parent ].push({
-						id		: id,
-						type	: type,
-						label	: label
-					});
-				}
-				
-				
-			});
-			
-
-		},
-		
 		render : function( $field ){
 			
 			// reference
@@ -1161,62 +1091,48 @@ var acf = {
 			// vars
 			var choices		= [],
 				key			= $field.attr('data-id'),
-				$ancestors	= $field.parent().parents('.field'),
+				$ancestors	= $field.parents('.fields'),
 				$tr			= $field.find('> .field_form_mask > .field_form > table > tbody > tr.conditional-logic');
 				
 			
-			// populate choices
-			$.each( this.triggers[ 0 ], function(k, v){
+			$.each( $ancestors, function( i ){
 				
-				choices.push({
-					value : v.id,
-					label : v.label
-				});
+				var group = (i == 0) ? acf.l10n.sibling_fields : acf.l10n.parent_fields;
 				
-			});
-			
-			
-			// add ancestors
-			if( $ancestors.exists() )
-			{
-				// add group to current options
-				$.each( choices, function(k, v){
-						
-					choices[ k ].group = acf.l10n.fields;
+				$(this).children('.field').each(function(){
 					
-				});
-				
-				
-				$ancestors.each(function( k ){
 					
-					var id = $(this).attr('data-id'),
-						group = (k == 0) ? acf.l10n.sibling_fields : acf.l10n.parent_fields;
+					// vars
+					var $this_field	= $(this),
+						this_id		= $this_field.attr('data-id'),
+						this_type	= $this_field.attr('data-type'),
+						this_label	= $this_field.find('tr.field_label input').val();
 					
-					// populate choices
-					$.each( _this.triggers[ id ], function(k, v){
-						
+					
+					// validate
+					if( this_id == 'field_clone' )
+					{
+						return;
+					}
+					
+					if( this_id == key )
+					{
+						return;
+					}
+										
+					
+					// add this field to available triggers
+					if( this_type == 'select' || this_type == 'checkbox' || this_type == 'true_false' || this_type == 'radio' )
+					{
 						choices.push({
-							value : v.id,
-							label : v.label,
-							group : group
+							value	: this_id,
+							label	: this_label,
+							group	: group
 						});
-						
-					});
+					}
+					
 					
 				});
-			}
-			
-			
-			// remove self
-			$.each( choices, function(k, v){
-				
-				if( v.value == key )
-				{
-					choices.splice(k, 1);
-					
-					// return false to end loop. Otherwise, the $.each function will become corrupt
-					return false;
-				}
 				
 			});
 				
@@ -1348,8 +1264,12 @@ var acf = {
 			// update names
 			$new_tr.find('[name]').each(function(){
 				
-				$(this).attr('name', $(this).attr('name').replace('[' + old_i + ']', '[' + new_i + ']') );
-				$(this).attr('id', $(this).attr('id').replace('[' + old_i + ']', '[' + new_i + ']') );
+				// flexible content uses [0], [1] as the layout index. To avoid conflict, make sure we search for the entire conditional logic string in the name and id
+				var find = '[conditional_logic][rules][' + old_i + ']',
+					replace = '[conditional_logic][rules][' + new_i + ']';
+				
+				$(this).attr('name', $(this).attr('name').replace(find, replace) );
+				$(this).attr('id', $(this).attr('id').replace(find, replace) );
 				
 			});
 				
@@ -1388,7 +1308,7 @@ var acf = {
 				$table.addClass('remove-disabled');
 			}
 			
-		}
+		},
 		
 	};
 	

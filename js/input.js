@@ -543,6 +543,7 @@ var acf = {
 			// reference
 			var _this = this;
 			
+			console.clear();
 			
 			// loop through items
 			$.each(this.items, function( k, item ){
@@ -579,7 +580,7 @@ var acf = {
 						
 						
 						// sub field?
-						if( $toggle.hasClass('sub_field') )
+						if( $target.hasClass('sub_field') )
 						{
 							// toggle may be a sibling sub field.
 							// if so ,show an empty td but keep the column
@@ -595,6 +596,20 @@ var acf = {
 								hide_all = true;
 							}
 							
+						}
+						
+						
+						// if this sub field is within a flexible content layout, hide the entire column because 
+						// there will never be another row added to this table
+						if( $target.parent('tr').parent().parent('table').parent('.layout').exists() )
+						{
+							hide_all = true;
+							
+							if( $target.is('th') )
+							{
+								$toggle = $target.closest('.layout').find('td.field_key-' + rule.field);
+							}
+
 						}
 						
 						
