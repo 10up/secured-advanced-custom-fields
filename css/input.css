@@ -970,10 +970,10 @@ td.acf_input-wrap {
 
 .field_type-tab {
 	display: none !important;
-	
 }
 
 .acf-tab-group {
+	border-top: #E8E8E8 solid 1px;
 	border-bottom: #DFDFDF solid 1px;
 	margin: 0 0 10px;
 	padding: 10px 4px 0 10px;
@@ -1017,6 +1017,9 @@ td.acf_input-wrap {
     border-bottom-color: #F7F7F7;
 }
 
+.acf_postbox > .inside > .field_type-tab + .field {
+	border-top: 0 none;
+}
 
 
 /*
@@ -1025,6 +1028,7 @@ td.acf_input-wrap {
 
 .acf_postbox.no_box .acf-tab-group {
 	padding-left: 0;
+	border-top: 0 none;
 	border-bottom-color: #CCC;
 	background: transparent;
 }

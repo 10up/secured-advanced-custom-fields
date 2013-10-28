@@ -3135,14 +3135,7 @@ var acf = {
 			// add tab
 			$wrap.children('.acf-tab-group').append('<li class="field_key-' + id + '" data-field_key="' + id + '"><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>');
 			
-			
 		});
-		
-		
-		// trigger conditional logic
-		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
-		acf.conditional_logic.change();
-		
 		
 		// trigger
 		$(el).find('.acf-tab-group').each(function(){
@@ -3150,6 +3143,12 @@ var acf = {
 			$(this).find('li:first a').trigger('click');
 			
 		});
+		// trigger conditional logic
+		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+		acf.conditional_logic.change();
+		
+		
+		
 
 	
 	});
@@ -3211,18 +3210,56 @@ var acf = {
 	
 	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
-		
-		// if the $target to be hidden is a tab button, lets toggle a sibling tab button
-		setTimeout(function(){
-			
-			if( $target.parent().hasClass('acf-tab-group') )
-			{
-				$target.siblings('.acf-conditional_logic-show').first().children('a').trigger('click');
-			}
-			
-		}, 0);
+		// validate
+		if( ! $target.parent().hasClass('acf-tab-group') )
+		{
+			return;
+		}
 		
 		
+		var key = $target.attr('data-field_key');
+		
+		
+		if( $target.siblings(':visible').exists() )
+		{
+			// if the $target to be hidden is a tab button, lets toggle a sibling tab button
+			$target.siblings(':visible').first().children('a').trigger('click');
+		}
+		else
+		{
+			// no onther tabs
+			$('.field_type-tab[data-field_key="' + key + '"]').nextUntil('.field_type-tab').removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
+		}
+		
+	});
+	
+	
+	$(document).on('acf/conditional_logic/show', function( e, $target, item ){
+		
+		// validate
+		if( ! $target.parent().hasClass('acf-tab-group') )
+		{
+			return;
+		}
+		
+		
+		// if this is the active tab
+		if( $target.hasClass('active') )
+		{
+			$target.children('a').trigger('click');
+			return;
+		}
+		
+		
+		// if the sibling active tab is actually hidden by conditional logic, take ownership of tabs
+		if( $target.siblings('.active').hasClass('acf-conditional_logic-hide') )
+		{
+			// show this tab group
+			$target.children('a').trigger('click');
+			return;
+		}
+		
+
 	});
 	
 	
