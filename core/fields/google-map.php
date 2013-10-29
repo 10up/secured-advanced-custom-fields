@@ -114,13 +114,13 @@ class acf_field_google_map extends acf_field
 			<div class="title">
 				
 				<div class="has-value">
-					<a href="#" class="acf-sprite-remove ir" title="Clear location">Remove</a>
+					<a href="#" class="acf-sprite-remove ir" title="<?php _e("Clear location",'acf'); ?>">Remove</a>
 					<h4><?php echo $field['value']['address']; ?></h4>
 				</div>
 				
 				<div class="no-value">
-					<a href="#" class="acf-sprite-locate ir" title="Find current location">Locate</a>
-					<input type="text" placeholder="Search for address..." class="search" />
+					<a href="#" class="acf-sprite-locate ir" title="<?php _e("Find current location",'acf'); ?>">Locate</a>
+					<input type="text" placeholder="<?php _e("Search for address...",'acf'); ?>" class="search" />
 				</div>
 				
 			</div>
