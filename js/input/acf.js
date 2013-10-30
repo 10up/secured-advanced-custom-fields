@@ -537,8 +537,8 @@ var acf = {
 			// reference
 			var _this = this;
 			
-			console.clear();
-			
+			//console.clear();
+			//console.log( this.items );
 			// loop through items
 			$.each(this.items, function( k, item ){
 				
@@ -548,6 +548,8 @@ var acf = {
 				
 				// may be multiple targets (sub fields)
 				$targets.each(function(){
+					
+					//console.log('target %o', $(this));
 					
 					// vars
 					var show = true;
@@ -572,9 +574,8 @@ var acf = {
 						var $toggle = $('.field_key-' + rule.field);
 						
 						
-						
-						// sub field?
-						if( $target.hasClass('sub_field') )
+						// are any of $toggle a sub field?
+						if( $toggle.hasClass('sub_field') )
 						{
 							// toggle may be a sibling sub field.
 							// if so ,show an empty td but keep the column
@@ -586,7 +587,20 @@ var acf = {
 							// if so, hide the entire column
 							if( ! $toggle.exists() )
 							{
-								$toggle = $target.parents('.row').last().find('.field_key-' + rule.field);
+								// loop through all the parents that could contain sub fields
+								$target.parents('.row').each(function(){
+									
+									// attempt to update $toggle to this parent sub field
+									$toggle = $(this).find('.field_key-' + rule.field)
+									
+									// if the parent sub field actuallly exists, great! Stop the loop
+									if( $toggle.exists() )
+									{
+										return false;
+									}
+									
+								});
+
 								hide_all = true;
 							}
 							
