@@ -619,7 +619,7 @@ var acf = {
 						{
 							hide_all = true;
 							
-							if( $target.is('th') )
+							if( $target.is('th') && $toggle.is('th') )
 							{
 								$toggle = $target.closest('.layout').find('td.field_key-' + rule.field);
 							}
@@ -656,6 +656,7 @@ var acf = {
 					
 					// clear classes
 					$target.removeClass('acf-conditional_logic-hide acf-conditional_logic-show acf-show-blank');
+					
 					
 					// hide / show field
 					if( show )
