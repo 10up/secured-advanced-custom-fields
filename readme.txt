@@ -123,6 +123,7 @@ http://support.advancedcustomfields.com/
 * Field group: Add 'toggle all' option to hide from screen - http://support.advancedcustomfields.com/forums/topic/hidecheck-all-single-checkbox-when-hiding-items-from-pagepost-edit-screen/
 * Taxonomy field: Add new filter for wp_list_categories args - http://support.advancedcustomfields.com/forums/topic/taxonomy-field-type-filter-to-only-show-parents/
 * Taxonomy field: Fixed JS bug causing attachment field groups to disappear due to incorrect AJAX location data - http://support.advancedcustomfields.com/forums/topic/taxonomy-checkboxes/
+* WYSIWYG field: Fixed JS bug where formatting is removed when drag/drop it's repeater row
 * Tab field: Corrected minor JS bugs with conditional logic - http://support.advancedcustomfields.com/forums/topic/tabs-logic-hide-issue/
 * Relationship field: Values now save correctly as an array of strings (for LIKE querying)
 * Post object field: Values now save correctly as an array of strings (for LIKE querying)
