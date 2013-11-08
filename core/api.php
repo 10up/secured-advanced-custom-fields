@@ -633,7 +633,7 @@ function get_sub_field( $field_name ) {
 	
 	
 	// return false
-	return $value[ $i ][ $field_name ];
+	return false;
 }
 
 
