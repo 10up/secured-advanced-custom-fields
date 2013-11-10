@@ -493,6 +493,13 @@ class acf_field_post_object extends acf_field
 	
 	function update_value( $value, $post_id, $field )
 	{
+		// validate
+		if( empty($value) )
+		{
+			return $value;
+		}
+		
+		
 		if( is_object($value) && isset($value->ID) )
 		{
 			// object
