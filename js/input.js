@@ -1990,7 +1990,19 @@ var acf = {
 			
 			// vars
 			var position = this.map.marker.getPosition(),
-				latlng = new google.maps.LatLng( position.lat(), position.lng() );
+				lat = this.o.lat,
+				lng = this.o.lng;
+			
+			
+			// if marker exists, center on the marker
+			if( position )
+			{
+				lat = position.lat();
+				lng = position.lng();
+			}
+			
+			
+			var latlng = new google.maps.LatLng( lat, lng );
 				
 			
 			// set center of map
@@ -2105,6 +2117,16 @@ var acf = {
 			
 			
 			this.$el.find('.search').val( val ).focus();
+			
+		},
+		
+		refresh : function(){
+			
+			// trigger resize on div
+			google.maps.event.trigger(this.map, 'resize');
+			
+			// center map
+			this.center();
 			
 		}
 	
@@ -2221,7 +2243,17 @@ var acf = {
 		{
 			$el.addClass('active');
 		}
-			
+		
+	});
+	
+	$(document).on('acf/fields/tab/show', function( e, $field ){
+		
+		// validate
+		if( $field.attr('data-field_type') == 'google_map' )
+		{
+			acf.fields.location.set({ $el : $field.find('.acf-google-map') }).refresh();
+		}
+		
 	});
 	
 
@@ -3202,16 +3234,31 @@ var acf = {
 		// hide / show
 		$wrap.children('.field_type-tab').each(function(){
 			
-			var $tab = $(this);
+			// vars
+			var $tab = $(this),
+				show =  false;
+				
 			
 			if( $tab.hasClass('field_key-' + id) )
 			{
-				$tab.nextUntil('.field_type-tab').removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
+				show = true;
 			}
-			else
-			{
-				$tab.nextUntil('.field_type-tab').removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
-			}
+			
+			
+			$tab.nextUntil('.field_type-tab').each(function(){
+				
+				if( show )
+				{
+					$(this).removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
+					$(document).trigger('acf/fields/tab/show', [ $(this) ]);
+				}
+				else
+				{
+					$(this).removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
+					$(document).trigger('acf/fields/tab/hide', [ $(this) ]);
+				}
+				
+			});
 			
 		});
 
