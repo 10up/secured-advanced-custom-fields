@@ -847,8 +847,8 @@ class acf_field_group
 		}
 		
 		
-        $name = 'acf_' . sanitize_title_with_dashes($_POST['post_title']);
-        
+        $name = 'acf_' . sanitize_title($_POST['post_title']);
+
         
         return $name;
 	}
