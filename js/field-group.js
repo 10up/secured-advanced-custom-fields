@@ -1258,7 +1258,7 @@ var acf = {
 			// vars
 			var $new_tr = $old_tr.clone(),
 				old_i = parseFloat( $old_tr.attr('data-i') ),
-				new_i = old_i + 1;
+				new_i = acf.helpers.uniqid();
 			
 			
 			// update names

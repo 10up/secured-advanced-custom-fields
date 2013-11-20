@@ -425,6 +425,13 @@ class acf_field_functions
 		}
 		
 		
+		// clean up conditional logic keys
+		if( !empty($field['conditional_logic']['rules']) )
+		{
+			$field['conditional_logic']['rules'] = array_values($field['conditional_logic']['rules']);
+		}
+		
+		
 		// return
 		return $field;
 	}
