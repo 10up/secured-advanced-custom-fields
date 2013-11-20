@@ -94,8 +94,8 @@ function get_field_objects( $post_id = false, $options = array() )
 		$keys = $wpdb->get_col($wpdb->prepare(
 			"SELECT meta_value FROM $wpdb->postmeta WHERE post_id = %d and meta_key LIKE %s AND meta_value LIKE %s",
 			$post_id,
-			'\_%',
-			'field\_%'
+			'_%',
+			'field_%'
 		));
 	}
 	elseif( strpos($post_id, 'user_') !== false )
@@ -105,15 +105,15 @@ function get_field_objects( $post_id = false, $options = array() )
 		$keys = $wpdb->get_col($wpdb->prepare(
 			"SELECT meta_value FROM $wpdb->usermeta WHERE user_id = %d and meta_key LIKE %s AND meta_value LIKE %s",
 			$user_id,
-			'\_%',
-			'field\_%'
+			'_%',
+			'field_%'
 		));
 	}
 	else
 	{
 		$keys = $wpdb->get_col($wpdb->prepare(
 			"SELECT option_value FROM $wpdb->options WHERE option_name LIKE %s",
-			'\_' . $post_id . '\_%' 
+			'_' . $post_id . '_%' 
 		));
 	}
 
