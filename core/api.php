@@ -112,7 +112,7 @@ function get_field_objects( $post_id = false, $options = array() )
 	else
 	{
 		$keys = $wpdb->get_col($wpdb->prepare(
-			"SELECT option_name FROM $wpdb->options WHERE option_name LIKE %s",
+			"SELECT option_value FROM $wpdb->options WHERE option_name LIKE %s",
 			'\_' . $post_id . '\_%' 
 		));
 	}
