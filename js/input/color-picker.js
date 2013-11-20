@@ -33,14 +33,26 @@
 		},
 		init : function(){
 			
+			// vars (reference)
+			var $input = this.$input;
+			
+			
 			// is clone field?
-			if( acf.helpers.is_clone_field(this.$input) )
+			if( acf.helpers.is_clone_field($input) )
 			{
 				return;
 			}
 			
 			
-			this.$input.wpColorPicker();
+			this.$input.wpColorPicker({
+				
+				change: function(event, ui){
+					
+					$input.trigger('change');
+					
+				}
+				
+			});
 			
 			
 			
