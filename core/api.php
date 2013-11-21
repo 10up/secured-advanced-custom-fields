@@ -351,7 +351,10 @@ function have_rows( $field_name, $post_id = false )
 	$row = array();
 	$new_parent_loop = false;
 	$new_child_loop = false;
-	$no_post_id = (!$post_id) ? true : false;
+	
+	
+	// reference
+	$_post_id = $post_id;
 	
 	
 	// filter post_id
@@ -375,26 +378,40 @@ function have_rows( $field_name, $post_id = false )
 		$prev = prev( $GLOBALS['acf_field'] );
 		
 		
-		// detect a change in params?
-		if( $post_id != $row['post_id'] || $field_name != $row['name'] )
+		// If post_id has changed, this is most likely an archive loop
+		if( $post_id != $row['post_id'] )
 		{
+			// create a new parent loop
+			$new_parent_loop = true;
+			
+			
+			// There is an execption to the above rule.
+			// If the $_post_id (reference) paramter was empty, this may actually be sub loop
+			if( empty($_post_id) )
+			{
+				if( isset($row['value'][ $row['i'] ][ $field_name ]) )
+				{
+					$new_child_loop = true;
+					$new_parent_loop = false;
+				}
+			}
+		}
+		elseif( $field_name != $row['name'] )
+		{
+			// new loop
+			$new_parent_loop = true;
+			
+			
 			// case: previous have_rows loop was terminated early and template is now loading row data from another $post
 			// case: previous have_rows loop was terminated early and template is now loading row data from another $field_name
 			// case: nested have_rows loop
-			$new_parent_loop = true;
 			
 			if( isset($row['value'][ $row['i'] ][ $field_name ]) )
 			{
 				// Inception: Repeater within repeater
 				// Note: Sit back and enter the next level of dream
 				$new_child_loop = true;
-				
-				
-				// It is possible that the origional have_rows function used a custom $post_id param, but this sub loop did not use one. If so, remove the potential to create a new parent loop due to the $post_id change!
-				if( $no_post_id || $post_id == $row['post_id'] )
-				{
-					$new_parent_loop = false;
-				}
+				$new_parent_loop = false;
 				
 			}
 			elseif( $prev && $prev['name'] == $field_name )
@@ -403,6 +420,7 @@ function have_rows( $field_name, $post_id = false )
 				// Note: This can happen if someone used break or ran out of rows
 				reset_rows();
 				$new_parent_loop = false;
+				
 			}
 
 			
@@ -456,7 +474,7 @@ function have_rows( $field_name, $post_id = false )
 	}
 	
 	
-	// no newxt row!
+	// no next row!
 	reset_rows();
 	
 	
@@ -483,6 +501,7 @@ function the_row() {
 	
 	// vars
 	$depth = count( $GLOBALS['acf_field'] ) - 1;
+
 	
 	
 	// increase row
