@@ -381,48 +381,47 @@ function have_rows( $field_name, $post_id = false )
 		// If post_id has changed, this is most likely an archive loop
 		if( $post_id != $row['post_id'] )
 		{
-			// create a new parent loop
-			$new_parent_loop = true;
-			
-			
-			// There is an execption to the above rule.
-			// If the $_post_id (reference) paramter was empty, this may actually be sub loop
-			if( empty($_post_id) )
+			if( $prev && $prev['post_id'] == $post_id )
 			{
-				if( isset($row['value'][ $row['i'] ][ $field_name ]) )
-				{
-					$new_child_loop = true;
-					$new_parent_loop = false;
-				}
+				// case: Change in $post_id was due to a nested loop ending
+				// action: move up one level through the loops
+				reset_rows();
+			}
+			elseif( empty($_post_id) && isset($row['value'][ $row['i'] ][ $field_name ]) )
+			{
+				// case: Change in $post_id was due to this being a nested loop and not specifying the $post_id
+				// action: move down one level into a new loop
+				$new_child_loop = true;
+			}
+			else
+			{
+				// case: Chang in $post_id is the most obvious, used in an WP_Query loop with multiple $post objects
+				// action: leave this current loop alone and create a new parent loop
+				$new_parent_loop = true;
 			}
 		}
 		elseif( $field_name != $row['name'] )
 		{
-			// new loop
-			$new_parent_loop = true;
-			
-			
-			// case: previous have_rows loop was terminated early and template is now loading row data from another $post
-			// case: previous have_rows loop was terminated early and template is now loading row data from another $field_name
-			// case: nested have_rows loop
-			
-			if( isset($row['value'][ $row['i'] ][ $field_name ]) )
+			if( $prev && $prev['name'] == $field_name )
 			{
-				// Inception: Repeater within repeater
-				// Note: Sit back and enter the next level of dream
-				$new_child_loop = true;
-				$new_parent_loop = false;
-				
-			}
-			elseif( $prev && $prev['name'] == $field_name )
-			{
-				// Inception: Ride kick up one level
-				// Note: This can happen if someone used break or ran out of rows
+				// case: Change in $field_name was due to a nested loop ending
+				// action: move up one level through the loops
 				reset_rows();
-				$new_parent_loop = false;
+			}
+			elseif( isset($row['value'][ $row['i'] ][ $field_name ]) )
+			{
+				// case: Change in $field_name was due to this being a nested loop
+				// action: move down one level into a new loop
+				$new_child_loop = true;
 				
 			}
-
+			else
+			{
+				// case: Chang in $field_name is the most obvious, this is a new loop for a different field within the $post
+				// action: leave this current loop alone and create a new parent loop
+				$new_parent_loop = true;
+			}
+			
 			
 		}
 	}
