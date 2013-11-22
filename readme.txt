@@ -107,6 +107,19 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.3.1 =
+* API: Fixed bug with has_sub_field and have_rows functions causing complicated nested loops to produce incorrect results
+* API: Fixed bug with get_fields function preventing values to be returned from options page and taxonomy terms
+* Core: Fixed bug causing some SQL LIKE statements to not work correctly on windows servers
+* Core: Removed __() wrappers from PHP export, as these did not work as expected
+* Core: Fixed bug with get_pages() causing sort order issue in child page location rule
+* Core: Added specific position to ACF menu item to reduce conflicts with 3rd party plugins
+* JS: Fixed bug where conditional logic rules did not save when added using a '+' button above the last rule
+* Radio field: Fixed bug where 'other' would be selected when no value exists
+* WYSIWYG field: Added support for users with disabled visual editor setting
+* JS: Improved validation for fields that are hidden by a tab
+* Google maps field: Add refresh action when hidden / shown by a tab
+
 = 4.3.0 =
 * Core: get_field can now be used within the functions.php file
 * Core: Added new Google maps field
