@@ -431,6 +431,12 @@ var acf = {
 		field.after( new_field );
 		
 		
+		// set select values
+		new_field.find('select').each(function(){
+			$(this).val( $(this).attr('data-val') ).trigger('change');
+		});
+		
+		
 		// open up form
 		if( field.hasClass('form_open') )
 		{
@@ -445,13 +451,7 @@ var acf = {
 		// update new_field label / name
 		var label = new_field.find('tr.field_label:first input[type="text"]'),
 			name = new_field.find('tr.field_name:first input[type="text"]');
-					
-		
-		// set select values
-		new_field.find('select').each(function(){
-			$(this).val( $(this).attr('data-val') ).trigger('change');
-		});
-		
+				
 		
 		name.val('');
 		label.val( label.val() + ' (' + acf.l10n.copy + ')' );
