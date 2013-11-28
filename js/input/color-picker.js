@@ -44,15 +44,7 @@
 			}
 			
 			
-			this.$input.wpColorPicker({
-				
-				change: function(event, ui){
-					
-					$input.trigger('change');
-					
-				}
-				
-			});
+			this.$input.wpColorPicker();
 			
 			
 			
