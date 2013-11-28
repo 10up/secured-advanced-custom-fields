@@ -70,7 +70,7 @@
 			
 			// vars
 			var args = {
-        		zoom		: 14,
+        		zoom		: parseInt(this.o.zoom),
         		center		: new google.maps.LatLng(this.o.lat, this.o.lng),
         		mapTypeId	: google.maps.MapTypeId.ROADMAP
         	};
