@@ -170,7 +170,10 @@ class acf_field_relationship extends acf_field
 		{
 			global $sitepress;
 			
-			$sitepress->switch_lang( $options['lang'] );
+			if( !empty($sitepress) )
+			{
+				$sitepress->switch_lang( $options['lang'] );
+			}
 		}
 		
 		
