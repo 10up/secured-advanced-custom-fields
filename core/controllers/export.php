@@ -457,7 +457,7 @@ if(function_exists("register_field_group"))
 			foreach( $fields as $i => $field )
 			{
 				// unset unneccessary bits
-				unset( $field['id'], $field['class'], $field['order_no'], $field['field_group'] );
+				unset( $field['id'], $field['class'], $field['order_no'], $field['field_group'], $field['_name'] );
 				
 				
 				// instructions

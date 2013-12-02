@@ -256,6 +256,7 @@ class acf
 		$restricted = array(
 			'label',
 			'name',
+			'_name',
 			'value',
 			'instructions'
 		);

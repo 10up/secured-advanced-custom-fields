@@ -166,7 +166,7 @@ class acf_field_post_object extends acf_field
 			
 			// filters
 			$args = apply_filters('acf/fields/post_object/query', $args, $field, $post);
-			$args = apply_filters('acf/fields/post_object/query/name=' . $field['name'], $args, $field, $post );
+			$args = apply_filters('acf/fields/post_object/query/name=' . $field['_name'], $args, $field, $post );
 			$args = apply_filters('acf/fields/post_object/query/key=' . $field['key'], $args, $field, $post );
 			
 			
@@ -212,7 +212,7 @@ class acf_field_post_object extends acf_field
 					
 					// filters
 					$title = apply_filters('acf/fields/post_object/result', $title, $p, $field, $post);
-					$title = apply_filters('acf/fields/post_object/result/name=' . $field['name'] , $title, $p, $field, $post);
+					$title = apply_filters('acf/fields/post_object/result/name=' . $field['_name'] , $title, $p, $field, $post);
 					$title = apply_filters('acf/fields/post_object/result/key=' . $field['key'], $title, $p, $field, $post);
 					
 					

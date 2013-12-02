@@ -268,7 +268,7 @@ class acf_field_relationship extends acf_field
 		
 		// filters
 		$options = apply_filters('acf/fields/relationship/query', $options, $field, $the_post);
-		$options = apply_filters('acf/fields/relationship/query/name=' . $field['name'], $options, $field, $the_post );
+		$options = apply_filters('acf/fields/relationship/query/name=' . $field['_name'], $options, $field, $the_post );
 		$options = apply_filters('acf/fields/relationship/query/key=' . $field['key'], $options, $field, $the_post );
 		
 		
@@ -325,7 +325,7 @@ class acf_field_relationship extends acf_field
 			
 			// filters
 			$title = apply_filters('acf/fields/relationship/result', $title, $post, $field, $the_post);
-			$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $post, $field, $the_post);
+			$title = apply_filters('acf/fields/relationship/result/name=' . $field['_name'] , $title, $post, $field, $the_post);
 			$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $post, $field, $the_post);
 			
 			
@@ -524,7 +524,7 @@ class acf_field_relationship extends acf_field
 				
 				// filters
 				$title = apply_filters('acf/fields/relationship/result', $title, $p, $field, $post);
-				$title = apply_filters('acf/fields/relationship/result/name=' . $field['name'] , $title, $p, $field, $post);
+				$title = apply_filters('acf/fields/relationship/result/name=' . $field['_name'] , $title, $p, $field, $post);
 				$title = apply_filters('acf/fields/relationship/result/key=' . $field['key'], $title, $p, $field, $post);
 				
 				

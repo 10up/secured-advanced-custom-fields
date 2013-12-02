@@ -382,6 +382,7 @@ class acf_field_functions
 			'key' => '',
 			'label' => '',
 			'name' => '',
+			'_name' => '',
 			'type' => 'text',
 			'order_no' => 1,
 			'instructions' => '',
@@ -422,6 +423,13 @@ class acf_field_functions
 			$id = str_replace(']', '', $id);
 			
 			$field['id'] = 'acf-field-' . $id;
+		}
+		
+		
+		// _name
+		if( !$field['_name'] )
+		{
+			$field['_name'] = $field['name'];
 		}
 		
 		
