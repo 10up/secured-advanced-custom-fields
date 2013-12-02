@@ -402,7 +402,7 @@ function have_rows( $field_name, $post_id = false )
 		}
 		elseif( $field_name != $row['name'] )
 		{
-			if( $prev && $prev['name'] == $field_name )
+			if( $prev && $prev['name'] == $field_name && $prev['post_id'] == $post_id )
 			{
 				// case: Change in $field_name was due to a nested loop ending
 				// action: move up one level through the loops
