@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-custom-fields\n"
-"POT-Creation-Date: 2013-11-22 00:26:04+00:00\n"
+"POT-Creation-Date: 2013-12-03 04:25:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,100 +12,100 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: acf.php:436
+#: acf.php:437
 msgid "Field&nbsp;Groups"
 msgstr ""
 
-#: acf.php:437 core/controllers/field_groups.php:214
+#: acf.php:438 core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr ""
 
-#: acf.php:438
+#: acf.php:439
 msgid "Add New"
 msgstr ""
 
-#: acf.php:439
+#: acf.php:440
 msgid "Add New Field Group"
 msgstr ""
 
-#: acf.php:440
+#: acf.php:441
 msgid "Edit Field Group"
 msgstr ""
 
-#: acf.php:441
+#: acf.php:442
 msgid "New Field Group"
 msgstr ""
 
-#: acf.php:442
+#: acf.php:443
 msgid "View Field Group"
 msgstr ""
 
-#: acf.php:443
+#: acf.php:444
 msgid "Search Field Groups"
 msgstr ""
 
-#: acf.php:444
+#: acf.php:445
 msgid "No Field Groups found"
 msgstr ""
 
-#: acf.php:445
+#: acf.php:446
 msgid "No Field Groups found in Trash"
 msgstr ""
 
-#: acf.php:548 core/views/meta_box_options.php:98
+#: acf.php:549 core/views/meta_box_options.php:99
 msgid "Custom Fields"
 msgstr ""
 
-#: acf.php:566 acf.php:569
+#: acf.php:567 acf.php:570
 msgid "Field group updated."
 msgstr ""
 
-#: acf.php:567
+#: acf.php:568
 msgid "Custom field updated."
 msgstr ""
 
-#: acf.php:568
+#: acf.php:569
 msgid "Custom field deleted."
 msgstr ""
 
 #. translators: %s: date and time of the revision
-#: acf.php:571
+#: acf.php:572
 msgid "Field group restored to revision from %s"
 msgstr ""
 
-#: acf.php:572
+#: acf.php:573
 msgid "Field group published."
 msgstr ""
 
-#: acf.php:573
+#: acf.php:574
 msgid "Field group saved."
 msgstr ""
 
-#: acf.php:574
+#: acf.php:575
 msgid "Field group submitted."
 msgstr ""
 
-#: acf.php:575
+#: acf.php:576
 msgid "Field group scheduled for."
 msgstr ""
 
-#: acf.php:576
+#: acf.php:577
 msgid "Field group draft updated."
 msgstr ""
 
-#: acf.php:711
+#: acf.php:712
 msgid "Thumbnail"
 msgstr ""
 
-#: acf.php:712
+#: acf.php:713
 msgid "Medium"
 msgstr ""
 
-#: acf.php:713
+#: acf.php:714
 msgid "Large"
 msgstr ""
 
-#: acf.php:714
+#: acf.php:715
 msgid "Full"
 msgstr ""
 
@@ -491,7 +491,7 @@ msgstr ""
 #: core/controllers/field_group.php:796 core/fields/file.php:186
 #: core/fields/image.php:170 core/fields/page_link.php:109
 #: core/fields/post_object.php:274 core/fields/post_object.php:298
-#: core/fields/relationship.php:595 core/fields/relationship.php:619
+#: core/fields/relationship.php:598 core/fields/relationship.php:622
 #: core/fields/user.php:229
 msgid "All"
 msgstr ""
@@ -532,7 +532,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: core/controllers/field_groups.php:225 core/fields/relationship.php:638
+#: core/controllers/field_groups.php:225 core/fields/relationship.php:641
 msgid "Filters"
 msgstr ""
 
@@ -1096,39 +1096,47 @@ msgstr ""
 msgid "Google Map"
 msgstr ""
 
-#: core/fields/google-map.php:31
+#: core/fields/google-map.php:33
 msgid "Locating"
 msgstr ""
 
-#: core/fields/google-map.php:32
+#: core/fields/google-map.php:34
 msgid "Sorry, this browser does not support geolocation"
 msgstr ""
 
-#: core/fields/google-map.php:117
+#: core/fields/google-map.php:120
 msgid "Clear location"
 msgstr ""
 
-#: core/fields/google-map.php:122
+#: core/fields/google-map.php:125
 msgid "Find current location"
 msgstr ""
 
-#: core/fields/google-map.php:123
+#: core/fields/google-map.php:126
 msgid "Search for address..."
 msgstr ""
 
-#: core/fields/google-map.php:159
+#: core/fields/google-map.php:162
 msgid "Center"
 msgstr ""
 
-#: core/fields/google-map.php:160
+#: core/fields/google-map.php:163
 msgid "Center the initial map"
 msgstr ""
 
-#: core/fields/google-map.php:196
+#: core/fields/google-map.php:199
+msgid "Zoom"
+msgstr ""
+
+#: core/fields/google-map.php:200
+msgid "Set the initial zoom level"
+msgstr ""
+
+#: core/fields/google-map.php:217
 msgid "Height"
 msgstr ""
 
-#: core/fields/google-map.php:197
+#: core/fields/google-map.php:218
 msgid "Customise the map height"
 msgstr ""
 
@@ -1164,7 +1172,7 @@ msgstr ""
 msgid "Add Image"
 msgstr ""
 
-#: core/fields/image.php:119 core/fields/relationship.php:570
+#: core/fields/image.php:119 core/fields/relationship.php:573
 msgid "Specify the returned value on front end"
 msgstr ""
 
@@ -1232,7 +1240,7 @@ msgid "Relational"
 msgstr ""
 
 #: core/fields/page_link.php:103 core/fields/post_object.php:268
-#: core/fields/relationship.php:589 core/fields/relationship.php:668
+#: core/fields/relationship.php:592 core/fields/relationship.php:671
 #: core/views/meta_box_location.php:75
 msgid "Post Type"
 msgstr ""
@@ -1256,7 +1264,7 @@ msgstr ""
 msgid "Post Object"
 msgstr ""
 
-#: core/fields/post_object.php:292 core/fields/relationship.php:613
+#: core/fields/post_object.php:292 core/fields/relationship.php:616
 msgid "Filter from Taxonomy"
 msgstr ""
 
@@ -1296,51 +1304,51 @@ msgstr ""
 msgid "Maximum values reached ( {max} values )"
 msgstr ""
 
-#: core/fields/relationship.php:425
+#: core/fields/relationship.php:428
 msgid "Search..."
 msgstr ""
 
-#: core/fields/relationship.php:436
+#: core/fields/relationship.php:439
 msgid "Filter by post type"
 msgstr ""
 
-#: core/fields/relationship.php:569
+#: core/fields/relationship.php:572
 msgid "Return Format"
 msgstr ""
 
-#: core/fields/relationship.php:580
+#: core/fields/relationship.php:583
 msgid "Post Objects"
 msgstr ""
 
-#: core/fields/relationship.php:581
+#: core/fields/relationship.php:584
 msgid "Post IDs"
 msgstr ""
 
-#: core/fields/relationship.php:647
+#: core/fields/relationship.php:650
 msgid "Search"
 msgstr ""
 
-#: core/fields/relationship.php:648
+#: core/fields/relationship.php:651
 msgid "Post Type Select"
 msgstr ""
 
-#: core/fields/relationship.php:656
+#: core/fields/relationship.php:659
 msgid "Elements"
 msgstr ""
 
-#: core/fields/relationship.php:657
+#: core/fields/relationship.php:660
 msgid "Selected elements will be displayed in each result"
 msgstr ""
 
-#: core/fields/relationship.php:666 core/views/meta_box_options.php:105
+#: core/fields/relationship.php:669 core/views/meta_box_options.php:106
 msgid "Featured Image"
 msgstr ""
 
-#: core/fields/relationship.php:667
+#: core/fields/relationship.php:670
 msgid "Post Title"
 msgstr ""
 
-#: core/fields/relationship.php:679
+#: core/fields/relationship.php:682
 msgid "Maximum posts"
 msgstr ""
 
@@ -1718,45 +1726,49 @@ msgid ""
 msgstr ""
 
 #: core/views/meta_box_options.php:96
-msgid "Content Editor"
+msgid "Permalink"
 msgstr ""
 
 #: core/views/meta_box_options.php:97
+msgid "Content Editor"
+msgstr ""
+
+#: core/views/meta_box_options.php:98
 msgid "Excerpt"
 msgstr ""
 
-#: core/views/meta_box_options.php:99
+#: core/views/meta_box_options.php:100
 msgid "Discussion"
 msgstr ""
 
-#: core/views/meta_box_options.php:100
+#: core/views/meta_box_options.php:101
 msgid "Comments"
 msgstr ""
 
-#: core/views/meta_box_options.php:101
+#: core/views/meta_box_options.php:102
 msgid "Revisions"
 msgstr ""
 
-#: core/views/meta_box_options.php:102
+#: core/views/meta_box_options.php:103
 msgid "Slug"
 msgstr ""
 
-#: core/views/meta_box_options.php:103
+#: core/views/meta_box_options.php:104
 msgid "Author"
 msgstr ""
 
-#: core/views/meta_box_options.php:104
+#: core/views/meta_box_options.php:105
 msgid "Format"
 msgstr ""
 
-#: core/views/meta_box_options.php:106
+#: core/views/meta_box_options.php:107
 msgid "Categories"
 msgstr ""
 
-#: core/views/meta_box_options.php:107
+#: core/views/meta_box_options.php:108
 msgid "Tags"
 msgstr ""
 
-#: core/views/meta_box_options.php:108
+#: core/views/meta_box_options.php:109
 msgid "Send Trackbacks"
 msgstr ""
