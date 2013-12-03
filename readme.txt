@@ -107,6 +107,17 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.3.2 =
+* Color Picker field: Fixed JS bug preventing wpColorPicker from updating value correctly
+* Google Map field: Added new setting for initial zoom level
+* Relationship field: minor update to fix compatibility issue with Polylang plugin
+* Relationship field: Fixed bug causing filters / actions using $field['name'] to not fire correctly
+* API: Fixed bug with have_rows/has_sub_field function where looping through multiple posts each containing nested repeater fields would result in an endless loop
+* Export: Fixed bug causing exported XML fields to become corrupt due to line breaks
+* Core: Fixed bug where duplicating a field would cause conditional logic to appear blank
+* Core: Added Conditional Logic support to hide entire column of a repeater field where max_row is 1.
+* Core: Added new field group 'hide on screen' option for 'permalink' which hides the permalink URL and buttons below the post title
+
 = 4.3.1 =
 * API: Fixed bug with has_sub_field and have_rows functions causing complicated nested loops to produce incorrect results
 * API: Fixed bug with get_fields function preventing values to be returned from options page and taxonomy terms
