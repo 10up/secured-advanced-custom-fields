@@ -178,6 +178,24 @@ class acf
 		}
 		
 		
+		// object
+		if( is_object($post_id) )
+		{
+			if( isset($post_id->roles, $post_id->ID) )
+			{
+				$post_id = 'user_' . $post_id->ID;
+			}
+			elseif( isset($post_id->taxonomy, $post_id->term_id) )
+			{
+				$post_id = $post_id->taxonomy . '_' . $post_id->term_id;
+			}
+			elseif( isset($post_id->ID) )
+			{
+				$post_id = $post_id->ID;
+			}
+		}
+		
+		
 		/*
 		*  Override for preview
 		*  
