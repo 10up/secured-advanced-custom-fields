@@ -295,8 +295,7 @@ table.widefat.acf td {
 }
 
 #acf_fields .ui-sortable-helper {
-	box-shadow: 0 1px 5px rgba(0,0,0,0.2);
-	background: #fff;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
 #acf_fields .ui-sortable-placeholder {
@@ -309,9 +308,11 @@ table.widefat.acf td {
 	background: rgba(0,0,0,0.075);
 }
 
+/*
 .fields .field:nth-child(even) {
 	background: #F9F9F9;
 }
+*/
 
 .fields .field_key-field_clone {
 	display: none;
@@ -326,9 +327,10 @@ table.widefat.acf td {
 }
 
 .fields .field.ui-sortable-placeholder {
-	border: 0 none !important;
-	box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-	background: rgba(0,0,0,0.075);
+	background: #F9F9F9;
+	border: #DFDFDF solid 1px;
+	border-bottom-color: #F0F0F0;
+	border-top: 0 none;
 }
 
 
@@ -505,6 +507,7 @@ table.acf_input tr td .acf tr td {
 
 #acf_location .location-group td.remove {
 	width: 18px;
+	vertical-align: middle;
 }
 
 #acf_location .location-group tr .location-remove-rule {
