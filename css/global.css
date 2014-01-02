@@ -172,61 +172,65 @@ input.acf-is-prepended.acf-is-appended {
 *--------------------------------------------------------------------------------------------*/
 
 .wp-box {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #E1E1E1;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
     position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
+
 .wp-box .title {
-	background: #f1f1f1;
-	background-image: -webkit-gradient(linear, left bottom, left top, from(#ececec), to(#f9f9f9));
-	background-image: -webkit-linear-gradient(bottom, #ececec, #f9f9f9);
-	background-image:    -moz-linear-gradient(bottom, #ececec, #f9f9f9);
-	background-image:      -o-linear-gradient(bottom, #ececec, #f9f9f9);
-	background-image: linear-gradient(to top, #ececec, #f9f9f9);
-}
-.wp-box .title h3 {
-	font-size: 15px;
-    font-weight: normal;
-    line-height: 1;
+	border-bottom: 1px solid #EEEEEE;
     margin: 0;
-    padding: 7px 10px;
-    color: #464646;
-    border-bottom: #DFDFDF solid 1px;
-    box-shadow: 0 1px 0 #FFFFFF;
-    text-shadow: 0 1px 0 #FFFFFF;
-    font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+    padding: 15px;
+	background: #FFFFFF;
 }
+
+.wp-box .title h3 {
+	font-size: 14px;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+}
+
 .wp-box .inner {
     padding: 15px;
 }
+
 .wp-box .footer {
-    background: none repeat scroll 0 0 #F5F5F5;
+    background: #F5F5F5;
     border-top: 1px solid #E1E1E1;
     overflow: hidden;
-    padding: 10px;
+    padding: 15px;
     position: relative;
 }
+
 .wp-box .footer ul.left {
     float: left;
 }
+
 .wp-box .footer ul li {
     margin: 0;
     padding: 0;
 }
+
 .wp-box .footer ul.left li {
     margin-right: 10px;
 }
+
 .wp-box .footer ul.right {
     float: right;
 }
+
 .wp-box .footer ul.right li {
     margin-left: 10px;
 }
 
 .wp-box h2 {
-	margin: .25em 0 .75em;
-	padding: 0;
+	color: #333333;
+    font-size: 25px;
+    line-height: 29px;
+    margin: 0.25em 0 0.75em;
+    padding: 0;
 }
 
 .wp-box h3 {
@@ -262,15 +266,9 @@ input.acf-is-prepended.acf-is-appended {
 }
 
 .wp-box .footer-blue {
-	background-color: #8CC1E9;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#8CC1E9), to(#72A7CF)); /* Saf4+, Chrome */
-    background-image: -webkit-linear-gradient(top, #8CC1E9, #72A7CF); /* Chrome 10+, Saf5.1+, iOS 5+ */
-    background-image:    -moz-linear-gradient(top, #8CC1E9, #72A7CF); /* Firefox 3.6-15 */
-    background-image:      -o-linear-gradient(top, #8CC1E9, #72A7CF); /* Opera 11.10+ */
-    background-image:         linear-gradient(to bottom, #8CC1E9, #72A7CF); /* Firefox 16+ */
+	border-top: 0 none;
+	background-color: #52ACCC;
     color: #FFFFFF;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
-    
     overflow: hidden;
     padding: 10px;
     position: relative;
