@@ -457,7 +457,7 @@ ul.acf-checkbox-list li input {
 .acf-button.grey {
 	color: #333;
 	border-color: #BBBBBB;
-	
+	background: #F9F9F9;
 }
 
 .acf-button.grey:hover {

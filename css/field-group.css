@@ -123,7 +123,7 @@ table.widefat.acf td {
 
 .acf tr td.field_order,
 .acf tr th.field_order  {
- text-indent: 6px;
+	 text-indent: 5px;
 }
 
 .acf tr td.field_order {
@@ -191,6 +191,10 @@ table.widefat.acf td {
 	border-bottom: 0 none;
 }
 
+.fields_header th {
+	font-weight: bold;
+}
+
 
 /*---------------------------------------------------------------------------------------------
 *
@@ -204,7 +208,12 @@ table.widefat.acf td {
 
 #acf_fields .field .field_meta {
 	border: #DFDFDF solid 1px;
+	border-bottom-color: #F0F0F0;
 	border-top: 0 none;
+}
+
+#acf_fields .field .field_meta td {
+	padding: 10px 8px;
 }
 
 #acf_fields .field .field_meta strong {
@@ -225,16 +234,21 @@ table.widefat.acf td {
 }
 
 #acf_fields .field.form_open > .field_meta {
-	background-color: #21759B;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#2A95C5), to(#21759B)); /* Safari 4+, Chrome */
-	background-image: -webkit-linear-gradient(top, #2A95C5, #21759B); /* Chrome 10+, Safari 5.1+, iOS 5+ */
-	background-image:    -moz-linear-gradient(top, #2A95C5, #21759B); /* Firefox 3.6-15 */
-	background-image:      -o-linear-gradient(top, #2A95C5, #21759B); /* Opera 11.10-12.00 */
-	background-image:         linear-gradient(to bottom, #2A95C5, #21759B); /* Firefox 16+, IE10, Opera 12.50+ */
+	
+	background: #3595BC;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#46AFDB), to(#3199C5)); /* Safari 4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #46AFDB, #3199C5); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+	background-image:    -moz-linear-gradient(top, #46AFDB, #3199C5); /* Firefox 3.6-15 */
+	background-image:      -o-linear-gradient(top, #46AFDB, #3199C5); /* Opera 11.10+ */
+	background-image:         linear-gradient(to bottom, #46AFDB, #3199C5); /* Firefox 16+ */
+	
+	border: #268FBB solid 1px;
+	text-shadow: #268FBB 0 1px 0;
+	box-shadow: inset #5FC8F4 0 1px 0 0;
+	
 	color: #fff;
-	text-shadow: #000 0 1px 0;
-	border: #21759B solid 1px;
-	border-color: #21759B #21759B #1E6A8D;
+	
+	position: relative;
 }
 
 #acf_fields .field.form_open > .field_meta td,
@@ -242,35 +256,32 @@ table.widefat.acf td {
 	color: inherit;
 }
 
-#acf_fields .field.form_open > .field_meta a:hover {
-	color: #ff8a4f;
-}
-
 #acf_fields .fields .field .field_meta .circle {
-	width: 19px;
-	height: 19px;
-	text-align: center;
-	font-size: 11px;
-	line-height: 19px;
-	display: block;
-	float: left;
-	margin: 7px 0 0 7px;
-	text-indent: 0;
-	background: #eeeeee;
-	border-radius: 9px;
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
-}
-
-#acf_fields .fields .field:nth-child(2n) .field_meta .circle {
-	background: #F7F7F7;
-
+	
+	background: transparent;
+	cursor: move;
+	margin: 2px 0 0;
+	
+	border: 1px solid #BBBBBB;
+    border-radius: 12px;
+    display: block;
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 22px;
+    
+    line-height: 23px;
+    text-indent: 0;
+    margin-left: 6px;
 }
 
 #acf_fields .field.form_open > .field_meta .circle {
-	background: #22769C !important;
-	box-shadow: inset 0 1px 2px rgba(0,0,0,0.4), 0 1px 0 rgba(255, 255, 255, 0.2);
+	color: #fff;
+	border-color: #fff;
 }
-
 
 .fields {
 	position: relative;
@@ -280,7 +291,7 @@ table.widefat.acf td {
 .fields .field {
 	position: relative;
 	overflow: hidden;
-	background: #FCFCFC;
+	background: #fff;
 }
 
 #acf_fields .ui-sortable-helper {
@@ -299,7 +310,7 @@ table.widefat.acf td {
 }
 
 .fields .field:nth-child(even) {
-	background: #fff;
+	background: #F9F9F9;
 }
 
 .fields .field_key-field_clone {
@@ -342,7 +353,7 @@ table.widefat.acf td {
 	padding: 8px;
 	background: #EAF2FA;
 	border: #c7d7e2 solid 1px;
-	border-top:0 none;
+	margin-top: -1px;
 }
 
 #acf_fields .table_footer .order_message {
@@ -350,7 +361,7 @@ table.widefat.acf td {
     color: #7A9BBE;
     float: left;
     font-family: Comic Sans MS, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     height: 13px;
     line-height: 1em;
     margin: 2px 0 0 11px;
