@@ -290,10 +290,10 @@ class acf
 			// numbers
 			if( is_numeric($value) )
 			{
-				// float / int
-				if( strpos($value,'.') !== false )
+				// check for non numeric characters
+				if( preg_match('/[^0-9]/', $value) )
 				{
-					// leave decimal places alone
+					// leave value if it contains such characters: . + - e
 					//$value = floatval( $value );
 				}
 				else
