@@ -850,7 +850,7 @@ var acf = {
 	$(document).ready(function(){
 		
 		// custom Publish metabox
-		$('#submitdiv #publish').attr('class', 'acf-button');
+		$('#submitdiv #publish').attr('class', 'acf-button large');
 		$('#submitdiv a.submitdelete').attr('class', 'delete-field-group').attr('id', 'submit-delete');
 		
 		
