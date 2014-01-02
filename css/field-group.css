@@ -4,17 +4,70 @@
 *
 *---------------------------------------------------------------------------------------------*/
 
+/*
 #titlediv {
 	margin-bottom: 20px;	
 }
-
-#icon-edit {
-	background: url(../images/sprite.png) 0 0 no-repeat;
-}
+*/
 	
 #message p a {
 	display: none;
 }
+
+
+/*---------------------------------------------------------------------------------------------
+*
+*  Postbox: Publish
+*
+*---------------------------------------------------------------------------------------------*/
+
+#minor-publishing-actions,
+#misc-publishing-actions #visibility,
+#misc-publishing-actions .curtime {
+	display: none;
+}
+
+#minor-publishing {
+	border-bottom: 0 none;
+}
+#misc-pub-section {
+	border-bottom: 0 none;
+}
+
+#misc-publishing-actions .misc-pub-section {
+	border-bottom-color: #F5F5F5;
+}
+
+#submitdiv .acf-button {
+	width: 100%;
+}
+
+#submitdiv #delete-action {
+	float: none;
+	margin: 0 0 5px;
+}
+
+#submitdiv #publishing-action {
+	float: none;
+}
+
+#submitdiv #publishing-action img {
+	display: none;
+}
+
+#delete-action .delete-field-group {
+	color: #BC0B0B;
+	text-decoration: none;
+}
+
+#delete-action .delete-field-group:hover {
+	color: #f00;
+}
+
+
+
+
+
 
 .postbox#acf_fields {
 	border: 0 none;
@@ -37,30 +90,6 @@
 	text-decoration: none;
 }
 
-#minor-publishing-actions,
-#misc-publishing-actions #visibility,
-#misc-publishing-actions .curtime {
-	display: none;
-}
-
-#minor-publishing {
-	border-bottom: 0 none;
-}
-#misc-pub-section {
-	border-bottom: 0 none;
-}
-
-#misc-publishing-actions .misc-pub-section {
-	border-bottom-color: #F5F5F5;
-}
-
-.postbox {
-	background: #FFFFFF;
-    border: 1px solid #E1E1E1;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    position: relative;
-    border-radius: 0;
-}
 
 
 /*---------------------------------------------------------------------------------------------
@@ -552,65 +581,6 @@ ul.acf-checkbox-list li input {
 	margin: 2px 5px 0 0;
 	vertical-align: top;
 } 
-
-
-
-/*---------------------------------------------------------------------------------------------
-*
-*	Publish Metabox
-*	
-*---------------------------------------------------------------------------------------------*/
-
-.postbox {
-	min-width: 200px;
-}
-
-.inner-sidebar #side-sortables, 
-.columns-2 .inner-sidebar #side-sortables {
-	width: 200px;
-}
-
-.has-right-sidebar #side-info-column {
-	width: 200px;
-}
-
-.has-right-sidebar #post-body-content {
-    margin-right: 220px;
-}
-
-#submitdiv .acf-button {
-	width: 100%;
-}
-
-#submitdiv a.acf-button {
-	width: auto;
-	margin: 0 0 10px;
-}
-
-#submitdiv #delete-action {
-	float: none;
-	margin: 0 0 5px;
-}
-#submitdiv #publishing-action {
-	float: none;
-}
-#submitdiv #publishing-action img {
-	display: none;
-}
-
-#major-publishing-actions {
-    border-top: 0 none;
-}
-
-.delete-field-group {
-	color: #BC0B0B;
-	text-decoration: none;
-}
-
-.delete-field-group:hover {
-	color: #f00;
-}
-
 
 
 /*---------------------------------------------------------------------------------------------
