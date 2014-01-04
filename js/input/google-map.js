@@ -10,13 +10,14 @@
 	*
 	*/
 	
-	acf.fields.location = {
+	acf.fields.google_map = {
 		
 		$el : null,
 		$input : null,
 		
 		o : {},
 		
+		ready : false,
 		geocoder : false,
 		map : false,
 		maps : {},
@@ -45,7 +46,11 @@
 			// geocode
 			this.geocoder = new google.maps.Geocoder();
 			
-				
+			
+			// google maps is loaded and ready
+			this.ready = true;
+			
+			
 			// return this for chaining
 			return this;
 			
@@ -399,34 +404,42 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		if( $(el).find('.acf-google-map').exists() )
+		// vars
+		$fields = $(el).find('.acf-google-map');
+		
+		
+		// validate
+		if( ! $fields.exists() )
 		{
-			// validate google
-			if( typeof google === 'undefined' )
-			{
-				$.getScript('https://www.google.com/jsapi', function(){
-				
-				    google.load('maps', '3', { other_params: 'sensor=false&libraries=places', callback: function(){
-				    
-				        $(el).find('.acf-google-map').each(function(){
+			return;
+		}
+		
+		
+		// validate google
+		if( typeof google === 'undefined' )
+		{
+			$.getScript('https://www.google.com/jsapi', function(){
+			
+			    google.load('maps', '3', { other_params: 'sensor=false&libraries=places', callback: function(){
+			    
+			        $fields.each(function(){
+					
+						acf.fields.google_map.set({ $el : $(this) }).init();
 						
-							acf.fields.location.set({ $el : $(this) }).init();
-							
-						});
-				        
-				    }});
-				});
+					});
+			        
+			    }});
+			});
+			
+		}
+		else
+		{
+			$fields.each(function(){
 				
-			}
-			else
-			{
-				$(el).find('.acf-google-map').each(function(){
-					
-					acf.fields.location.set({ $el : $(this) }).init();
-					
-				});
+				acf.fields.google_map.set({ $el : $(this) }).init();
 				
-			}
+			});
+			
 		}
 		
 	});
@@ -448,7 +461,7 @@
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).clear();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).clear();
 		
 		$(this).blur();
 		
@@ -459,7 +472,7 @@
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).locate();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).locate();
 		
 		$(this).blur();
 		
@@ -469,7 +482,7 @@
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).edit();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).edit();
 			
 	});
 	
@@ -500,9 +513,16 @@
 	$(document).on('acf/fields/tab/show', function( e, $field ){
 		
 		// validate
+		if( ! acf.fields.google_map.ready )
+		{
+			return;
+		}
+		
+		
+		// validate
 		if( $field.attr('data-field_type') == 'google_map' )
 		{
-			acf.fields.location.set({ $el : $field.find('.acf-google-map') }).refresh();
+			acf.fields.google_map.set({ $el : $field.find('.acf-google-map') }).refresh();
 		}
 		
 	});
