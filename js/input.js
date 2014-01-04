@@ -1778,13 +1778,14 @@ var acf = {
 	*
 	*/
 	
-	acf.fields.location = {
+	acf.fields.google_map = {
 		
 		$el : null,
 		$input : null,
 		
 		o : {},
 		
+		ready : false,
 		geocoder : false,
 		map : false,
 		maps : {},
@@ -1813,7 +1814,11 @@ var acf = {
 			// geocode
 			this.geocoder = new google.maps.Geocoder();
 			
-				
+			
+			// google maps is loaded and ready
+			this.ready = true;
+			
+			
 			// return this for chaining
 			return this;
 			
@@ -2167,34 +2172,42 @@ var acf = {
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		if( $(el).find('.acf-google-map').exists() )
+		// vars
+		$fields = $(el).find('.acf-google-map');
+		
+		
+		// validate
+		if( ! $fields.exists() )
 		{
-			// validate google
-			if( typeof google === 'undefined' )
-			{
-				$.getScript('https://www.google.com/jsapi', function(){
-				
-				    google.load('maps', '3', { other_params: 'sensor=false&libraries=places', callback: function(){
-				    
-				        $(el).find('.acf-google-map').each(function(){
+			return;
+		}
+		
+		
+		// validate google
+		if( typeof google === 'undefined' )
+		{
+			$.getScript('https://www.google.com/jsapi', function(){
+			
+			    google.load('maps', '3', { other_params: 'sensor=false&libraries=places', callback: function(){
+			    
+			        $fields.each(function(){
+					
+						acf.fields.google_map.set({ $el : $(this) }).init();
 						
-							acf.fields.location.set({ $el : $(this) }).init();
-							
-						});
-				        
-				    }});
-				});
+					});
+			        
+			    }});
+			});
+			
+		}
+		else
+		{
+			$fields.each(function(){
 				
-			}
-			else
-			{
-				$(el).find('.acf-google-map').each(function(){
-					
-					acf.fields.location.set({ $el : $(this) }).init();
-					
-				});
+				acf.fields.google_map.set({ $el : $(this) }).init();
 				
-			}
+			});
+			
 		}
 		
 	});
@@ -2216,7 +2229,7 @@ var acf = {
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).clear();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).clear();
 		
 		$(this).blur();
 		
@@ -2227,7 +2240,7 @@ var acf = {
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).locate();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).locate();
 		
 		$(this).blur();
 		
@@ -2237,7 +2250,7 @@ var acf = {
 		
 		e.preventDefault();
 		
-		acf.fields.location.set({ $el : $(this).closest('.acf-google-map') }).edit();
+		acf.fields.google_map.set({ $el : $(this).closest('.acf-google-map') }).edit();
 			
 	});
 	
@@ -2268,9 +2281,16 @@ var acf = {
 	$(document).on('acf/fields/tab/show', function( e, $field ){
 		
 		// validate
+		if( ! acf.fields.google_map.ready )
+		{
+			return;
+		}
+		
+		
+		// validate
 		if( $field.attr('data-field_type') == 'google_map' )
 		{
-			acf.fields.location.set({ $el : $field.find('.acf-google-map') }).refresh();
+			acf.fields.google_map.set({ $el : $field.find('.acf-google-map') }).refresh();
 		}
 		
 	});
@@ -3393,7 +3413,8 @@ var acf = {
 		validate : function( div ){
 			
 			// var
-			var ignore = false;
+			var ignore = false,
+				$tab = null;
 			
 			
 			// set validation data
@@ -3414,7 +3435,9 @@ var acf = {
 					
 					
 					// vars
-					var $tab_field = div.prevAll('.field_type-tab:first');
+					var $tab_field = div.prevAll('.field_type-tab:first'),
+						$tab_group = div.prevAll('.acf-tab-group:first');
+					
 					
 					// if the tab itself is hidden, bypass validation
 					if( $tab_field.hasClass('acf-conditional_logic-hide') )
@@ -3424,7 +3447,7 @@ var acf = {
 					else
 					{
 						// activate this tab as it holds hidden required field!
-						div.prevAll('.acf-tab-group:first').find('.acf-tab-button[data-id="' + $tab_field.attr('data-field_key') + '"]').trigger('click');
+						$tab = $tab_group.find('.acf-tab-button[data-id="' + $tab_field.attr('data-field_key') + '"]');
 					}
 				}
 			}
@@ -3546,9 +3569,12 @@ var acf = {
 			// set validation
 			if( ! div.data('validation') )
 			{
+				// show error
 				this.status = false;
 				div.closest('.field').addClass('error');
 				
+				
+				// custom validation message
 				if( div.data('validation_message') )
 				{
 					var $label = div.find('p.label:first'),
@@ -3561,6 +3587,14 @@ var acf = {
 					
 					$label.append( '<span class="acf-error-message"><i class="bit"></i>' + div.data('validation_message') + '</span>' );
 				}
+				
+				
+				// display field (curently hidden due to another tab being active)
+				if( $tab )
+				{
+					$tab.trigger('click');
+				}
+				
 			}
 		}
 		
