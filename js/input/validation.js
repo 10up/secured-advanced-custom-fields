@@ -40,7 +40,8 @@
 		validate : function( div ){
 			
 			// var
-			var ignore = false;
+			var ignore = false,
+				$tab = null;
 			
 			
 			// set validation data
@@ -61,7 +62,9 @@
 					
 					
 					// vars
-					var $tab_field = div.prevAll('.field_type-tab:first');
+					var $tab_field = div.prevAll('.field_type-tab:first'),
+						$tab_group = div.prevAll('.acf-tab-group:first');
+					
 					
 					// if the tab itself is hidden, bypass validation
 					if( $tab_field.hasClass('acf-conditional_logic-hide') )
@@ -71,7 +74,7 @@
 					else
 					{
 						// activate this tab as it holds hidden required field!
-						div.prevAll('.acf-tab-group:first').find('.acf-tab-button[data-id="' + $tab_field.attr('data-field_key') + '"]').trigger('click');
+						$tab = $tab_group.find('.acf-tab-button[data-id="' + $tab_field.attr('data-field_key') + '"]');
 					}
 				}
 			}
@@ -193,9 +196,12 @@
 			// set validation
 			if( ! div.data('validation') )
 			{
+				// show error
 				this.status = false;
 				div.closest('.field').addClass('error');
 				
+				
+				// custom validation message
 				if( div.data('validation_message') )
 				{
 					var $label = div.find('p.label:first'),
@@ -208,6 +214,14 @@
 					
 					$label.append( '<span class="acf-error-message"><i class="bit"></i>' + div.data('validation_message') + '</span>' );
 				}
+				
+				
+				// display field (curently hidden due to another tab being active)
+				if( $tab )
+				{
+					$tab.trigger('click');
+				}
+				
 			}
 		}
 		
