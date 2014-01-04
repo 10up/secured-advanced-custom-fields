@@ -510,7 +510,7 @@
 		
 	});
 	
-	$(document).on('acf/fields/tab/show', function( e, $field ){
+	$(document).on('acf/fields/tab/show acf/conditional_logic/show', function( e, $field ){
 		
 		// validate
 		if( ! acf.fields.google_map.ready )
@@ -526,6 +526,7 @@
 		}
 		
 	});
+
 	
 
 })(jQuery);
