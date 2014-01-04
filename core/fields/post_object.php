@@ -90,7 +90,7 @@ class acf_field_post_object extends acf_field
 			'post_type' => null,
 			'orderby' => 'title',
 			'order' => 'ASC',
-			'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
+			'post_status' => 'any',
 			'suppress_filters' => false,
 		);
 		
@@ -437,7 +437,7 @@ class acf_field_post_object extends acf_field
 				'numberposts' => -1,
 				'post__in' => $value,
 				'post_type'	=>	apply_filters('acf/get_post_types', array()),
-				'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
+				'post_status' => 'any',
 			));
 	
 			
