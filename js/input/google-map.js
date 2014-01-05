@@ -43,20 +43,23 @@
 			}
 			
 			
+			// return this for chaining
+			return this;
+			
+		},
+		init : function(){
+			
 			// geocode
-			this.geocoder = new google.maps.Geocoder();
+			if( !this.geocoder )
+			{
+				this.geocoder = new google.maps.Geocoder();
+			}
 			
 			
 			// google maps is loaded and ready
 			this.ready = true;
 			
 			
-			// return this for chaining
-			return this;
-			
-		},
-		init : function(){
-
 			// is clone field?
 			if( acf.helpers.is_clone_field(this.$input) )
 			{
