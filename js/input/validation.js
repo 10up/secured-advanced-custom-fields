@@ -63,7 +63,7 @@
 					
 					// vars
 					var $tab_field = div.prevAll('.field_type-tab:first'),
-						$tab_group = div.prevAll('.acf-tab-group:first');
+						$tab_group = div.prevAll('.acf-tab-wrap:first');
 					
 					
 					// if the tab itself is hidden, bypass validation
@@ -74,7 +74,7 @@
 					else
 					{
 						// activate this tab as it holds hidden required field!
-						$tab = $tab_group.find('.acf-tab-button[data-id="' + $tab_field.attr('data-field_key') + '"]');
+						$tab = $tab_group.find('.acf-tab-button[data-key="' + $tab_field.attr('data-field_key') + '"]');
 					}
 				}
 			}

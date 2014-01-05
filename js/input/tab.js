@@ -1,5 +1,122 @@
 (function($){
 
+	acf.fields.tab = {
+		
+		add_group : function( $wrap ){
+			
+			// vars
+			var html = '';
+			
+			
+			// generate html
+			if( $wrap.is('tbody') )
+			{
+				html = '<tr class="acf-tab-wrap"><td colspan="2"><ul class="hl clearfix acf-tab-group"></ul></td></tr>';
+			}
+			else
+			{
+				html = '<div class="acf-tab-wrap"><ul class="hl clearfix acf-tab-group"></ul></div>';
+			}
+			
+			
+			// append html
+			$wrap.children('.field_type-tab:first').before( html );
+			
+		},
+		
+		add_tab : function( $tab ){
+			
+			// vars
+			var $field	= $tab.closest('.field'),
+				$wrap	= $field.parent(),
+				
+				key		= $field.attr('data-field_key'),
+				label 	= $tab.text();
+				
+				
+			// create tab group if it doesnt exist
+			if( ! $wrap.children('.acf-tab-wrap').exists() )
+			{
+				this.add_group( $wrap );
+			}
+			
+			// add tab
+			$wrap.children('.acf-tab-wrap').find('.acf-tab-group').append('<li class="field_key-' + key + '" data-field_key="' + key + '"><a class="acf-tab-button" href="#" data-key="' + key + '">' + label + '</a></li>');
+			
+		},
+		
+		toggle : function( $a ){
+			
+			console.log( $a );
+			
+			// vars
+			var $wrap	= $a.closest('.acf-tab-wrap').parent(),
+				key		= $a.attr('data-key');
+			
+			
+			// classes
+			$a.parent('li').addClass('active').siblings('li').removeClass('active');
+			
+			
+			// hide / show
+			$wrap.children('.field_type-tab').each(function(){
+				
+				// vars
+				var $tab = $(this),
+					show =  false;
+					
+				
+				if( $tab.hasClass('field_key-' + key) )
+				{
+					show = true;
+				}
+				
+				
+				$tab.nextUntil('.field_type-tab').each(function(){
+					
+					if( show )
+					{
+						$(this).removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
+						$(document).trigger('acf/fields/tab/show', [ $(this) ]);
+					}
+					else
+					{
+						$(this).removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
+						$(document).trigger('acf/fields/tab/hide', [ $(this) ]);
+					}
+					
+				});
+				
+			});
+	
+			
+			// blur to remove dotted lines around button
+			$a.trigger('blur');
+			
+		},
+		
+		refresh : function( $el ){
+			
+			// reference
+			var _this = this;
+			
+			
+			// trigger
+			$el.find('.acf-tab-group .acf-tab-button:first').each(function(){
+				
+				_this.toggle( $(this) );
+				
+			});
+			
+			
+			// trigger conditional logic
+			// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+			acf.conditional_logic.change();
+			
+		}
+		
+	};
+	
 	
 	/*
 	*  acf/setup_fields
@@ -16,63 +133,21 @@
 	
 	$(document).on('acf/setup_fields', function(e, el){
 		
-		// validate
-		if( ! $(el).find('.acf-tab').exists() )
-		{
-			return;
-		}
-		
-		
-		// init
+		// add tabs
 		$(el).find('.acf-tab').each(function(){
 			
-			// vars
-			var $el		=	$(this),
-				$field	=	$el.parent(),
-				$wrap	=	$field.parent(),
-				
-				id		=	$el.attr('data-id'),
-				label 	= 	$el.html();
-				
-
-
-			// only run once for each tab
-			if( $el.hasClass('acf-tab-added') )
-			{
-				return;
-			}
-			
-			$el.addClass('acf-tab-added');
-			
-			
-			// create tab group if it doesnt exist
-			if( ! $wrap.children('.acf-tab-group').exists() )
-			{
-				$wrap.children('.field_type-tab:first').before('<ul class="hl clearfix acf-tab-group"></ul>');
-			}
-			
-			
-			// add tab
-			$wrap.children('.acf-tab-group').append('<li class="field_key-' + id + '" data-field_key="' + id + '"><a class="acf-tab-button" href="#" data-id="' + id + '">' + label + '</a></li>');
+			acf.fields.tab.add_tab( $(this) );
 			
 		});
 		
-		// trigger
-		$(el).find('.acf-tab-group').each(function(){
-			
-			$(this).find('li:first a').trigger('click');
-			
-		});
-		// trigger conditional logic
-		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
-		acf.conditional_logic.change();
 		
+		// activate first tab
+		acf.fields.tab.refresh( $(el) );
 		
-		
-
-	
 	});
 	
+	
+		
 	
 	/*
 	*  Events
@@ -88,57 +163,9 @@
 	
 	$(document).on('click', '.acf-tab-button', function( e ){
 		
-		
 		e.preventDefault();
 		
-		
-		// vars
-		var $a		=	$(this),
-			$ul		=	$a.closest('ul'),
-			$wrap	=	$ul.parent(),
-			id		=	$a.attr('data-id');
-		
-		
-		// classes
-		$ul.find('li').removeClass('active');
-		$a.parent('li').addClass('active');
-		
-		
-		// hide / show
-		$wrap.children('.field_type-tab').each(function(){
-			
-			// vars
-			var $tab = $(this),
-				show =  false;
-				
-			
-			if( $tab.hasClass('field_key-' + id) )
-			{
-				show = true;
-			}
-			
-			
-			$tab.nextUntil('.field_type-tab').each(function(){
-				
-				if( show )
-				{
-					$(this).removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
-					$(document).trigger('acf/fields/tab/show', [ $(this) ]);
-				}
-				else
-				{
-					$(this).removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
-					$(document).trigger('acf/fields/tab/hide', [ $(this) ]);
-				}
-				
-			});
-			
-		});
-
-		
-		// blur to remove dotted lines around button
-		$a.trigger('blur');
-
+		acf.fields.tab.toggle( $(this) );
 		
 	});
 	
