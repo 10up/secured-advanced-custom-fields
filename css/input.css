@@ -984,9 +984,9 @@ td.acf_input-wrap {
 
 .acf-tab-group {
 	background: transparent;
-	border-bottom: #E8E8E8 solid 1px;
+	border-bottom: #CCCCCC solid 1px;
 	margin: 0 0 10px;
-	padding: 10px 2px 0 10px;
+	padding: 10px 2px 0 0;
 }
 
 .acf-tab-group li {
@@ -1009,7 +1009,7 @@ td.acf_input-wrap {
     border: #CCCCCC solid 1px;
     border-bottom: 0 none;
     text-decoration: none;
-    background: #F1F1F1;
+    background: #E4E4E4;
     
 }
 
@@ -1020,7 +1020,7 @@ td.acf_input-wrap {
 }
 
 .acf-tab-group li.active a {
-	background: #FFFFFF;
+	background: #F1F1F1;
 	color: #000;
 	border-color: #CCCCCC;
     border-bottom-color: #F7F7F7;
@@ -1034,20 +1034,20 @@ td.acf_input-wrap {
 
 
 /*
-*  No Box
+*  Box
 */
 
-.acf_postbox.no_box .acf-tab-group {
-	padding-left: 0;
-	border-bottom-color: #CCCCCC;
+.acf_postbox.default .acf-tab-group {
+	padding-left: 10px;
+	border-bottom-color: #E8E8E8;
 }
 
-.acf_postbox.no_box .acf-tab-group li a {
-    background: #E4E4E4;
+.acf_postbox.default .acf-tab-group li a {
+    background: #F1F1F1;
 }
 
-.acf_postbox.no_box .acf-tab-group li.active a {
-	background: #F1F1F1;
+.acf_postbox.default .acf-tab-group li.active a {
+	background: #FFFFFF;
 }
 
 
