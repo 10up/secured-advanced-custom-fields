@@ -107,6 +107,14 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.3.3 =
+* Core: Updated styling to suit WP 3.8
+* Core: Added new logic to set 'autoload' to 'off' on all values saved to the wp_options table to help improve load speed
+* API: Added new logic to the $post_id parameter to accept an object of type post, user or taxonomy term
+* Tab field: Added compatibility with taxonomy term and user edit screens (table layout)
+* Tab field: Fixed JS bug causing incorrect tab to show when validation fails
+* Text field: Fixed bug causing append setting of '+50' to appear as '50'
+
 = 4.3.2 =
 * Color Picker field: Fixed JS bug preventing wpColorPicker from updating value correctly
 * Google Map field: Added new setting for initial zoom level
