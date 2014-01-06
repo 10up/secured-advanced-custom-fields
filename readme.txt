@@ -1,5 +1,5 @@
 === Advanced Custom Fields ===
-Contributors: Elliot Condon
+Contributors: elliotcondon
 Tags: custom, field, custom field, advanced, simple fields, magic fields, more fields, repeater, matrix, post, type, text, textarea, file, image, edit, admin
 Requires at least: 3.5.0
 Tested up to: 3.8.0
