@@ -100,9 +100,13 @@
 			
 			
 			// trigger
-			$el.find('.acf-tab-group .acf-tab-button:first').each(function(){
+			$el.find('.acf-tab-group').each(function(){
 				
-				_this.toggle( $(this) );
+				$(this).find('.acf-tab-button:first').each(function(){
+					
+					_this.toggle( $(this) );
+					
+				});
 				
 			});
 			
