@@ -47,8 +47,6 @@
 		
 		toggle : function( $a ){
 			
-			console.log( $a );
-			
 			// vars
 			var $wrap	= $a.closest('.acf-tab-wrap').parent(),
 				key		= $a.attr('data-key');
