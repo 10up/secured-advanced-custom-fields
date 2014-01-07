@@ -107,6 +107,12 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.3.4 =
+* Post Object field: Fixed get_pages bug cuasing 'pages' to not appear
+* Page Link field: Fixed get_pages bug cuasing 'pages' to not appear
+* Tab field: Fixed JS bug causing multiple tab groups on page to render incorrectly
+* Language: Updated Russian translation - Thanks to Alex Torscho
+
 = 4.3.3 =
 * Core: Updated styling to suit WP 3.8
 * Core: Added new logic to set 'autoload' to 'off' on all values saved to the wp_options table to help improve load speed
