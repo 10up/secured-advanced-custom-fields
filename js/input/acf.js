@@ -516,194 +516,232 @@ var acf = {
 					$('#acf-has-changed').val(1);
 				}
 				
-				_this.change();
+				_this.change( $(this) );
 				
 			});
 			
 			
 			$(document).on('acf/setup_fields', function(e, el){
 				
-				_this.change();
+				_this.refresh();
 				
 			});
 			
 			
-			_this.change();
+			_this.refresh();
 			
 		},
-		change : function(){
-			
+		change : function( $el ){
 			
 			// reference
 			var _this = this;
 			
-			//console.clear();
-			//console.log( this.items );
-			// loop through items
+			
+			// vars
+			var $field = $el.closest('.field'),
+				key = $field.attr('data-field_key');
+			
+			
+			// loop through items and find rules where this field key is a trigger
 			$.each(this.items, function( k, item ){
 				
-				// vars
-				var $targets	=	$('.field_key-' + item.field);
-
-				
-				// may be multiple targets (sub fields)
-				$targets.each(function(){
+				$.each(item.rules, function( k2, rule ){
 					
-					//console.log('target %o', $(this));
-					
-					// vars
-					var show = true;
-					
-					
-					// if 'any' was selected, start of as false and any match will result in show = true
-					if( item.allorany == 'any' )
+					// compare rule against the changed $field
+					if( rule.field == key )
 					{
-						show = false;
+						_this.refresh_field( item );
 					}
-					
-					
-					// vars
-					var $target		=	$(this),
-						hide_all	=	true;
-					
-					
-					// loop through rules
-					$.each(item.rules, function( k2, rule ){
-						
-						// vars
-						var $toggle = $('.field_key-' + rule.field);
-						
-						
-						// are any of $toggle a sub field?
-						if( $toggle.hasClass('sub_field') )
-						{
-							// toggle may be a sibling sub field.
-							// if so ,show an empty td but keep the column
-							$toggle = $target.siblings('.field_key-' + rule.field);
-							hide_all = false;
-							
-							
-							// if no toggle was found, we need to look at parent sub fields.
-							// if so, hide the entire column
-							if( ! $toggle.exists() )
-							{
-								// loop through all the parents that could contain sub fields
-								$target.parents('tr').each(function(){
-									
-									// attempt to update $toggle to this parent sub field
-									$toggle = $(this).find('.field_key-' + rule.field)
-									
-									// if the parent sub field actuallly exists, great! Stop the loop
-									if( $toggle.exists() )
-									{
-										return false;
-									}
-									
-								});
-
-								hide_all = true;
-							}
-							
-						}
-						
-						
-						// if this sub field is within a flexible content layout, hide the entire column because 
-						// there will never be another row added to this table
-						var parent = $target.parent('tr').parent().parent('table').parent('.layout');
-						if( parent.exists() )
-						{
-							hide_all = true;
-							
-							if( $target.is('th') && $toggle.is('th') )
-							{
-								$toggle = $target.closest('.layout').find('td.field_key-' + rule.field);
-							}
-
-						}
-						
-						// if this sub field is within a repeater field which has a max row of 1, hide the entire column because 
-						// there will never be another row added to this table
-						var parent = $target.parent('tr').parent().parent('table').parent('.repeater');
-						if( parent.exists() && parent.attr('data-max_rows') == '1' )
-						{
-							hide_all = true;
-							
-							if( $target.is('th') && $toggle.is('th') )
-							{
-								$toggle = $target.closest('table').find('td.field_key-' + rule.field);
-							}
-
-						}
-						
-						
-						var calculate = _this.calculate( rule, $toggle, $target );
-						
-						if( item.allorany == 'all' )
-						{
-							if( calculate == false )
-							{
-								show = false;
-								
-								// end loop
-								return false;
-							}
-						}
-						else
-						{
-							if( calculate == true )
-							{
-								show = true;
-								
-								// end loop
-								return false;
-							}
-						}
-						
-					});
-					// $.each(item.rules, function( k2, rule ){
-					
-					
-					// clear classes
-					$target.removeClass('acf-conditional_logic-hide acf-conditional_logic-show acf-show-blank');
-					
-					
-					// hide / show field
-					if( show )
-					{
-						// remove "disabled"
-						$target.find('input, textarea, select').removeAttr('disabled');
-						
-						$target.addClass('acf-conditional_logic-show');
-						
-						// hook
-						$(document).trigger('acf/conditional_logic/show', [ $target, item ]);
-						
-					}
-					else
-					{
-						// add "disabled"
-						$target.find('input, textarea, select').attr('disabled', 'disabled');
-						
-						$target.addClass('acf-conditional_logic-hide');
-						
-						if( !hide_all )
-						{
-							$target.addClass('acf-show-blank');
-						}
-						
-						// hook
-						$(document).trigger('acf/conditional_logic/hide', [ $target, item ]);
-					}
-					
 					
 				});
 				
+			});
+			
+		},
+		
+		refresh_field : function( item ){
+			
+			// reference
+			var _this = this;
+			
+			
+			// vars
+			var $targets	=	$('.field_key-' + item.field);
+
+			
+			// may be multiple targets (sub fields)
+			$targets.each(function(){
 				
+				//console.log('target %o', $(this));
+				
+				// vars
+				var show = true;
+				
+				
+				// if 'any' was selected, start of as false and any match will result in show = true
+				if( item.allorany == 'any' )
+				{
+					show = false;
+				}
+				
+				
+				// vars
+				var $target		=	$(this),
+					hide_all	=	true;
+				
+				
+				// loop through rules
+				$.each(item.rules, function( k2, rule ){
+					
+					// vars
+					var $toggle = $('.field_key-' + rule.field);
+					
+					
+					// are any of $toggle a sub field?
+					if( $toggle.hasClass('sub_field') )
+					{
+						// toggle may be a sibling sub field.
+						// if so ,show an empty td but keep the column
+						$toggle = $target.siblings('.field_key-' + rule.field);
+						hide_all = false;
+						
+						
+						// if no toggle was found, we need to look at parent sub fields.
+						// if so, hide the entire column
+						if( ! $toggle.exists() )
+						{
+							// loop through all the parents that could contain sub fields
+							$target.parents('tr').each(function(){
+								
+								// attempt to update $toggle to this parent sub field
+								$toggle = $(this).find('.field_key-' + rule.field)
+								
+								// if the parent sub field actuallly exists, great! Stop the loop
+								if( $toggle.exists() )
+								{
+									return false;
+								}
+								
+							});
+
+							hide_all = true;
+						}
+						
+					}
+					
+					
+					// if this sub field is within a flexible content layout, hide the entire column because 
+					// there will never be another row added to this table
+					var parent = $target.parent('tr').parent().parent('table').parent('.layout');
+					if( parent.exists() )
+					{
+						hide_all = true;
+						
+						if( $target.is('th') && $toggle.is('th') )
+						{
+							$toggle = $target.closest('.layout').find('td.field_key-' + rule.field);
+						}
+
+					}
+					
+					// if this sub field is within a repeater field which has a max row of 1, hide the entire column because 
+					// there will never be another row added to this table
+					var parent = $target.parent('tr').parent().parent('table').parent('.repeater');
+					if( parent.exists() && parent.attr('data-max_rows') == '1' )
+					{
+						hide_all = true;
+						
+						if( $target.is('th') && $toggle.is('th') )
+						{
+							$toggle = $target.closest('table').find('td.field_key-' + rule.field);
+						}
+
+					}
+					
+					
+					var calculate = _this.calculate( rule, $toggle, $target );
+					
+					if( item.allorany == 'all' )
+					{
+						if( calculate == false )
+						{
+							show = false;
+							
+							// end loop
+							return false;
+						}
+					}
+					else
+					{
+						if( calculate == true )
+						{
+							show = true;
+							
+							// end loop
+							return false;
+						}
+					}
+					
+				});
+				// $.each(item.rules, function( k2, rule ){
+				
+				
+				// clear classes
+				$target.removeClass('acf-conditional_logic-hide acf-conditional_logic-show acf-show-blank');
+				
+				
+				// hide / show field
+				if( show )
+				{
+					// remove "disabled"
+					$target.find('input, textarea, select').removeAttr('disabled');
+					
+					$target.addClass('acf-conditional_logic-show');
+					
+					// hook
+					$(document).trigger('acf/conditional_logic/show', [ $target, item ]);
+					
+				}
+				else
+				{
+					// add "disabled"
+					$target.find('input, textarea, select').attr('disabled', 'disabled');
+					
+					$target.addClass('acf-conditional_logic-hide');
+					
+					if( !hide_all )
+					{
+						$target.addClass('acf-show-blank');
+					}
+					
+					// hook
+					$(document).trigger('acf/conditional_logic/hide', [ $target, item ]);
+				}
 				
 				
 			});
 			
 		},
+		
+		refresh : function(){
+			
+			// reference
+			var _this = this;
+			
+			
+			// loop through items and find rules where this field key is a trigger
+			$.each(this.items, function( k, item ){
+				
+				$.each(item.rules, function( k2, rule ){
+					
+					_this.refresh_field( item );
+					
+				});
+				
+			});
+			
+		},
+		
 		calculate : function( rule, $toggle, $target ){
 			
 			// vars

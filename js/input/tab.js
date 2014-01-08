@@ -41,12 +41,17 @@
 			}
 			
 			// add tab
-			$wrap.children('.acf-tab-wrap').find('.acf-tab-group').append('<li class="field_key-' + key + '" data-field_key="' + key + '"><a class="acf-tab-button" href="#" data-key="' + key + '">' + label + '</a></li>');
+			$wrap.children('.acf-tab-wrap').find('.acf-tab-group').append('<li><a class="acf-tab-button" href="#" data-key="' + key + '">' + label + '</a></li>');
 			
 		},
 		
 		toggle : function( $a ){
 			
+			// reference
+			var _this = this;
+				
+				
+			//console.log( 'toggle %o ', $a);
 			// vars
 			var $wrap	= $a.closest('.acf-tab-wrap').parent(),
 				key		= $a.attr('data-key');
@@ -58,39 +63,45 @@
 			
 			// hide / show
 			$wrap.children('.field_type-tab').each(function(){
+			
 				
 				// vars
-				var $tab = $(this),
-					show =  false;
+				var $tab = $(this);
 					
 				
-				if( $tab.hasClass('field_key-' + key) )
+				if( $tab.attr('data-field_key') == key  )
 				{
-					show = true;
+					_this.show_tab_fields( $(this) );
+				}
+				else
+				{
+					_this.hide_tab_fields( $(this) );
 				}
 				
 				
-				$tab.nextUntil('.field_type-tab').each(function(){
-					
-					if( show )
-					{
-						$(this).removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
-						$(document).trigger('acf/fields/tab/show', [ $(this) ]);
-					}
-					else
-					{
-						$(this).removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
-						$(document).trigger('acf/fields/tab/hide', [ $(this) ]);
-					}
-					
-				});
+			});
+			
+		},
+		
+		show_tab_fields : function( $field ) {
+			
+			//console.log('show tab fields %o', $field);
+			$field.nextUntil('.field_type-tab').each(function(){
+				
+				$(this).removeClass('acf-tab_group-hide').addClass('acf-tab_group-show');
+				$(document).trigger('acf/fields/tab/show', [ $(this) ]);
 				
 			});
-	
+		},
+		
+		hide_tab_fields : function( $field ) {
 			
-			// blur to remove dotted lines around button
-			$a.trigger('blur');
-			
+			$field.nextUntil('.field_type-tab').each(function(){
+				
+				$(this).removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
+				$(document).trigger('acf/fields/tab/hide', [ $(this) ]);
+				
+			});
 		},
 		
 		refresh : function( $el ){
@@ -113,7 +124,7 @@
 			
 			// trigger conditional logic
 			// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
-			acf.conditional_logic.change();
+			acf.conditional_logic.refresh();
 			
 		}
 		
@@ -169,30 +180,39 @@
 		
 		acf.fields.tab.toggle( $(this) );
 		
+		$(this).trigger('blur');
+		
 	});
 	
 	
 	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
 		// validate
-		if( ! $target.parent().hasClass('acf-tab-group') )
+		if( ! $target.attr('data-field_type') == 'tab' )
 		{
 			return;
 		}
 		
+		//console.log('conditional_logic/hide tab %o', $target);
 		
-		var key = $target.attr('data-field_key');
+		
+		// vars
+		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
 		
 		
-		if( $target.siblings(':visible').exists() )
+		// visibility
+		$tab.hide();
+		
+		
+		if( $tab.parent().siblings(':visible').exists() )
 		{
 			// if the $target to be hidden is a tab button, lets toggle a sibling tab button
-			$target.siblings(':visible').first().children('a').trigger('click');
+			$tab.parent().siblings(':visible').first().children('a').trigger('click');
 		}
 		else
 		{
 			// no onther tabs
-			$('.field_type-tab[data-field_key="' + key + '"]').nextUntil('.field_type-tab').removeClass('acf-tab_group-show').addClass('acf-tab_group-hide');
+			acf.fields.tab.hide_tab_fields( $target );
 		}
 		
 	});
@@ -201,25 +221,36 @@
 	$(document).on('acf/conditional_logic/show', function( e, $target, item ){
 		
 		// validate
-		if( ! $target.parent().hasClass('acf-tab-group') )
+		if( ! $target.attr('data-field_type') == 'tab' )
 		{
 			return;
 		}
 		
 		
+		//console.log('conditional_logic/show tab %o', $target);
+		
+		
+		// vars
+		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
+		
+		
+		// visibility
+		$tab.show();
+		
+		
 		// if this is the active tab
-		if( $target.hasClass('active') )
+		if( $tab.parent().hasClass('active') )
 		{
-			$target.children('a').trigger('click');
+			$tab.trigger('click');
 			return;
 		}
 		
 		
 		// if the sibling active tab is actually hidden by conditional logic, take ownership of tabs
-		if( $target.siblings('.active').hasClass('acf-conditional_logic-hide') )
+		if( $tab.parent().siblings('.active').hasClass('acf-conditional_logic-hide') )
 		{
 			// show this tab group
-			$target.children('a').trigger('click');
+			$tab.trigger('click');
 			return;
 		}
 		
