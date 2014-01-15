@@ -3396,7 +3396,7 @@ var acf = {
 	$(document).on('acf/conditional_logic/hide', function( e, $target, item ){
 		
 		// validate
-		if( ! $target.attr('data-field_type') == 'tab' )
+		if( $target.attr('data-field_type') != 'tab' )
 		{
 			return;
 		}
@@ -3429,7 +3429,7 @@ var acf = {
 	$(document).on('acf/conditional_logic/show', function( e, $target, item ){
 		
 		// validate
-		if( ! $target.attr('data-field_type') == 'tab' )
+		if( $target.attr('data-field_type') != 'tab' )
 		{
 			return;
 		}
