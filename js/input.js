@@ -529,16 +529,18 @@ var acf = {
 			
 			$(document).on('acf/setup_fields', function(e, el){
 				
-				_this.refresh();
+				//console.log('acf/setup_fields calling acf.conditional_logic.refresh()');
+				_this.refresh( $(el) );
 				
 			});
 			
-			
+			//console.log('acf.conditional_logic.init() calling acf.conditional_logic.refresh()');
 			_this.refresh();
 			
 		},
 		change : function( $el ){
 			
+			//console.log('change %o', $el);
 			// reference
 			var _this = this;
 			
@@ -567,6 +569,7 @@ var acf = {
 		
 		refresh_field : function( item ){
 			
+			//console.log( 'refresh_field: %o ', item );
 			// reference
 			var _this = this;
 			
@@ -729,7 +732,11 @@ var acf = {
 			
 		},
 		
-		refresh : function(){
+		refresh : function( $el ){
+			
+			// defaults
+			$el = $el || $('body');
+			
 			
 			// reference
 			var _this = this;
@@ -739,6 +746,13 @@ var acf = {
 			$.each(this.items, function( k, item ){
 				
 				$.each(item.rules, function( k2, rule ){
+					
+					// is this field within the $el
+					// this will increase performance by ignoring conditional logic outside of this newly appended element ($el)
+					if( ! $el.find('.field[data-field_key="' + item.field + '"]').exists() )
+					{
+						return;
+					}
 					
 					_this.refresh_field( item );
 					
@@ -3328,12 +3342,7 @@ var acf = {
 				});
 				
 			});
-			
-			
-			// trigger conditional logic
-			// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
-			acf.conditional_logic.refresh();
-			
+
 		}
 		
 	};
@@ -3364,6 +3373,14 @@ var acf = {
 		
 		// activate first tab
 		acf.fields.tab.refresh( $(el) );
+		
+		
+		// NOTE: this code is defined BEFORE the acf.conditional_logic action. This is becuase the 'acf/setup_fields' listener is defined INSIDE the conditional_logic.init() function which is run on doc.ready
+		
+		// trigger conditional logic
+		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+		//console.log('acf/setup_fields (after tab refresh) calling acf.conditional_logic.refresh()');
+		//acf.conditional_logic.refresh();
 		
 	});
 	
@@ -3408,10 +3425,18 @@ var acf = {
 		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
 		
 		
+		// if tab is already hidden, then ignore the following functiolnality
+		if( $tab.is(':hidden') )
+		{
+			return;
+		}
+		
+		
 		// visibility
-		$tab.hide();
+		$tab.parent().hide();
 		
 		
+		// if 
 		if( $tab.parent().siblings(':visible').exists() )
 		{
 			// if the $target to be hidden is a tab button, lets toggle a sibling tab button
@@ -3442,8 +3467,15 @@ var acf = {
 		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
 		
 		
+		// if tab is already visible, then ignore the following functiolnality
+		if( $tab.is(':visible') )
+		{
+			return;
+		}
+		
+		
 		// visibility
-		$tab.show();
+		$tab.parent().show();
 		
 		
 		// if this is the active tab
@@ -3455,7 +3487,7 @@ var acf = {
 		
 		
 		// if the sibling active tab is actually hidden by conditional logic, take ownership of tabs
-		if( $tab.parent().siblings('.active').hasClass('acf-conditional_logic-hide') )
+		if( $tab.parent().siblings('.active').is(':hidden') )
 		{
 			// show this tab group
 			$tab.trigger('click');

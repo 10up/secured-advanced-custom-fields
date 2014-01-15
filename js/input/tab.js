@@ -120,12 +120,7 @@
 				});
 				
 			});
-			
-			
-			// trigger conditional logic
-			// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
-			acf.conditional_logic.refresh();
-			
+
 		}
 		
 	};
@@ -156,6 +151,14 @@
 		
 		// activate first tab
 		acf.fields.tab.refresh( $(el) );
+		
+		
+		// NOTE: this code is defined BEFORE the acf.conditional_logic action. This is becuase the 'acf/setup_fields' listener is defined INSIDE the conditional_logic.init() function which is run on doc.ready
+		
+		// trigger conditional logic
+		// this code ( acf/setup_fields ) is run after the main acf.conditional_logic.init();
+		//console.log('acf/setup_fields (after tab refresh) calling acf.conditional_logic.refresh()');
+		//acf.conditional_logic.refresh();
 		
 	});
 	
@@ -200,10 +203,18 @@
 		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
 		
 		
+		// if tab is already hidden, then ignore the following functiolnality
+		if( $tab.is(':hidden') )
+		{
+			return;
+		}
+		
+		
 		// visibility
-		$tab.hide();
+		$tab.parent().hide();
 		
 		
+		// if 
 		if( $tab.parent().siblings(':visible').exists() )
 		{
 			// if the $target to be hidden is a tab button, lets toggle a sibling tab button
@@ -234,8 +245,15 @@
 		var $tab = $target.siblings('.acf-tab-wrap').find('a[data-key="' + $target.attr('data-field_key') + '"]');
 		
 		
+		// if tab is already visible, then ignore the following functiolnality
+		if( $tab.is(':visible') )
+		{
+			return;
+		}
+		
+		
 		// visibility
-		$tab.show();
+		$tab.parent().show();
 		
 		
 		// if this is the active tab
@@ -247,7 +265,7 @@
 		
 		
 		// if the sibling active tab is actually hidden by conditional logic, take ownership of tabs
-		if( $tab.parent().siblings('.active').hasClass('acf-conditional_logic-hide') )
+		if( $tab.parent().siblings('.active').is(':hidden') )
 		{
 			// show this tab group
 			$tab.trigger('click');
