@@ -107,6 +107,9 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.3.5 =
+* Language: Added Hebrew translation - Thanks to Erez Lieberman
+
 = 4.3.4 =
 * Post Object field: Fixed get_pages bug cuasing 'pages' to not appear
 * Page Link field: Fixed get_pages bug cuasing 'pages' to not appear
