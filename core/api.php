@@ -161,9 +161,16 @@ function get_field_objects( $post_id = false, $options = array() )
 *  @return	array	$return: an array containin the field values
 */
 
-function get_fields( $post_id = false )
+function get_fields( $post_id = false, $format_value = true )
 {
-	$fields = get_field_objects( $post_id );
+	// vars
+	$options = array(
+		'load_value' => true,
+		'format_value' => $format_value
+	);
+	
+	
+	$fields = get_field_objects( $post_id, $options );
 	
 	if( is_array($fields) )
 	{
