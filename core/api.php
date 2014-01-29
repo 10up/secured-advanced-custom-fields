@@ -1,6 +1,5 @@
 <?php
 
-
 /*
 *  get_field_reference()
 *
@@ -17,8 +16,8 @@
 *  @return	string	$return:  a string containing the field_key
 */
 
-function get_field_reference( $field_name, $post_id )
-{
+function get_field_reference( $field_name, $post_id ) {
+	
 	// cache
 	$found = false;
 	$cache = wp_cache_get( 'field_reference/post_id=' .  $post_id . '/name=' .  $field_name, 'acf', false, $found );
@@ -73,8 +72,8 @@ function get_field_reference( $field_name, $post_id )
 *  @return	array	$return: an array containin the field groups
 */
 
-function get_field_objects( $post_id = false, $options = array() )
-{
+function get_field_objects( $post_id = false, $options = array() ) {
+	
 	// global
 	global $wpdb;
 	
@@ -161,8 +160,8 @@ function get_field_objects( $post_id = false, $options = array() )
 *  @return	array	$return: an array containin the field values
 */
 
-function get_fields( $post_id = false, $format_value = true )
-{
+function get_fields( $post_id = false, $format_value = true ) {
+	
 	// vars
 	$options = array(
 		'load_value' => true,
@@ -202,8 +201,8 @@ function get_fields( $post_id = false, $format_value = true )
 *  @return	mixed		$value: the value found
 */
  
-function get_field( $field_key, $post_id = false, $format_value = true ) 
-{
+function get_field( $field_key, $post_id = false, $format_value = true ) {
+	
 	// vars
 	$return = false;
 	$options = array(
@@ -244,8 +243,12 @@ function get_field( $field_key, $post_id = false, $format_value = true )
 *  @return	array		$return: an array containin the field groups
 */
 
-function get_field_object( $field_key, $post_id = false, $options = array() )
-{
+function get_field_object( $field_key, $post_id = false, $options = array() ) {
+	
+	// make sure add-ons are included
+	acf()->include_3rd_party();
+		
+		
 	// filter post_id
 	$post_id = apply_filters('acf/get_post_id', $post_id );
 	$field = false;
@@ -323,8 +326,8 @@ function get_field_object( $field_key, $post_id = false, $options = array() )
 *  @return	string		$value
 */
 
-function the_field( $field_name, $post_id = false )
-{
+function the_field( $field_name, $post_id = false ) {
+	
 	$value = get_field($field_name, $post_id);
 	
 	if( is_array($value) )
@@ -350,8 +353,7 @@ function the_field( $field_name, $post_id = false )
 *  @return	$post_id (mixed) the post_id of which the value is saved against
 */
 
-function have_rows( $field_name, $post_id = false )
-{
+function have_rows( $field_name, $post_id = false ) {
 	
 	// vars
 	$depth = 0;
@@ -584,8 +586,8 @@ function reset_rows( $hard_reset = false ) {
 *  @return	bool
 */
 
-function has_sub_field( $field_name, $post_id = false )
-{
+function has_sub_field( $field_name, $post_id = false ) {
+	
 	// vars
 	$r = have_rows( $field_name, $post_id );
 	

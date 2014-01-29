@@ -45,6 +45,7 @@ class acf
 			'hook'				=> basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
 			'version'			=> '4.3.4',
 			'upgrade_version'	=> '3.4.1',
+			'include_3rd_party'	=> false
 		);
 		
 		
@@ -74,6 +75,7 @@ class acf
 		// includes
 		$this->include_before_theme();
 		add_action('after_setup_theme', array($this, 'include_after_theme'), 1);
+		add_action('after_setup_theme', array($this, 'include_3rd_party'), 1);
 		
 	}
 	
@@ -396,6 +398,38 @@ class acf
 	
 	
 	/*
+	*  include_3rd_party
+	*
+	*  This function will include 3rd party add-ons
+	*
+	*  @type	function
+	*  @date	29/01/2014
+	*  @since	5.0.0
+	*
+	*  @param	N/A
+	*  @return	N/A
+	*/
+	
+	function include_3rd_party() {
+		
+		// run only once
+		if( $this->settings['include_3rd_party'] )
+		{
+			return false;
+		}
+		
+		
+		// update setting
+		$this->settings['include_3rd_party'] = true;
+		
+		
+		// include 3rd party fields
+		do_action('acf/register_fields');
+		
+	}
+	
+	
+	/*
 	*  include_after_theme
 	*
 	*  This function will include core files after the theme's functions.php file has been excecuted.
@@ -408,11 +442,7 @@ class acf
 	*  @return	N/A
 	*/
 	
-	function include_after_theme()
-	{
-		// include 3rd party fields
-		do_action('acf/register_fields');
-		
+	function include_after_theme() {
 		
 		// bail early if user has defined LITE_MODE as true
 		if( defined('ACF_LITE') && ACF_LITE )
