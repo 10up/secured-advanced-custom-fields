@@ -29,6 +29,10 @@
 	display: none;
 }
 
+.acf_postbox.no_box.closed .inside {
+	display: block;
+}
+
 .acf_postbox .widefat th, 
 .acf_postbox .widefat td {
 	overflow: visible;
