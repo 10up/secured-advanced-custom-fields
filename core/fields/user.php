@@ -169,11 +169,10 @@ class acf_field_user extends acf_field
 			}
 			
 		}
-
 		
 		// filters
 		$args = apply_filters('acf/fields/user/query', $args, $field, $options['post_id']);
-		$args = apply_filters('acf/fields/user/query/name=' . $field['name'], $args, $field, $options['post_id'] );
+		$args = apply_filters('acf/fields/user/query/name=' . $field['_name'], $args, $field, $options['post_id'] );
 		$args = apply_filters('acf/fields/user/query/key=' . $field['key'], $args, $field, $options['post_id'] );
 		
 		
