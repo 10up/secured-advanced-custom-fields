@@ -265,7 +265,7 @@ function get_field_object( $field_key, $post_id = false, $options = array() ) {
 	
 	
 	// is $field_name a name? pre 3.4.0
-	if( strpos($field_key, "field_") === false )
+	if( substr($field_key, 0, 6) !== 'field_' )
 	{
 		// get field key
 		$field_key = get_field_reference( $field_key, $post_id );
@@ -273,7 +273,7 @@ function get_field_object( $field_key, $post_id = false, $options = array() ) {
 	
 	
 	// get field
-	if( strpos($field_key, "field_") !== false )
+	if( substr($field_key, 0, 6) === 'field_' )
 	{
 		$field = apply_filters('acf/load_field', false, $field_key );
 	}
