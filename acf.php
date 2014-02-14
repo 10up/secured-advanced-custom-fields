@@ -510,45 +510,27 @@ class acf
 		));
 		
 		
+		// min
+		$min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		
+		
 		// register acf scripts
 		$scripts = array();
 		$scripts[] = array(
 			'handle'	=> 'acf-field-group',
-			'src'		=> $this->settings['dir'] . 'js/field-group.min.js',
+			'src'		=> $this->settings['dir'] . "js/field-group{$min}.js",
 			'deps'		=> array('jquery')
 		);
 		$scripts[] = array(
 			'handle'	=> 'acf-input',
-			'src'		=> $this->settings['dir'] . 'js/input.min.js',
-			'deps'		=> array('jquery')
+			'src'		=> $this->settings['dir'] . "js/input{$min}.js",
+			'deps'		=> array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker')
 		);
-		$scripts[] = array(
-			'handle'	=> 'acf-datepicker',
-			'src'		=> $this->settings['dir'] . 'core/fields/date_picker/jquery.ui.datepicker.js',
-			'deps'		=> array('jquery', 'acf-input')
-		);
-		/*
-		
-		this script is now lazy loaded via JS
-		
-		$scripts[] = array(
-			'handle'	=> 'acf-googlemaps',
-			'src'		=> 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places',
-			'deps'		=> array('jquery'),
-			'in_footer'	=> true
-		);
-		*/
 		
 		
 		foreach( $scripts as $script )
 		{
-			// in footer?
-			if( !isset($script['in_footer']) )
-			{
-				$script['in_footer'] = false;
-			}
-			
-			wp_register_script( $script['handle'], $script['src'], $script['deps'], $this->settings['version'], $script['in_footer'] );
+			wp_register_script( $script['handle'], $script['src'], $script['deps'], $this->settings['version'] );
 		}
 		
 		
