@@ -293,7 +293,7 @@ class acf_field_taxonomy extends acf_field
 				continue;
 			}
 			
-			$choices[ $taxonomy->name ] = "{$taxonomy->labels->name} ({$taxonomy->name})";
+			$choices[ $taxonomy->name ] = $taxonomy->name;
 		}
 		
 				
@@ -303,6 +303,7 @@ class acf_field_taxonomy extends acf_field
 			'value'	=>	$field['taxonomy'],
 			'choices' => $choices,
 		));
+		
 		?>
 	</td>
 </tr>
