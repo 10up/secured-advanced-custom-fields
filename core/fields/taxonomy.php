@@ -426,8 +426,8 @@ class acf_taxonomy_field_walker extends Walker
 		}
 		elseif( $this->field['field_type'] == 'select' )
 		{
-			$indent = str_repeat("&mdash;", $depth);
-			$output .= '<option value="' . $term->term_id . '" ' . ($selected ? 'selected="selected"' : '') . '>' . $indent . ' ' . $term->name . '</option>';
+			$indent = str_repeat("&mdash; ", $depth);
+			$output .= '<option value="' . $term->term_id . '" ' . ($selected ? 'selected="selected"' : '') . '>' . $indent . $term->name . '</option>';
 		}
 		
 	}
