@@ -280,19 +280,22 @@ class acf_field_taxonomy extends acf_field
 	<td>
 		<?php
 		
+		// vars
 		$choices = array();
-		$taxonomies = get_taxonomies( array('public' => true), 'objects' );
+		$taxonomies = get_taxonomies( array(), 'objects' );
+		$ignore = array( 'post_format', 'nav_menu', 'link_category' );
 		
-		foreach($taxonomies as $taxonomy)
+		
+		foreach( $taxonomies as $taxonomy )
 		{
-			$choices[ $taxonomy->name ] = $taxonomy->labels->name;
+			if( in_array($taxonomy->name, $ignore) )
+			{
+				continue;
+			}
+			
+			$choices[ $taxonomy->name ] = "{$taxonomy->labels->name} ({$taxonomy->name})";
 		}
 		
-		// unset post_format (why is this a public taxonomy?)
-		if( isset($choices['post_format']) )
-		{
-			unset( $choices['post_format']) ;
-		}
 				
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
