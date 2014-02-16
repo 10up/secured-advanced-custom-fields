@@ -13,6 +13,7 @@ add_filter( 'acf_the_content', 'convert_smilies' );
 add_filter( 'acf_the_content', 'convert_chars' );
 add_filter( 'acf_the_content', 'wpautop' );
 add_filter( 'acf_the_content', 'shortcode_unautop' );
+add_filter( 'acf_the_content', 'prepend_attachment' );
 add_filter( 'acf_the_content', 'do_shortcode', 11);
 
 
