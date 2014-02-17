@@ -968,7 +968,7 @@ td.acf_input-wrap {
 	overflow: auto;
 }
 
-.acf-taxonomy-field .categorychecklist {
+.acf-taxonomy-field .acf-checkbox-list {
 	margin: 0;
 	padding: 10px;
 }

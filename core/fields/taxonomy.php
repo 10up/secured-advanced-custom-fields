@@ -212,7 +212,7 @@ class acf_field_taxonomy extends acf_field
 		$args = apply_filters('acf/fields/taxonomy/wp_list_categories', $args, $field );
 		
 		?>
-<div class="acf-taxonomy-field">
+<div class="acf-taxonomy-field" data-load_save="<?php echo $field['load_save_terms']; ?>">
 	<input type="hidden" name="<?php echo $single_name; ?>" value="" />
 	
 	<?php if( $field['field_type'] == 'select' ): ?>
@@ -224,7 +224,7 @@ class acf_field_taxonomy extends acf_field
 	
 	<?php else: ?>
 		<div class="categorychecklist-holder">
-		<ul class="categorychecklist<?php if( !$field['load_save_terms'] ){ echo ' no-ajax'; } ?>">
+		<ul class="acf-checkbox-list">
 			<?php if( $field['allow_null'] ): ?>
 				<li>
 					<label class="selectit">
