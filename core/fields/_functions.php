@@ -551,10 +551,9 @@ class acf_field_functions
 <script type="text/javascript">
 (function($) {
 	
-	var cl = (acf || {}).conditional_logic;
-	if( cl )
+	if( typeof acf !== 'undefined' )
 	{
-		cl.items.push(<?php echo json_encode($field['conditional_logic']); ?>);
+		acf.conditional_logic.items.push(<?php echo json_encode($field['conditional_logic']); ?>);
 	}
 	
 })(jQuery);	

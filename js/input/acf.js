@@ -323,7 +323,7 @@ var acf = {
 			
 			
 			// if wp exists
-			if( typeof(wp) == "object" )
+			if( typeof wp !== 'undefined' )
 			{
 				type = 'backbone';
 			}
@@ -336,9 +336,16 @@ var acf = {
 		init : function(){
 			
 			// validate
-			if( !(wp || {}).media )
+			if( this.type() !== 'backbone' )
 			{
 				return false;
+			}
+			
+			
+			// validate prototype
+			if( ! acf.helpers.isset(wp, 'media', 'view', 'AttachmentCompat', 'prototype') )
+			{
+				return false;	
 			}
 			
 			
