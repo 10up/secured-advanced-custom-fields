@@ -551,7 +551,11 @@ class acf_field_functions
 <script type="text/javascript">
 (function($) {
 	
-	acf.conditional_logic.items.push(<?php echo json_encode($field['conditional_logic']); ?>);
+	var cl = (acf || {}).conditional_logic;
+	if( cl )
+	{
+		cl.items.push(<?php echo json_encode($field['conditional_logic']); ?>);
+	}
 	
 })(jQuery);	
 </script>

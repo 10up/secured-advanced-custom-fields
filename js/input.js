@@ -63,7 +63,7 @@ var acf = {
 	/*
 	*  acf.helpers.isset
 	*
-	*  http://phpjs.org/functions/isset
+	*  description
 	*
 	*  @type	function
 	*  @date	20/07/13
@@ -76,19 +76,25 @@ var acf = {
 		
 		var a = arguments,
 	        l = a.length,
-	        i = 0,
+	        c = null,
 	        undef;
-	
+		
 	    if (l === 0) {
 	        throw new Error('Empty isset');
 	    }
-	
-	    while (i !== l) {
-	        if (a[i] === undef || a[i] === null) {
+		
+		c = a[0];
+		
+	    for (i = 1; i < l; i++) {
+	    	
+	        if (a[i] === undef || c[ a[i] ] === undef) {
 	            return false;
 	        }
-	        i++;
+	        
+	        c = c[ a[i] ];
+	        
 	    }
+	    
 	    return true;
 			
 	};
@@ -3962,7 +3968,7 @@ var acf = {
 			tinyMCE.settings.theme_advanced_buttons3 = '';
 			tinyMCE.settings.theme_advanced_buttons4 = '';
 			
-			if( acf.helpers.isset( this.toolbars[ this.o.toolbar ] ) )
+			if( acf.helpers.isset( this, 'toolbars', this.o.toolbar ) )
 			{
 				$.each( this.toolbars[ this.o.toolbar ], function( k, v ){
 					tinyMCE.settings[ k ] = v;
