@@ -335,6 +335,13 @@ var acf = {
 		},
 		init : function(){
 			
+			// validate
+			if( !(wp || {}).media )
+			{
+				return false;
+			}
+			
+			
 			// vars
 			var _prototype = wp.media.view.AttachmentCompat.prototype;
 			
