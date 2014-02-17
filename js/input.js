@@ -1180,6 +1180,13 @@ var acf = {
 		}
 		
 		
+		// this may be triggered from editing an imgae in a popup. Popup does not support correct metaboxes so ignore this
+		if( $(this).closest('.media-frame').exists() )
+		{
+			return;
+		}
+		
+		
 		// set timeout to fix issue with chrome which does not register the change has yet happened
 		setTimeout(function(){
 			
