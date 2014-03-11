@@ -3,7 +3,7 @@
 Plugin Name: Secured Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerfull API, it’s a must have for any web developer working with WordPress. Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker, repeater, flexible content, gallery and more!
-Version: 4.3.0
+Version: 4.3.4
 Author: Elliot Condon, secured by 10up
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -43,7 +43,7 @@ class acf
       'path'        => apply_filters('acf/helpers/get_path', __FILE__),
       'dir'       => apply_filters('acf/helpers/get_dir', __FILE__),
       'hook'        => basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ),
-      'version'     => '4.3.0',
+      'version'     => '4.3.4',
       'upgrade_version' => '3.4.1',
     );
 
@@ -72,7 +72,7 @@ class acf
 
 
     // includes
-    add_action('plugins_loaded', array($this, 'include_before_theme'), 1);
+    $this->include_before_theme();
     add_action('after_setup_theme', array($this, 'include_after_theme'), 1);
 
   }
@@ -178,6 +178,24 @@ class acf
     }
 
 
+		// object
+		if( is_object($post_id) )
+		{
+			if( isset($post_id->roles, $post_id->ID) )
+			{
+				$post_id = 'user_' . $post_id->ID;
+			}
+			elseif( isset($post_id->taxonomy, $post_id->term_id) )
+			{
+				$post_id = $post_id->taxonomy . '_' . $post_id->term_id;
+			}
+			elseif( isset($post_id->ID) )
+			{
+				$post_id = $post_id->ID;
+			}
+		}
+		
+		
     /*
     *  Override for preview
     *
@@ -256,6 +274,7 @@ class acf
     $restricted = array(
       'label',
       'name',
+			'_name',
       'value',
       'instructions'
     );
@@ -289,10 +308,10 @@ class acf
       // numbers
       if( is_numeric($value) )
       {
-        // float / int
-        if( strpos($value,'.') !== false )
+				// check for non numeric characters
+				if( preg_match('/[^0-9]/', $value) )
         {
-          // leave decimal places alone
+					// leave value if it contains such characters: . + - e
           //$value = floatval( $value );
         }
         else
@@ -465,12 +484,12 @@ class acf
     $scripts = array();
     $scripts[] = array(
       'handle'  => 'acf-field-group',
-      'src'   => $this->settings['dir'] . 'js/field-group.js',
+			'src'		=> $this->settings['dir'] . 'js/field-group.min.js',
       'deps'    => array('jquery')
     );
     $scripts[] = array(
       'handle'  => 'acf-input',
-      'src'   => $this->settings['dir'] . 'js/input.js',
+			'src'		=> $this->settings['dir'] . 'js/input.min.js',
       'deps'    => array('jquery')
     );
     $scripts[] = array(
@@ -478,12 +497,17 @@ class acf
       'src'   => $this->settings['dir'] . 'core/fields/date_picker/jquery.ui.datepicker.js',
       'deps'    => array('jquery', 'acf-input')
     );
+		/*
+		
+		this script is now lazy loaded via JS
+		
     $scripts[] = array(
       'handle'  => 'acf-googlemaps',
       'src'   => 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places',
       'deps'    => array('jquery'),
       'in_footer' => true
     );
+		*/
 
 
     foreach( $scripts as $script )
@@ -540,7 +564,7 @@ class acf
 
   function admin_menu()
   {
-    add_utility_page(__("Custom Fields",'acf'), __("Custom Fields",'acf'), 'manage_options', 'edit.php?post_type=acf');
+		add_menu_page(__("Custom Fields",'acf'), __("Custom Fields",'acf'), 'manage_options', 'edit.php?post_type=acf', false, false, '80.025');
   }
 
 
