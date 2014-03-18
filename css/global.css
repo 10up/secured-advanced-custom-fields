@@ -354,7 +354,7 @@ table.acf_input input[type="number"],
 table.acf_input textarea,
 table.acf_input select{
 	width: 99.95%;
-	padding: 5px;
+	padding: 3px 5px;
 	outline: none;
 }
 
