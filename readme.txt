@@ -114,20 +114,21 @@ http://support.advancedcustomfields.com/
 * Core: Removed changelog anouncement in plugins update list
 * Core: Fixed anoying `wp is not defined` JS error
 * Core: Added logic to load full or minified scripts using the `SCRIPT_DEBUG` constant
-* Field Group: Added new filter for meta box priority `acf/input/meta_box_priority`
 * Core: Improved loading structure to better allow ACF functions within the functions.php file
 * Core: Fixed revisions bug causing sub field data to not restore
+* Core: Made use of WP datepicker UI
 * Field Group: Changed post location rule to show all post types
 * Field Group: Changed page location rule to show only page post type
+* Field Group: Added new filter for meta box priority `acf/input/meta_box_priority`
 * Language: Added missing translation support in multiple fields
 * Language: Added Hebrew translation - Thanks to Erez Lieberman
-* Language: Updating Czech translations - Thanks to Erez Lieberman
+* Language: Updating Czech translations - Thanks to webeescz
 
 = 4.3.4 =
 * Post Object field: Fixed get_pages bug cuasing 'pages' to not appear
 * Page Link field: Fixed get_pages bug cuasing 'pages' to not appear
 * Tab field: Fixed JS bug causing multiple tab groups on page to render incorrectly
-* Language: Updated Russian translation - Thanks to webeescz
+* Language: Updated Russian translation - Thanks to Alex Torscho
 
 = 4.3.3 =
 * Core: Updated styling to suit WP 3.8
