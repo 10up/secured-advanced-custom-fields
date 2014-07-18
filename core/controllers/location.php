@@ -645,10 +645,10 @@ class acf_location
 		    	
 		// NOTE
 		// comment out below code as it was interfering with custom slugs
-		    	
+		
 		// older location rules may be "options-pagename"
 		/*
-		if( substr($rule['value'], 0, 8) == 'options-' )
+if( substr($rule['value'], 0, 8) == 'options-' )
 		{
 			$rule['value'] = 'acf-' . $rule['value'];
 		}
@@ -657,7 +657,7 @@ class acf_location
 		
 		// older location ruels may be "Pagename"
 		/*
-		if( substr($rule['value'], 0, 11) != 'acf-options' )
+if( substr($rule['value'], 0, 11) != 'acf-options' )
 		{
 			$rule['value'] = 'acf-options-' . sanitize_title( $rule['value'] );
 			
@@ -668,7 +668,7 @@ class acf_location
 			}
 		}
 */
-		
+	
 		
 		if($rule['operator'] == "==")
         {

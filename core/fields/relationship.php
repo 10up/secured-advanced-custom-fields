@@ -172,8 +172,8 @@ class acf_field_relationship extends acf_field
 			
 			if( !empty($sitepress) )
 			{
-			$sitepress->switch_lang( $options['lang'] );
-		}
+				$sitepress->switch_lang( $options['lang'] );
+			}
 		}
 		
 		
@@ -291,7 +291,8 @@ class acf_field_relationship extends acf_field
 				
 				if( in_array('post_type', $field['result_elements']) )
 				{
-					$title .= get_post_type();
+					$post_type_object = get_post_type_object( get_post_type() );
+					$title .= $post_type_object->labels->singular_name;
 				}
 				
 				// WPML
@@ -491,8 +492,10 @@ class acf_field_relationship extends acf_field
 					
 					if( in_array('post_type', $field['result_elements']) )
 					{
-						$title .= $p->post_type;
+						$post_type_object = get_post_type_object( get_post_type() );
+						$title .= $post_type_object->labels->singular_name;
 					}
+					
 					
 					// WPML
 					if( defined('ICL_LANGUAGE_CODE') )
@@ -717,20 +720,20 @@ class acf_field_relationship extends acf_field
 		// empty?
 		if( !empty($value) )
 		{
-		// Pre 3.3.3, the value is a string coma seperated
-		if( is_string($value) )
-		{
-			$value = explode(',', $value);
-		}
-		
-		
-		// convert to integers
+			// Pre 3.3.3, the value is a string coma seperated
+			if( is_string($value) )
+			{
+				$value = explode(',', $value);
+			}
+			
+			
+			// convert to integers
 			if( is_array($value) )
 			{
-		$value = array_map('intval', $value);
-		
-		// convert into post objects
-		$value = $this->get_posts( $value );
+				$value = array_map('intval', $value);
+				
+				// convert into post objects
+				$value = $this->get_posts( $value );
 			}
 			
 		}
@@ -897,19 +900,19 @@ class acf_field_relationship extends acf_field
 			// array
 			foreach( $value as $k => $v ){
 			
-			// object?
-			if( is_object($v) && isset($v->ID) )
-			{
-				$value[ $k ] = $v->ID;
-			}
+				// object?
+				if( is_object($v) && isset($v->ID) )
+				{
+					$value[ $k ] = $v->ID;
+				}
 			}
 			
 		}
 		
-			
+		
 		// save value as strings, so we can clearly search for them in SQL LIKE statements
 		$value = array_map('strval', $value);
-				
+						
 		
 		return $value;
 	}

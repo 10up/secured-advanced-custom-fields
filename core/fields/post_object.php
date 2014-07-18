@@ -511,16 +511,16 @@ class acf_field_post_object extends acf_field
 			// array
 			foreach( $value as $k => $v ){
 			
-			// object?
-			if( is_object($v) && isset($v->ID) )
-			{
-				$value[ $k ] = $v->ID;
-			}
+				// object?
+				if( is_object($v) && isset($v->ID) )
+				{
+					$value[ $k ] = $v->ID;
+				}
 			}
 			
 			// save value as strings, so we can clearly search for them in SQL LIKE statements
 			$value = array_map('strval', $value);
-		
+			
 		}
 		
 		return $value;

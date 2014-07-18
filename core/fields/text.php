@@ -265,7 +265,7 @@ class acf_field_text extends acf_field
 		}
 		elseif( $field['formatting'] == 'html' )
 		{
-			$value = esc_html( nl2br($value) );
+			$value = esc_html( nl2br( $value ) );
 		}
 		
 		
