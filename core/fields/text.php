@@ -2,7 +2,7 @@
 
 class acf_field_text extends acf_field
 {
-	
+
 	/*
 	*  __construct
 	*
@@ -11,7 +11,7 @@ class acf_field_text extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function __construct()
 	{
 		// vars
@@ -25,14 +25,14 @@ class acf_field_text extends acf_field
 			'prepend'		=>	'',
 			'append'		=>	''
 		);
-		
-		
+
+
 		// do not delete!
     	parent::__construct();
 	}
-	
-	
-	
+
+
+
 	/*
 	*  create_field()
 	*
@@ -44,54 +44,54 @@ class acf_field_text extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function create_field( $field )
 	{
 		// vars
 		$o = array( 'id', 'class', 'name', 'value', 'placeholder' );
 		$e = '';
-		
-		
+
+
 		// maxlength
 		if( $field['maxlength'] !== "" )
 		{
 			$o[] = 'maxlength';
 		}
-		
-		
+
+
 		// prepend
 		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
 			$e .= '<div class="acf-input-prepend">' . esc_html( $field['prepend'] ) . '</div>';
 		}
-		
-		
+
+
 		// append
 		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
 			$e .= '<div class="acf-input-append">' . esc_html( $field['append'] ) . '</div>';
 		}
-		
-		
+
+
 		$e .= '<div class="acf-input-wrap">';
 		$e .= '<input type="text"';
-		
+
 		foreach( $o as $k )
 		{
-			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';	
+			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';
 		}
-		
+
 		$e .= ' />';
 		$e .= '</div>';
-		
-		
+
+
 		// return
 		echo $e;
 	}
-	
-	
+
+
 	/*
 	*  create_options()
 	*
@@ -104,20 +104,20 @@ class acf_field_text extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function create_options( $field )
 	{
 		// vars
 		$key = $field['name'];
-		
+
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][default_value]',
@@ -126,13 +126,13 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
 		<p><?php _e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][placeholder]',
@@ -141,13 +141,13 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Prepend",'acf'); ?></label>
 		<p><?php _e("Appears before the input",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][prepend]',
@@ -156,13 +156,13 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Append",'acf'); ?></label>
 		<p><?php _e("Appears after the input",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields[' .$key.'][append]',
@@ -171,13 +171,13 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Formatting",'acf'); ?></label>
 		<p><?php _e("Effects value on front end",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][formatting]',
@@ -190,13 +190,13 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Character Limit",'acf'); ?></label>
 		<p><?php _e("Leave blank for no limit",'acf') ?></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'number',
 			'name'	=>	'fields[' .$key.'][maxlength]',
@@ -206,10 +206,10 @@ class acf_field_text extends acf_field
 	</td>
 </tr>
 		<?php
-		
+
 	}
-	
-	
+
+
 	/*
 	*  format_value()
 	*
@@ -225,15 +225,15 @@ class acf_field_text extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-	
+
 	function format_value( $value, $post_id, $field )
 	{
 		$value = htmlspecialchars($value, ENT_QUOTES);
-		
+
 		return $value;
 	}
-	
-	
+
+
 	/*
 	*  format_value_for_api()
 	*
@@ -249,7 +249,7 @@ class acf_field_text extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-	
+
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		// validate type
@@ -257,8 +257,8 @@ class acf_field_text extends acf_field
 		{
 			return $value;
 		}
-		
-		
+
+
 		if( $field['formatting'] == 'none' )
 		{
 			$value = htmlspecialchars($value, ENT_QUOTES);
@@ -267,11 +267,11 @@ class acf_field_text extends acf_field
 		{
 			$value = esc_html( nl2br( $value ) );
 		}
-		
-		
+
+
 		return $value;
 	}
-	
+
 }
 
 new acf_field_text();

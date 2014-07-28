@@ -3,7 +3,7 @@
 /*
 *  Export
 *
-*  @description: 
+*  @description:
 *  @since: 3.6
 *  @created: 25/01/13
 */
@@ -70,7 +70,7 @@ function fix_line_breaks( $v )
 	{
 		$v = str_replace("\r\n", "\r", $v);
 	}
-	
+
 	return $v;
 }
 
@@ -225,10 +225,10 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 
 	global $wp_query, $wpdb, $post;
 	$wp_query->in_the_loop = true; // Fake being in the loop.
-	
+
 	// create SQL with %d placeholders
 	$where = 'WHERE ID IN (' . substr(str_repeat('%d,', count($my_options['acf_posts'])), 0, -1) . ')';
-	
+
 	// now prepare the SQL based on the %d + $_POST data
 	$posts = $wpdb->get_results( $wpdb->prepare("SELECT * FROM {$wpdb->posts} $where", $my_options['acf_posts']));
 
@@ -254,12 +254,12 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 		<wp:post_type><?php echo $post->post_type; ?></wp:post_type>
 		<wp:post_password><?php echo $post->post_password; ?></wp:post_password>
 <?php	$postmeta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->postmeta WHERE post_id = %d", $post->ID ) );
-		foreach( $postmeta as $meta ) : if ( $meta->meta_key != '_edit_lock' ) : 
-			
+		foreach( $postmeta as $meta ) : if ( $meta->meta_key != '_edit_lock' ) :
+
 			$meta->meta_value = maybe_unserialize( $meta->meta_value );
 				$meta->meta_value = fix_line_breaks( $meta->meta_value );
 			$meta->meta_value = maybe_serialize( $meta->meta_value );
-						
+
 		?>
 		<wp:postmeta>
 			<wp:meta_key><?php echo $meta->meta_key; ?></wp:meta_key>
@@ -269,7 +269,7 @@ echo '<?xml version="1.0" encoding="' . get_bloginfo('charset') . "\" ?>\n";
 	</item>
 <?php
 	}
-} 
+}
 ?>
 </channel>
 </rss>

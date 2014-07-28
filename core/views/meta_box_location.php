@@ -12,8 +12,8 @@
 
 // global
 global $post;
-		
-		
+
+
 // vars
 $groups = apply_filters('acf/field_group/get_location', array(), $post->ID);
 
@@ -22,10 +22,10 @@ $groups = apply_filters('acf/field_group/get_location', array(), $post->ID);
 if( empty($groups) )
 {
 	$groups = array(
-		
+
 		// group_0
 		array(
-			
+
 			// rule_0
 			array(
 				'param'		=>	'post_type',
@@ -35,7 +35,7 @@ if( empty($groups) )
 				'group_no'	=>	0
 			)
 		)
-		
+
 	);
 }
 
@@ -50,12 +50,12 @@ if( empty($groups) )
 		</td>
 		<td>
 			<div class="location-groups">
-				
+
 <?php if( is_array($groups) ): ?>
-	<?php foreach( $groups as $group_id => $group ): 
+	<?php foreach( $groups as $group_id => $group ):
 		$group_id = 'group_' . $group_id;
 		?>
-		<div class="location-group" data-id="<?php echo $group_id; ?>">
+		<div class="location-group" data-id="<?php echo esc_attr( $group_id ); ?>">
 			<?php if( $group_id == 'group_0' ): ?>
 				<h4><?php _e("Show this field group if",'acf'); ?></h4>
 			<?php else: ?>
@@ -64,12 +64,12 @@ if( empty($groups) )
 			<?php if( is_array($group) ): ?>
 			<table class="acf_input widefat">
 				<tbody>
-					<?php foreach( $group as $rule_id => $rule ): 
+					<?php foreach( $group as $rule_id => $rule ):
 						$rule_id = 'rule_' . $rule_id;
 					?>
-					<tr data-id="<?php echo $rule_id; ?>">
-					<td class="param"><?php 
-						
+					<tr data-id="<?php echo esc_attr( $rule_id ); ?>">
+					<td class="param"><?php
+
 						$choices = array(
 							__("Basic",'acf') => array(
 								'post_type'		=>	__("Post Type",'acf'),
@@ -94,12 +94,12 @@ if( empty($groups) )
 								'ef_user'		=>	__("User",'acf'),
 							)
 						);
-								
-						
+
+
 						// allow custom location rules
 						$choices = apply_filters( 'acf/location/rule_types', $choices );
-						
-						
+
+
 						// create field
 						$args = array(
 							'type'	=>	'select',
@@ -107,40 +107,40 @@ if( empty($groups) )
 							'value'	=>	$rule['param'],
 							'choices' => $choices,
 						);
-						
-						do_action('acf/create_field', $args);							
-						
+
+						do_action('acf/create_field', $args);
+
 					?></td>
-					<td class="operator"><?php 	
-						
+					<td class="operator"><?php
+
 						$choices = array(
 							'=='	=>	__("is equal to",'acf'),
 							'!='	=>	__("is not equal to",'acf'),
 						);
-						
-						
+
+
 						// allow custom location rules
 						$choices = apply_filters( 'acf/location/rule_operators', $choices );
-						
-						
+
+
 						// create field
 						do_action('acf/create_field', array(
 							'type'	=>	'select',
 							'name'	=>	'location[' . $group_id . '][' . $rule_id . '][operator]',
 							'value'	=>	$rule['operator'],
 							'choices' => $choices
-						)); 	
-						
+						));
+
 					?></td>
-					<td class="value"><?php 
-						
+					<td class="value"><?php
+
 						$this->ajax_render_location(array(
 							'group_id' => $group_id,
 							'rule_id' => $rule_id,
 							'value' => $rule['value'],
 							'param' => $rule['param'],
-						)); 
-						
+						));
+
 					?></td>
 					<td class="add">
 						<a href="#" class="location-add-rule button"><?php _e("and",'acf'); ?></a>
@@ -155,13 +155,13 @@ if( empty($groups) )
 			<?php endif; ?>
 		</div>
 	<?php endforeach; ?>
-	
+
 	<h4><?php _e("or",'acf'); ?></h4>
-	
+
 	<a class="button location-add-group" href="#"><?php _e("Add rule group",'acf'); ?></a>
-	
+
 <?php endif; ?>
-				
+
 			</div>
 		</td>
 	</tr>

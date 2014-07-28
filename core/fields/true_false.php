@@ -2,7 +2,7 @@
 
 class acf_field_true_false extends acf_field
 {
-	
+
 	/*
 	*  __construct
 	*
@@ -11,7 +11,7 @@ class acf_field_true_false extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function __construct()
 	{
 		// vars
@@ -22,14 +22,14 @@ class acf_field_true_false extends acf_field
 			'default_value'	=>	0,
 			'message'	=>	'',
 		);
-		
-		
+
+
 		// do not delete!
     	parent::__construct();
-  
+
 	}
-		
-	
+
+
 	/*
 	*  create_field()
 	*
@@ -41,7 +41,7 @@ class acf_field_true_false extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function create_field( $field )
 	{
 		// html
@@ -49,11 +49,11 @@ class acf_field_true_false extends acf_field
 			echo '<input type="hidden" name="'.$field['name'].'" value="0" />';
 			$selected = ($field['value'] == 1) ? 'checked="yes"' : '';
 			echo '<li><label><input id="' . $field['id'] . '-1"  type="checkbox" name="'.$field['name'].'" value="1" ' . $selected . ' />' . $field['message'] . '</label></li>';
-		
+
 		echo '</ul>';
 	}
-	
-	
+
+
 	/*
 	*  create_options()
 	*
@@ -66,21 +66,21 @@ class acf_field_true_false extends acf_field
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-	
+
 	function create_options( $field )
 	{
 		// vars
 		$key = $field['name'];
-		
-		
+
+
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Message",'acf'); ?></label>
 		<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
 			'name'	=>	'fields['.$key.'][message]',
@@ -89,27 +89,27 @@ class acf_field_true_false extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
-		
+
 		do_action('acf/create_field', array(
 			'type'	=>	'true_false',
 			'name'	=>	'fields['.$key.'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
-		
+
 		?>
 	</td>
 </tr>
 		<?php
-		
+
 	}
-	
-	
+
+
 	/*
 	*  format_value_for_api()
 	*
@@ -125,14 +125,14 @@ class acf_field_true_false extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-	
+
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		$value = ($value == 1) ? true : false;
-		
+
 		return $value;
 	}
-	
+
 }
 
 new acf_field_true_false();

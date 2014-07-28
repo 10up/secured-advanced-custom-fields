@@ -10,7 +10,7 @@ class acf_field_user extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-	
+
 	function __construct()
 	{
 		// vars
@@ -22,14 +22,14 @@ class acf_field_user extends acf_field
 			'field_type' 	=> 'select',
 			'allow_null' 	=> 0,
 		);
-		
-		
+
+
 		// do not delete!
     	parent::__construct();
-    	
+
 	}
 
-	
+
 	/*
 	*  format_value_for_api()
 	*
@@ -44,7 +44,7 @@ class acf_field_user extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-	
+
 	function format_value_for_api( $value, $post_id, $field )
 	{
 
@@ -53,22 +53,22 @@ class acf_field_user extends acf_field
 		{
 			return false;
 		}
-		
-		
+
+
 		// temp convert to array
 		$is_array = true;
-		
+
 		if( !is_array($value) )
 		{
 			$is_array = false;
 			$value = array( $value );
 		}
 
-		
+
 		foreach( $value as $k => $v )
 		{
 			$user_data = get_userdata( $v );
-			
+
 			//cope with deleted users by @adampope
 			if( !is_object($user_data) )
 			{
@@ -76,7 +76,7 @@ class acf_field_user extends acf_field
 				continue;
 			}
 
-			
+
 			$value[ $k ] = array();
 			$value[ $k ]['ID'] = $v;
 			$value[ $k ]['user_firstname'] = $user_data->user_firstname;
@@ -89,23 +89,23 @@ class acf_field_user extends acf_field
 			$value[ $k ]['user_registered'] = $user_data->user_registered;
 			$value[ $k ]['user_description'] = $user_data->user_description;
 			$value[ $k ]['user_avatar'] = get_avatar( $v );
-			
+
 		}
-		
-		
+
+
 		// de-convert from array
 		if( !$is_array && isset($value[0]) )
 		{
 			$value = $value[0];
 		}
-		
+
 
 		// return value
 		return $value;
-		
+
 	}
-	
-	
+
+
 	/*
 	*  input_admin_head()
 	*
@@ -121,13 +121,13 @@ class acf_field_user extends acf_field
 	function input_admin_head()
 	{
 		if( ! function_exists( 'get_editable_roles' ) )
-		{ 
+		{
 			// if using front-end forms then we need to add this core file
-			require_once( ABSPATH . '/wp-admin/includes/user.php' ); 
+			require_once( ABSPATH . '/wp-admin/includes/user.php' );
 		}
 	}
-	
-	
+
+
 	/*
 	*  create_field()
 	*
@@ -139,28 +139,28 @@ class acf_field_user extends acf_field
 	*
 	*  @param	$field - an array holding all the field's data
 	*/
-	
+
 	function create_field( $field )
 	{
 		if( ! function_exists( 'get_editable_roles' ) )
-		{ 
+		{
 			// if using front-end forms then we need to add this core file
-			require_once( ABSPATH . '/wp-admin/includes/user.php' ); 
+			require_once( ABSPATH . '/wp-admin/includes/user.php' );
 		}
-		
+
 		// options
    		$options = array(
 			'post_id' => get_the_ID(),
 		);
-		
-		
+
+
 		// vars
 		$args = array();
-		
-		
+
+
 		// editable roles
 		$editable_roles = get_editable_roles();
-		
+
 		if( !empty($field['role']) )
 		{
 			if( ! in_array('all', $field['role']) )
@@ -173,30 +173,30 @@ class acf_field_user extends acf_field
 					}
 				}
 			}
-			
+
 		}
-		
+
 		// filters
 		$args = apply_filters('acf/fields/user/query', $args, $field, $options['post_id']);
 		$args = apply_filters('acf/fields/user/query/name=' . $field['_name'], $args, $field, $options['post_id'] );
 		$args = apply_filters('acf/fields/user/query/key=' . $field['key'], $args, $field, $options['post_id'] );
-		
-		
+
+
 		// get users
 		$users = get_users( $args );
-		
-		
+
+
 		if( !empty($users) && !empty($editable_roles) )
 		{
 			$field['choices'] = array();
-			
+
 			foreach( $editable_roles as $role => $role_info )
 			{
 				// vars
 				$this_users = array();
 				$this_json = array();
-				
-				
+
+
 				// loop over users
 				$keys = array_keys($users);
 				foreach( $keys as $key )
@@ -207,46 +207,46 @@ class acf_field_user extends acf_field
 						unset( $users[ $key ] );
 					}
 				}
-				
-				
+
+
 				// bail early if no users for this role
 				if( empty($this_users) )
 				{
 					continue;
 				}
-				
-				
+
+
 				// label
 				$label = translate_user_role( $role_info['name'] );
-				
-				
+
+
 				// append to choices
 				$field['choices'][ $label ] = array();
-				
+
 				foreach( $this_users as $user )
 				{
 					$field['choices'][ $label ][ $user->ID ] = ucfirst( $user->display_name );
 				}
-				
+
 			}
 		}
-		
-		
+
+
 		// modify field
 		if( $field['field_type'] == 'multi_select' )
 		{
 			$field['multiple'] = 1;
 		}
-		
-		
+
+
 		$field['type'] = 'select';
-		
-		
-		do_action('acf/create_field', $field);			
-		
+
+
+		do_action('acf/create_field', $field);
+
 	}
-	
-	
+
+
 	/*
 	*  create_options()
 	*
@@ -259,25 +259,25 @@ class acf_field_user extends acf_field
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-	
+
 	function create_options( $field )
 	{
 		// vars
 		$key = $field['name'];
-		
+
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e( "Filter by role", 'acf' ); ?></label>
 	</td>
 	<td>
-		<?php 
-		
+		<?php
+
 		$choices = array('all' => __('All', 'acf'));
 		$editable_roles = get_editable_roles();
 
 		foreach( $editable_roles as $role => $details )
-		{			
+		{
 			// only translate the output not the value
 			$choices[$role] = translate_user_role( $details['name'] );
 		}
@@ -289,16 +289,16 @@ class acf_field_user extends acf_field
 			'choices' => $choices,
 			'multiple' => '1',
 		));
-		
+
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Field Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?php	
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][field_type]',
@@ -317,12 +317,12 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
-		<?php 
+		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][allow_null]',
@@ -337,10 +337,10 @@ class acf_field_user extends acf_field
 	</td>
 </tr>
 		<?php
-		
+
 	}
-	
-	
+
+
 	/*
 	*  update_value()
 	*
@@ -356,25 +356,25 @@ class acf_field_user extends acf_field
 	*
 	*  @return	$value - the modified value
 	*/
-	
+
 	function update_value( $value, $post_id, $field )
 	{
 		// array?
 		if( is_array($value) && isset($value['ID']) )
 		{
-			$value = $value['ID'];	
+			$value = $value['ID'];
 		}
-		
+
 		// object?
 		if( is_object($value) && isset($value->ID) )
 		{
 			$value = $value->ID;
 		}
-		
+
 		return $value;
 	}
-	
-		
+
+
 }
 
 new acf_field_user();
