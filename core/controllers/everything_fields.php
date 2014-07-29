@@ -251,7 +251,7 @@ if( !isset($_POST['acf_nonce']) || !wp_verify_nonce($_POST['acf_nonce'], 'input'
 		if( $pagenow == "admin.php" && isset( $_GET['page'], $_GET['id'] ) && $_GET['page'] == "shopp-categories" )
 		{
 			// filter
-			$_GET['id'] = filter_var($_GET['id'], FILTER_SANITIZE_STRING);
+			$_GET['id'] = sanitize_text_field($_GET['id']);
 			
 			
 			$this->data['page_type'] = "shopp_category";
@@ -394,17 +394,17 @@ if( !isset($_POST['acf_nonce']) || !wp_verify_nonce($_POST['acf_nonce'], 'input'
 		// add user js + css
 		do_action('acf/input/admin_head');
 		
-		
+	
 		?>
 <script type="text/javascript">
 (function($){
 
 acf.data = {
 	action 			:	'acf/everything_fields',
-	metabox_ids		:	'<?php echo implode( ',', $this->data['metabox_ids'] ); ?>',
-	page_type		:	'<?php echo $this->data['page_type']; ?>',
-	page_action		:	'<?php echo $this->data['page_action']; ?>',
-	option_name		:	'<?php echo $this->data['option_name']; ?>'
+	metabox_ids		:	'<?php echo esc_js(implode( ',', $this->data['metabox_ids'] )); ?>',
+	page_type		:	'<?php echo esc_js($this->data['page_type']); ?>',
+	page_action		:	'<?php echo esc_js($this->data['page_action']); ?>',
+	option_name		:	'<?php echo esc_js($this->data['option_name']); ?>'
 };
 
 $(document).ready(function(){
@@ -690,7 +690,7 @@ $(document).ready(function(){
 				{
 					if( $title )
 					{
-						echo '<h3>' .$acf['title'] . '</h3>';
+						echo '<h3>' .esc_html($acf['title']) . '</h3>';
 					}
 					
 					echo '<table class="form-table"><tbody>';
@@ -701,18 +701,18 @@ $(document).ready(function(){
 				if( $layout == 'tr' )
 				{
 					//nonce
-					echo '<tr style="display:none;"><td colspan="2"><input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" /></td></tr>';
+					echo '<tr style="display:none;"><td colspan="2"><input type="hidden" name="acf_nonce" value="' . esc_attr(wp_create_nonce( 'input' )) . '" /></td></tr>';
 				}
 				else
 				{
 					//nonce
-					echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+					echo '<input type="hidden" name="acf_nonce" value="' . esc_attr(wp_create_nonce( 'input' )) . '" />';
 				}
 				
 				if( $layout == 'metabox' )
 				{
-					echo '<div class="postbox acf_postbox" id="acf_'. $acf['id'] .'">';
-					echo '<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>' . $acf['title'] . '</span></h3>';
+					echo '<div class="postbox acf_postbox" id="acf_'. esc_attr($acf['id']) .'">';
+					echo '<div title="Click to toggle" class="handlediv"><br></div><h3 class="hndle"><span>' . esc_html($acf['title']) . '</span></h3>';
 					echo '<div class="inside">';
 				}
 				
@@ -748,11 +748,11 @@ $(document).ready(function(){
 					
 					if( $layout == 'metabox' )
 					{
-						echo '<div id="acf-' . $field['name'] . '" class="field field_type-' . $field['type'] . ' field_key-' . $field['key'] . $required_class . '" data-field_name="' . $field['name'] . '" data-field_key="' . $field['key'] . '" data-field_type="' . $field['type'] . '">';
+						echo '<div id="acf-' . esc_attr($field['name']) . '" class="field field_type-' . esc_attr($field['type']) . ' field_key-' . esc_attr($field['key']) . esc_attr($required_class) . '" data-field_name="' . esc_attr($field['name']) . '" data-field_key="' . esc_attr($field['key']) . '" data-field_type="' . esc_attr($field['type']) . '">';
 		
 							echo '<p class="label">';
-								echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';
-								echo $field['instructions'];
+								echo '<label for="fields[' . esc_attr($field['key']) . ']">' . esc_html($field['label']) . wp_kses_post($required_label) . '</label>';
+								echo wp_kses_post($field['instructions']);
 							echo '</p>';
 							
 							$field['name'] = 'fields[' . $field['key'] . ']';
@@ -762,24 +762,24 @@ $(document).ready(function(){
 					}
 					elseif( $layout == 'div' )
 					{
-						echo '<div id="acf-' . $field['name'] . '" class="form-field field field_type-' . $field['type'] . ' field_key-' . $field['key'] . $required_class . '" data-field_name="' . $field['name'] . '" data-field_key="' . $field['key'] . '" data-field_type="' . $field['type'] . '">';
+						echo '<div id="acf-' . esc_attr($field['name']) . '" class="form-field field field_type-' . esc_attr($field['type']) . ' field_key-' . esc_attr($field['key']) . esc_attr($required_class) . '" data-field_name="' . esc_attr($field['name']) . '" data-field_key="' . esc_attr($field['key']) . '" data-field_type="' . esc_attr($field['type']) . '">';
 						
-							echo '<label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label>';	
+							echo '<label for="fields[' . esc_attr($field['key']) . ']">' . esc_html($field['label']) . wp_kses_post($required_label) . '</label>';	
 							$field['name'] = 'fields[' . $field['key'] . ']';
 							do_action('acf/create_field', $field );
-							if($field['instructions']) echo '<p class="description">' . $field['instructions'] . '</p>';
+							if($field['instructions']) echo '<p class="description">' . esc_html($field['instructions']) . '</p>';
 							
 						echo '</div>';
 					}
 					else
 					{
-						echo '<tr id="acf-' . $field['name'] . '" class="form-field field field_type-' . $field['type'] . ' field_key-'.$field['key'] . $required_class . '" data-field_name="' . $field['name'] . '" data-field_key="' . $field['key'] . '" data-field_type="' . $field['type'] . '">';
-							echo '<th valign="top" scope="row"><label for="fields[' . $field['key'] . ']">' . $field['label'] . $required_label . '</label></th>';	
+						echo '<tr id="acf-' . esc_attr($field['name']) . '" class="form-field field field_type-' . esc_attr($field['type']) . ' field_key-'.esc_attr($field['key']) . esc_attr($required_class) . '" data-field_name="' . esc_attr($field['name']) . '" data-field_key="' . esc_attr($field['key']) . '" data-field_type="' . esc_attr($field['type']) . '">';
+							echo '<th valign="top" scope="row"><label for="fields[' . esc_attr($field['key']) . ']">' . esc_html($field['label']) .wp_kses_post($required_label) . '</label></th>';	
 							echo '<td>';
 								$field['name'] = 'fields[' . $field['key'] . ']';
 								do_action('acf/create_field', $field );
 								
-								if($field['instructions']) echo '<p class="description">' . $field['instructions'] . '</p>';
+								if($field['instructions']) echo '<p class="description">' . esc_html($field['instructions']) . '</p>';
 							echo '</td>';
 						echo '</tr>';
 

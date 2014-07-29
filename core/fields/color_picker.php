@@ -84,7 +84,7 @@ class acf_field_color_picker extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 	</td>

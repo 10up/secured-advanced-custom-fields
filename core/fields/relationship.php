@@ -532,8 +532,8 @@ class acf_field_relationship extends acf_field
 
 
 				echo '<li>
-					<a href="' . get_permalink($p->ID) . '" class="" data-post_id="' . $p->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
-					<input type="hidden" name="' . $field['name'] . '[]" value="' . $p->ID . '" />
+					<a href="' . esc_url(get_permalink($p->ID)) . '" class="" data-post_id="' . esc_attr($p->ID) . '">' . esc_html($title) . '<span class="acf-button-remove"></span></a>
+					<input type="hidden" name="' . esc_attr($field['name']) . '[]" value="' . esc_attr($p->ID) . '" />
 				</li>';
 
 
@@ -579,7 +579,7 @@ class acf_field_relationship extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
-			'name'		=>	'fields['.$key.'][return_format]',
+			'name'		=>	'fields['.esc_attr($key).'][return_format]',
 			'value'		=>	$field['return_format'],
 			'layout'	=>	'horizontal',
 			'choices'	=> array(
@@ -666,7 +666,7 @@ class acf_field_relationship extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'checkbox',
-			'name'	=>	'fields['.$key.'][result_elements]',
+			'name'	=>	'fields['.esc_attr($key).'][result_elements]',
 			'value'	=>	$field['result_elements'],
 			'choices' => array(
 				'featured_image' => __("Featured Image",'acf'),

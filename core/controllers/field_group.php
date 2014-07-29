@@ -374,10 +374,10 @@ class acf_field_group
 (function($) {
 
 	// vars
-	acf.post_id = <?php echo $post->ID; ?>;
-	acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
-	acf.admin_url = "<?php echo admin_url(); ?>";
-	acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
+	acf.post_id = <?php echo (int) $post->ID; ?>;
+	acf.nonce = "<?php echo esc_js(wp_create_nonce( 'acf_nonce' )); ?>";
+	acf.admin_url = "<?php echo esc_url(admin_url()); ?>";
+	acf.ajaxurl = "<?php echo esc_url(admin_url( 'admin-ajax.php' )); ?>";
 	
 	
 	// l10n

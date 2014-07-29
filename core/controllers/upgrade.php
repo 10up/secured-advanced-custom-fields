@@ -146,7 +146,7 @@ class acf_upgrade
 								else
 								{
 									// all done
-									add_message('Upgrade Complete! <a href="<?php echo admin_url(); ?>edit.php?post_type=acf">Continue to ACF &raquo;</a>');
+									add_message('Upgrade Complete! <a href="<?php echo esc_url(admin_url()); ?>edit.php?post_type=acf">Continue to ACF &raquo;</a>');
 								}
 							}
 							else
@@ -164,7 +164,7 @@ class acf_upgrade
 				});
 			}
 
-			<?php if($next){ echo 'run_upgrade("' . $next . '");'; } ?>
+			<?php if($next){ echo 'run_upgrade("' . esc_js($next) . '");'; } ?>
 
 		})(jQuery);
 		</script>
@@ -530,7 +530,7 @@ class acf_upgrade
 			case '3.1.8':
 
 				// vars
-				$message = __("Migrating options values from the $wp_postmeta table to the $wp_options table",'acf') . '...';
+				$message = esc_html__("Migrating options values from the $wp_postmeta table to the $wp_options table",'acf') . '...';
 
 				// update normal values
 				$rows = $wpdb->get_results( $wpdb->prepare("SELECT meta_key FROM $wp_postmeta WHERE post_id = %d", 999999999) , ARRAY_A);

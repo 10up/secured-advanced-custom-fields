@@ -102,7 +102,7 @@ class acf_field_radio extends acf_field
 			}
 
 
-			$e .= '<li><label><input id="' . esc_attr($field['id']) . '-other" type="radio" name="' . esc_attr($field['name']) . '" value="other" ' . $atts . ' />' . __("Other", 'acf') . '</label> <input type="text" ' . $atts2 . ' /></li>';
+			$e .= '<li><label><input id="' . esc_attr($field['id']) . '-other" type="radio" name="' . esc_attr($field['name']) . '" value="other" ' . $atts . ' />' . __("Other", 'acf') . '</label> <input type="text" ' . esc_attr($atts2) . ' /></li>';
 		}
 
 

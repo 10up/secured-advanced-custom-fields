@@ -92,7 +92,7 @@ class acf_field_select extends acf_field
 		if( $field['multiple'] )
 		{
 			// create a hidden field to allow for no selections
-			echo '<input type="hidden" name="' . $field['name'] . '" />';
+			echo '<input type="hidden" name="' . esc_attr($field['name']) . '" />';
 
 			$multiple = ' multiple="multiple" size="5" ';
 			$field['name'] .= '[]';
@@ -100,13 +100,13 @@ class acf_field_select extends acf_field
 
 
 		// html
-		echo '<select id="' . $field['id'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';
+		echo '<select id="' . esc_attr($field['id']) . '" class="' . esc_attr($field['class']) . '" name="' . esc_attr($field['name']) . '" ' . esc_attr($multiple) . ' >';
 
 
 		// null
 		if( $field['allow_null'] )
 		{
-			echo '<option value="null">- ' . __("Select",'acf') . ' -</option>';
+			echo '<option value="null">- ' . esc_html__("Select",'acf') . ' -</option>';
 		}
 
 		// loop through values and add them as options
@@ -117,7 +117,7 @@ class acf_field_select extends acf_field
 				if( $optgroup )
 				{
 					// this select is grouped with optgroup
-					if($key != '') echo '<optgroup label="'.$key.'">';
+					if($key != '') echo '<optgroup label="'.esc_attr($key).'">';
 
 					if( is_array($value) )
 					{
@@ -125,7 +125,7 @@ class acf_field_select extends acf_field
 						{
 							$selected = in_array($id, $field['value']) ? 'selected="selected"' : '';
 
-							echo '<option value="'.$id.'" '.$selected.'>'.$label.'</option>';
+							echo '<option value="'.esc_attr($id).'" '.esc_attr($selected).'>'.esc_html($label).'</option>';
 						}
 					}
 
@@ -134,7 +134,7 @@ class acf_field_select extends acf_field
 				else
 				{
 					$selected = in_array($key, $field['value']) ? 'selected="selected"' : '';
-					echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+					echo '<option value="'.esc_attr($key).'" '.esc_attr($selected).'>'.esc_html($value).'</option>';
 				}
 			}
 		}

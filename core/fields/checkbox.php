@@ -141,7 +141,7 @@ class acf_field_checkbox extends acf_field
 		}
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label for=""><?php _e("Choices",'acf'); ?></label>
 		<p><?php _e("Enter each choice on a new line.",'acf'); ?></p>
@@ -161,7 +161,7 @@ class acf_field_checkbox extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 		<p class="description"><?php _e("Enter each default value on a new line",'acf'); ?></p>
@@ -178,7 +178,7 @@ class acf_field_checkbox extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label for=""><?php _e("Layout",'acf'); ?></label>
 	</td>

@@ -212,7 +212,7 @@ class acf_field_google_map extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label><?php _e("Height",'acf'); ?></label>
 		<p class="description"><?php _e('Customise the map height','acf'); ?></p>

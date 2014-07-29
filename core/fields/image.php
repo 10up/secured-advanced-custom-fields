@@ -122,7 +122,7 @@ class acf_field_image extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
-			'name'		=>	'fields['.$key.'][save_format]',
+			'name'		=>	'fields['.esc_attr($key).'][save_format]',
 			'value'		=>	$field['save_format'],
 			'layout'	=>	'horizontal',
 			'choices'	=> array(
@@ -144,7 +144,7 @@ class acf_field_image extends acf_field
 
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
-			'name'		=>	'fields['.$key.'][preview_size]',
+			'name'		=>	'fields['.esc_attr($key).'][preview_size]',
 			'value'		=>	$field['preview_size'],
 			'layout'	=>	'horizontal',
 			'choices' 	=>	apply_filters('acf/get_image_sizes', array())
@@ -163,7 +163,7 @@ class acf_field_image extends acf_field
 
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
-			'name'		=>	'fields['.$key.'][library]',
+			'name'		=>	'fields['.esc_attr($key).'][library]',
 			'value'		=>	$field['library'],
 			'layout'	=>	'horizontal',
 			'choices' 	=>	array(

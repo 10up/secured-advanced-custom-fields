@@ -52,7 +52,7 @@ class acf_field_password extends acf_field
 		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
-			$e .= '<div class="acf-input-prepend">' . esc_html( $field['prepend'] ) . '</div>';
+			$e .= '<div class="acf-input-prepend">' . wp_kses_post( $field['prepend'] ) . '</div>';
 		}
 
 
@@ -60,7 +60,7 @@ class acf_field_password extends acf_field
 		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
-			$e .= '<div class="acf-input-append">' . esc_html( $field['append'] ) . '</div>';
+			$e .= '<div class="acf-input-append">' . wp_kses_post( $field['append'] ) . '</div>';
 		}
 
 
@@ -109,7 +109,7 @@ class acf_field_password extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
+			'name'	=>	'fields[' .esc_attr($key).'][placeholder]',
 			'value'	=>	$field['placeholder'],
 		));
 		?>
@@ -124,7 +124,7 @@ class acf_field_password extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][prepend]',
+			'name'	=>	'fields[' .esc_attr($key).'][prepend]',
 			'value'	=>	$field['prepend'],
 		));
 		?>
@@ -139,7 +139,7 @@ class acf_field_password extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][append]',
+			'name'	=>	'fields[' .esc_attr($key).'][append]',
 			'value'	=>	$field['append'],
 		));
 		?>

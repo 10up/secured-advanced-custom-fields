@@ -281,7 +281,7 @@ class acf_field_wysiwyg extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
-			'name'	=>	'fields['.$key.'][default_value]',
+			'name'	=>	'fields['.esc_attr($key).'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
 		?>

@@ -55,7 +55,7 @@ $conditional_logic_rule = array(
 	'value' => ''
 );
 
-$error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does not exist', 'acf');
+$error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('Field type does not exist', 'acf');
 
 ?>
 

@@ -107,7 +107,7 @@ class acf_field_textarea extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
-			'name'	=>	'fields['.$key.'][default_value]',
+			'name'	=>	'fields['.esc_attr($key).'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
 		?>
@@ -122,7 +122,7 @@ class acf_field_textarea extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
+			'name'	=>	'fields[' .esc_attr($key).'][placeholder]',
 			'value'	=>	$field['placeholder'],
 		));
 		?>
@@ -137,7 +137,7 @@ class acf_field_textarea extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'number',
-			'name'	=>	'fields[' .$key.'][maxlength]',
+			'name'	=>	'fields[' .esc_attr($key).'][maxlength]',
 			'value'	=>	$field['maxlength'],
 		));
 		?>
@@ -152,7 +152,7 @@ class acf_field_textarea extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'			=> 'number',
-			'name'			=> 'fields[' .$key.'][rows]',
+			'name'			=> 'fields[' .esc_attr($key).'][rows]',
 			'value'			=> $field['rows'],
 			'placeholder'	=> 8
 		));
@@ -168,7 +168,7 @@ class acf_field_textarea extends acf_field
 		<?php
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
-			'name'	=>	'fields['.$key.'][formatting]',
+			'name'	=>	'fields['.esc_attr($key).'][formatting]',
 			'value'	=>	$field['formatting'],
 			'choices' => array(
 				'none'	=>	__("No formatting",'acf'),
