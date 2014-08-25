@@ -600,7 +600,7 @@ var acf = {
 	$(document).on('keyup', '#acf_fields .field_form tr.field_label input.label', function(){
 	
 		var val = $(this).val();
-		var name = $(this).closest('.field').find('td.field_label strong a').first().html(val);
+		var name = $(this).closest('.field').find('td.field_label strong a').first().html( document.createTextNode( val ) );
 		
 	});
 	
