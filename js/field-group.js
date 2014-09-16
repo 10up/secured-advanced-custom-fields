@@ -600,14 +600,14 @@ var acf = {
 	$(document).on('keyup', '#acf_fields .field_form tr.field_label input.label', function(){
 
 		var val = $(this).val();
-		var name = $(this).closest('.field').find('td.field_label strong a').first().html( document.createTextNode( val ) );
+		var name = $(this).closest('.field').find('td.field_label strong a').first().text( val );
 
 	});
 
 	$(document).on('keyup', '#acf_fields .field_form tr.field_name input.name', function(){
 
 		var val = $(this).val();
-		var name = $(this).closest('.field').find('td.field_name').first().html(document.createTextNode( val ));
+		var name = $(this).closest('.field').find('td.field_name').first().text( val );
 
 	});
 
@@ -616,7 +616,7 @@ var acf = {
 		var val = $(this).val();
 		var label = $(this).find('option[value="' + val + '"]').html();
 
-		$(this).closest('.field').find('td.field_type').first().html(document.createTextNode( label ));
+		$(this).closest('.field').find('td.field_type').first().text( label );
 
 	});
 
