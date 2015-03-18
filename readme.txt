@@ -106,6 +106,11 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 4.4.1 =
+* Taxonomy field: Added compatibility for upcoming 'term splitting' in WP 4.2
+* Taxonomy field: Major improvement to save/load setting allowing for different values on multiple sub fields
+* Core: Minor fixes and improvements
+
 = 4.4.0 =
 * Core: Fixed depreciated warnings
 

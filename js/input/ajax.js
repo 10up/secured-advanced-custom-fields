@@ -262,7 +262,7 @@
 			// validate acf
 			if( $(this).closest('.acf-taxonomy-field').exists() )
 			{
-				if( $(this).closest('.acf-taxonomy-field').attr('data-save') == '0' )
+				if( $(this).closest('.acf-taxonomy-field').attr('data-load_save') == '0' )
 				{
 					return;
 				}
