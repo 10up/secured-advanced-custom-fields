@@ -3568,6 +3568,87 @@ var acf = {
 			// end loop through all fields
 		},
 		
+		/*
+		*  show_spinner
+		*
+		*  This function will show a spinner element. Logic changed in WP 4.2
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		show_spinner: function( $spinner ){
+			
+			// bail early if no spinner
+			if( !$spinner.exists() ) {
+				
+				return;
+				
+			}
+			
+			
+			// vars
+			var wp_version = acf.o.wp_version;
+			
+			
+			// show
+			if( parseFloat(wp_version) >= 4.2 ) {
+				
+				$spinner.addClass('is-active');
+			
+			} else {
+				
+				$spinner.css('display', 'inline-block');
+			
+			}
+			
+		},
+		
+		
+		/*
+		*  hide_spinner
+		*
+		*  This function will hide a spinner element. Logic changed in WP 4.2
+		*
+		*  @type	function
+		*  @date	3/05/2015
+		*  @since	5.2.3
+		*
+		*  @param	$spinner (jQuery)
+		*  @return	n/a
+		*/
+		
+		hide_spinner: function( $spinner ){
+			
+			// bail early if no spinner
+			if( !$spinner.exists() ) {
+				
+				return;
+				
+			}
+			
+			
+			// vars
+			var wp_version = acf.o.wp_version;
+			
+			
+			// hide
+			if( parseFloat(wp_version) >= 4.2 ) {
+				
+				$spinner.removeClass('is-active');
+			
+			} else {
+				
+				$spinner.css('display', 'none');
+			
+			}
+			
+		},
+		
 		validate : function( div ){
 			
 			// var
@@ -3839,8 +3920,8 @@ var acf = {
 		acf.validation.run();
 			
 			
-		if( ! acf.validation.status )
-		{
+		if( ! acf.validation.status ) {
+			
 			// vars
 			var $form = $(this);
 			
@@ -3860,7 +3941,7 @@ var acf = {
 				
 				
 				// remove spinner
-				$('#submitdiv .spinner').hide();
+				acf.validation.hide_spinner( $('#submitdiv .spinner') );
 				
 			}
 			
