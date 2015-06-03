@@ -72,10 +72,11 @@ class acf_everything_fields
 		$screen = get_current_screen();
 		$post_id = $post->ID;
 		
-		
-		if( !empty($screen) )
-		{
+
+		if( $screen && $screen->base == 'post' ) {
+			
 			return $form_fields;
+			
 		}
 		
 		
