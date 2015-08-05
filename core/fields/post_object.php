@@ -10,7 +10,7 @@ class acf_field_post_object extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function __construct()
 	{
 		// vars
@@ -23,28 +23,28 @@ class acf_field_post_object extends acf_field
 			'multiple' => 0,
 			'allow_null' => 0,
 		);
-
-
+		
+		
 		// do not delete!
     	parent::__construct();
-
+  
 	}
-
-
+	
+	
 	/*
 	*  load_field()
-	*
+	*  
 	*  This filter is appied to the $field after it is loaded from the database
-	*
+	*  
 	*  @type filter
 	*  @since 3.6
 	*  @date 23/01/13
-	*
+	*  
 	*  @param $field - the field array holding all the field options
-	*
+	*  
 	*  @return $field - the field array holding all the field options
 	*/
-
+	
 	function load_field( $field )
 	{
 		// validate post_type
@@ -53,19 +53,19 @@ class acf_field_post_object extends acf_field
 			$field['post_type'] = array( 'all' );
 		}
 
-
+		
 		// validate taxonomy
 		if( !$field['taxonomy'] || !is_array($field['taxonomy']) || in_array('', $field['taxonomy']) )
 		{
 			$field['taxonomy'] = array( 'all' );
 		}
-
-
+		
+		
 		// return
 		return $field;
 	}
-
-
+	
+	
 	/*
 	*  create_field()
 	*
@@ -77,13 +77,13 @@ class acf_field_post_object extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function create_field( $field )
 	{
 		// global
 		global $post;
-
-
+		
+		
 		// vars
 		$args = array(
 			'numberposts' => -1,
@@ -93,43 +93,43 @@ class acf_field_post_object extends acf_field
 			'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
 			'suppress_filters' => false,
 		);
-
-
+		
+		
 		// load all post types by default
 		if( in_array('all', $field['post_type']) )
 		{
 			$field['post_type'] = apply_filters('acf/get_post_types', array());
 		}
-
-
+		
+		
 		// create tax queries
 		if( ! in_array('all', $field['taxonomy']) )
 		{
 			// vars
 			$taxonomies = array();
 			$args['tax_query'] = array();
-
+			
 			foreach( $field['taxonomy'] as $v )
 			{
-
+				
 				// find term (find taxonomy!)
 				// $term = array( 0 => $taxonomy, 1 => $term_id )
-				$term = explode(':', $v);
-
-
+				$term = explode(':', $v); 
+				
+				
 				// validate
 				if( !is_array($term) || !isset($term[1]) )
 				{
 					continue;
 				}
-
-
+				
+				
 				// add to tax array
 				$taxonomies[ $term[0] ][] = $term[1];
-
+				
 			}
-
-
+			
+			
 			// now create the tax queries
 			foreach( $taxonomies as $k => $v )
 			{
@@ -140,36 +140,36 @@ class acf_field_post_object extends acf_field
 				);
 			}
 		}
-
-
+		
+		
 		// Change Field into a select
 		$field['type'] = 'select';
 		$field['choices'] = array();
-
-
+		
+		
 		foreach( $field['post_type'] as $post_type )
 		{
 			// set post_type
 			$args['post_type'] = $post_type;
-
-
+			
+			
 			// set order
 			$get_pages = false;
 			if( is_post_type_hierarchical($post_type) && !isset($args['tax_query']) )
 			{
 				$args['sort_column'] = 'menu_order, post_title';
 				$args['sort_order'] = 'ASC';
-
+				
 				$get_pages = true;
 			}
-
-
+			
+			
 			// filters
 			$args = apply_filters('acf/fields/post_object/query', $args, $field, $post);
 			$args = apply_filters('acf/fields/post_object/query/name=' . $field['_name'], $args, $field, $post );
 			$args = apply_filters('acf/fields/post_object/query/key=' . $field['key'], $args, $field, $post );
-
-
+			
+			
 			if( $get_pages )
 			{
 				$posts = get_pages( $args );
@@ -178,44 +178,56 @@ class acf_field_post_object extends acf_field
 			{
 				$posts = get_posts( $args );
 			}
-
-
-			if($posts)
-			{
-				foreach( $posts as $p )
-				{
-					// find title. Could use get_the_title, but that uses get_post(), so I think this uses less Memory
-					$title = '';
-					$ancestors = get_ancestors( $p->ID, $p->post_type );
-					if($ancestors)
-					{
-						foreach($ancestors as $a)
-						{
-							$title .= '–';
-						}
+			
+			
+			if($posts) {
+				
+				foreach( $posts as $p ) {
+					
+					// title
+					$title = get_the_title( $p->ID );
+					
+					
+					// empty
+					if( $title === '' ) {
+						
+						$title = __('(no title)', 'acf');
+						
 					}
-					$title .= ' ' . apply_filters( 'the_title', $p->post_title, $p->ID );
-
-
+					
+					
+					// ancestors
+					if( $p->post_type != 'attachment' ) {
+						
+						$ancestors = get_ancestors( $p->ID, $p->post_type );
+						
+						$title = str_repeat('- ', count($ancestors)) . $title;
+						
+					}
+					
+					
 					// status
-					if( $p->post_status != "publish" )
-					{
-						$title .= " ($p->post_status)";
+					if( get_post_status( $p->ID ) != "publish" ) {
+						
+						$title .= ' (' . get_post_status( $p->ID ) . ')';
+						
 					}
-
+					
+					
 					// WPML
-					if( defined('ICL_LANGUAGE_CODE') )
-					{
+					if( defined('ICL_LANGUAGE_CODE') ) {
+						
 						$title .= ' (' . ICL_LANGUAGE_CODE . ')';
+						
 					}
-
-
+					
+					
 					// filters
 					$title = apply_filters('acf/fields/post_object/result', $title, $p, $field, $post);
 					$title = apply_filters('acf/fields/post_object/result/name=' . $field['_name'] , $title, $p, $field, $post);
 					$title = apply_filters('acf/fields/post_object/result/key=' . $field['key'], $title, $p, $field, $post);
-
-
+					
+					
 					// add to choices
 					if( count($field['post_type']) == 1 )
 					{
@@ -226,24 +238,24 @@ class acf_field_post_object extends acf_field
 						// group by post type
 						$post_type_object = get_post_type_object( $p->post_type );
 						$post_type_name = $post_type_object->labels->name;
-
+					
 						$field['choices'][ $post_type_name ][ $p->ID ] = $title;
 					}
-
-
+					
+					
 				}
 				// foreach( $posts as $post )
 			}
 			// if($posts)
 		}
 		// foreach( $field['post_type'] as $post_type )
-
-
+		
+		
 		// create field
 		do_action('acf/create_field', $field );
 	}
-
-
+	
+	
 	/*
 	*  create_options()
 	*
@@ -256,26 +268,26 @@ class acf_field_post_object extends acf_field
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-
+	
 	function create_options( $field )
 	{
 		// vars
 		$key = $field['name'];
-
+		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?php
-
+		<?php 
+		
 		$choices = array(
 			'all'	=>	__("All",'acf')
 		);
 		$choices = apply_filters('acf/get_post_types', $choices);
-
-
+		
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][post_type]',
@@ -283,16 +295,16 @@ class acf_field_post_object extends acf_field
 			'choices'	=>	$choices,
 			'multiple'	=>	1,
 		));
-
+		
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
 	</td>
 	<td>
-		<?php
+		<?php 
 		$choices = array(
 			'' => array(
 				'all' => __("All",'acf')
@@ -300,7 +312,7 @@ class acf_field_post_object extends acf_field
 		);
 		$simple_value = false;
 		$choices = apply_filters('acf/get_taxonomies_for_select', $choices, $simple_value);
-
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][taxonomy]',
@@ -308,17 +320,17 @@ class acf_field_post_object extends acf_field
 			'choices' => $choices,
 			'multiple'	=>	1,
 		));
-
+		
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
-
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][allow_null]',
@@ -329,17 +341,17 @@ class acf_field_post_object extends acf_field
 			),
 			'layout'	=>	'horizontal',
 		));
-
+		
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Select multiple values?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
-
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][multiple]',
@@ -350,15 +362,15 @@ class acf_field_post_object extends acf_field
 			),
 			'layout'	=>	'horizontal',
 		));
-
+		
 		?>
 	</td>
 </tr>
 		<?php
-
+		
 	}
-
-
+	
+	
 	/*
 	*  format_value()
 	*
@@ -374,7 +386,7 @@ class acf_field_post_object extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-
+	
 	function format_value( $value, $post_id, $field )
 	{
 		// empty?
@@ -390,13 +402,13 @@ class acf_field_post_object extends acf_field
 				$value = intval($value);
 			}
 		}
-
-
+			
+		
 		// return value
-		return $value;
+		return $value;	
 	}
-
-
+	
+	
 	/*
 	*  format_value_for_api()
 	*
@@ -412,7 +424,7 @@ class acf_field_post_object extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-
+	
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		// no value?
@@ -420,15 +432,15 @@ class acf_field_post_object extends acf_field
 		{
 			return false;
 		}
-
-
+		
+		
 		// null?
 		if( $value == 'null' )
 		{
 			return false;
 		}
-
-
+		
+		
 		// multiple / single
 		if( is_array($value) )
 		{
@@ -439,16 +451,16 @@ class acf_field_post_object extends acf_field
 				'post_type'	=>	apply_filters('acf/get_post_types', array()),
 				'post_status' => array('publish', 'private', 'draft', 'inherit', 'future'),
 			));
-
-
+	
+			
 			$ordered_posts = array();
 			foreach( $posts as $post )
 			{
 				// create array to hold value data
 				$ordered_posts[ $post->ID ] = $post;
 			}
-
-
+			
+			
 			// override value array with attachments
 			foreach( $value as $k => $v)
 			{
@@ -462,19 +474,19 @@ class acf_field_post_object extends acf_field
 					$value[ $k ] = $ordered_posts[ $v ];
 				}
 			}
-
+			
 		}
 		else
 		{
 			$value = get_post($value);
 		}
-
-
+		
+		
 		// return the value
 		return $value;
 	}
-
-
+	
+	
 	/*
 	*  update_value()
 	*
@@ -490,7 +502,7 @@ class acf_field_post_object extends acf_field
 	*
 	*  @return	$value - the modified value
 	*/
-
+	
 	function update_value( $value, $post_id, $field )
 	{
 		// validate
@@ -498,34 +510,34 @@ class acf_field_post_object extends acf_field
 		{
 			return $value;
 		}
-
-
+		
+		
 		if( is_object($value) && isset($value->ID) )
 		{
 			// object
 			$value = $value->ID;
-
+			
 		}
 		elseif( is_array($value) )
 		{
 			// array
 			foreach( $value as $k => $v ){
-
+			
 				// object?
 				if( is_object($v) && isset($v->ID) )
 				{
 					$value[ $k ] = $v->ID;
 				}
 			}
-
+			
 			// save value as strings, so we can clearly search for them in SQL LIKE statements
 			$value = array_map('strval', $value);
-
+			
 		}
-
+		
 		return $value;
 	}
-
+	
 }
 
 new acf_field_post_object();
