@@ -3,7 +3,7 @@
 Plugin Name: Secured Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Fully customise WordPress edit screens with powerful fields. Boasting a professional interface and a powerful API, it’s a must have for any web developer working with WordPress. Field types include: Wysiwyg, text, textarea, image, file, select, checkbox, page link, post object, date picker, color picker, repeater, flexible content, gallery and more!
-Version: 4.3.8
+Version: 4.4.2
 Author: Elliot Condon, secured by 10up
 Author URI: http://www.elliotcondon.com/
 License: GPL

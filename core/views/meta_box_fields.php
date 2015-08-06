@@ -249,7 +249,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 											?>
 											<tr data-i="<?php echo esc_attr( $rule_i ); ?>">
 												<td>
-													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo esc_attr( $field['key'] ); ?>][conditional_logic][rules][<?php echo esc_attr( $rule_i) ; ?>] [field]" value="<?php echo esc_attr( $rule['field'] ); ?>" />
+													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo esc_attr( $field['key'] ); ?>][conditional_logic][rules][<?php echo esc_attr( $rule_i ); ?>][field]" value="<?php echo esc_attr( $rule['field'] ); ?>" />
 												</td>
 												<td width="25%">
 													<?php
