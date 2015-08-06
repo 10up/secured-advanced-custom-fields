@@ -190,15 +190,15 @@ class acf_addons
 <div class="wrap" style="max-width:970px;">
 
 	<div class="icon32" id="icon-acf"><br></div>
-	<h2 style="margin: 4px 0 15px;"><?php _e("Advanced Custom Fields Add-Ons",'acf'); ?></h2>
+	<h2 style="margin: 4px 0 15px;"><?php esc_attr_e("Advanced Custom Fields Add-Ons",'acf'); ?></h2>
 
 	<div class="acf-alert">
-	<p style=""><?php _e("The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin.",'acf'); ?><br />
-	<?php _e("Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates).",'acf'); ?></p>
+	<p style=""><?php esc_attr_e("The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin.",'acf'); ?><br />
+	<?php esc_attr_e("Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates).",'acf'); ?></p>
 	</div>
 	<?php /*
 	<div class="acf-alert">
-		<p><strong><?php _e("Just updated to version 4?",'acf'); ?></strong> <?php _e("Activation codes have changed to plugins! Download your purchased add-ons",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><?php _e("here",'acf'); ?></a></p>
+		<p><strong><?php esc_attr_e("Just updated to version 4?",'acf'); ?></strong> <?php esc_attr_e("Activation codes have changed to plugins! Download your purchased add-ons",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><?php esc_attr_e("here",'acf'); ?></a></p>
 	</div>
 	*/ ?>
 
@@ -216,9 +216,9 @@ class acf_addons
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php esc_attr_e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
+					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php esc_attr_e("Purchase & Install",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -237,9 +237,9 @@ class acf_addons
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
-					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
+					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php esc_attr_e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Download",'acf'); ?></a>
+					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php esc_attr_e("Download",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>

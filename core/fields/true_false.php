@@ -76,8 +76,8 @@ class acf_field_true_false extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Message",'acf'); ?></label>
-		<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
+		<label><?php esc_attr_e("Message",'acf'); ?></label>
+		<p class="description"><?php esc_attr_e("eg. Show extra content",'acf'); ?></a></p>
 	</td>
 	<td>
 		<?php
@@ -91,7 +91,7 @@ class acf_field_true_false extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Default Value",'acf'); ?></label>
+		<label><?php esc_attr_e("Default Value",'acf'); ?></label>
 	</td>
 	<td>
 		<?php

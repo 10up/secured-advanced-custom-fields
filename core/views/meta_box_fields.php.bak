@@ -71,11 +71,11 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 	<table class="acf widefat">
 		<thead>
 			<tr>
-				<th class="field_order"><?php esc_attr_e('Field Order','acf'); ?></th>
-				<th class="field_label"><?php esc_attr_e('Field Label','acf'); ?></th>
-				<th class="field_name"><?php esc_attr_e('Field Name','acf'); ?></th>
-				<th class="field_type"><?php esc_attr_e('Field Type','acf'); ?></th>
-				<th class="field_key"><?php esc_attr_e('Field Key','acf'); ?></th>
+				<th class="field_order"><?php _e('Field Order','acf'); ?></th>
+				<th class="field_label"><?php _e('Field Label','acf'); ?></th>
+				<th class="field_name"><?php _e('Field Name','acf'); ?></th>
+				<th class="field_type"><?php _e('Field Type','acf'); ?></th>
+				<th class="field_key"><?php _e('Field Key','acf'); ?></th>
 			</tr>
 		</thead>
 	</table>
@@ -87,7 +87,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 
 	<!-- No Fields Message -->
 	<div class="no_fields_message" <?php if(count($fields) > 1){ echo 'style="display:none;"'; } ?>>
-		<?php wp_kses( balanceTags( _e("No fields. Click the <strong>+ Add Field</strong> button to create your first field.",'acf') ), array('strong'=>array()) ); ?>
+		<?php _e("No fields. Click the <strong>+ Add Field</strong> button to create your first field.",'acf'); ?>
 	</div>
 	<!-- / No Fields Message -->
 
@@ -102,12 +102,12 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 					<td class="field_order"><span class="circle"><?php echo (int)$field['order_no'] + 1; ?></span></td>
 					<td class="field_label">
 						<strong>
-							<a class="acf_edit_field row-title" title="<?php esc_attr_e("Edit this Field",'acf'); ?>" href="javascript:;"><?php echo esc_html( $field['label'] ); ?></a>
+							<a class="acf_edit_field row-title" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php echo esc_html( $field['label'] ); ?></a>
 						</strong>
 						<div class="row_options">
-							<span><a class="acf_edit_field" title="<?php esc_attr_e("Edit this Field",'acf'); ?>" href="javascript:;"><?php esc_attr_e("Edit",'acf'); ?></a> | </span>
-							<span><a class="acf_duplicate_field" title="<?php esc_attr_e("Duplicate this Field",'acf'); ?>" href="javascript:;"><?php esc_attr_e("Duplicate",'acf'); ?></a> | </span>
-							<span><a class="acf_delete_field" title="<?php esc_attr_e("Delete this Field",'acf'); ?>" href="javascript:;"><?php esc_attr_e("Delete",'acf'); ?></a></span>
+							<span><a class="acf_edit_field" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php _e("Edit",'acf'); ?></a> | </span>
+							<span><a class="acf_duplicate_field" title="<?php _e("Duplicate this Field",'acf'); ?>" href="javascript:;"><?php _e("Duplicate",'acf'); ?></a> | </span>
+							<span><a class="acf_delete_field" title="<?php _e("Delete this Field",'acf'); ?>" href="javascript:;"><?php _e("Delete",'acf'); ?></a></span>
 						</div>
 					</td>
 					<td class="field_name"><?php echo esc_html( $field['name'] ); ?></td>
@@ -123,8 +123,8 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 					<tbody>
 						<tr class="field_label">
 							<td class="label">
-								<label><?php esc_attr_e("Field Label",'acf'); ?><span class="required">*</span></label>
-								<p class="description"><?php esc_attr_e("This is the name which will appear on the EDIT page",'acf'); ?></p>
+								<label><?php _e("Field Label",'acf'); ?><span class="required">*</span></label>
+								<p class="description"><?php _e("This is the name which will appear on the EDIT page",'acf'); ?></p>
 							</td>
 							<td>
 								<?php
@@ -139,8 +139,8 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 						</tr>
 						<tr class="field_name">
 							<td class="label">
-								<label><?php esc_attr_e("Field Name",'acf'); ?><span class="required">*</span></label>
-								<p class="description"><?php esc_attr_e("Single word, no spaces. Underscores and dashes allowed",'acf'); ?></p>
+								<label><?php _e("Field Name",'acf'); ?><span class="required">*</span></label>
+								<p class="description"><?php _e("Single word, no spaces. Underscores and dashes allowed",'acf'); ?></p>
 							</td>
 							<td>
 								<?php
@@ -155,7 +155,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 						</tr>
 						<tr class="field_type">
 							<td class="label">
-								<label><?php esc_attr_e("Field Type",'acf'); ?><span class="required">*</span></label>
+								<label><?php _e("Field Type",'acf'); ?><span class="required">*</span></label>
 							</td>
 							<td>
 								<?php
@@ -169,8 +169,8 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 							</td>
 						</tr>
 						<tr class="field_instructions">
-							<td class="label"><label><?php esc_attr_e("Field Instructions",'acf'); ?></label>
-							<p class="description"><?php esc_attr_e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
+							<td class="label"><label><?php _e("Field Instructions",'acf'); ?></label>
+							<p class="description"><?php _e("Instructions for authors. Shown when submitting data",'acf'); ?></p></td>
 							<td>
 								<?php
 								do_action('acf/create_field', array(
@@ -183,7 +183,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 							</td>
 						</tr>
 						<tr class="required">
-							<td class="label"><label><?php esc_attr_e("Required?",'acf'); ?></label></td>
+							<td class="label"><label><?php _e("Required?",'acf'); ?></label></td>
 							<td>
 								<?php
 								do_action('acf/create_field', array(
@@ -206,7 +206,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 
 						?>
 						<tr class="conditional-logic" data-field_name="<?php echo esc_attr( $field['key'] ); ?>">
-							<td class="label"><label><?php esc_attr_e("Conditional Logic",'acf'); ?></label></td>
+							<td class="label"><label><?php _e("Conditional Logic",'acf'); ?></label></td>
 							<td>
 								<?php
 								do_action('acf/create_field', array(
@@ -276,7 +276,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 									</table>
 
 									<ul class="hl clearfix">
-										<li style="padding:4px 4px 0 0;"><?php esc_attr_e("Show this field when",'acf'); ?></li>
+										<li style="padding:4px 4px 0 0;"><?php _e("Show this field when",'acf'); ?></li>
 										<li><?php do_action('acf/create_field', array(
 												'type'	=>	'select',
 												'name'	=>	'fields['.$field['key'].'][conditional_logic][allorany]',
@@ -286,7 +286,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 													'any'	=>	__("any",'acf'),
 												),
 										)); ?></li>
-										<li style="padding:4px 0 0 4px;"><?php esc_attr_e("these rules are met",'acf'); ?></li>
+										<li style="padding:4px 0 0 4px;"><?php _e("these rules are met",'acf'); ?></li>
 									</ul>
 
 								</div>
@@ -300,7 +300,7 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 							<td>
 								<ul class="hl clearfix">
 									<li>
-										<a class="acf_edit_field acf-button grey" title="<?php esc_attr_e("Close Field",'acf'); ?>" href="javascript:;"><?php esc_attr_e("Close Field",'acf'); ?></a>
+										<a class="acf_edit_field acf-button grey" title="<?php _e("Close Field",'acf'); ?>" href="javascript:;"><?php _e("Close Field",'acf'); ?></a>
 									</li>
 								</ul>
 							</td>
@@ -313,6 +313,6 @@ $error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('F
 	<?php endforeach; ?>
 </div>
 <div class="table_footer">
-	<div class="order_message"><?php esc_attr_e('Drag and drop to reorder','acf'); ?></div>
-	<a href="javascript:;" id="add_field" class="acf-button"><?php esc_attr_e('+ Add Field','acf'); ?></a>
+	<div class="order_message"><?php _e('Drag and drop to reorder','acf'); ?></div>
+	<a href="javascript:;" id="add_field" class="acf-button"><?php _e('+ Add Field','acf'); ?></a>
 </div>

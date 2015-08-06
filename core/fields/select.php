@@ -174,10 +174,10 @@ class acf_field_select extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label for=""><?php _e("Choices",'acf'); ?></label>
-		<p><?php _e("Enter each choice on a new line.",'acf'); ?></p>
-		<p><?php _e("For more control, you may specify both a value and label like this:",'acf'); ?></p>
-		<p><?php _e("red : Red",'acf'); ?><br /><?php _e("blue : Blue",'acf'); ?></p>
+		<label for=""><?php esc_attr_e("Choices",'acf'); ?></label>
+		<p><?php esc_attr_e("Enter each choice on a new line.",'acf'); ?></p>
+		<p><?php esc_attr_e("For more control, you may specify both a value and label like this:",'acf'); ?></p>
+		<p><?php esc_attr_e("red : Red",'acf'); ?><br /><?php esc_attr_e("blue : Blue",'acf'); ?></p>
 	</td>
 	<td>
 		<?php
@@ -194,8 +194,8 @@ class acf_field_select extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Default Value",'acf'); ?></label>
-		<p class="description"><?php _e("Enter each default value on a new line",'acf'); ?></p>
+		<label><?php esc_attr_e("Default Value",'acf'); ?></label>
+		<p class="description"><?php esc_attr_e("Enter each default value on a new line",'acf'); ?></p>
 	</td>
 	<td>
 		<?php
@@ -211,7 +211,7 @@ class acf_field_select extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Allow Null?",'acf'); ?></label>
+		<label><?php esc_attr_e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -230,7 +230,7 @@ class acf_field_select extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Select multiple values?",'acf'); ?></label>
+		<label><?php esc_attr_e("Select multiple values?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php

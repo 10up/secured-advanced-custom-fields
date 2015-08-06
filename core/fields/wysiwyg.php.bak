@@ -217,7 +217,7 @@ class acf_field_wysiwyg extends acf_field
 		
 		
 		?>
-		<div id="wp-<?php echo esc_attr( $id ); ?>-wrap" class="acf_wysiwyg wp-editor-wrap" data-toolbar="<?php echo esc_attr( $field['toolbar'] ); ?>" data-upload="<?php echo esc_attr( $field['media_upload'] ); ?>">
+		<div id="wp-<?php echo $id; ?>-wrap" class="acf_wysiwyg wp-editor-wrap" data-toolbar="<?php echo $field['toolbar']; ?>" data-upload="<?php echo $field['media_upload']; ?>">
 			<?php if( user_can_richedit() && $field['media_upload'] == 'yes' ): ?>
 				<?php if( version_compare($wp_version, '3.3', '<') ): ?>
 					<div id="editor-toolbar">
@@ -226,23 +226,23 @@ class acf_field_wysiwyg extends acf_field
 						</div>
 					</div>
 				<?php else: ?>
-					<div id="wp-<?php echo esc_attr( $id ); ?>-editor-tools" class="wp-editor-tools">
-						<div id="wp-<?php echo esc_attr( $id ); ?>-media-buttons" class="hide-if-no-js wp-media-buttons">
+					<div id="wp-<?php echo $id; ?>-editor-tools" class="wp-editor-tools">
+						<div id="wp-<?php echo $id; ?>-media-buttons" class="hide-if-no-js wp-media-buttons">
 							<?php do_action( 'media_buttons' ); ?>
 						</div>
 					</div>
 				<?php endif; ?>
 			<?php endif; ?>
-			<div id="wp-<?php echo esc_attr( $id ); ?>-editor-container" class="wp-editor-container">
-				<textarea id="<?php echo esc_attr( $id ); ?>" class="wp-editor-area" name="<?php echo esc_attr( $field['name'] ); ?>" ><?php
-
+			<div id="wp-<?php echo $id; ?>-editor-container" class="wp-editor-container">
+				<textarea id="<?php echo $id; ?>" class="wp-editor-area" name="<?php echo $field['name']; ?>" ><?php 
+				
 				if( user_can_richedit() )
 				{
-					echo wp_kses_post( wp_richedit_pre( $field['value'] ) );
-				}
+					echo wp_richedit_pre( $field['value'] );
+				} 
 				else
 				{
-					echo wp_kses_post( wp_htmledit_pre( $field['value'] ) );
+					echo wp_htmledit_pre( $field['value'] );
 				}
 				
 				?></textarea>
@@ -272,24 +272,24 @@ class acf_field_wysiwyg extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Default Value",'acf'); ?></label>
-		<p><?php esc_attr_e("Appears when creating a new post",'acf') ?></p>
+		<label><?php _e("Default Value",'acf'); ?></label>
+		<p><?php _e("Appears when creating a new post",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
-			'name'	=>	'fields['.esc_attr($key).'][default_value]',
+			'name'	=>	'fields['.$key.'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Toolbar",'acf'); ?></label>
+		<label><?php _e("Toolbar",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -319,9 +319,9 @@ class acf_field_wysiwyg extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Show Media Upload Buttons?",'acf'); ?></label>
+		<label><?php _e("Show Media Upload Buttons?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 
@@ -366,9 +366,8 @@ class acf_field_wysiwyg extends acf_field
 		
 		// follow the_content function in /wp-includes/post-template.php
 		$value = str_replace(']]>', ']]&gt;', $value);
-
-		$value = wp_kses_post( $value );
-
+		
+	
 		return $value;
 	}
 	

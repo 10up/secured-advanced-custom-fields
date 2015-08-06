@@ -440,13 +440,13 @@ class acf_field_relationship extends acf_field
 		}
 				
 		?>
-<div class="acf_relationship<?php echo esc_attr( $class ); ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo esc_attr( $k ); ?>="<?php echo esc_attr( $v ); ?>"<?php endforeach; ?>>
-
-
+<div class="acf_relationship<?php echo $class; ?>"<?php foreach( $attributes as $k => $v ): ?> data-<?php echo $k; ?>="<?php echo $v; ?>"<?php endforeach; ?>>
+	
+	
 	<!-- Hidden Blank default value -->
-	<input type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>" value="" />
-
-
+	<input type="hidden" name="<?php echo $field['name']; ?>" value="" />
+	
+	
 	<!-- Left List -->
 	<div class="relationship_left">
 		<table class="widefat">
@@ -454,7 +454,7 @@ class acf_field_relationship extends acf_field
 				<?php if(in_array( 'search', $field['filters']) ): ?>
 				<tr>
 					<th>
-						<input class="relationship_search" placeholder="<?php esc_attr_e("Search...",'acf'); ?>" type="text" id="relationship_<?php echo esc_attr( $field['name'] ); ?>" />
+						<input class="relationship_search" placeholder="<?php _e("Search...",'acf'); ?>" type="text" id="relationship_<?php echo $field['name']; ?>" />
 					</th>
 				</tr>
 				<?php endif; ?>
@@ -519,8 +519,8 @@ class acf_field_relationship extends acf_field
 				
 				
 				echo '<li>
-					<a href="' . esc_url(get_permalink($p->ID)) . '" class="" data-post_id="' . esc_attr($p->ID) . '">' . esc_html($title) . '<span class="acf-button-remove"></span></a>
-					<input type="hidden" name="' . esc_attr($field['name']) . '[]" value="' . esc_attr($p->ID) . '" />
+					<a href="' . get_permalink($p->ID) . '" class="" data-post_id="' . $p->ID . '">' . $title . '<span class="acf-button-remove"></span></a>
+					<input type="hidden" name="' . $field['name'] . '[]" value="' . $p->ID . '" />
 				</li>';
 				
 					
@@ -557,16 +557,16 @@ class acf_field_relationship extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Return Format",'acf'); ?></label>
-		<p><?php esc_attr_e("Specify the returned value on front end",'acf') ?></p>
+		<label><?php _e("Return Format",'acf'); ?></label>
+		<p><?php _e("Specify the returned value on front end",'acf') ?></p>
 	</td>
 	<td>
 		<?php
 		do_action('acf/create_field', array(
 			'type'		=>	'radio',
-			'name'		=>	'fields['.esc_attr($key).'][return_format]',
+			'name'		=>	'fields['.$key.'][return_format]',
 			'value'		=>	$field['return_format'],
 			'layout'	=>	'horizontal',
 			'choices'	=> array(
@@ -577,9 +577,9 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label for=""><?php esc_attr_e("Post Type",'acf'); ?></label>
+		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 
@@ -601,9 +601,9 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Filter from Taxonomy",'acf'); ?></label>
+		<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 
@@ -626,9 +626,9 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Filters",'acf'); ?></label>
+		<label><?php _e("Filters",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 
@@ -644,16 +644,16 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Elements",'acf'); ?></label>
-		<p><?php esc_attr_e("Selected elements will be displayed in each result",'acf') ?></p>
+		<label><?php _e("Elements",'acf'); ?></label>
+		<p><?php _e("Selected elements will be displayed in each result",'acf') ?></p>
 	</td>
 	<td>
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'checkbox',
-			'name'	=>	'fields['.esc_attr($key).'][result_elements]',
+			'name'	=>	'fields['.$key.'][result_elements]',
 			'value'	=>	$field['result_elements'],
 			'choices' => array(
 				'featured_image' => __("Featured Image",'acf'),
@@ -667,9 +667,9 @@ class acf_field_relationship extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Maximum posts",'acf'); ?></label>
+		<label><?php _e("Maximum posts",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 

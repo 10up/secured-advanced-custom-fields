@@ -266,9 +266,9 @@ class acf_field_user extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e( "Filter by role", 'acf' ); ?></label>
+		<label><?php _e( "Filter by role", 'acf' ); ?></label>
 	</td>
 	<td>
 		<?php 
@@ -293,9 +293,9 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Field Type",'acf'); ?></label>
+		<label><?php _e("Field Type",'acf'); ?></label>
 	</td>
 	<td>
 		<?php	
@@ -317,9 +317,9 @@ class acf_field_user extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
-		<label><?php esc_attr_e("Allow Null?",'acf'); ?></label>
+		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php 

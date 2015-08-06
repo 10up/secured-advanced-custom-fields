@@ -67,9 +67,9 @@ class acf_field_message extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
-		<label for=""><?php _e("Message",'acf'); ?></label>
-		<p class="description"><?php _e("Text &amp; HTML entered here will appear inline with the fields",'acf'); ?><br /><br />
-		<?php _e("Please note that all text will first be passed through the wp function ",'acf'); ?><a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop</a></p>
+		<label for=""><?php esc_attr_e("Message",'acf'); ?></label>
+		<p class="description"><?php esc_attr_e("Text &amp; HTML entered here will appear inline with the fields",'acf'); ?><br /><br />
+		<?php esc_attr_e("Please note that all text will first be passed through the wp function ",'acf'); ?><a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop</a></p>
 	</td>
 	<td>
 		<?php 

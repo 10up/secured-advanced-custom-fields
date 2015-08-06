@@ -1229,7 +1229,7 @@ function acf_form( $options = array() )
 	// updated message
 	if(isset($_GET['updated']) && $_GET['updated'] == 'true' && $options['updated_message'])
 	{
-		echo '<div id="message" class="updated"><p>' . esc_html_( $options['updated_message'] ) . '</p></div>';
+		echo '<div id="message" class="updated"><p>' . $options['updated_message'] . '</p></div>';
 	}
 	
 	
@@ -1240,11 +1240,11 @@ function acf_form( $options = array() )
 	
 	<div style="display:none">
 		<script type="text/javascript">
-			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? esc_js( $options['post_id'] ) : '"' . esc_js( $options['post_id'] ) . '"'; ?>;
+			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . $options['post_id'] . '"'; ?>;
 		</script>
 		<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'input' ); ?>" />
-		<input type="hidden" name="post_id" value="<?php echo esc_attr( $options['post_id'] ); ?>" />
-		<input type="hidden" name="return" value="<?php echo esc_attr( $options['return'] ); ?>" />
+		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
+		<input type="hidden" name="return" value="<?php echo $options['return']; ?>" />
 		<?php wp_editor('', 'acf_settings'); ?>
 	</div>
 	
@@ -1274,8 +1274,8 @@ function acf_form( $options = array() )
 		$fields = apply_filters('acf/field_group/get_fields', array(), $acf['id']);
 		
 		
-		echo '<div id="acf_' . esc_attr( $acf['id'] ) . '" class="postbox acf_postbox ' . esc_attr( $acf['options']['layout'] ) . '">';
-		echo '<h3 class="hndle"><span>' . esc_attr( $acf['title'] ) . '</span></h3>';
+		echo '<div id="acf_' . $acf['id'] . '" class="postbox acf_postbox ' . $acf['options']['layout'] . '">';
+		echo '<h3 class="hndle"><span>' . $acf['title'] . '</span></h3>';
 		echo '<div class="inside">';
 							
 		do_action('acf/create_fields', $fields, $options['post_id']);
@@ -1293,7 +1293,7 @@ function acf_form( $options = array() )
 	<?php if( $options['form'] ): ?>
 	<!-- Submit -->
 	<div class="field">
-		<input type="submit" value="<?php echo esc_attr( $options['submit_value'] ); ?>" />
+		<input type="submit" value="<?php echo $options['submit_value']; ?>" />
 	</div>
 	<!-- / Submit -->
 	<?php endif; ?>

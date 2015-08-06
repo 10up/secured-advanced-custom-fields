@@ -100,7 +100,7 @@ class acf_field_page_link extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label for=""><?php _e("Post Type",'acf'); ?></label>
+		<label for=""><?php esc_attr_e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -124,7 +124,7 @@ class acf_field_page_link extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Allow Null?",'acf'); ?></label>
+		<label><?php esc_attr_e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
@@ -145,7 +145,7 @@ class acf_field_page_link extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Select multiple values?",'acf'); ?></label>
+		<label><?php esc_attr_e("Select multiple values?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php

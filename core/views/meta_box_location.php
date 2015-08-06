@@ -45,8 +45,8 @@ if( empty($groups) )
 	<tbody>
 	<tr>
 		<td class="label">
-			<label for="post_type"><?php _e("Rules",'acf'); ?></label>
-			<p class="description"><?php _e("Create a set of rules to determine which edit screens will use these advanced custom fields",'acf'); ?></p>
+			<label for="post_type"><?php esc_attr_e("Rules",'acf'); ?></label>
+			<p class="description"><?php esc_attr_e("Create a set of rules to determine which edit screens will use these advanced custom fields",'acf'); ?></p>
 		</td>
 		<td>
 			<div class="location-groups">
@@ -57,9 +57,9 @@ if( empty($groups) )
 		?>
 		<div class="location-group" data-id="<?php echo esc_attr( $group_id ); ?>">
 			<?php if( $group_id == 'group_0' ): ?>
-				<h4><?php _e("Show this field group if",'acf'); ?></h4>
+				<h4><?php esc_attr_e("Show this field group if",'acf'); ?></h4>
 			<?php else: ?>
-				<h4><?php _e("or",'acf'); ?></h4>
+				<h4><?php esc_attr_e("or",'acf'); ?></h4>
 			<?php endif; ?>
 			<?php if( is_array($group) ): ?>
 			<table class="acf_input widefat">
@@ -143,7 +143,7 @@ if( empty($groups) )
 
 					?></td>
 					<td class="add">
-						<a href="#" class="location-add-rule button"><?php _e("and",'acf'); ?></a>
+						<a href="#" class="location-add-rule button"><?php esc_attr_e("and",'acf'); ?></a>
 					</td>
 					<td class="remove">
 						<a href="#" class="location-remove-rule acf-button-remove"></a>
@@ -156,9 +156,9 @@ if( empty($groups) )
 		</div>
 	<?php endforeach; ?>
 
-	<h4><?php _e("or",'acf'); ?></h4>
+	<h4><?php esc_attr_e("or",'acf'); ?></h4>
 
-	<a class="button location-add-group" href="#"><?php _e("Add rule group",'acf'); ?></a>
+	<a class="button location-add-group" href="#"><?php esc_attr_e("Add rule group",'acf'); ?></a>
 
 <?php endif; ?>
 

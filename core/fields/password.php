@@ -102,8 +102,8 @@ class acf_field_password extends acf_field
 		?>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Placeholder Text",'acf'); ?></label>
-		<p><?php _e("Appears within the input",'acf') ?></p>
+		<label><?php esc_attr_e("Placeholder Text",'acf'); ?></label>
+		<p><?php esc_attr_e("Appears within the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php
@@ -117,8 +117,8 @@ class acf_field_password extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Prepend",'acf'); ?></label>
-		<p><?php _e("Appears before the input",'acf') ?></p>
+		<label><?php esc_attr_e("Prepend",'acf'); ?></label>
+		<p><?php esc_attr_e("Appears before the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php
@@ -132,8 +132,8 @@ class acf_field_password extends acf_field
 </tr>
 <tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
-		<label><?php _e("Append",'acf'); ?></label>
-		<p><?php _e("Appears after the input",'acf') ?></p>
+		<label><?php esc_attr_e("Append",'acf'); ?></label>
+		<p><?php esc_attr_e("Appears after the input",'acf') ?></p>
 	</td>
 	<td>
 		<?php

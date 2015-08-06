@@ -22,8 +22,8 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 <table class="acf_input widefat" id="acf_options">
 	<tr>
 		<td class="label">
-			<label for=""><?php _e("Order No.",'acf'); ?></label>
-			<p class="description"><?php _e("Field groups are created in order <br />from lowest to highest",'acf'); ?></p>
+			<label for=""><?php esc_attr_e("Order No.",'acf'); ?></label>
+			<p class="description"><?php wp_kses( _e("Field groups are created in order <br />from lowest to highest",'acf') , array('br'=>array()) ); ?></p>
 		</td>
 		<td>
 			<?php 
@@ -39,7 +39,7 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr>
 		<td class="label">
-			<label for=""><?php _e("Position",'acf'); ?></label>
+			<label for=""><?php esc_attr_e("Position",'acf'); ?></label>
 		</td>
 		<td>
 			<?php 
@@ -61,7 +61,7 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr>
 		<td class="label">
-			<label for="post_type"><?php _e("Style",'acf'); ?></label>
+			<label for="post_type"><?php esc_attr_e("Style",'acf'); ?></label>
 		</td>
 		<td>
 			<?php 
@@ -81,9 +81,9 @@ $options = apply_filters('acf/field_group/get_options', array(), $post->ID);
 	</tr>
 	<tr id="hide-on-screen">
 		<td class="label">
-			<label for="post_type"><?php _e("Hide on screen",'acf'); ?></label>
-			<p class="description"><?php _e("<b>Select</b> items to <b>hide</b> them from the edit screen",'acf'); ?></p>
-			<p class="description"><?php _e("If multiple field groups appear on an edit screen, the first field group's options will be used. (the one with the lowest order number)",'acf'); ?></p>
+			<label for="post_type"><?php esc_attr_e("Hide on screen",'acf'); ?></label>
+			<p class="description"><?php wp_kses( balanceTags ( _e("<b>Select</b> items to <b>hide</b> them from the edit screen",'acf') ), array('b'=>array()) ); ?></p>
+			<p class="description"><?php esc_attr_e("If multiple field groups appear on an edit screen, the first field group's options will be used. (the one with the lowest order number)",'acf'); ?></p>
 		</td>
 		<td>
 			<?php 
