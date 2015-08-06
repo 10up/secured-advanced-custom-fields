@@ -15,8 +15,8 @@ class acf_field_google_map extends acf_field
 	{
 		// vars
 		$this->name = 'google_map';
-		$this->label = __("Google Map",'acf');
-		$this->category = __("jQuery",'acf');
+		$this->label = esc_attr("Google Map",'acf');
+		$this->category = esc_attr("jQuery",'acf');
 		$this->defaults = array(
 			'height'		=> '',
 			'center_lat'	=> '',
@@ -30,8 +30,8 @@ class acf_field_google_map extends acf_field
 			'zoom'			=> '14'
 		);
 		$this->l10n = array(
-			'locating'			=>	__("Locating",'acf'),
-			'browser_support'	=>	__("Sorry, this browser does not support geolocation",'acf'),
+			'locating'			=>	esc_attr("Locating",'acf'),
+			'browser_support'	=>	esc_attr("Sorry, this browser does not support geolocation",'acf'),
 		);
 		
 		
@@ -102,12 +102,12 @@ class acf_field_google_map extends acf_field
 		
 		foreach( $keys as $k => $v )
 		{
-			$atts .= ' ' . $k . '="' . esc_attr( $field[ $v ] ) . '"';
+			$atts .= ' ' . $k . '="' . esc_attr( $field[ $v ] ) . '"';	
 		}
 		
 		?>
-		<div class="acf-google-map <?php echo esc_attr( $o['class'] ); ?>" <?php echo esc_attr( $atts ); ?>>
-
+		<div class="acf-google-map <?php echo $o['class']; ?>" <?php echo $atts; ?>>
+			
 			<div style="display:none;">
 				<?php foreach( $field['value'] as $k => $v ): ?>
 					<input type="hidden" class="input-<?php echo esc_attr( $k ); ?>" name="<?php echo esc_attr($field['name']); ?>[<?php echo esc_attr( $k ); ?>]" value="<?php echo esc_attr( $v ); ?>" />
@@ -118,7 +118,7 @@ class acf_field_google_map extends acf_field
 				
 				<div class="has-value">
 					<a href="#" class="acf-sprite-remove ir" title="<?php esc_attr_e("Clear location",'acf'); ?>">Remove</a>
-					<h4><?php echo esc_attr( $field['value']['address'] ); ?></h4>
+					<h4><?php echo $field['value']['address']; ?></h4>
 				</div>
 				
 				<div class="no-value">
@@ -127,9 +127,9 @@ class acf_field_google_map extends acf_field
 				</div>
 				
 			</div>
-
-			<div class="canvas" style="height: <?php echo esc_attr( $field['height'] ); ?>px">
-
+			
+			<div class="canvas" style="height: <?php echo $field['height']; ?>px">
+				
 			</div>
 			
 		</div>
@@ -157,7 +157,7 @@ class acf_field_google_map extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php esc_attr_e("Center",'acf'); ?></label>
 		<p class="description"><?php esc_attr_e('Center the initial map','acf'); ?></p>
@@ -194,7 +194,7 @@ class acf_field_google_map extends acf_field
 		
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php esc_attr_e("Zoom",'acf'); ?></label>
 		<p class="description"><?php esc_attr_e('Set the initial zoom level','acf'); ?></p>
@@ -212,7 +212,7 @@ class acf_field_google_map extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php esc_attr_e("Height",'acf'); ?></label>
 		<p class="description"><?php esc_attr_e('Customise the map height','acf'); ?></p>

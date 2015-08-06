@@ -519,7 +519,7 @@ class acf_field_relationship extends acf_field
 				
 				
 				echo '<li>
-					<a href="' . esc_url(get_permalink($p->ID)) . '" class="" data-post_id="' . esc_attr($p->ID) . '">' . esc_html($title) . '<span class="acf-button-remove"></span></a>
+					<a href="' . esc_url(get_permalink($p->ID)) . '" class="" data-post_id="' . esc_attr($p->ID) . '">' . $title . '<span class="acf-button-remove"></span></a>
 					<input type="hidden" name="' . esc_attr($field['name']) . '[]" value="' . esc_attr($p->ID) . '" />
 				</li>';
 				
