@@ -91,8 +91,8 @@ class acf_field_date_picker extends acf_field
 		
 
 		// html
-		echo '<div class="acf-date_picker" data-save_format="' . esc_attr($field['date_format']) . '" data-display_format="' . esc_attr($field['display_format']) . '" data-first_day="' . esc_attr($field['first_day']) . '">';
-			echo '<input type="hidden" value="' . esc_attr($field['value']) . '" name="' . esc_attr($field['name']) . '" class="input-alt" />';
+		echo '<div class="acf-date_picker" data-save_format="' . $field['date_format'] . '" data-display_format="' . $field['display_format'] . '" data-first_day="' . $field['first_day'] . '">';
+			echo '<input type="hidden" value="' . $field['value'] . '" name="' . $field['name'] . '" class="input-alt" />';
 			echo '<input type="text" value="" class="input"  />';
 		echo '</div>';
 	}
@@ -121,7 +121,7 @@ class acf_field_date_picker extends acf_field
 		$key = $field['name'];
 	    
 	    ?>
-<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Save format",'acf'); ?></label>
 		<p class="description"><?php _e("This format will determin the value saved to the database and returned via the API",'acf'); ?></p>
@@ -137,7 +137,7 @@ class acf_field_date_picker extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Display format",'acf'); ?></label>
 		<p class="description"><?php _e("This format will be seen by the user when entering a value",'acf'); ?></p>
@@ -153,7 +153,7 @@ class acf_field_date_picker extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label for=""><?php _e("Week Starts On",'acf'); ?></label>
 	</td>

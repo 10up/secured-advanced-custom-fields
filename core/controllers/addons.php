@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
 *  acf_addons
@@ -10,83 +10,83 @@
 
 class acf_addons
 {
-
+	
 	var $action;
-
-
+	
+	
 	/*
 	*  __construct
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.8
 	*  @created: 23/06/12
 	*/
-
+	
 	function __construct()
 	{
 		// actions
 		add_action('admin_menu', array($this,'admin_menu'), 11, 0);
 	}
-
-
+	
+	
 	/*
 	*  admin_menu
 	*
-	*  @description:
+	*  @description: 
 	*  @created: 2/08/12
 	*/
-
+	
 	function admin_menu()
 	{
 		// add page
 		$page = add_submenu_page('edit.php?post_type=acf', __('Add-ons','acf'), __('Add-ons','acf'), 'manage_options', 'acf-addons', array($this,'html'));
-
-
+		
+		
 		// actions
 		add_action('load-' . $page, array($this,'load'));
 		add_action('admin_print_scripts-' . $page, array($this, 'admin_print_scripts'));
 		add_action('admin_print_styles-' . $page, array($this, 'admin_print_styles'));
 		add_action('admin_head-' . $page, array($this,'admin_head'));
 	}
-
-
+	
+	
 	/*
 	*  load
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.5.2
 	*  @created: 16/11/12
 	*  @thanks: Kevin Biloski and Charlie Eriksen via Secunia SVCRP
 	*/
-
+	
 	function load()
 	{
-
+		
 	}
-
-
+	
+	
 	/*
 	*  admin_print_scripts
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.8
 	*  @created: 23/06/12
 	*/
-
+	
 	function admin_print_scripts()
 	{
-
+		
 	}
-
-
+	
+	
 	/*
 	*  admin_print_styles
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.8
 	*  @created: 23/06/12
 	*/
-
+	
 	function admin_print_styles()
 	{
 		wp_enqueue_style(array(
@@ -95,36 +95,36 @@ class acf_addons
 			'acf',
 		));
 	}
-
-
+	
+	
 	/*
 	*  admin_head
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.8
 	*  @created: 23/06/12
 	*/
-
+	
 	function admin_head()
 	{
-
+				
 	}
-
-
+	
+	
 	/*
 	*  html
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.8
 	*  @created: 23/06/12
 	*/
-
+	
 	function html()
 	{
 		// vars
 		$dir = apply_filters('acf/get_info', 'dir');
-
-
+		
+		
 		$premium = array();
 		$premium[] = array(
 			'title' => __("Repeater Field",'acf'),
@@ -154,8 +154,8 @@ class acf_addons
 			'active' => class_exists('acf_field_flexible_content'),
 			'url' => 'http://www.advancedcustomfields.com/add-ons/flexible-content-field/'
 		);
-
-
+		
+		
 		$free = array();
 		$free[] = array(
 			'title' => __("Gravity Forms Field",'acf'),
@@ -185,13 +185,13 @@ class acf_addons
 			'active' => class_exists('acf_field_cf7'),
 			'url' => 'https://github.com/taylormsj/acf-cf7-field/'
 		);
-
+		
 		?>
 <div class="wrap" style="max-width:970px;">
 
 	<div class="icon32" id="icon-acf"><br></div>
 	<h2 style="margin: 4px 0 15px;"><?php _e("Advanced Custom Fields Add-Ons",'acf'); ?></h2>
-
+	
 	<div class="acf-alert">
 	<p style=""><?php _e("The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin.",'acf'); ?><br />
 	<?php _e("Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates).",'acf'); ?></p>
@@ -201,85 +201,85 @@ class acf_addons
 		<p><strong><?php _e("Just updated to version 4?",'acf'); ?></strong> <?php _e("Activation codes have changed to plugins! Download your purchased add-ons",'acf'); ?> <a href="http://www.advancedcustomfields.com/add-ons-download/" target="_blank"><?php _e("here",'acf'); ?></a></p>
 	</div>
 	*/ ?>
-
+	
 	<div id="add-ons" class="clearfix">
-
+		
 		<div class="add-on-group clearfix">
 		<?php foreach( $premium as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
-			<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>">
-				<img src="<?php echo esc_url( $addon['thumbnail'] ); ?>" />
+			<a target="_blank" href="<?php echo $addon['url']; ?>">
+				<img src="<?php echo $addon['thumbnail']; ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>"><?php echo esc_html( $addon['title'] ); ?></a></h3>
-				<p><?php echo wp_kses_post( $addon['description'] ); ?></p>
+				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
+				<p><?php echo $addon['description']; ?></p>
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
 					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
+					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>
 		<?php endforeach; ?>
 		</div>
-
+		
 		<div class="add-on-group clearfix">
 		<?php foreach( $free as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
-			<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>">
-				<img src="<?php echo esc_url( $addon['thumbnail'] ); ?>" />
+			<a target="_blank" href="<?php echo $addon['url']; ?>">
+				<img src="<?php echo $addon['thumbnail']; ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>"><?php echo esc_html( $addon['title'] ); ?></a></h3>
-				<p><?php echo wp_kses_post( $addon['description'] ); ?></p>
+				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
+				<p><?php echo $addon['description']; ?></p>
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
 					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Download",'acf'); ?></a>
+					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Download",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>
-		<?php endforeach; ?>
+		<?php endforeach; ?>	
 		</div>
-
-
+		
+				
 	</div>
-
+	
 </div>
 <script type="text/javascript">
 (function($) {
-
+	
 	$(window).load(function(){
-
+		
 		$('#add-ons .add-on-group').each(function(){
-
+		
 			var $el = $(this),
 				h = 0;
-
-
+			
+			
 			$el.find('.add-on').each(function(){
-
+				
 				h = Math.max( $(this).height(), h );
-
+				
 			});
-
+			
 			$el.find('.add-on').height( h );
-
+			
 		});
-
+		
 	});
-
-})(jQuery);
+	
+})(jQuery);	
 </script>
 		<?php
-
+		
 		return;
-
-	}
+		
+	}		
 }
 
 new acf_addons();
