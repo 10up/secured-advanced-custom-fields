@@ -45,10 +45,10 @@ class acf_field_true_false extends acf_field
 	function create_field( $field )
 	{
 		// html
-		echo '<ul class="acf-checkbox-list ' . $field['class'] . '">';
-			echo '<input type="hidden" name="'.$field['name'].'" value="0" />';
+		echo '<ul class="acf-checkbox-list ' . esc_attr($field['class']) . '">';
+			echo '<input type="hidden" name="'.esc_attr($field['name']).'" value="0" />';
 			$selected = ($field['value'] == 1) ? 'checked="yes"' : '';
-			echo '<li><label><input id="' . $field['id'] . '-1"  type="checkbox" name="'.$field['name'].'" value="1" ' . $selected . ' />' . $field['message'] . '</label></li>';
+			echo '<li><label><input id="' . esc_attr($field['id']) . '-1"  type="checkbox" name="'.esc_attr($field['name']).'" value="1" ' . esc_attr($selected) . ' />' . esc_html($field['message']) . '</label></li>';
 		
 		echo '</ul>';
 	}
@@ -74,7 +74,7 @@ class acf_field_true_false extends acf_field
 		
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Message",'acf'); ?></label>
 		<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
@@ -89,7 +89,7 @@ class acf_field_true_false extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 	</td>

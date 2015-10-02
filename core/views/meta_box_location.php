@@ -55,7 +55,7 @@ if( empty($groups) )
 	<?php foreach( $groups as $group_id => $group ): 
 		$group_id = 'group_' . $group_id;
 		?>
-		<div class="location-group" data-id="<?php echo $group_id; ?>">
+		<div class="location-group" data-id="<?php echo esc_attr( $group_id ); ?>">
 			<?php if( $group_id == 'group_0' ): ?>
 				<h4><?php _e("Show this field group if",'acf'); ?></h4>
 			<?php else: ?>
@@ -67,7 +67,7 @@ if( empty($groups) )
 					<?php foreach( $group as $rule_id => $rule ): 
 						$rule_id = 'rule_' . $rule_id;
 					?>
-					<tr data-id="<?php echo $rule_id; ?>">
+					<tr data-id="<?php echo esc_attr( $rule_id ); ?>">
 					<td class="param"><?php 
 						
 						$choices = array(

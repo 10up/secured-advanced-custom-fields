@@ -168,7 +168,7 @@ class acf_controller_post
 		
 		
 		// Style
-		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
+		echo '<style type="text/css" id="acf_style" >' . wp_kses_post($style) . '</style>';
 		
 		
 		// add user js + css
@@ -203,7 +203,7 @@ class acf_controller_post
 				// add meta box
 				add_meta_box(
 					'acf_' . $acf['id'], 
-					$acf['title'], 
+					esc_html( $acf['title'] ),
 					array($this, 'meta_box_input'), 
 					$typenow, 
 					$acf['options']['position'], 
@@ -304,13 +304,13 @@ class acf_controller_post
 		
 		// nonce
 		echo '<div style="display:none">';
-			echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
+			echo '<input type="hidden" name="acf_nonce" value="' . esc_attr(wp_create_nonce( 'input' )) . '" />';
 			?>
 <script type="text/javascript">
 (function($) {
 	
-	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
-	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	$('#<?php echo esc_js($id); ?>').addClass('<?php echo esc_js($class); ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo esc_js($id); ?>-hide"]').addClass('<?php echo esc_js($toggle_class); ?>');
 	
 })(jQuery);	
 </script>
@@ -425,7 +425,7 @@ class acf_controller_post
 		
 		
 		// return style
-		echo $this->get_style( $options['acf_id'] );
+		echo wp_kses_post($this->get_style( $options['acf_id'] ));
 		
 		
 		// die

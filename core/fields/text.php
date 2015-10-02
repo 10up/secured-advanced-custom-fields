@@ -63,7 +63,7 @@ class acf_field_text extends acf_field
 		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
-			$e .= '<div class="acf-input-prepend">' . $field['prepend'] . '</div>';
+			$e .= '<div class="acf-input-prepend">' . wp_kses_post( $field['prepend'] ) . '</div>';
 		}
 		
 		
@@ -71,7 +71,7 @@ class acf_field_text extends acf_field
 		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
-			$e .= '<div class="acf-input-append">' . $field['append'] . '</div>';
+			$e .= '<div class="acf-input-append">' . wp_kses_post( $field['append'] ) . '</div>';
 		}
 		
 		
@@ -80,7 +80,7 @@ class acf_field_text extends acf_field
 		
 		foreach( $o as $k )
 		{
-			$e .= ' ' . $k . '="' . esc_attr( $field[ $k ] ) . '"';	
+			$e .= ' ' . esc_attr($k) . '="' . esc_attr( $field[ $k ] ) . '"';
 		}
 		
 		$e .= ' />';
@@ -111,7 +111,7 @@ class acf_field_text extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 		<p><?php _e("Appears when creating a new post",'acf') ?></p>
@@ -120,13 +120,13 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][default_value]',
+			'name'	=>	'fields[' .esc_attr($key).'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
 		<p><?php _e("Appears within the input",'acf') ?></p>
@@ -135,13 +135,13 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
+			'name'	=>	'fields[' .esc_attr($key).'][placeholder]',
 			'value'	=>	$field['placeholder'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Prepend",'acf'); ?></label>
 		<p><?php _e("Appears before the input",'acf') ?></p>
@@ -150,13 +150,13 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][prepend]',
+			'name'	=>	'fields[' .esc_attr($key).'][prepend]',
 			'value'	=>	$field['prepend'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Append",'acf'); ?></label>
 		<p><?php _e("Appears after the input",'acf') ?></p>
@@ -165,13 +165,13 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][append]',
+			'name'	=>	'fields[' .esc_attr($key).'][append]',
 			'value'	=>	$field['append'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Formatting",'acf'); ?></label>
 		<p><?php _e("Effects value on front end",'acf') ?></p>
@@ -180,7 +180,7 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
-			'name'	=>	'fields['.$key.'][formatting]',
+			'name'	=>	'fields['.esc_attr($key).'][formatting]',
 			'value'	=>	$field['formatting'],
 			'choices' => array(
 				'none'	=>	__("No formatting",'acf'),
@@ -190,7 +190,7 @@ class acf_field_text extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Character Limit",'acf'); ?></label>
 		<p><?php _e("Leave blank for no limit",'acf') ?></p>
@@ -199,7 +199,7 @@ class acf_field_text extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'number',
-			'name'	=>	'fields[' .$key.'][maxlength]',
+			'name'	=>	'fields[' .esc_attr($key).'][maxlength]',
 			'value'	=>	$field['maxlength'],
 		));
 		?>
@@ -265,7 +265,7 @@ class acf_field_text extends acf_field
 		}
 		elseif( $field['formatting'] == 'html' )
 		{
-			$value = nl2br($value);
+			$value = esc_html( nl2br( $value ) );
 		}
 		
 		

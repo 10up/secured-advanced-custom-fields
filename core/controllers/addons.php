@@ -207,18 +207,18 @@ class acf_addons
 		<div class="add-on-group clearfix">
 		<?php foreach( $premium as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
-			<a target="_blank" href="<?php echo $addon['url']; ?>">
-				<img src="<?php echo $addon['thumbnail']; ?>" />
+			<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>">
+				<img src="<?php echo esc_url( $addon['thumbnail'] ); ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
-				<p><?php echo $addon['description']; ?></p>
+				<h3><a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>"><?php echo esc_html( $addon['title'] ); ?></a></h3>
+				<p><?php echo wp_kses_post( $addon['description'] ); ?></p>
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
 					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
+					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Purchase & Install",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -228,18 +228,18 @@ class acf_addons
 		<div class="add-on-group clearfix">
 		<?php foreach( $free as $addon ): ?>
 		<div class="add-on wp-box <?php if( $addon['active'] ): ?>add-on-active<?php endif; ?>">
-			<a target="_blank" href="<?php echo $addon['url']; ?>">
-				<img src="<?php echo $addon['thumbnail']; ?>" />
+			<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>">
+				<img src="<?php echo esc_url( $addon['thumbnail'] ); ?>" />
 			</a>
 			<div class="inner">
-				<h3><a target="_blank" href="<?php echo $addon['url']; ?>"><?php echo $addon['title']; ?></a></h3>
-				<p><?php echo $addon['description']; ?></p>
+				<h3><a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>"><?php echo esc_html( $addon['title'] ); ?></a></h3>
+				<p><?php echo wp_kses_post( $addon['description'] ); ?></p>
 			</div>
 			<div class="footer">
 				<?php if( $addon['active'] ): ?>
 					<a class="button button-disabled"><span class="acf-sprite-tick"></span><?php _e("Installed",'acf'); ?></a>
 				<?php else: ?>
-					<a target="_blank" href="<?php echo $addon['url']; ?>" class="button"><?php _e("Download",'acf'); ?></a>
+					<a target="_blank" href="<?php echo esc_url( $addon['url'] ); ?>" class="button"><?php _e("Download",'acf'); ?></a>
 				<?php endif; ?>
 			</div>
 		</div>

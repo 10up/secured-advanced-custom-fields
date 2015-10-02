@@ -335,7 +335,7 @@ function the_field( $field_name, $post_id = false ) {
 		$value = @implode(', ',$value);
 	}
 	
-	echo $value;
+    echo wp_kses_post( $value );
 }
 
 
@@ -687,7 +687,7 @@ function the_sub_field($field_name)
 		$value = implode(', ',$value);
 	}
 	
-	echo $value;
+    echo wp_kses_post( $value );
 }
 
 
@@ -1227,32 +1227,36 @@ function acf_form( $options = array() )
 
 
 	// updated message
-	if(isset($_GET['updated']) && $_GET['updated'] == 'true' && $options['updated_message'])
-	{
-		echo '<div id="message" class="updated"><p>' . $options['updated_message'] . '</p></div>';
+    if ( isset( $_GET['updated'] ) && $_GET['updated'] == 'true' && $options['updated_message'] ) {
+        echo '<div id="message" class="updated"><p>' . esc_attr( $options['updated_message'] ) . '</p></div>';
 	}
 	
 	
 	// display form
-	if( $options['form'] ): ?>
-	<form <?php if($options['form_attributes']){foreach($options['form_attributes'] as $k => $v){echo $k . '="' . $v .'" '; }} ?>>
+    if ( $options['form'] ):
+        ?>
+        <form <?php if ( $options['form_attributes'] ) {
+            foreach ( $options['form_attributes'] as $k => $v ) {
+                echo esc_attr( $k ) . '="' . esc_attr( $v ) . '" ';
+            }
+        } ?>>
 	<?php endif; ?>
 	
 	<div style="display:none">
 		<script type="text/javascript">
-			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . $options['post_id'] . '"'; ?>;
+			acf.o.post_id = <?php echo is_numeric($options['post_id']) ? $options['post_id'] : '"' . esc_attr($options['post_id']) . '"'; ?>;
 		</script>
-		<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'input' ); ?>" />
-		<input type="hidden" name="post_id" value="<?php echo $options['post_id']; ?>" />
-		<input type="hidden" name="return" value="<?php echo $options['return']; ?>" />
-		<?php wp_editor('', 'acf_settings'); ?>
+            <input type="hidden" name="acf_nonce" value="<?php echo esc_attr( wp_create_nonce( 'input' ) ); ?>" />
+            <input type="hidden" name="post_id" value="<?php echo esc_attr( $options['post_id'] ); ?>" />
+            <input type="hidden" name="return" value="<?php echo esc_attr( $options['return'] ); ?>" />
+    <?php wp_editor( '', 'acf_settings' ); ?>
 	</div>
 	
 	<div id="poststuff">
 	<?php
 	
 	// html before fields
-	echo $options['html_before_fields'];
+    echo wp_kses_post( $options['html_before_fields'] );
 	
 	
 	$acfs = apply_filters('acf/get_field_groups', array());
@@ -1274,8 +1278,8 @@ function acf_form( $options = array() )
 		$fields = apply_filters('acf/field_group/get_fields', array(), $acf['id']);
 		
 		
-		echo '<div id="acf_' . $acf['id'] . '" class="postbox acf_postbox ' . $acf['options']['layout'] . '">';
-		echo '<h3 class="hndle"><span>' . $acf['title'] . '</span></h3>';
+            echo '<div id="acf_' . esc_attr( $acf['id'] ) . '" class="postbox acf_postbox ' . esc_attr( $acf['options']['layout'] ) . '">';
+            echo '<h3 class="hndle"><span>' . esc_html( $acf['title'] ) . '</span></h3>';
 		echo '<div class="inside">';
 							
 		do_action('acf/create_fields', $fields, $options['post_id']);
@@ -1286,14 +1290,13 @@ function acf_form( $options = array() )
 	
 	
 	// html after fields
-	echo $options['html_after_fields'];
-	
+    echo wp_kses_post( $options['html_after_fields'] );
 	?>
 	
 	<?php if( $options['form'] ): ?>
 	<!-- Submit -->
 	<div class="field">
-		<input type="submit" value="<?php echo $options['submit_value']; ?>" />
+                    <input type="submit" value="<?php echo esc_attr( $options['submit_value'] ); ?>" />
 	</div>
 	<!-- / Submit -->
 	<?php endif; ?>

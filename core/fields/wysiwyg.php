@@ -245,16 +245,16 @@ class acf_field_wysiwyg extends acf_field
 		$field['value'] = apply_filters( 'acf_the_editor_content', $field['value'], $default_editor );
 		
 		?>
-		<div id="wp-<?php echo $id; ?>-wrap" class="acf_wysiwyg wp-core-ui wp-editor-wrap" data-toolbar="<?php echo $field['toolbar']; ?>" data-upload="<?php echo $field['media_upload']; ?>">
-			<div id="wp-<?php echo $id; ?>-editor-tools" class="wp-editor-tools hide-if-no-js">
+		<div id="wp-<?php echo esc_attr($id); ?>-wrap" class="acf_wysiwyg wp-core-ui wp-editor-wrap" data-toolbar="<?php echo esc_attr($field['toolbar']); ?>" data-upload="<?php echo esc_attr($field['media_upload']); ?>">
+			<div id="wp-<?php echo esc_attr($id); ?>-editor-tools" class="wp-editor-tools hide-if-no-js">
 				<?php if( user_can_richedit() && $field['media_upload'] == 'yes' ): ?>
-				<div id="wp-<?php echo $id; ?>-media-buttons" class="wp-media-buttons">
+				<div id="wp-<?php echo esc_attr($id); ?>-media-buttons" class="wp-media-buttons">
 					<?php do_action( 'media_buttons', $id ); ?>
 				</div>
 				<?php endif; ?>
 			</div>
-			<div id="wp-<?php echo $id; ?>-editor-container" class="wp-editor-container">
-				<textarea id="<?php echo $id; ?>" class="wp-editor-area" name="<?php echo $field['name']; ?>"><?php echo $field['value']; ?></textarea>
+			<div id="wp-<?php echo esc_attr($id); ?>-editor-container" class="wp-editor-container">
+				<textarea id="<?php echo esc_attr($id); ?>" class="wp-editor-area" name="<?php echo esc_attr($field['name']); ?>"><?php echo esc_attr($field['value']); ?></textarea>
 			</div>
 		</div>
 		<?php
@@ -281,7 +281,7 @@ class acf_field_wysiwyg extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Default Value",'acf'); ?></label>
 		<p><?php _e("Appears when creating a new post",'acf') ?></p>
@@ -290,13 +290,13 @@ class acf_field_wysiwyg extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'textarea',
-			'name'	=>	'fields['.$key.'][default_value]',
+			'name'	=>	'fields['.esc_attr($key).'][default_value]',
 			'value'	=>	$field['default_value'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Toolbar",'acf'); ?></label>
 	</td>
@@ -328,7 +328,7 @@ class acf_field_wysiwyg extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Show Media Upload Buttons?",'acf'); ?></label>
 	</td>

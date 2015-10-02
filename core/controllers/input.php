@@ -102,11 +102,11 @@ class acf_controller_input
 (function($) {
 
 	// vars
-	acf.post_id = <?php echo is_numeric($post_id) ? $post_id : '"' . $post_id . '"'; ?>;
-	acf.nonce = "<?php echo wp_create_nonce( 'acf_nonce' ); ?>";
-	acf.admin_url = "<?php echo admin_url(); ?>";
-	acf.ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
-	acf.wp_version = "<?php echo $wp_version; ?>";
+	acf.post_id = <?php echo is_numeric($post_id) ? $post_id : '"' . esc_attr($post_id) . '"'; ?>;
+	acf.nonce = "<?php echo esc_js(wp_create_nonce( 'acf_nonce' )); ?>";
+	acf.admin_url = "<?php echo esc_url(admin_url()); ?>";
+	acf.ajaxurl = "<?php echo esc_url(admin_url( 'admin-ajax.php' )); ?>";
+	acf.wp_version = "<?php echo esc_js($wp_version); ?>";
 	
 	
 	// new vars

@@ -275,7 +275,7 @@ class acf_field_post_object extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
@@ -299,7 +299,7 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
 	</td>
@@ -324,7 +324,7 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
@@ -345,7 +345,7 @@ class acf_field_post_object extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Select multiple values?",'acf'); ?></label>
 	</td>

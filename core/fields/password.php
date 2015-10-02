@@ -52,7 +52,7 @@ class acf_field_password extends acf_field
 		if( $field['prepend'] !== "" )
 		{
 			$field['class'] .= ' acf-is-prepended';
-			$e .= '<div class="acf-input-prepend">' . $field['prepend'] . '</div>';
+			$e .= '<div class="acf-input-prepend">' . wp_kses_post( $field['prepend'] ) . '</div>';
 		}
 		
 		
@@ -60,7 +60,7 @@ class acf_field_password extends acf_field
 		if( $field['append'] !== "" )
 		{
 			$field['class'] .= ' acf-is-appended';
-			$e .= '<div class="acf-input-append">' . $field['append'] . '</div>';
+			$e .= '<div class="acf-input-append">' . wp_kses_post( $field['append'] ) . '</div>';
 		}
 		
 		
@@ -100,7 +100,7 @@ class acf_field_password extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Placeholder Text",'acf'); ?></label>
 		<p><?php _e("Appears within the input",'acf') ?></p>
@@ -109,13 +109,13 @@ class acf_field_password extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][placeholder]',
+			'name'	=>	'fields[' .esc_attr($key).'][placeholder]',
 			'value'	=>	$field['placeholder'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Prepend",'acf'); ?></label>
 		<p><?php _e("Appears before the input",'acf') ?></p>
@@ -124,13 +124,13 @@ class acf_field_password extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][prepend]',
+			'name'	=>	'fields[' .esc_attr($key).'][prepend]',
 			'value'	=>	$field['prepend'],
 		));
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Append",'acf'); ?></label>
 		<p><?php _e("Appears after the input",'acf') ?></p>
@@ -139,7 +139,7 @@ class acf_field_password extends acf_field
 		<?php 
 		do_action('acf/create_field', array(
 			'type'	=>	'text',
-			'name'	=>	'fields[' .$key.'][append]',
+			'name'	=>	'fields[' .esc_attr($key).'][append]',
 			'value'	=>	$field['append'],
 		));
 		?>

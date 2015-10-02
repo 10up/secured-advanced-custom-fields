@@ -42,7 +42,7 @@ class acf_field_message extends acf_field
 	
 	function create_field( $field )
 	{
-		echo wpautop( $field['message'] );
+		echo wp_kses_post(wpautop( $field['message'] ));
 	}
 	
 	
@@ -65,7 +65,7 @@ class acf_field_message extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label for=""><?php _e("Message",'acf'); ?></label>
 		<p class="description"><?php _e("Text &amp; HTML entered here will appear inline with the fields",'acf'); ?><br /><br />

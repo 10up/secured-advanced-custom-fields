@@ -142,7 +142,7 @@ class acf_field_radio extends acf_field
 		}
 		
 		?>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
 				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
@@ -191,7 +191,7 @@ class acf_field_radio extends acf_field
 				</div>
 			</td>
 		</tr>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 			<td class="label">
 				<label><?php _e("Default Value",'acf'); ?></label>
 			</td>
@@ -207,7 +207,7 @@ class acf_field_radio extends acf_field
 				?>
 			</td>
 		</tr>
-		<tr class="field_option field_option_<?php echo $this->name; ?>">
+		<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 			<td class="label">
 				<label for=""><?php _e("Layout",'acf'); ?></label>
 			</td>

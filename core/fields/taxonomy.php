@@ -364,12 +364,12 @@ class acf_field_taxonomy extends acf_field
 		$args = apply_filters('acf/fields/taxonomy/wp_list_categories', $args, $field );
 		
 		?>
-<div class="acf-taxonomy-field" data-load_save="<?php echo $field['load_save_terms']; ?>">
-	<input type="hidden" name="<?php echo $single_name; ?>" value="" />
+<div class="acf-taxonomy-field" data-load_save="<?php echo esc_attr( $field['load_save_terms'] ); ?>">
+	<input type="hidden" name="<?php echo esc_attr( $single_name ); ?>" value="" />
 	
 	<?php if( $field['field_type'] == 'select' ): ?>
 		
-		<select id="<?php echo $field['id']; ?>" name="<?php echo $field['name']; ?>" <?php if( $field['multiple'] ): ?>multiple="multiple" size="5"<?php endif; ?>>
+		<select id="<?php echo esc_attr( $field['id'] ); ?>" name="<?php echo esc_attr( $field['name'] ); ?>" <?php if( $field['multiple'] ): ?>multiple="multiple" size="5"<?php endif; ?>>
 			<?php if( $field['allow_null'] ): ?>
 				<option value=""><?php _e("None", 'acf'); ?></option>
 			<?php endif; ?>
@@ -380,7 +380,7 @@ class acf_field_taxonomy extends acf_field
 			<?php if( $field['allow_null'] ): ?>
 				<li>
 					<label class="selectit">
-						<input type="<?php echo $field['field_type']; ?>" name="<?php echo $field['name']; ?>" value="" /> <?php _e("None", 'acf'); ?>
+						<input type="<?php echo esc_attr( $field['field_type'] ); ?>" name="<?php echo esc_attr( $field['name'] ); ?>" value="" /> <?php _e("None", 'acf'); ?>
 					</label>
 				</li>
 			<?php endif; ?>
@@ -425,7 +425,7 @@ class acf_field_taxonomy extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Taxonomy",'acf'); ?></label>
 	</td>
@@ -459,7 +459,7 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Field Type",'acf'); ?></label>
 	</td>
@@ -484,7 +484,7 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
@@ -503,7 +503,7 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Load & Save Terms to Post",'acf'); ?></label>
 	</td>
@@ -518,7 +518,7 @@ class acf_field_taxonomy extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Return Value",'acf'); ?></label>
 	</td>

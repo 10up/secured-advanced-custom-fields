@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Advanced Custom Fields
+Plugin Name: Secured Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Customise WordPress with powerful, professional and intuitive fields
 Version: 4.4.3
@@ -799,11 +799,11 @@ class acf
 			}
 			
 			
-			echo '<div id="acf-' . $field['name'] . '" class="field field_type-' . $field['type'] . ' field_key-' . $field['key'] . $required_class . '" data-field_name="' . $field['name'] . '" data-field_key="' . $field['key'] . '" data-field_type="' . $field['type'] . '">';
+			echo '<div id="acf-' . esc_attr($field['name']) . '" class="field field_type-' . esc_attr($field['type']) . ' field_key-' . esc_attr($field['key']) . esc_attr($required_class) . '" data-field_name="' . esc_attr($field['name']) . '" data-field_key="' . esc_attr($field['key']) . '" data-field_type="' . esc_attr($field['type']) . '">';
 
 				echo '<p class="label">';
-					echo '<label for="' . $field['id'] . '">' . $field['label'] . $required_label . '</label>';
-					echo $field['instructions'];
+					echo '<label for="' . esc_attr($field['id']) . '">' . esc_html($field['label']) . wp_kses_post($required_label) . '</label>';
+					echo wp_kses_post( $field['instructions'] );
 				echo '</p>';
 				
 				$field['name'] = 'fields[' . $field['key'] . ']';

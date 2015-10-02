@@ -210,7 +210,7 @@ class acf_export
 		
 		?>
 <form method="post">
-<input type="hidden" name="nonce" value="<?php echo wp_create_nonce( 'export' ); ?>" />
+<input type="hidden" name="nonce" value="<?php echo esc_attr(wp_create_nonce( 'export' )); ?>" />
 <div class="wp-box">
 	<div class="title">
 		<h3><?php _e("Export Field Groups",'acf'); ?></h3>
@@ -388,7 +388,7 @@ if(function_exists("register_field_group"))
 				//$html = preg_replace("/'instructions'(.*?)('.*?')/", "'instructions'$1__($2)", $html);
 				
 								
-?>	register_field_group(<?php echo $html ?>);
+?>	register_field_group(<?php echo esc_textarea($html) ?>);
 <?php
 			}
 ?>

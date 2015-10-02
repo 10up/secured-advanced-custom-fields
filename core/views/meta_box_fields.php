@@ -55,13 +55,13 @@ $conditional_logic_rule = array(
 	'value' => ''
 );
 
-$error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does not exist', 'acf');
+$error_field_type = '<b>' . esc_html__('Error', 'acf') . '</b> ' . esc_html__('Field type does not exist', 'acf');
 		
 ?>
 
 <!-- Hidden Fields -->
 <div style="display:none;">
-	<input type="hidden" name="acf_nonce" value="<?php echo wp_create_nonce( 'field_group' ); ?>" />
+	<input type="hidden" name="acf_nonce" value="<?php echo esc_attr( wp_create_nonce( 'field_group' ) ); ?>" />
 </div>
 <!-- / Hidden Fields -->
 
@@ -94,15 +94,15 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 	<?php foreach($fields as $field): 
 		$fake_name = $field['key'];
 	?>
-	<div class="field field_type-<?php echo $field['type']; ?> field_key-<?php echo $field['key']; ?>" data-type="<?php echo $field['type']; ?>" data-id="<?php echo $field['key']; ?>">
-		<input type="hidden" class="input-field_key" name="fields[<?php echo $field['key']; ?>][key]" value="<?php echo $field['key']; ?>" />
+	<div class="field field_type-<?php echo esc_attr( $field['type'] ); ?> field_key-<?php echo esc_attr( $field['key'] ); ?>" data-type="<?php echo esc_attr( $field['type'] ); ?>" data-id="<?php echo esc_attr( $field['key'] ); ?>">
+		<input type="hidden" class="input-field_key" name="fields[<?php echo esc_attr( $field['key'] ); ?>][key]" value="<?php echo esc_attr( $field['key'] ); ?>" />
 		<div class="field_meta">
 			<table class="acf widefat">
 				<tr>
 					<td class="field_order"><span class="circle"><?php echo (int)$field['order_no'] + 1; ?></span></td>
 					<td class="field_label">
 						<strong>
-							<a class="acf_edit_field row-title" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php echo $field['label']; ?></a>
+							<a class="acf_edit_field row-title" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php echo esc_html( $field['label'] ); ?></a>
 						</strong>
 						<div class="row_options">
 							<span><a class="acf_edit_field" title="<?php _e("Edit this Field",'acf'); ?>" href="javascript:;"><?php _e("Edit",'acf'); ?></a> | </span>
@@ -110,9 +110,9 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 							<span><a class="acf_delete_field" title="<?php _e("Delete this Field",'acf'); ?>" href="javascript:;"><?php _e("Delete",'acf'); ?></a></span>
 						</div>
 					</td>
-					<td class="field_name"><?php echo $field['name']; ?></td>
-					<td class="field_type"><?php $l = field_type_exists( $field['type'] ); if( $l ){ echo $l; }else{ echo $error_field_type; } ?></td>
-					<td class="field_key"><?php echo $field['key']; ?></td>
+					<td class="field_name"><?php echo esc_html( $field['name'] ); ?></td>
+					<td class="field_type"><?php $l = field_type_exists( $field['type'] ); if( $l ){ echo esc_html( $l ); }else{ echo esc_html( $error_field_type ); } ?></td>
+					<td class="field_key"><?php echo esc_html( $field['key'] ); ?></td>
 				</tr>
 			</table>
 		</div>
@@ -205,7 +205,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 						do_action('acf/create_field_options', $field );
 						
 						?>
-						<tr class="conditional-logic" data-field_name="<?php echo $field['key']; ?>">
+						<tr class="conditional-logic" data-field_name="<?php echo esc_attr( $field['key'] ); ?>">
 							<td class="label"><label><?php _e("Conditional Logic",'acf'); ?></label></td>
 							<td>
 								<?php 
@@ -246,9 +246,9 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 											}
 											
 											?>
-											<tr data-i="<?php echo $rule_i; ?>">
+											<tr data-i="<?php echo esc_attr( $rule_i ); ?>">
 												<td>
-													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][field]" value="<?php echo $rule['field']; ?>" />
+													<input class="conditional-logic-field" type="hidden" name="fields[<?php echo esc_attr( $field['key'] ); ?>][conditional_logic][rules][<?php echo esc_attr( $rule_i ); ?>][field]" value="<?php echo esc_attr( $rule['field'] ); ?>" />
 												</td>
 												<td width="25%">
 													<?php 
@@ -263,7 +263,7 @@ $error_field_type = '<b>' . __('Error', 'acf') . '</b> ' . __('Field type does n
 													));
 													?>
 												</td>
-												<td><input class="conditional-logic-value" type="hidden" name="fields[<?php echo $field['key']; ?>][conditional_logic][rules][<?php echo $rule_i; ?>][value]" value="<?php echo $rule['value']; ?>" /></td>
+												<td><input class="conditional-logic-value" type="hidden" name="fields[<?php echo esc_attr( $field['key'] ); ?>][conditional_logic][rules][<?php echo esc_attr( $rule_i ); ?>][value]" value="<?php echo esc_attr( $rule['value'] ); ?>" /></td>
 												<td class="buttons">
 													<ul class="hl clearfix">
 														<li><a class="acf-button-remove" href="javascript:;"></a></li>

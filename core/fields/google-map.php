@@ -106,11 +106,11 @@ class acf_field_google_map extends acf_field
 		}
 		
 		?>
-		<div class="acf-google-map <?php echo $o['class']; ?>" <?php echo $atts; ?>>
+		<div class="acf-google-map <?php echo esc_attr( $o['class'] ); ?>" <?php echo esc_attr( $atts ); ?>>
 			
 			<div style="display:none;">
 				<?php foreach( $field['value'] as $k => $v ): ?>
-					<input type="hidden" class="input-<?php echo $k; ?>" name="<?php echo esc_attr($field['name']); ?>[<?php echo $k; ?>]" value="<?php echo esc_attr( $v ); ?>" />
+					<input type="hidden" class="input-<?php echo esc_attr( $k ); ?>" name="<?php echo esc_attr($field['name']); ?>[<?php echo esc_attr( $k ); ?>]" value="<?php echo esc_attr( $v ); ?>" />
 				<?php endforeach; ?>
 			</div>
 			
@@ -118,7 +118,7 @@ class acf_field_google_map extends acf_field
 				
 				<div class="has-value">
 					<a href="#" class="acf-sprite-remove ir" title="<?php _e("Clear location",'acf'); ?>">Remove</a>
-					<h4><?php echo $field['value']['address']; ?></h4>
+					<h4><?php echo esc_attr( $field['value']['address'] ); ?></h4>
 				</div>
 				
 				<div class="no-value">
@@ -128,7 +128,7 @@ class acf_field_google_map extends acf_field
 				
 			</div>
 			
-			<div class="canvas" style="height: <?php echo $field['height']; ?>px">
+			<div class="canvas" style="height: <?php echo esc_attr( $field['height'] ); ?>px">
 				
 			</div>
 			
@@ -157,7 +157,7 @@ class acf_field_google_map extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Center",'acf'); ?></label>
 		<p class="description"><?php _e('Center the initial map','acf'); ?></p>
@@ -194,7 +194,7 @@ class acf_field_google_map extends acf_field
 		
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Zoom",'acf'); ?></label>
 		<p class="description"><?php _e('Set the initial zoom level','acf'); ?></p>
@@ -212,7 +212,7 @@ class acf_field_google_map extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr($this->name); ?>">
 	<td class="label">
 		<label><?php _e("Height",'acf'); ?></label>
 		<p class="description"><?php _e('Customise the map height','acf'); ?></p>

@@ -88,12 +88,12 @@ class acf_field_file extends acf_field
 		
 		
 		?>
-<div class="acf-file-uploader clearfix <?php echo $o['class']; ?>" data-library="<?php echo $field['library']; ?>">
-	<input class="acf-file-value" type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $field['value']; ?>" />
+<div class="acf-file-uploader clearfix <?php echo esc_attr( $o['class'] ); ?>" data-library="<?php echo esc_attr( $field['library'] ); ?>">
+	<input class="acf-file-value" type="hidden" name="<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo esc_attr( $field['value'] ); ?>" />
 	<div class="has-file">
 		<ul class="hl clearfix">
 			<li>
-				<img class="acf-file-icon" src="<?php echo $o['icon']; ?>" alt=""/>
+				<img class="acf-file-icon" src="<?php echo esc_attr( $o['icon'] ); ?>" alt=""/>
 				<div class="hover">
 					<ul class="bl">
 						<li><a href="#" class="acf-button-delete ir">Remove</a></li>
@@ -103,15 +103,15 @@ class acf_field_file extends acf_field
 			</li>
 			<li>
 				<p>
-					<strong class="acf-file-title"><?php echo $o['title']; ?></strong>
+					<strong class="acf-file-title"><?php echo esc_attr( $o['title'] ); ?></strong>
 				</p>
 				<p>
 					<strong><?php _e('Name', 'acf'); ?>:</strong>
-					<a class="acf-file-name" href="<?php echo $o['url']; ?>" target="_blank"><?php echo $o['name']; ?></a>
+					<a class="acf-file-name" href="<?php echo esc_attr( $o['url'] ); ?>" target="_blank"><?php echo esc_attr( $o['name'] ); ?></a>
 				</p>
 				<p>
 					<strong><?php _e('Size', 'acf'); ?>:</strong>
-					<span class="acf-file-size"><?php echo $o['size']; ?></span>
+					<span class="acf-file-size"><?php echo esc_attr( $o['size'] ); ?></span>
 				</p>
 				
 			</li>
@@ -148,7 +148,7 @@ class acf_field_file extends acf_field
 		$key = $field['name'];
 		
 		?>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Return Value",'acf'); ?></label>
 	</td>
@@ -170,7 +170,7 @@ class acf_field_file extends acf_field
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo $this->name; ?>">
+<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
 	<td class="label">
 		<label><?php _e("Library",'acf'); ?></label>
 	</td>
