@@ -10,7 +10,7 @@ class acf_field_page_link extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function __construct()
 	{
 		// vars
@@ -22,28 +22,28 @@ class acf_field_page_link extends acf_field
 			'multiple' => 0,
 			'allow_null' => 0,
 		);
-
-
+		
+		
 		// do not delete!
     	parent::__construct();
-
+  
 	}
-
-
+	
+	
 	/*
 	*  load_field()
-	*
+	*  
 	*  This filter is appied to the $field after it is loaded from the database
-	*
+	*  
 	*  @type filter
 	*  @since 3.6
 	*  @date 23/01/13
-	*
+	*  
 	*  @param $field - the field array holding all the field options
-	*
+	*  
 	*  @return $field - the field array holding all the field options
 	*/
-
+	
 	function load_field( $field )
 	{
 
@@ -53,12 +53,12 @@ class acf_field_page_link extends acf_field
 			$field['post_type'] = array( 'all' );
 		}
 
-
+		
 		// return
 		return $field;
 	}
-
-
+	
+	
 	/*
 	*  create_field()
 	*
@@ -70,16 +70,16 @@ class acf_field_page_link extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function create_field( $field )
 	{
 		// let post_object create the field
 		$field['type'] = 'post_object';
-
+		
 		do_action('acf/create_field', $field );
 	}
-
-
+	
+	
 	/*
 	*  create_options()
 	*
@@ -92,25 +92,25 @@ class acf_field_page_link extends acf_field
 	*
 	*  @param	$field	- an array holding all the field's data
 	*/
-
+	
 	function create_options( $field )
 	{
 		$key = $field['name'];
-
+		
 		?>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label for=""><?php _e("Post Type",'acf'); ?></label>
 	</td>
 	<td>
-		<?php
-
+		<?php 
+		
 		$choices = array(
 			'all'	=>	__("All",'acf')
 		);
 		$choices = apply_filters('acf/get_post_types', $choices);
-
-
+		
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'select',
 			'name'	=>	'fields['.$key.'][post_type]',
@@ -118,17 +118,17 @@ class acf_field_page_link extends acf_field
 			'choices'	=>	$choices,
 			'multiple'	=>	1,
 		));
-
+		
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Allow Null?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
-
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][allow_null]',
@@ -139,17 +139,17 @@ class acf_field_page_link extends acf_field
 			),
 			'layout'	=>	'horizontal',
 		));
-
+		
 		?>
 	</td>
 </tr>
-<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+<tr class="field_option field_option_<?php echo $this->name; ?>">
 	<td class="label">
 		<label><?php _e("Select multiple values?",'acf'); ?></label>
 	</td>
 	<td>
 		<?php
-
+		
 		do_action('acf/create_field', array(
 			'type'	=>	'radio',
 			'name'	=>	'fields['.$key.'][multiple]',
@@ -160,15 +160,15 @@ class acf_field_page_link extends acf_field
 			),
 			'layout'	=>	'horizontal',
 		));
-
+		
 		?>
 	</td>
 </tr>
 		<?php
-
+		
 	}
-
-
+	
+	
 	/*
 	*  format_value_for_api()
 	*
@@ -184,19 +184,19 @@ class acf_field_page_link extends acf_field
 	*
 	*  @return	$value	- the modified value
 	*/
-
+	
 	function format_value_for_api( $value, $post_id, $field )
 	{
 		if( !$value )
 		{
 			return false;
 		}
-
+		
 		if( $value == 'null' )
 		{
 			return false;
 		}
-
+		
 		if( is_array($value) )
 		{
 			foreach( $value as $k => $v )
@@ -208,10 +208,10 @@ class acf_field_page_link extends acf_field
 		{
 			$value = get_permalink($value);
 		}
-
+		
 		return $value;
 	}
-
+	
 }
 
 new acf_field_page_link();

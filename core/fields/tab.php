@@ -2,7 +2,7 @@
 
 class acf_field_tab extends acf_field
 {
-
+	
 	/*
 	*  __construct
 	*
@@ -11,20 +11,20 @@ class acf_field_tab extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function __construct()
 	{
 		// vars
 		$this->name = 'tab';
 		$this->label = __("Tab",'acf');
 		$this->category = __("Layout",'acf');
-
-
+		
+		
 		// do not delete!
     	parent::__construct();
 	}
-
-
+	
+	
 	/*
 	*  create_field()
 	*
@@ -36,14 +36,14 @@ class acf_field_tab extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function create_field( $field )
 	{
-		echo '<div class="acf-tab">' . esc_html($field['label']) . '</div>';
+		echo '<div class="acf-tab">' . $field['label'] . '</div>';
 	}
-
-
-
+	
+	
+	
 	/*
 	*  create_options()
 	*
@@ -56,11 +56,11 @@ class acf_field_tab extends acf_field
 	*  @since	3.6
 	*  @date	23/01/13
 	*/
-
+	
 	function create_options( $field )
 	{
 		?>
-		<tr class="field_option field_option_<?php echo esc_attr( $this->name ); ?>">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Instructions",'acf'); ?></label>
 			</td>
@@ -71,9 +71,9 @@ class acf_field_tab extends acf_field
 			</td>
 		</tr>
 		<?php
-
+		
 	}
-
+	
 }
 
 new acf_field_tab();

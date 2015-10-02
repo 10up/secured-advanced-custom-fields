@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 /*
 *  acf_controller_post
@@ -13,7 +13,7 @@
 
 class acf_controller_post
 {
-
+	
 	/*
 	*  Constructor
 	*
@@ -26,20 +26,20 @@ class acf_controller_post
 	*  @param	N/A
 	*  @return	N/A
 	*/
-
+	
 	function __construct()
 	{
 		// actions
 		add_action('admin_enqueue_scripts',				array($this, 'admin_enqueue_scripts'));
 		add_action('save_post', 						array($this, 'save_post'), 10, 1);
-
-
+		
+		
 		// ajax
 		add_action('wp_ajax_acf/post/render_fields',	array($this, 'ajax_render_fields'));
 		add_action('wp_ajax_acf/post/get_style', 		array($this, 'ajax_get_style'));
 	}
-
-
+	
+	
 	/*
 	*  validate_page
 	*
@@ -52,48 +52,48 @@ class acf_controller_post
 	*  @param	N/A
 	*  @return	(boolean)
 	*/
-
+	
 	function validate_page()
 	{
 		// global
 		global $pagenow, $typenow;
-
-
+		
+		
 		// vars
 		$return = false;
-
-
+		
+		
 		// validate page
 		if( in_array( $pagenow, array('post.php', 'post-new.php') ) )
 		{
-
+		
 			// validate post type
 			global $typenow;
-
+			
 			if( $typenow != "acf" )
 			{
 				$return = true;
 			}
-
+			
 		}
-
-
+		
+		
 		// validate page (Shopp)
 		if( $pagenow == "admin.php" && isset( $_GET['page'] ) && $_GET['page'] == "shopp-products" && isset( $_GET['id'] ) )
 		{
 			$return = true;
 		}
-
-
+		
+		
 		// return
 		return $return;
 	}
-
-
+	
+	
 	/*
 	*  admin_enqueue_scripts
 	*
-	*  This action is run after post query but before any admin script / head actions.
+	*  This action is run after post query but before any admin script / head actions. 
 	*  It is a good place to register all actions.
 	*
 	*  @type	action (admin_enqueue_scripts)
@@ -103,7 +103,7 @@ class acf_controller_post
 	*  @param	N/A
 	*  @return	N/A
 	*/
-
+	
 	function admin_enqueue_scripts()
 	{
 		// validate page
@@ -112,14 +112,14 @@ class acf_controller_post
 			return;
 		}
 
-
+		
 		// actions
 		do_action('acf/input/admin_enqueue_scripts');
-
+		
 		add_action('admin_head', array($this,'admin_head'));
 	}
-
-
+	
+	
 	/*
 	*  admin_head
 	*
@@ -132,65 +132,65 @@ class acf_controller_post
 	*  @param	N/A
 	*  @return	N/A
 	*/
-
+	
 	function admin_head()
 	{
 		// globals
 		global $post, $pagenow, $typenow;
-
-
+		
+		
 		// shopp
 		if( $pagenow == "admin.php" && isset( $_GET['page'] ) && $_GET['page'] == "shopp-products" && isset( $_GET['id'] ) )
 		{
 			$typenow = "shopp_product";
 		}
-
-
+		
+		
 		// vars
 		$post_id = $post ? $post->ID : 0;
-
-
+		
+			
 		// get field groups
-		$filter = array(
-			'post_id'	=> $post_id,
-			'post_type'	=> $typenow
+		$filter = array( 
+			'post_id'	=> $post_id, 
+			'post_type'	=> $typenow 
 		);
 		$metabox_ids = array();
 		$metabox_ids = apply_filters( 'acf/location/match_field_groups', $metabox_ids, $filter );
-
-
+		
+		
 		// get style of first field group
 		$style = '';
 		if( isset($metabox_ids[0]) )
 		{
 			$style = $this->get_style( $metabox_ids[0] );
 		}
-
-
+		
+		
 		// Style
-		echo '<style type="text/css" id="acf_style" >' . wp_kses_post($style) . '</style>';
-
-
+		echo '<style type="text/css" id="acf_style" >' . $style . '</style>';
+		
+		
 		// add user js + css
 		do_action('acf/input/admin_head');
-
-
+		
+		
 		// get field groups
 		$acfs = apply_filters('acf/get_field_groups', array());
-
-
+		
+		
 		if( $acfs )
 		{
 			foreach( $acfs as $acf )
 			{
 				// load options
 				$acf['options'] = apply_filters('acf/field_group/get_options', array(), $acf['id']);
-
-
+				
+				
 				// vars
 				$show = in_array( $acf['id'], $metabox_ids ) ? 1 : 0;
-
-
+				
+				
 				// priority
 				$priority = 'high';
 				if( $acf['options']['position'] == 'side' )
@@ -198,34 +198,34 @@ class acf_controller_post
 					$priority = 'core';
 				}
 				$priority = apply_filters('acf/input/meta_box_priority', $priority, $acf);
-
-
+				
+				
 				// add meta box
 				add_meta_box(
-					'acf_' . $acf['id'],
-					esc_html( $acf['title'] ),
-					array($this, 'meta_box_input'),
-					$typenow,
-					$acf['options']['position'],
-					$priority,
+					'acf_' . $acf['id'], 
+					$acf['title'], 
+					array($this, 'meta_box_input'), 
+					$typenow, 
+					$acf['options']['position'], 
+					$priority, 
 					array( 'field_group' => $acf, 'show' => $show, 'post_id' => $post_id )
 				);
-
+				
 			}
 			// foreach($acfs as $acf)
 		}
 		// if($acfs)
-
-
+		
+		
 		// Allow 'acf_after_title' metabox position
 		add_action('edit_form_after_title', array($this, 'edit_form_after_title'));
-
-
+		
+		
 		// remove ACF from meta postbox
 		add_filter( 'is_protected_meta', array($this, 'is_protected_meta'), 10, 3 );
 	}
-
-
+	
+	
 	/*
 	*  edit_form_after_title
 	*
@@ -237,21 +237,21 @@ class acf_controller_post
 	*  @param	N/A
 	*  @return	N/A
 	*/
-
+	
 	function edit_form_after_title()
 	{
 		// globals
 		global $post, $wp_meta_boxes;
-
-
+		
+		
 		// render
 		do_meta_boxes( get_current_screen(), 'acf_after_title', $post);
-
-
+		
+		
 		// clean up
 		unset( $wp_meta_boxes['post']['acf_after_title'] );
-
-
+		
+		
 		// preview hack
 		// the following code will add a hidden input which will trigger WP to create a revision apon save
 		// http://support.advancedcustomfields.com/forums/topic/preview-solution/#post-4106
@@ -261,64 +261,64 @@ class acf_controller_post
 		</div>
 		<?php
 	}
-
-
+	
+	
 	/*
 	*  meta_box_input
 	*
-	*  @description:
+	*  @description: 
 	*  @since 1.0.0
 	*  @created: 23/06/12
 	*/
-
+	
 	function meta_box_input( $post, $args )
 	{
 		// extract $args
 		extract( $args );
-
-
+		
+		
 		// classes
 		$class = 'acf_postbox ' . $args['field_group']['options']['layout'];
 		$toggle_class = 'acf_postbox-toggle';
-
-
+		
+		
 		if( ! $args['show'] )
 		{
 			$class .= ' acf-hidden';
 			$toggle_class .= ' acf-hidden';
 		}
-
-
+		
+		
 		// HTML
 		if( $args['show'] )
 		{
 			$fields = apply_filters('acf/field_group/get_fields', array(), $args['field_group']['id']);
-
+	
 			do_action('acf/create_fields', $fields, $args['post_id']);
 		}
 		else
 		{
 			echo '<div class="acf-replace-with-fields"><div class="acf-loading"></div></div>';
 		}
-
-
+		
+		
 		// nonce
 		echo '<div style="display:none">';
-			echo '<input type="hidden" name="acf_nonce" value="' . esc_attr(wp_create_nonce( 'input' )) . '" />';
+			echo '<input type="hidden" name="acf_nonce" value="' . wp_create_nonce( 'input' ) . '" />';
 			?>
 <script type="text/javascript">
 (function($) {
-
-	$('#<?php echo esc_js($id); ?>').addClass('<?php echo esc_js($class); ?>').removeClass('hide-if-js');
-	$('#adv-settings label[for="<?php echo esc_js($id); ?>-hide"]').addClass('<?php echo esc_js($toggle_class); ?>');
-
-})(jQuery);
+	
+	$('#<?php echo $id; ?>').addClass('<?php echo $class; ?>').removeClass('hide-if-js');
+	$('#adv-settings label[for="<?php echo $id; ?>-hide"]').addClass('<?php echo $toggle_class; ?>');
+	
+})(jQuery);	
 </script>
 			<?php
 		echo '</div>';
 	}
-
-
+	
+	
 	/*
 	*  get_style
 	*
@@ -332,9 +332,9 @@ class acf_controller_post
 		// vars
 		$options = apply_filters('acf/field_group/get_options', array(), $acf_id);
 		$html = '';
-
-
-		// add style to html
+		
+		
+		// add style to html 
 		if( in_array('permalink',$options['hide_on_screen']) )
 		{
 			$html .= '#edit-slug-box {display: none;} ';
@@ -391,12 +391,12 @@ class acf_controller_post
 		{
 			$html .= '#trackbacksdiv, #screen-meta label[for=trackbacksdiv-hide] {display: none;} ';
 		}
-
-
+		
+				
 		return $html;
 	}
-
-
+	
+	
 	/*
 	*  ajax_get_input_style
 	*
@@ -404,7 +404,7 @@ class acf_controller_post
 	*  @since 2.0.5
 	*  @created: 23/06/12
 	*/
-
+	
 	function ajax_get_style()
 	{
 		// vars
@@ -412,57 +412,57 @@ class acf_controller_post
 			'acf_id' => 0,
 			'nonce' => ''
 		);
-
+		
 		// load post options
 		$options = array_merge($options, $_POST);
-
-
+		
+		
 		// verify nonce
 		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
 		{
 			die(0);
 		}
-
-
+		
+		
 		// return style
-		echo wp_kses_post($this->get_style( $options['acf_id'] ));
-
-
+		echo $this->get_style( $options['acf_id'] );
+		
+		
 		// die
 		die;
 	}
-
-
+	
+	
 	/*
 	*  ajax_render_fields
 	*
-	*  @description:
+	*  @description: 
 	*  @since 3.1.6
 	*  @created: 23/06/12
 	*/
 
 	function ajax_render_fields()
 	{
-
+		
 		// defaults
 		$options = array(
 			'acf_id' => 0,
 			'post_id' => 0,
 			'nonce' => ''
 		);
-
-
+		
+		
 		// load post options
 		$options = array_merge($options, $_POST);
-
-
+		
+		
 		// verify nonce
 		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
 		{
 			die(0);
 		}
-
-
+		
+		
 		// get acfs
 		$acfs = apply_filters('acf/get_field_groups', array());
 		if( $acfs )
@@ -472,19 +472,19 @@ class acf_controller_post
 				if( $acf['id'] == $options['acf_id'] )
 				{
 					$fields = apply_filters('acf/field_group/get_fields', array(), $acf['id']);
-
+					
 					do_action('acf/create_fields', $fields, $options['post_id']);
-
+					
 					break;
 				}
 			}
 		}
 
 		die();
-
+		
 	}
-
-
+	
+	
 	/*
 	*  save_post
 	*
@@ -492,24 +492,24 @@ class acf_controller_post
 	*  @since 1.0.0
 	*  @created: 23/06/12
 	*/
-
+	
 	function save_post( $post_id )
-	{
-
+	{	
+		
 		// do not save if this is an auto save routine
 		if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 		{
 			return $post_id;
 		}
-
-
+		
+		
 		// verify nonce
 		if( !isset($_POST['acf_nonce'], $_POST['fields']) || !wp_verify_nonce($_POST['acf_nonce'], 'input') )
 		{
 			return $post_id;
 		}
-
-
+		
+		
 		// if save lock contains a value, the save_post action is already running for another post.
 		// this would imply that the user is hooking into an ACF update_value or save_post action and inserting a new post
 		// if this is the case, we do not want to save all the $POST data to this post.
@@ -517,14 +517,14 @@ class acf_controller_post
 		{
 			return $post_id;
 		}
-
-
+		
+		
 		// update the post (may even be a revision / autosave preview)
 		do_action('acf/save_post', $post_id);
-
+        
 	}
-
-
+	
+	
 	/*
 	*  is_protected_meta
 	*
@@ -537,33 +537,33 @@ class acf_controller_post
 	*  @param	$post_id (int)
 	*  @return	$post_id (int)
 	*/
-
+	
 	function is_protected_meta( $protected, $meta_key, $meta_type ) {
-
+		
 		// globals
 		global $post;
-
-
+		
+		
 		// if acf_get_field_reference returns a valid key, this is an acf value, so protect it!
 		if( !$protected ) {
-
+			
 			$reference = get_field_reference( $meta_key, $post->ID );
-
+			
 			if( substr($reference, 0, 6) === 'field_' ) {
-
+				
 				$protected = true;
-
-			}
-
+				
+			} 
+			
 		}
-
-
+		
+		
 		// return
 		return $protected;
-
+				
 	}
-
-
+	
+			
 }
 
 new acf_controller_post();
