@@ -4,7 +4,7 @@ Plugin Name: Secured Advanced Custom Fields
 Plugin URI: http://www.advancedcustomfields.com/
 Description: Customise WordPress with powerful, professional and intuitive fields
 Version: 4.4.3
-Author: Elliot Condon
+Author: Elliot Condon, secured by 10up
 Author URI: http://www.elliotcondon.com/
 License: GPL
 Copyright: Elliot Condon
