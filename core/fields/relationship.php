@@ -355,7 +355,7 @@ class acf_field_relationship extends acf_field
 			
 			
 			// update html
-			$r['html'] .= '<li><a href="' . esc_url(get_permalink($post->ID)) . '" data-post_id="' . esc_attr($post->ID) . '">' . esc_html($title) .  '<span class="acf-button-add"></span></a></li>';
+			$r['html'] .= '<li><a href="' . esc_url(get_permalink($post->ID)) . '" data-post_id="' . esc_attr($post->ID) . '">' . wp_kses_post($title) .  '<span class="acf-button-add"></span></a></li>';
 				
 		}
 		
