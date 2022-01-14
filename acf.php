@@ -1,13 +1,15 @@
 <?php
 /*
-Plugin Name: Secured Advanced Custom Fields
-Plugin URI: http://www.advancedcustomfields.com/
-Description: Customise WordPress with powerful, professional and intuitive fields
-Version: 4.4.3
-Author: Elliot Condon, secured by 10up
-Author URI: http://www.elliotcondon.com/
-License: GPL
-Copyright: Elliot Condon
+* Plugin Name: Secured Advanced Custom Fields
+* Plugin URI: http://www.advancedcustomfields.com/
+* Description: Customise WordPress with powerful, professional and intuitive fields
+* Version: 4.4.3
+* Author: Elliot Condon, secured by 10up
+* Author URI: http://www.elliotcondon.com/
+* License: GPL
+* Copyright: Elliot Condon
+* Update URI: https://github.com/10up/secured-advanced-custom-fields
+* 
 */
 
 if( !class_exists('acf') ):
